@@ -121,10 +121,6 @@ module data_mux#(
     );
     
     //decode configuration parameters from IPIF bus 
-    wire [15:0]           n_idle_words;
-    wire [3:0]            output_select;
-    wire [DATA_WIDTH-1:0] idle_word;
-    
     assign IPIF_IP2Bus_Error = 0;
     
     typedef struct packed
@@ -148,7 +144,7 @@ module data_mux#(
         .C_S_AXI_DATA_WIDTH(C_S_AXI_DATA_WIDTH),
         .N_REG(N_REG),
         .PARAM_T(param_t),
-        .DEFAULTS({32'b0, 32'haccccccc, 16'b0, 16'd256, 23'b0})
+        .DEFAULTS({32'b0, 32'haccccccc, 16'b0, 16'd256, 32'b0})
     ) parameterDecoder (
         .clk(clk),
         
