@@ -1,0 +1,13 @@
+**/vivado/*
+
+**/.Xil/*
+
+*~
+*.txt
+*.pdf
+*.png
+*.root
+*.swp
+#*#
+
+*.xcix
