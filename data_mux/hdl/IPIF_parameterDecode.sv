@@ -23,7 +23,7 @@
 module IPIF_parameterDecode#(
         parameter integer C_S_AXI_DATA_WIDTH = 32,
         parameter integer N_REG = 2,
-        parameter [N_REG-1:0] RW_REG = '1,
+        parameter [N_REG-1:0] W_PULSE_REG = '0,
         parameter type PARAM_T = logic[N_REG*C_S_AXI_DATA_WIDTH-1:0],
         parameter PARAM_T DEFAULTS = {C_S_AXI_DATA_WIDTH*N_REG*{1'b0}}
     )(
@@ -70,7 +70,16 @@ module IPIF_parameterDecode#(
         begin
             for(int i = 0; i < N_REG; i += 1)
             begin
-                if(RW_REG[i])
+                if(W_PULSE_REG[i])
+                begin
+                    param_union_out.param_array[i] <=  '0;
+                    
+                    if(IPIF_bus2ip_wrce == (1 << i))
+                    begin
+                        param_union_out.param_array[i] <= IPIF_bus2ip_data;
+                    end
+                end
+                else
                 begin
                     if(IPIF_bus2ip_wrce == (1 << i))
                     begin
