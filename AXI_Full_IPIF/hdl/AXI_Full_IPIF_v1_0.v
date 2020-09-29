@@ -1,7 +1,7 @@
 
 `timescale 1 ns / 1 ps
 
-	module AXI_FIFO_reader_v1_0 #
+	module AXI_Full_IPIF_v1_0 #
 	(
 		// Users to add parameters here
 
@@ -86,7 +86,7 @@
 		input wire  s00_axi_rready
 	);
 // Instantiation of Axi Bus Interface S00_AXI
-	AXI_FIFO_reader_v1_0_S00_AXI # ( 
+	AXI_Full_IPIF_v1_0_S00_AXI # ( 
 	    .C_S_AXI_ID_WIDTH(C_S00_AXI_ID_WIDTH),
 	    .C_S_AXI_DATA_WIDTH(C_S00_AXI_DATA_WIDTH),
 	    .C_S_AXI_ADDR_WIDTH(C_S00_AXI_ADDR_WIDTH)

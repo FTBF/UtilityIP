@@ -43,7 +43,7 @@
 //
 `default_nettype	none
 //
-module AXI_FIFO_reader_v1_0_S00_AXI #(
+module AXI_Full_IPIF_v1_0_S00_AXI #(
 	parameter integer C_S_AXI_ID_WIDTH	= 2,
 	parameter integer C_S_AXI_DATA_WIDTH	= 32,
 	parameter integer C_S_AXI_ADDR_WIDTH	= 6,
