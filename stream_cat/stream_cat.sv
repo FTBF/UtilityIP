@@ -35,9 +35,13 @@ module stream_cat (
 	input  logic [7:0] S_AXIS_11_TDATA,
 	input  logic       S_AXIS_11_TVALID,
 	output logic       S_AXIS_11_TREADY,
-	output logic [95:0] data_out);
+	input  logic [7:0] S_AXIS_12_TDATA,
+	input  logic       S_AXIS_12_TVALID,
+	output logic       S_AXIS_12_TREADY,
+	output logic [103:0] data_out);
 
-	assign data_out = {S_AXIS_11_TDATA,
+	assign data_out = {S_AXIS_12_TDATA,
+		               S_AXIS_11_TDATA,
 		               S_AXIS_10_TDATA,
 		               S_AXIS_09_TDATA,
 		               S_AXIS_08_TDATA,
@@ -62,4 +66,5 @@ module stream_cat (
 	assign S_AXIS_09_TREADY = 1'b1;
 	assign S_AXIS_10_TREADY = 1'b1;
 	assign S_AXIS_11_TREADY = 1'b1;
+	assign S_AXIS_12_TREADY = 1'b1;
 endmodule
