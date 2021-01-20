@@ -23,8 +23,10 @@ module data_mux_impl# (
     input wire [15:0]           n_idle_words,
     input wire [3:0]            output_select,
     input wire [DATA_WIDTH-1:0] idle_word,
+    input wire [DATA_WIDTH-1:0] idle_word_BX0,
     
     //fast control parameter
+    input wire fc_orbitSync,
     input wire fc_linkReset
     );
     
@@ -38,62 +40,59 @@ module data_mux_impl# (
     reg                  tvalid_select;
     
     reg                  fc_linkReset_dly;
+    reg                  fc_orbitSync_dly;
     reg [15:0]           idleCountdown;
     wire                 sendIdle = |idleCountdown;
     
     //check if idle pattern should be sent
-    always_ff @(posedge clk)
-    begin
-        fc_linkReset_dly <= fc_linkReset;
+    always_ff @(posedge clk) begin
+        if (tready_out) begin
+            fc_linkReset_dly <= fc_linkReset;
+            fc_orbitSync_dly <= fc_orbitSync;
+        end
         
         if(!fc_linkReset_dly && fc_linkReset) idleCountdown <= n_idle_words;
         else if(sendIdle && tready_out)       idleCountdown <= idleCountdown - 1;
     end
     
     //multiplexer
-    generate 
-        always_comb
-        begin
-            tdata_select <= 0;
-            tvalid_select <= 0;
-            
-            if(sendIdle)
-            begin
+    always_comb begin
+        tdata_select <= 0;
+        tvalid_select <= 0;
+        
+        if(sendIdle) begin
+            if (!fc_orbitSync_dly && fc_orbitSync) begin
+                tdata_select <= idle_word_BX0;
+            end else begin
                 tdata_select <= idle_word;
-                tvalid_select <= 1;
             end
-            else
-            begin
-                for(int i = 0; i < N_INPUTS; i += 1)
-                begin
-                    if(output_select == i)
-                    begin
-                        tdata_select <= tdata_in[i];
-                        tvalid_select <= tvalid_in[i];
-                    end
+            tvalid_select <= 1;
+        end else begin
+            for(int i = 0; i < N_INPUTS; i += 1) begin
+                if(output_select == i) begin
+                    tdata_select <= tdata_in[i];
+                    tvalid_select <= tvalid_in[i];
                 end
             end
         end
-    endgenerate
+    end
     
     //output data reverser
-    generate
-    always_ff @(posedge clk)
-    begin
-        tvalid_out <= tvalid_select;
-        
-        if(OUTPUT_REVERSE_BITS == 1)
-        begin
-            for(int i = 0; i < DATA_WIDTH; i += 1)
-            begin
-                tdata_out[i] <= tdata_select[DATA_WIDTH - 1 - i];
+    always_ff @(posedge clk) begin
+        if (tready_out) begin
+            tvalid_out <= tvalid_select;
+            
+            if(OUTPUT_REVERSE_BITS == 1) begin
+                for(int i = 0; i < DATA_WIDTH; i += 1) begin
+                    tdata_out[i] <= tdata_select[DATA_WIDTH - 1 - i];
+                end
+            end else begin
+                tdata_out <= tdata_select;
             end
-        end
-        else
-        begin
-            tdata_out <= tdata_select;
+        end else begin
+            tdata_out <= tdata_out;
+            tvalid_out <= tvalid_out;
         end
     end
-    endgenerate
     
 endmodule

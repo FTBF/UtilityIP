@@ -117,6 +117,7 @@ module data_mux#(
     output wire                                  IPIF_IP2Bus_Error,
     
     //fast control parameter
+    input wire fc_orbitSync,
     input wire fc_linkReset
     );
     
@@ -125,7 +126,7 @@ module data_mux#(
     
     typedef struct packed
     {
-        logic [31:0]           padding3;
+        logic [DATA_WIDTH-1:0] idle_word_BX0;
         logic [DATA_WIDTH-1:0] idle_word;
         logic [15:0]           padding2;
         logic [15:0]           n_idle_words;
@@ -139,12 +140,13 @@ module data_mux#(
     assign params_in.output_select = params_out.output_select;
     assign params_in.n_idle_words = params_out.n_idle_words;
     assign params_in.idle_word = params_out.idle_word;
+    assign params_in.idle_word_BX0 = params_out.idle_word_BX0;
     
     IPIF_parameterDecode#(
         .C_S_AXI_DATA_WIDTH(C_S_AXI_DATA_WIDTH),
         .N_REG(N_REG),
         .PARAM_T(param_t),
-        .DEFAULTS({32'b0, 32'haccccccc, 16'b0, 16'd256, 32'b0})
+        .DEFAULTS({32'h9ccccccc, 32'haccccccc, 16'b0, 16'd256, 32'b0})
     ) parameterDecoder (
         .clk(clk),
         
@@ -219,8 +221,10 @@ module data_mux#(
         .n_idle_words(params_out.n_idle_words),
         .output_select(params_out.output_select),
         .idle_word(params_out.idle_word),
+        .idle_word_BX0(params_out.idle_word_BX0),
         
         //fast control parameter
+        .fc_orbitSync(fc_orbitSync),
         .fc_linkReset(fc_linkReset)
     );
     
