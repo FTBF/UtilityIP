@@ -23,7 +23,7 @@
 module IO_blocks#(
     parameter integer NLINKS = 12,
     parameter integer WORD_PER_LINK = 4,
-	parameter string DRIVE_ENABLED = "TRUE"
+	parameter integer DRIVE_ENABLED = 1
     )
     (
     input logic in_clk160,
@@ -247,7 +247,7 @@ module IO_blocks#(
 				.T_OUT(TRISTATE_OSERDES_to_IOBUFDS)
 			);
    
-			if (DRIVE_ENABLED == "TRUE") begin
+			if (DRIVE_ENABLED == 1) begin
 				IOBUFDS_DIFF_OUT diff_buf(.IO(D_IN_OUT_P[i]), .IOB(D_IN_OUT_N[i]), 
 										  .I(DATA_OSERDES_to_IOBUFDS), 
 										  .O(IOBUFDS_to_ISERDES_P), .OB(IOBUFDS_to_ISERDES_N),

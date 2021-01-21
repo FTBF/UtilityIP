@@ -5,11 +5,11 @@ proc init_gui { IPINST } {
   set Page_0 [ipgui::add_page $IPINST -name "Page 0"]
   ipgui::add_param $IPINST -name "NLINKS" -parent ${Page_0}
 
-  set DRIVE_ENABLED [ipgui::add_param $IPINST -name "DRIVE_ENABLED"]
+  set DRIVE_ENABLED [ipgui::add_param $IPINST -name "DRIVE_ENABLED" -parent ${Page_0}]
   set_property tooltip {Enable capability to drive voltage to IO pins} ${DRIVE_ENABLED}
-  set INPUT_STREAMS_ENABLE [ipgui::add_param $IPINST -name "INPUT_STREAMS_ENABLE"]
+  set INPUT_STREAMS_ENABLE [ipgui::add_param $IPINST -name "INPUT_STREAMS_ENABLE" -parent ${Page_0}]
   set_property tooltip {Enable AXI-stream inputs} ${INPUT_STREAMS_ENABLE}
-  set OUTPUT_STREAMS_ENABLE [ipgui::add_param $IPINST -name "OUTPUT_STREAMS_ENABLE"]
+  set OUTPUT_STREAMS_ENABLE [ipgui::add_param $IPINST -name "OUTPUT_STREAMS_ENABLE" -parent ${Page_0}]
   set_property tooltip {Enable AXI-stream outputs} ${OUTPUT_STREAMS_ENABLE}
 
 }
