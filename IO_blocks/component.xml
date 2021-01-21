@@ -132,6 +132,13 @@
           </spirit:physicalPort>
         </spirit:portMap>
       </spirit:portMaps>
+      <spirit:vendorExtensions>
+        <xilinx:busInterfaceInfo>
+          <xilinx:enablement>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.in_00" xilinx:dependency="$INPUT_STREAMS_ENABLE">true</xilinx:isEnabled>
+          </xilinx:enablement>
+        </xilinx:busInterfaceInfo>
+      </spirit:vendorExtensions>
     </spirit:busInterface>
     <spirit:busInterface>
       <spirit:name>in_01</spirit:name>
@@ -159,7 +166,7 @@
       <spirit:vendorExtensions>
         <xilinx:busInterfaceInfo>
           <xilinx:enablement>
-            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.in_01" xilinx:dependency="spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 1">false</xilinx:isEnabled>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.in_01" xilinx:dependency="$INPUT_STREAMS_ENABLE and (spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 1)">true</xilinx:isEnabled>
           </xilinx:enablement>
         </xilinx:busInterfaceInfo>
       </spirit:vendorExtensions>
@@ -190,7 +197,7 @@
       <spirit:vendorExtensions>
         <xilinx:busInterfaceInfo>
           <xilinx:enablement>
-            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.in_02" xilinx:dependency="spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 2">false</xilinx:isEnabled>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.in_02" xilinx:dependency="$INPUT_STREAMS_ENABLE and (spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 2)">true</xilinx:isEnabled>
           </xilinx:enablement>
         </xilinx:busInterfaceInfo>
       </spirit:vendorExtensions>
@@ -221,7 +228,7 @@
       <spirit:vendorExtensions>
         <xilinx:busInterfaceInfo>
           <xilinx:enablement>
-            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.in_03" xilinx:dependency="spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 3">false</xilinx:isEnabled>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.in_03" xilinx:dependency="$INPUT_STREAMS_ENABLE and (spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 3)">true</xilinx:isEnabled>
           </xilinx:enablement>
         </xilinx:busInterfaceInfo>
       </spirit:vendorExtensions>
@@ -252,7 +259,7 @@
       <spirit:vendorExtensions>
         <xilinx:busInterfaceInfo>
           <xilinx:enablement>
-            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.in_04" xilinx:dependency="spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 4">false</xilinx:isEnabled>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.in_04" xilinx:dependency="$INPUT_STREAMS_ENABLE and (spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 4)">true</xilinx:isEnabled>
           </xilinx:enablement>
         </xilinx:busInterfaceInfo>
       </spirit:vendorExtensions>
@@ -283,7 +290,7 @@
       <spirit:vendorExtensions>
         <xilinx:busInterfaceInfo>
           <xilinx:enablement>
-            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.in_05" xilinx:dependency="spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 5">false</xilinx:isEnabled>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.in_05" xilinx:dependency="$INPUT_STREAMS_ENABLE and (spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 5)">true</xilinx:isEnabled>
           </xilinx:enablement>
         </xilinx:busInterfaceInfo>
       </spirit:vendorExtensions>
@@ -314,7 +321,7 @@
       <spirit:vendorExtensions>
         <xilinx:busInterfaceInfo>
           <xilinx:enablement>
-            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.in_06" xilinx:dependency="spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 6">false</xilinx:isEnabled>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.in_06" xilinx:dependency="$INPUT_STREAMS_ENABLE and (spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 6)">true</xilinx:isEnabled>
           </xilinx:enablement>
         </xilinx:busInterfaceInfo>
       </spirit:vendorExtensions>
@@ -345,7 +352,7 @@
       <spirit:vendorExtensions>
         <xilinx:busInterfaceInfo>
           <xilinx:enablement>
-            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.in_07" xilinx:dependency="spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 7">false</xilinx:isEnabled>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.in_07" xilinx:dependency="$INPUT_STREAMS_ENABLE and (spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 7)">true</xilinx:isEnabled>
           </xilinx:enablement>
         </xilinx:busInterfaceInfo>
       </spirit:vendorExtensions>
@@ -376,7 +383,7 @@
       <spirit:vendorExtensions>
         <xilinx:busInterfaceInfo>
           <xilinx:enablement>
-            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.in_08" xilinx:dependency="spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 8">false</xilinx:isEnabled>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.in_08" xilinx:dependency="$INPUT_STREAMS_ENABLE and (spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 8)">true</xilinx:isEnabled>
           </xilinx:enablement>
         </xilinx:busInterfaceInfo>
       </spirit:vendorExtensions>
@@ -407,7 +414,7 @@
       <spirit:vendorExtensions>
         <xilinx:busInterfaceInfo>
           <xilinx:enablement>
-            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.in_09" xilinx:dependency="spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 9">false</xilinx:isEnabled>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.in_09" xilinx:dependency="$INPUT_STREAMS_ENABLE and (spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 9)">true</xilinx:isEnabled>
           </xilinx:enablement>
         </xilinx:busInterfaceInfo>
       </spirit:vendorExtensions>
@@ -438,7 +445,7 @@
       <spirit:vendorExtensions>
         <xilinx:busInterfaceInfo>
           <xilinx:enablement>
-            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.in_10" xilinx:dependency="spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 10">false</xilinx:isEnabled>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.in_10" xilinx:dependency="$INPUT_STREAMS_ENABLE and (spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 10)">true</xilinx:isEnabled>
           </xilinx:enablement>
         </xilinx:busInterfaceInfo>
       </spirit:vendorExtensions>
@@ -469,7 +476,7 @@
       <spirit:vendorExtensions>
         <xilinx:busInterfaceInfo>
           <xilinx:enablement>
-            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.in_11" xilinx:dependency="spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 11">false</xilinx:isEnabled>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.in_11" xilinx:dependency="$INPUT_STREAMS_ENABLE and (spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 11)">true</xilinx:isEnabled>
           </xilinx:enablement>
         </xilinx:busInterfaceInfo>
       </spirit:vendorExtensions>
@@ -500,7 +507,7 @@
       <spirit:vendorExtensions>
         <xilinx:busInterfaceInfo>
           <xilinx:enablement>
-            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.in_12" xilinx:dependency="spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 12">false</xilinx:isEnabled>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.in_12" xilinx:dependency="$INPUT_STREAMS_ENABLE and (spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 12)">false</xilinx:isEnabled>
           </xilinx:enablement>
         </xilinx:busInterfaceInfo>
       </spirit:vendorExtensions>
@@ -531,7 +538,7 @@
       <spirit:vendorExtensions>
         <xilinx:busInterfaceInfo>
           <xilinx:enablement>
-            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.in_13" xilinx:dependency="spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 13">false</xilinx:isEnabled>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.in_13" xilinx:dependency="$INPUT_STREAMS_ENABLE and (spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 13)">false</xilinx:isEnabled>
           </xilinx:enablement>
         </xilinx:busInterfaceInfo>
       </spirit:vendorExtensions>
@@ -562,7 +569,7 @@
       <spirit:vendorExtensions>
         <xilinx:busInterfaceInfo>
           <xilinx:enablement>
-            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.in_14" xilinx:dependency="spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 14">false</xilinx:isEnabled>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.in_14" xilinx:dependency="$INPUT_STREAMS_ENABLE and (spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 14)">false</xilinx:isEnabled>
           </xilinx:enablement>
         </xilinx:busInterfaceInfo>
       </spirit:vendorExtensions>
@@ -593,7 +600,7 @@
       <spirit:vendorExtensions>
         <xilinx:busInterfaceInfo>
           <xilinx:enablement>
-            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.in_15" xilinx:dependency="spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 15">false</xilinx:isEnabled>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.in_15" xilinx:dependency="$INPUT_STREAMS_ENABLE and (spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 15)">false</xilinx:isEnabled>
           </xilinx:enablement>
         </xilinx:busInterfaceInfo>
       </spirit:vendorExtensions>
@@ -621,6 +628,13 @@
           </spirit:physicalPort>
         </spirit:portMap>
       </spirit:portMaps>
+      <spirit:vendorExtensions>
+        <xilinx:busInterfaceInfo>
+          <xilinx:enablement>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.out_00" xilinx:dependency="$OUTPUT_STREAMS_ENABLE">true</xilinx:isEnabled>
+          </xilinx:enablement>
+        </xilinx:busInterfaceInfo>
+      </spirit:vendorExtensions>
     </spirit:busInterface>
     <spirit:busInterface>
       <spirit:name>out_01</spirit:name>
@@ -648,7 +662,7 @@
       <spirit:vendorExtensions>
         <xilinx:busInterfaceInfo>
           <xilinx:enablement>
-            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.out_01" xilinx:dependency="spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 1">false</xilinx:isEnabled>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.out_01" xilinx:dependency="$OUTPUT_STREAMS_ENABLE and (spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 1)">true</xilinx:isEnabled>
           </xilinx:enablement>
         </xilinx:busInterfaceInfo>
       </spirit:vendorExtensions>
@@ -679,7 +693,7 @@
       <spirit:vendorExtensions>
         <xilinx:busInterfaceInfo>
           <xilinx:enablement>
-            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.out_02" xilinx:dependency="spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 2">false</xilinx:isEnabled>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.out_02" xilinx:dependency="$OUTPUT_STREAMS_ENABLE and (spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 2)">true</xilinx:isEnabled>
           </xilinx:enablement>
         </xilinx:busInterfaceInfo>
       </spirit:vendorExtensions>
@@ -710,7 +724,7 @@
       <spirit:vendorExtensions>
         <xilinx:busInterfaceInfo>
           <xilinx:enablement>
-            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.out_03" xilinx:dependency="spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 3">false</xilinx:isEnabled>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.out_03" xilinx:dependency="$OUTPUT_STREAMS_ENABLE and (spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 3)">true</xilinx:isEnabled>
           </xilinx:enablement>
         </xilinx:busInterfaceInfo>
       </spirit:vendorExtensions>
@@ -741,7 +755,7 @@
       <spirit:vendorExtensions>
         <xilinx:busInterfaceInfo>
           <xilinx:enablement>
-            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.out_04" xilinx:dependency="spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 4">false</xilinx:isEnabled>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.out_04" xilinx:dependency="$OUTPUT_STREAMS_ENABLE and (spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 4)">true</xilinx:isEnabled>
           </xilinx:enablement>
         </xilinx:busInterfaceInfo>
       </spirit:vendorExtensions>
@@ -772,7 +786,7 @@
       <spirit:vendorExtensions>
         <xilinx:busInterfaceInfo>
           <xilinx:enablement>
-            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.out_05" xilinx:dependency="spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 5">false</xilinx:isEnabled>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.out_05" xilinx:dependency="$OUTPUT_STREAMS_ENABLE and (spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 5)">true</xilinx:isEnabled>
           </xilinx:enablement>
         </xilinx:busInterfaceInfo>
       </spirit:vendorExtensions>
@@ -803,7 +817,7 @@
       <spirit:vendorExtensions>
         <xilinx:busInterfaceInfo>
           <xilinx:enablement>
-            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.out_06" xilinx:dependency="spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 6">false</xilinx:isEnabled>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.out_06" xilinx:dependency="$OUTPUT_STREAMS_ENABLE and (spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 6)">true</xilinx:isEnabled>
           </xilinx:enablement>
         </xilinx:busInterfaceInfo>
       </spirit:vendorExtensions>
@@ -834,7 +848,7 @@
       <spirit:vendorExtensions>
         <xilinx:busInterfaceInfo>
           <xilinx:enablement>
-            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.out_07" xilinx:dependency="spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 7">false</xilinx:isEnabled>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.out_07" xilinx:dependency="$OUTPUT_STREAMS_ENABLE and (spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 7)">true</xilinx:isEnabled>
           </xilinx:enablement>
         </xilinx:busInterfaceInfo>
       </spirit:vendorExtensions>
@@ -865,7 +879,7 @@
       <spirit:vendorExtensions>
         <xilinx:busInterfaceInfo>
           <xilinx:enablement>
-            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.out_08" xilinx:dependency="spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 8">false</xilinx:isEnabled>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.out_08" xilinx:dependency="$OUTPUT_STREAMS_ENABLE and (spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 8)">true</xilinx:isEnabled>
           </xilinx:enablement>
         </xilinx:busInterfaceInfo>
       </spirit:vendorExtensions>
@@ -896,7 +910,7 @@
       <spirit:vendorExtensions>
         <xilinx:busInterfaceInfo>
           <xilinx:enablement>
-            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.out_09" xilinx:dependency="spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 9">false</xilinx:isEnabled>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.out_09" xilinx:dependency="$OUTPUT_STREAMS_ENABLE and (spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 9)">true</xilinx:isEnabled>
           </xilinx:enablement>
         </xilinx:busInterfaceInfo>
       </spirit:vendorExtensions>
@@ -927,7 +941,7 @@
       <spirit:vendorExtensions>
         <xilinx:busInterfaceInfo>
           <xilinx:enablement>
-            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.out_10" xilinx:dependency="spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 10">false</xilinx:isEnabled>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.out_10" xilinx:dependency="$OUTPUT_STREAMS_ENABLE and (spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 10)">true</xilinx:isEnabled>
           </xilinx:enablement>
         </xilinx:busInterfaceInfo>
       </spirit:vendorExtensions>
@@ -958,7 +972,7 @@
       <spirit:vendorExtensions>
         <xilinx:busInterfaceInfo>
           <xilinx:enablement>
-            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.out_11" xilinx:dependency="spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 11">false</xilinx:isEnabled>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.out_11" xilinx:dependency="$OUTPUT_STREAMS_ENABLE and (spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 11)">true</xilinx:isEnabled>
           </xilinx:enablement>
         </xilinx:busInterfaceInfo>
       </spirit:vendorExtensions>
@@ -989,7 +1003,7 @@
       <spirit:vendorExtensions>
         <xilinx:busInterfaceInfo>
           <xilinx:enablement>
-            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.out_12" xilinx:dependency="spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 12">false</xilinx:isEnabled>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.out_12" xilinx:dependency="$OUTPUT_STREAMS_ENABLE and (spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 12)">false</xilinx:isEnabled>
           </xilinx:enablement>
         </xilinx:busInterfaceInfo>
       </spirit:vendorExtensions>
@@ -1020,7 +1034,7 @@
       <spirit:vendorExtensions>
         <xilinx:busInterfaceInfo>
           <xilinx:enablement>
-            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.out_13" xilinx:dependency="spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 13">false</xilinx:isEnabled>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.out_13" xilinx:dependency="$OUTPUT_STREAMS_ENABLE and (spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 13)">false</xilinx:isEnabled>
           </xilinx:enablement>
         </xilinx:busInterfaceInfo>
       </spirit:vendorExtensions>
@@ -1051,7 +1065,7 @@
       <spirit:vendorExtensions>
         <xilinx:busInterfaceInfo>
           <xilinx:enablement>
-            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.out_14" xilinx:dependency="spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 14">false</xilinx:isEnabled>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.out_14" xilinx:dependency="$OUTPUT_STREAMS_ENABLE and (spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 14)">false</xilinx:isEnabled>
           </xilinx:enablement>
         </xilinx:busInterfaceInfo>
       </spirit:vendorExtensions>
@@ -1082,7 +1096,7 @@
       <spirit:vendorExtensions>
         <xilinx:busInterfaceInfo>
           <xilinx:enablement>
-            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.out_15" xilinx:dependency="spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 15">false</xilinx:isEnabled>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.out_15" xilinx:dependency="$OUTPUT_STREAMS_ENABLE and (spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 15)">false</xilinx:isEnabled>
           </xilinx:enablement>
         </xilinx:busInterfaceInfo>
       </spirit:vendorExtensions>
@@ -1107,11 +1121,11 @@
       <spirit:parameters>
         <spirit:parameter>
           <spirit:name>ASSOCIATED_BUSIF</spirit:name>
-          <spirit:value spirit:id="BUSIFPARAM_VALUE.IN_CLK160.ASSOCIATED_BUSIF">in_00:in_01:in_02:in_03:in_04:in_05:in_06:in_07:in_08:in_09:in_10:in_11:in_12:in_13:in_14:in_15</spirit:value>
+          <spirit:value spirit:id="BUSIFPARAM_VALUE.IN_CLK160.ASSOCIATED_BUSIF">in_00:in_01:in_02:in_03:in_04:in_05:in_06:in_07:in_08:in_09:in_10:in_11:in_12:in_13:in_14:in_15:IPIF</spirit:value>
         </spirit:parameter>
         <spirit:parameter>
           <spirit:name>FREQ_HZ</spirit:name>
-		  <spirit:value spirit:id="BUSIFPARAM_VALUE.IN_CLK160.FREQ_HZ">160000000</spirit:value>
+          <spirit:value spirit:id="BUSIFPARAM_VALUE.IN_CLK160.FREQ_HZ">160000000</spirit:value>
         </spirit:parameter>
       </spirit:parameters>
     </spirit:busInterface>
@@ -1137,6 +1151,10 @@
           <spirit:name>FREQ_HZ</spirit:name>
           <spirit:value spirit:id="BUSIFPARAM_VALUE.IN_CLK640.FREQ_HZ">640000000</spirit:value>
         </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>ASSOCIATED_BUSIF</spirit:name>
+          <spirit:value spirit:id="BUSIFPARAM_VALUE.IN_CLK640.ASSOCIATED_BUSIF">D_IN_OUT_P:D_IN_OUT_N</spirit:value>
+        </spirit:parameter>
       </spirit:parameters>
     </spirit:busInterface>
     <spirit:busInterface>
@@ -1159,13 +1177,45 @@
       <spirit:parameters>
         <spirit:parameter>
           <spirit:name>ASSOCIATED_BUSIF</spirit:name>
-          <spirit:value spirit:id="BUSIFPARAM_VALUE.OUT_CLK160.ASSOCIATED_BUSIF">out_00:out_01:out_02:out_03:out_04:out_05:out_06:out_07:out_08:out_09:out_10:out_11:out_12:out_13:out_14:out_15:IPIF</spirit:value>
+          <spirit:value spirit:id="BUSIFPARAM_VALUE.OUT_CLK160.ASSOCIATED_BUSIF">out_00:out_01:out_02:out_03:out_04:out_05:out_06:out_07:out_08:out_09:out_10:out_11:out_12:out_13:out_14:out_15</spirit:value>
         </spirit:parameter>
         <spirit:parameter>
           <spirit:name>FREQ_HZ</spirit:name>
-		  <spirit:value spirit:id="BUSIFPARAM_VALUE.OUT_CLK160.FREQ_HZ">160000000</spirit:value>
+          <spirit:value spirit:id="BUSIFPARAM_VALUE.OUT_CLK160.FREQ_HZ">160000000</spirit:value>
         </spirit:parameter>
       </spirit:parameters>
+    </spirit:busInterface>
+    <spirit:busInterface>
+      <spirit:name>D_IN_OUT_P</spirit:name>
+      <spirit:busType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="data" spirit:version="1.0"/>
+      <spirit:abstractionType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="data_rtl" spirit:version="1.0"/>
+      <spirit:slave/>
+      <spirit:portMaps>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>DATA</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>D_IN_OUT_P</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+      </spirit:portMaps>
+    </spirit:busInterface>
+    <spirit:busInterface>
+      <spirit:name>D_IN_OUT_N</spirit:name>
+      <spirit:busType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="data" spirit:version="1.0"/>
+      <spirit:abstractionType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="data_rtl" spirit:version="1.0"/>
+      <spirit:slave/>
+      <spirit:portMaps>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>DATA</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>D_IN_OUT_N</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+      </spirit:portMaps>
     </spirit:busInterface>
   </spirit:busInterfaces>
   <spirit:model>
@@ -1182,7 +1232,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>35c08db0</spirit:value>
+            <spirit:value>60ae2655</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -1198,7 +1248,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>35c08db0</spirit:value>
+            <spirit:value>252a33b8</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -1212,7 +1262,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>e9eb94a6</spirit:value>
+            <spirit:value>3309d44a</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -2280,6 +2330,9 @@
               <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
+          <spirit:driver>
+            <spirit:defaultValue spirit:format="long">0</spirit:defaultValue>
+          </spirit:driver>
         </spirit:wire>
       </spirit:port>
       <spirit:port>
@@ -2297,6 +2350,9 @@
               <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
+          <spirit:driver>
+            <spirit:defaultValue spirit:format="long">1</spirit:defaultValue>
+          </spirit:driver>
         </spirit:wire>
       </spirit:port>
       <spirit:port>
@@ -2512,22 +2568,20 @@
       <spirit:modelParameter xsi:type="spirit:nameValueTypeType" spirit:dataType="integer">
         <spirit:name>NLINKS</spirit:name>
         <spirit:displayName>Nlinks</spirit:displayName>
-        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.NLINKS">1</spirit:value>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.NLINKS">12</spirit:value>
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="integer">
         <spirit:name>WORD_PER_LINK</spirit:name>
         <spirit:displayName>Word Per Link</spirit:displayName>
         <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.WORD_PER_LINK">4</spirit:value>
       </spirit:modelParameter>
+      <spirit:modelParameter spirit:dataType="string">
+        <spirit:name>DRIVE_ENABLED</spirit:name>
+        <spirit:displayName>Drive Enabled</spirit:displayName>
+        <spirit:value spirit:format="bool" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.DRIVE_ENABLED">true</spirit:value>
+      </spirit:modelParameter>
     </spirit:modelParameters>
   </spirit:model>
-  <spirit:choices>
-    <spirit:choice>
-      <spirit:name>choice_list_74b5137e</spirit:name>
-      <spirit:enumeration>ACTIVE_HIGH</spirit:enumeration>
-      <spirit:enumeration>ACTIVE_LOW</spirit:enumeration>
-    </spirit:choice>
-  </spirit:choices>
   <spirit:fileSets>
     <spirit:fileSet>
       <spirit:name>xilinx_anylanguagesynthesis_view_fileset</spirit:name>
@@ -2554,15 +2608,11 @@
       <spirit:file>
         <spirit:name>IO_blocks.sv</spirit:name>
         <spirit:fileType>systemVerilogSource</spirit:fileType>
-        <spirit:userFileType>CHECKSUM_bd38eab4</spirit:userFileType>
+        <spirit:userFileType>CHECKSUM_75f33b8d</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
       <spirit:name>xilinx_anylanguagebehavioralsimulation_view_fileset</spirit:name>
-      <spirit:file>
-        <spirit:name>xdc/timing.xdc</spirit:name>
-        <spirit:userFileType>xdc</spirit:userFileType>
-      </spirit:file>
       <spirit:file>
         <spirit:name>IDELAY_set_ctrl.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
@@ -2589,7 +2639,7 @@
       <spirit:file>
         <spirit:name>xgui/IO_blocks_v1_0.tcl</spirit:name>
         <spirit:fileType>tclSource</spirit:fileType>
-        <spirit:userFileType>CHECKSUM_e9eb94a6</spirit:userFileType>
+        <spirit:userFileType>CHECKSUM_3309d44a</spirit:userFileType>
         <spirit:userFileType>XGUI_VERSION_2</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
@@ -2599,7 +2649,7 @@
     <spirit:parameter>
       <spirit:name>NLINKS</spirit:name>
       <spirit:displayName>Nlinks</spirit:displayName>
-      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.NLINKS" spirit:minimum="1" spirit:maximum="16" spirit:rangeType="long">1</spirit:value>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.NLINKS" spirit:minimum="1" spirit:maximum="16" spirit:rangeType="long">12</spirit:value>
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>WORD_PER_LINK</spirit:name>
@@ -2616,6 +2666,21 @@
     <spirit:parameter>
       <spirit:name>Component_Name</spirit:name>
       <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.Component_Name" spirit:order="1">IO_blocks_v1_0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>DRIVE_ENABLED</spirit:name>
+      <spirit:displayName>Output Drive Enabled</spirit:displayName>
+      <spirit:value spirit:format="bool" spirit:resolve="user" spirit:id="PARAM_VALUE.DRIVE_ENABLED">true</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>INPUT_STREAMS_ENABLE</spirit:name>
+      <spirit:displayName>Enable input streams</spirit:displayName>
+      <spirit:value spirit:format="bool" spirit:resolve="user" spirit:id="PARAM_VALUE.INPUT_STREAMS_ENABLE">true</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>OUTPUT_STREAMS_ENABLE</spirit:name>
+      <spirit:displayName>Enable Output Streams</spirit:displayName>
+      <spirit:value spirit:format="bool" spirit:resolve="user" spirit:id="PARAM_VALUE.OUTPUT_STREAMS_ENABLE">true</spirit:value>
     </spirit:parameter>
   </spirit:parameters>
   <spirit:vendorExtensions>
@@ -2649,8 +2714,8 @@
         <xilinx:xpmLibrary>XPM_FIFO</xilinx:xpmLibrary>
         <xilinx:xpmLibrary>XPM_MEMORY</xilinx:xpmLibrary>
       </xilinx:xpmLibraries>
-      <xilinx:coreRevision>6</xilinx:coreRevision>
-      <xilinx:coreCreationDateTime>2021-01-05T17:54:32Z</xilinx:coreCreationDateTime>
+      <xilinx:coreRevision>8</xilinx:coreRevision>
+      <xilinx:coreCreationDateTime>2021-01-21T22:10:14Z</xilinx:coreCreationDateTime>
       <xilinx:tags>
         <xilinx:tag xilinx:name="nopcore"/>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@4fa9800d_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
@@ -2697,15 +2762,50 @@
         <xilinx:tag xilinx:name="ui.data.coregen.dd@3190c0e9_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@38370a18_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@107fdc61_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7492cdf8_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@298fdc77_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4f1e15b1_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7fe37892_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@172e2627_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@407c67e6_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@57890bb8_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@70def183_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4849433e_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@683614ad_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@421851d9_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1c1c951d_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@48234536_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@42e23fe2_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@625d3c22_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4495a9c2_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3106b63a_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@65096f4a_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4c7510e1_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@13cd5dd2_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1c0cc008_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@703e1397_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@214c69fb_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@71c015f0_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3a8ec32e_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@36998cd7_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4eb899b4_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@50818b7_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@201f4f72_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1b9bc349_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@64b346b5_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6c001dca_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2badc4b6_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6016d763_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1f28f0d9_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
       </xilinx:tags>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2019.2</xilinx:xilinxVersion>
-      <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="179a0790"/>
-      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="d4c7f48c"/>
-      <xilinx:checksum xilinx:scope="ports" xilinx:value="cb920a10"/>
-      <xilinx:checksum xilinx:scope="hdlParameters" xilinx:value="b790c732"/>
-      <xilinx:checksum xilinx:scope="parameters" xilinx:value="f68db518"/>
+      <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="87c52c1f"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="277aa3ce"/>
+      <xilinx:checksum xilinx:scope="ports" xilinx:value="22cf88fe"/>
+      <xilinx:checksum xilinx:scope="hdlParameters" xilinx:value="c9b94d2b"/>
+      <xilinx:checksum xilinx:scope="parameters" xilinx:value="28711a87"/>
     </xilinx:packagingInfo>
   </spirit:vendorExtensions>
 </spirit:component>

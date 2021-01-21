@@ -52,6 +52,7 @@ module IPIF_DelayParamDecode #(
         output reg rstb_links [NLINKS],
 
 		output reg bypass_IOBUF [NLINKS],
+		output reg tristate_IOBUF [NLINKS],
         
         output reg global_reset_counters,
         output reg global_rstb_links
@@ -97,12 +98,13 @@ module IPIF_DelayParamDecode #(
                         reset_counters[j] <= 0;
                         rstb_links[j] <= 1;
 						bypass_IOBUF[j] <= 0;
+						tristate_IOBUF[j] <= 0;
                     end
                     else
                     begin
                         if(IPIF_bus2ip_wrce == (1 << (WORD_PER_LINK*(j+1) + 0)))  //parameter 0
                         begin
-                            {bypass_IOBUF[j], delay_set[j], delay_mode[j], reset_counters[j], rstb_links[j]} <= IPIF_bus2ip_data[4:0];
+                            {tristate_IOBUF[j], bypass_IOBUF[j], delay_set[j], delay_mode[j], reset_counters[j], rstb_links[j]} <= IPIF_bus2ip_data[4:0];
                         end
                         
                         if(IPIF_bus2ip_wrce == (1 << (WORD_PER_LINK*(j+1) + 1)))  //parameter 1
@@ -137,7 +139,7 @@ module IPIF_DelayParamDecode #(
                 //individual channel readback 
                 for(int j = 0; j < NLINKS; j = j + 1)
                 begin
-                    if(IPIF_bus2ip_rdce == (1 << (WORD_PER_LINK*(j+1) + 0))) read_reg = {27'b0, bypass_IOBUF[j], delay_set[j], delay_mode[j], reset_counters[j], rstb_links[j]};
+                    if(IPIF_bus2ip_rdce == (1 << (WORD_PER_LINK*(j+1) + 0))) read_reg = {26'b0, tristate_IOBUF[j], bypass_IOBUF[j], delay_set[j], delay_mode[j], reset_counters[j], rstb_links[j]};
                     if(IPIF_bus2ip_rdce == (1 << (WORD_PER_LINK*(j+1) + 1))) read_reg = {14'b0, delay_error_offset[j], delay_in[j]};
                     if(IPIF_bus2ip_rdce == (1 << (WORD_PER_LINK*(j+1) + 2))) read_reg = {16'b0, bit_align_errors[j]};
                     if(IPIF_bus2ip_rdce == (1 << (WORD_PER_LINK*(j+1) + 3))) read_reg = {13'b0, delay_out_N[j], delay_out[j], delay_ready[j]};
