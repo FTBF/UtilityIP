@@ -242,7 +242,7 @@ module IO_blocks#(
 				.CLK(in_clk640),
 				.CLKDIV(in_clk160),
 				.D(in_tdata[i]),
-				.T(~in_tvalid[i]), // T = 1 means tristate, T = 0 means drive data to output
+				.T(~in_tvalid[i] || tristate_IOBUF[i]), // T = 1 means tristate, T = 0 means drive data to output
 				.OQ(DATA_OSERDES_to_IOBUFDS),
 				.T_OUT(TRISTATE_OSERDES_to_IOBUFDS)
 			);
@@ -251,8 +251,8 @@ module IO_blocks#(
 				IOBUFDS_DIFF_OUT diff_buf(.IO(D_IN_OUT_P[i]), .IOB(D_IN_OUT_N[i]), 
 										  .I(DATA_OSERDES_to_IOBUFDS), 
 										  .O(IOBUFDS_to_ISERDES_P), .OB(IOBUFDS_to_ISERDES_N),
-										  .TM(TRISTATE_OSERDES_to_IOBUFDS || tristate_IOBUF[i]),
-										  .TS(TRISTATE_OSERDES_to_IOBUFDS || tristate_IOBUF[i]));
+										  .TM(TRISTATE_OSERDES_to_IOBUFDS),
+										  .TS(TRISTATE_OSERDES_to_IOBUFDS));
 			end else begin
 				IBUFDS_DIFF_OUT diff_buf(.I(D_IN_OUT_P[i]), .IB(D_IN_OUT_N[i]),
 					                     .O(IOBUFDS_to_ISERDES_P), .OB(IOBUFDS_to_ISERDES_N));

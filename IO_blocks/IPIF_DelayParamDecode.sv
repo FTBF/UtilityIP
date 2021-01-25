@@ -104,7 +104,7 @@ module IPIF_DelayParamDecode #(
                     begin
                         if(IPIF_bus2ip_wrce == (1 << (WORD_PER_LINK*(j+1) + 0)))  //parameter 0
                         begin
-                            {tristate_IOBUF[j], bypass_IOBUF[j], delay_set[j], delay_mode[j], reset_counters[j], rstb_links[j]} <= IPIF_bus2ip_data[4:0];
+                            {tristate_IOBUF[j], bypass_IOBUF[j], delay_set[j], delay_mode[j], reset_counters[j], rstb_links[j]} <= IPIF_bus2ip_data[5:0];
                         end
                         
                         if(IPIF_bus2ip_wrce == (1 << (WORD_PER_LINK*(j+1) + 1)))  //parameter 1
