@@ -59,7 +59,6 @@ module delay_ctrl(
    //detect word errors
     reg autoReset;
     reg [4:0] autoErrCnt;
-    reg [4:0] autoTransitionCnt;
     wire totalCounterResetb_manual;
     assign totalCounterResetb_manual = rst_seq_done && rstb && !reset_counters;
     wire totalCounterResetb_auto;
@@ -94,12 +93,10 @@ module delay_ctrl(
         if(!totalCounterResetb_auto)
         begin
             autoErrCnt <= 0;
-            autoTransitionCnt <= 0;
         end
         else
         begin
             if(bae) autoErrCnt <= autoErrCnt + 1;
-            if(any_transition) autoTransitionCnt <= autoTransitionCnt + 1;
         end
     end
     
@@ -259,8 +256,8 @@ module delay_ctrl(
             
             STATE_BITALIGN_PHASE1_WAITCNT:
             begin
-                waiting_for_transitions <= 1;
-                if (autoTransitionCnt)
+                waiting_for_transitions <= !any_transition;
+                if (any_transition)
                     wait_cnt <= wait_cnt - 1;
                 if(!wait_cnt)
                 begin
@@ -334,8 +331,8 @@ module delay_ctrl(
             
             STATE_BITALIGN_PHASE2_WAITCNT:
             begin
-                waiting_for_transitions <= 1;
-                if (autoTransitionCnt)
+                waiting_for_transitions <= !any_transition;
+                if (any_transition)
                     wait_cnt <= wait_cnt - 1;
                 if(!wait_cnt) begin
                     waiting_for_transitions <= 0;
