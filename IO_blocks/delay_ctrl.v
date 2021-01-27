@@ -92,6 +92,12 @@ module delay_ctrl(
         end
     end
     
+    reg last_bit;
+    always @(posedge clk160)
+        last_bit <= D_OUT_P[0];
+
+    wire any_transition;
+    assign any_transition = |({last_bit, D_OUT_P[8-1:1]} ^ D_OUT_P);
     
     reg [8:0] delay_target_P = 0;
     reg [8:0] delay_target_N = 0;
@@ -248,7 +254,8 @@ module delay_ctrl(
             
             STATE_BITALIGN_PHASE1_WAITCNT:
             begin
-                wait_cnt <= wait_cnt - 1;
+                if (any_transition)
+                    wait_cnt <= wait_cnt - 1;
                 if(!wait_cnt)
                 begin
                     state_bitalign <= STATE_BITALIGN_PHASE1_CHECK;
