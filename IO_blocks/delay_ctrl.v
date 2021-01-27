@@ -58,6 +58,7 @@ module delay_ctrl(
    //detect word errors
     reg autoReset;
     reg [4:0] autoErrCnt;
+    reg [4:0] autoTransitionCnt;
     wire totalCounterResetb_manual;
     assign totalCounterResetb_manual = rst_seq_done && rstb && !reset_counters;
     wire totalCounterResetb_auto;
@@ -65,6 +66,13 @@ module delay_ctrl(
     
     wire bae;
     assign bae = |(~(D_OUT_P ^ D_OUT_N));
+    
+    reg last_bit;
+    always @(posedge clk160)
+        last_bit <= D_OUT_P[0];
+
+    wire any_transition;
+    assign any_transition = |({last_bit, D_OUT_P[8-1:1]} ^ D_OUT_P);
     
     reg countEnable;
     
@@ -85,19 +93,14 @@ module delay_ctrl(
         if(!totalCounterResetb_auto)
         begin
             autoErrCnt <= 0;
+			autoTransitionCnt <= 0;
         end
         else
         begin
             if(bae) autoErrCnt <= autoErrCnt + 1;
+			if(any_transition) autoTransitionCnt <= autoTransitionCnt + 1;
         end
     end
-    
-    reg last_bit;
-    always @(posedge clk160)
-        last_bit <= D_OUT_P[0];
-
-    wire any_transition;
-    assign any_transition = |({last_bit, D_OUT_P[8-1:1]} ^ D_OUT_P);
     
     reg [8:0] delay_target_P = 0;
     reg [8:0] delay_target_N = 0;
@@ -191,7 +194,7 @@ module delay_ctrl(
       else
       begin
          case(state_bitalign)
-            STATE_BITALIGN_IDLE:
+            STATE_BITALIGN_IDLE: //0
             begin
                 countEnable <= 1;
                 if(delay_mode)
@@ -208,7 +211,7 @@ module delay_ctrl(
                 end
             end
             
-            STATE_BITALIGN_AUTOINIT:
+            STATE_BITALIGN_AUTOINIT: //1
             begin
                 delay_target_P <= 9'h1f0;
                 delay_target_N <= 9'h1f8;
@@ -222,17 +225,17 @@ module delay_ctrl(
                 state_bitalign <= STATE_BITALIGN_INITRESET;
             end
             
-            STATE_BITALIGN_INITRESET:
+            STATE_BITALIGN_INITRESET: //2
             begin
                 state_bitalign <= STATE_BITALIGN_INITWAIT;
             end
             
-            STATE_BITALIGN_INITWAIT:
+            STATE_BITALIGN_INITWAIT: //3
             begin
                 if(delay_ready_manual) state_bitalign <= STATE_BITALIGN_PHASE1_RESET;
             end
             
-            STATE_BITALIGN_PHASE1_RESET:
+            STATE_BITALIGN_PHASE1_RESET: //4
             begin
                 if(delay_mode)
                 begin
@@ -245,16 +248,16 @@ module delay_ctrl(
                 end
             end
             
-            STATE_BITALIGN_PHASE1_RESET2:
+            STATE_BITALIGN_PHASE1_RESET2: //5
             begin
                 autoReset <= 0;
                 wait_cnt <= 16;
                 state_bitalign <= STATE_BITALIGN_PHASE1_WAITCNT;
             end
             
-            STATE_BITALIGN_PHASE1_WAITCNT:
+            STATE_BITALIGN_PHASE1_WAITCNT: //6
             begin
-                if (any_transition)
+                if (autoTransitionCnt)
                     wait_cnt <= wait_cnt - 1;
                 if(!wait_cnt)
                 begin
@@ -265,7 +268,7 @@ module delay_ctrl(
                 end
             end
             
-            STATE_BITALIGN_PHASE1_CHECK:
+            STATE_BITALIGN_PHASE1_CHECK: //7
             begin
                 if(delay_target_P[8:3] != 6'b0)
                 begin
@@ -289,13 +292,13 @@ module delay_ctrl(
                 
             end
             
-            STATE_BITALIGN_PHASE1_WAITADJ:
+            STATE_BITALIGN_PHASE1_WAITADJ: //8
             begin
                 if(delay_ready_manual) state_bitalign <= STATE_BITALIGN_PHASE1_RESET;
             end
             
             
-            STATE_BITALIGN_PHASE2_WAITADJ:
+            STATE_BITALIGN_PHASE2_WAITADJ: //9
             begin
                 if(delay_mode)
                 begin
@@ -305,7 +308,7 @@ module delay_ctrl(
                 delay_ready_automatic <= 1;
             end
             
-            STATE_BITALIGN_PHASE2_RESET:
+            STATE_BITALIGN_PHASE2_RESET: //a
             begin
                 if(delay_mode)
                 begin
@@ -318,20 +321,21 @@ module delay_ctrl(
                 end
             end
             
-            STATE_BITALIGN_PHASE2_RESET2:
+            STATE_BITALIGN_PHASE2_RESET2: //b
             begin
                 autoReset <= 0;
                 wait_cnt <= 16;
                 state_bitalign <= STATE_BITALIGN_PHASE2_WAITCNT;
             end
             
-            STATE_BITALIGN_PHASE2_WAITCNT:
+            STATE_BITALIGN_PHASE2_WAITCNT: //c
             begin
-                wait_cnt <= wait_cnt - 1;
+                if (autoTransitionCnt)
+                    wait_cnt <= wait_cnt - 1;
                 if(!wait_cnt) state_bitalign <= STATE_BITALIGN_PHASE2_CHECK;
             end
             
-            STATE_BITALIGN_PHASE2_CHECK:
+            STATE_BITALIGN_PHASE2_CHECK: //d
             begin
                 state_bitalign <= STATE_BITALIGN_PHASE2_ADJ;
                 phase2_stage <= phase2_stage + 1;
@@ -358,7 +362,7 @@ module delay_ctrl(
                 endcase
             end
             
-            STATE_BITALIGN_PHASE2_ADJ:
+            STATE_BITALIGN_PHASE2_ADJ: //e
             begin
                 state_bitalign <= STATE_BITALIGN_PHASE2_WAITADJ;
                 if(phase2_stage == 2'h1)
@@ -380,7 +384,7 @@ module delay_ctrl(
                 end
             end
             
-            STATE_BITALIGN_PHASE2_END:
+            STATE_BITALIGN_PHASE2_END: //f
             begin
                 delay_target_N <= delay_target_P;
                 state_bitalign <= STATE_BITALIGN_IDLE;

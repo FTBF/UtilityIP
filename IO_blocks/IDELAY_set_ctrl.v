@@ -31,7 +31,7 @@ module IDELAY_set_ctrl #(
         
         output reg [8:0] delay_set_value = 0,
         output wire delay_wr,
-        output reg delay_ready,
+        output wire delay_ready,
         
         input wire rstb
 
@@ -63,6 +63,7 @@ module IDELAY_set_ctrl #(
     assign idelay_cnt_write_hold_s = $signed({1'b0,idelay_cnt_write_hold});
     assign delay_diff = idelay_cnt_write_hold_s - idelay_cnt_read_hold_s;
     
+    assign delay_ready = (delay_target == delay_out);
     generate
     
         always @(posedge clk160 or negedge rstb)
@@ -74,58 +75,57 @@ module IDELAY_set_ctrl #(
                 idelay_cnt_read_hold <= 0;
                 idelay_cnt_write_hold <= 0;
                 delay_set_value <= 0;
-                delay_ready <= 0;
             end
-            else
-            case(idelay_state)
-                STATE_IDELAY_IDLE:
-                begin
-                    idelay_state <= STATE_IDELAY_CHK_CNT;
-                end
-                
-                STATE_IDELAY_CHK_CNT:
-                begin
-                    idelay_state <= STATE_IDELAY_CALC;
-                    idelay_cnt_read_hold <= delay_out;
-                    idelay_cnt_write_hold <= delay_target;
-                    delay_ready <= (delay_target == delay_out);
-                end
-                
-                STATE_IDELAY_CALC:
-                begin
-                    idelay_state <= STATE_IDELAY_SET_CNT;
-                    delay_wr_int <= 1;
-                    
-                    if(N == 1)
+            else begin
+                case(idelay_state)
+                    STATE_IDELAY_IDLE:
                     begin
-                        delay_set_value <= $signed(idelay_cnt_read_hold) + delay_diff;
+                        idelay_state <= STATE_IDELAY_CHK_CNT;
                     end
-                    else
+                    
+                    STATE_IDELAY_CHK_CNT:
                     begin
-                        if(delay_diff >= 8 || delay_diff <= -8)
-                        begin
-                            delay_set_value <= $signed(idelay_cnt_read_hold) + ((delay_diff > 0)?(10'd8):(-10'd8));
-                        end
-                        else
+                        idelay_state <= STATE_IDELAY_CALC;
+                        idelay_cnt_read_hold <= delay_out;
+                        idelay_cnt_write_hold <= delay_target;
+                    end
+                    
+                    STATE_IDELAY_CALC:
+                    begin
+                        idelay_state <= STATE_IDELAY_SET_CNT;
+                        delay_wr_int <= 1;
+                        
+                        if(N == 1)
                         begin
                             delay_set_value <= $signed(idelay_cnt_read_hold) + delay_diff;
                         end
+                        else
+                        begin
+                            if(delay_diff >= 8 || delay_diff <= -8)
+                            begin
+                                delay_set_value <= $signed(idelay_cnt_read_hold) + ((delay_diff > 0)?(10'd8):(-10'd8));
+                            end
+                            else
+                            begin
+                                delay_set_value <= $signed(idelay_cnt_read_hold) + delay_diff;
+                            end
+                        end
                     end
-                end
-                
-                STATE_IDELAY_SET_CNT:
-                begin
-                    idelay_state <= STATE_IDELAY_WAIT1;
-                    delay_wr_int <= 0;
-                end
-                
-                STATE_IDELAY_WAIT1: idelay_state <= STATE_IDELAY_WAIT2;            
-                STATE_IDELAY_WAIT2: idelay_state <= STATE_IDELAY_WAIT3;
-                STATE_IDELAY_WAIT3: idelay_state <= STATE_IDELAY_WAIT4;
-                STATE_IDELAY_WAIT4: idelay_state <= STATE_IDELAY_IDLE;
-                
-                default: idelay_state <= STATE_IDELAY_IDLE;
-            endcase
+                    
+                    STATE_IDELAY_SET_CNT:
+                    begin
+                        idelay_state <= STATE_IDELAY_WAIT1;
+                        delay_wr_int <= 0;
+                    end
+                    
+                    STATE_IDELAY_WAIT1: idelay_state <= STATE_IDELAY_WAIT2;            
+                    STATE_IDELAY_WAIT2: idelay_state <= STATE_IDELAY_WAIT3;
+                    STATE_IDELAY_WAIT3: idelay_state <= STATE_IDELAY_WAIT4;
+                    STATE_IDELAY_WAIT4: idelay_state <= STATE_IDELAY_IDLE;
+                    
+                    default: idelay_state <= STATE_IDELAY_IDLE;
+                endcase
+            end
         end
 
     endgenerate
