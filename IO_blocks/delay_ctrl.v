@@ -194,7 +194,7 @@ module delay_ctrl(
       else
       begin
          case(state_bitalign)
-            STATE_BITALIGN_IDLE: //0
+            STATE_BITALIGN_IDLE:
             begin
                 countEnable <= 1;
                 if(delay_mode)
@@ -211,7 +211,7 @@ module delay_ctrl(
                 end
             end
             
-            STATE_BITALIGN_AUTOINIT: //1
+            STATE_BITALIGN_AUTOINIT:
             begin
                 delay_target_P <= 9'h1f0;
                 delay_target_N <= 9'h1f8;
@@ -225,17 +225,17 @@ module delay_ctrl(
                 state_bitalign <= STATE_BITALIGN_INITRESET;
             end
             
-            STATE_BITALIGN_INITRESET: //2
+            STATE_BITALIGN_INITRESET:
             begin
                 state_bitalign <= STATE_BITALIGN_INITWAIT;
             end
             
-            STATE_BITALIGN_INITWAIT: //3
+            STATE_BITALIGN_INITWAIT:
             begin
                 if(delay_ready_manual) state_bitalign <= STATE_BITALIGN_PHASE1_RESET;
             end
             
-            STATE_BITALIGN_PHASE1_RESET: //4
+            STATE_BITALIGN_PHASE1_RESET:
             begin
                 if(delay_mode)
                 begin
@@ -248,14 +248,14 @@ module delay_ctrl(
                 end
             end
             
-            STATE_BITALIGN_PHASE1_RESET2: //5
+            STATE_BITALIGN_PHASE1_RESET2:
             begin
                 autoReset <= 0;
                 wait_cnt <= 16;
                 state_bitalign <= STATE_BITALIGN_PHASE1_WAITCNT;
             end
             
-            STATE_BITALIGN_PHASE1_WAITCNT: //6
+            STATE_BITALIGN_PHASE1_WAITCNT:
             begin
                 if (autoTransitionCnt)
                     wait_cnt <= wait_cnt - 1;
@@ -268,7 +268,7 @@ module delay_ctrl(
                 end
             end
             
-            STATE_BITALIGN_PHASE1_CHECK: //7
+            STATE_BITALIGN_PHASE1_CHECK:
             begin
                 if(delay_target_P[8:3] != 6'b0)
                 begin
@@ -292,13 +292,13 @@ module delay_ctrl(
                 
             end
             
-            STATE_BITALIGN_PHASE1_WAITADJ: //8
+            STATE_BITALIGN_PHASE1_WAITADJ:
             begin
                 if(delay_ready_manual) state_bitalign <= STATE_BITALIGN_PHASE1_RESET;
             end
             
             
-            STATE_BITALIGN_PHASE2_WAITADJ: //9
+            STATE_BITALIGN_PHASE2_WAITADJ:
             begin
                 if(delay_mode)
                 begin
@@ -308,7 +308,7 @@ module delay_ctrl(
                 delay_ready_automatic <= 1;
             end
             
-            STATE_BITALIGN_PHASE2_RESET: //a
+            STATE_BITALIGN_PHASE2_RESET:
             begin
                 if(delay_mode)
                 begin
@@ -321,21 +321,21 @@ module delay_ctrl(
                 end
             end
             
-            STATE_BITALIGN_PHASE2_RESET2: //b
+            STATE_BITALIGN_PHASE2_RESET2:
             begin
                 autoReset <= 0;
                 wait_cnt <= 16;
                 state_bitalign <= STATE_BITALIGN_PHASE2_WAITCNT;
             end
             
-            STATE_BITALIGN_PHASE2_WAITCNT: //c
+            STATE_BITALIGN_PHASE2_WAITCNT:
             begin
                 if (autoTransitionCnt)
                     wait_cnt <= wait_cnt - 1;
                 if(!wait_cnt) state_bitalign <= STATE_BITALIGN_PHASE2_CHECK;
             end
             
-            STATE_BITALIGN_PHASE2_CHECK: //d
+            STATE_BITALIGN_PHASE2_CHECK:
             begin
                 state_bitalign <= STATE_BITALIGN_PHASE2_ADJ;
                 phase2_stage <= phase2_stage + 1;
@@ -362,7 +362,7 @@ module delay_ctrl(
                 endcase
             end
             
-            STATE_BITALIGN_PHASE2_ADJ: //e
+            STATE_BITALIGN_PHASE2_ADJ:
             begin
                 state_bitalign <= STATE_BITALIGN_PHASE2_WAITADJ;
                 if(phase2_stage == 2'h1)
@@ -384,7 +384,7 @@ module delay_ctrl(
                 end
             end
             
-            STATE_BITALIGN_PHASE2_END: //f
+            STATE_BITALIGN_PHASE2_END:
             begin
                 delay_target_N <= delay_target_P;
                 state_bitalign <= STATE_BITALIGN_IDLE;
