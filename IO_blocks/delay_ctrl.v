@@ -45,6 +45,7 @@ module delay_ctrl(
         output wire       delay_wr_N,
         
         output wire       delay_ready,
+        output reg        waiting_for_transitions,
         
         input wire reset_counters,
         input wire rstb
@@ -190,6 +191,7 @@ module delay_ctrl(
          delay_ready_automatic <= 0;
          countEnable <= 1;
          state_bitalign <= STATE_BITALIGN_IDLE;
+         waiting_for_transitions <= 1;
       end
       else
       begin
@@ -257,10 +259,12 @@ module delay_ctrl(
             
             STATE_BITALIGN_PHASE1_WAITCNT:
             begin
+                waiting_for_transitions <= 1;
                 if (autoTransitionCnt)
                     wait_cnt <= wait_cnt - 1;
                 if(!wait_cnt)
                 begin
+                    waiting_for_transitions <= 0;
                     state_bitalign <= STATE_BITALIGN_PHASE1_CHECK;
                     
                     if(autoErrCnt) step_cnt <= 0;
@@ -330,9 +334,13 @@ module delay_ctrl(
             
             STATE_BITALIGN_PHASE2_WAITCNT:
             begin
+                waiting_for_transitions <= 1;
                 if (autoTransitionCnt)
                     wait_cnt <= wait_cnt - 1;
-                if(!wait_cnt) state_bitalign <= STATE_BITALIGN_PHASE2_CHECK;
+                if(!wait_cnt) begin
+                    waiting_for_transitions <= 0;
+                    state_bitalign <= STATE_BITALIGN_PHASE2_CHECK;
+                end
             end
             
             STATE_BITALIGN_PHASE2_CHECK:

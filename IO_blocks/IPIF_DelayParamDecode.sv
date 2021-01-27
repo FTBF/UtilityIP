@@ -40,6 +40,7 @@ module IPIF_DelayParamDecode #(
         
         //parmeter and control signals 
         input wire delay_ready [NLINKS],
+        input wire waiting_for_transitions [NLINKS],
         input wire [15:0] bit_align_errors [NLINKS],
         input wire [8:0] delay_out [NLINKS],
         input wire [8:0] delay_out_N [NLINKS],
@@ -141,7 +142,7 @@ module IPIF_DelayParamDecode #(
                 begin
                     if(IPIF_bus2ip_rdce == (1 << (WORD_PER_LINK*(j+1) + 0))) read_reg = {26'b0, tristate_IOBUF[j], bypass_IOBUF[j], delay_set[j], delay_mode[j], reset_counters[j], rstb_links[j]};
                     if(IPIF_bus2ip_rdce == (1 << (WORD_PER_LINK*(j+1) + 1))) read_reg = {14'b0, delay_error_offset[j], delay_in[j]};
-                    if(IPIF_bus2ip_rdce == (1 << (WORD_PER_LINK*(j+1) + 2))) read_reg = {16'b0, bit_align_errors[j]};
+                    if(IPIF_bus2ip_rdce == (1 << (WORD_PER_LINK*(j+1) + 2))) read_reg = {15'b0, waiting_for_transitions[j], bit_align_errors[j]};
                     if(IPIF_bus2ip_rdce == (1 << (WORD_PER_LINK*(j+1) + 3))) read_reg = {13'b0, delay_out_N[j], delay_out[j], delay_ready[j]};
                 end
             end

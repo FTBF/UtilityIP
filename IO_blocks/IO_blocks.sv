@@ -121,6 +121,7 @@ module IO_blocks#(
     assign IPIF_ip2bus_error = 0;
     
     logic delay_ready [NLINKS];
+    logic waiting_for_transitions [NLINKS];
     logic [15:0] bit_align_errors [NLINKS];
     logic [8:0] delay_out [NLINKS];
     logic [8:0] delay_out_N [NLINKS];
@@ -156,6 +157,7 @@ module IO_blocks#(
         
         //parmeter and control signals 
         .delay_ready(delay_ready),
+        .waiting_for_transitions(waiting_for_transitions),
         .bit_align_errors(bit_align_errors),
         .delay_out(delay_out),
         .delay_out_N(delay_out_N),
@@ -277,6 +279,7 @@ module IO_blocks#(
                 .delay_out_N(delay_out_N[i]),
                 .delay_error_offset(delay_error_offset[i]),
                 .delay_ready(delay_ready[i]),
+                .waiting_for_transitions(waiting_for_transitions[i]),
                 
                 .reset_counters(global_reset_counters || reset_counters[i]),
 

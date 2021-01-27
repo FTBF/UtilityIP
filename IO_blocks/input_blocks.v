@@ -23,7 +23,7 @@
 module input_blocks(
         input wire          clk640,
         input wire          clk160,
-		input wire          fifo_rd_clk,
+        input wire          fifo_rd_clk,
         
         input wire serial_data_P,
         input wire serial_data_N,
@@ -40,6 +40,7 @@ module input_blocks(
         output wire [8:0]   delay_out_N,
         input wire [8:0]    delay_error_offset,
         output wire         delay_ready,
+        output wire         waiting_for_transitions,
 
         input wire          reset_counters,
         input wire          rstb
@@ -96,6 +97,7 @@ module input_blocks(
         .delay_wr_N(rx_load_1),
         
         .delay_ready(delay_ready),
+        .waiting_for_transitions(waiting_for_transitions),
         
         .reset_counters(reset_counters),
         .rstb(rstb)
