@@ -93,12 +93,12 @@ module delay_ctrl(
         if(!totalCounterResetb_auto)
         begin
             autoErrCnt <= 0;
-			autoTransitionCnt <= 0;
+            autoTransitionCnt <= 0;
         end
         else
         begin
             if(bae) autoErrCnt <= autoErrCnt + 1;
-			if(any_transition) autoTransitionCnt <= autoTransitionCnt + 1;
+            if(any_transition) autoTransitionCnt <= autoTransitionCnt + 1;
         end
     end
     
