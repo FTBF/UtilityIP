@@ -69,10 +69,10 @@ module delay_ctrl_utility (
     
     reg last_bit;
     always @(posedge clk160)
-        last_bit <= D_OUT_P[0];
+        last_bit <= D_OUT_P[7];
 
     wire any_transition;
-    assign any_transition = |({last_bit, D_OUT_P[8-1:1]} ^ D_OUT_P);
+    assign any_transition = |({D_OUT_P[8-2:0], last_bit} ^ D_OUT_P);
     
     reg countEnable;
     
