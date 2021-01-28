@@ -20,7 +20,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module IDELAY_set_ctrl #(
+module IDELAY_set_ctrl_utility #(
         parameter N = 0
     )
     (

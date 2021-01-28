@@ -20,7 +20,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module delay_ctrl(
+module delay_ctrl_utility (
         input wire clk160,
         
         input wire [7:0] D_OUT_P,
@@ -116,7 +116,7 @@ module delay_ctrl(
    
     always @(posedge clk160) delay_set_SR <= {delay_set_SR[1:0], delay_set};
     
-    IDELAY_set_ctrl idelSetCtrl_P(
+    IDELAY_set_ctrl_utility idelSetCtrl_P(
         .clk160(clk160),
         
         .delay_target(delay_target_P),
@@ -130,7 +130,7 @@ module delay_ctrl(
 
     );
     
-    IDELAY_set_ctrl #(1) idelSetCtrl_N(
+    IDELAY_set_ctrl_utility #(1) idelSetCtrl_N(
         .clk160(clk160),
         
         .delay_target(delay_target_N),

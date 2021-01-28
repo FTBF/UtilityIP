@@ -72,7 +72,7 @@ module input_blocks(
    
    assign delay_out_N = (delay_mode)?({eye_width, 3'b0}):(delay_out_N_local);
    
-   delay_ctrl dly_ctrl(
+   delay_ctrl_utility dly_ctrl(
         .clk160(clk160),
         
         .D_OUT_P(D_OUT_P),
