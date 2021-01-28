@@ -246,7 +246,8 @@ module IO_blocks#(
 				.D(in_tdata[i]),
 				.T(~in_tvalid[i] || tristate_IOBUF[i]), // T = 1 means tristate, T = 0 means drive data to output
 				.OQ(DATA_OSERDES_to_IOBUFDS),
-				.T_OUT(TRISTATE_OSERDES_to_IOBUFDS)
+				.T_OUT(TRISTATE_OSERDES_to_IOBUFDS),
+				.RST(global_rstb_links && rstb_links[i])
 			);
    
 			if (DRIVE_ENABLED == 1) begin
