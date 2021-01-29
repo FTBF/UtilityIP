@@ -22,15 +22,14 @@
 
 module IO_blocks#(
     parameter integer NLINKS = 12,
-    parameter integer WORD_PER_LINK = 4
+    parameter integer WORD_PER_LINK = 4,
+	parameter integer DRIVE_ENABLED = 1
     )
     (
     input logic in_clk160,
     input logic in_clk640,
 
 	input logic out_clk160,
-
-	input logic IPIF_clk,
 
 	input logic [7:0] in_tdata_00,
 	input logic [7:0] in_tdata_01,
@@ -122,6 +121,7 @@ module IO_blocks#(
     assign IPIF_ip2bus_error = 0;
     
     logic delay_ready [NLINKS];
+    logic waiting_for_transitions [NLINKS];
     logic [15:0] bit_align_errors [NLINKS];
     logic [8:0] delay_out [NLINKS];
     logic [8:0] delay_out_N [NLINKS];
@@ -133,6 +133,7 @@ module IO_blocks#(
     logic reset_counters [NLINKS];
     logic rstb_links [NLINKS];
 	logic bypass_IOBUF [NLINKS];
+	logic tristate_IOBUF [NLINKS];
     
     logic global_reset_counters;
     logic global_rstb_links;
@@ -143,10 +144,7 @@ module IO_blocks#(
         .WORD_PER_LINK(WORD_PER_LINK)
     ) parameterDecode
     (
-		// This uses the ISERDES-side clock because these control outputs only
-		// affect the ISERDES side.  Note: the AXI-to-IPIF block needs to use
-		// the same clock as out_clk160.
-        .clk160(out_clk160),
+        .clk160(in_clk160),
     
         //ipif configuration interface ports 
         .IPIF_bus2ip_data(IPIF_bus2ip_data),  
@@ -159,6 +157,7 @@ module IO_blocks#(
         
         //parmeter and control signals 
         .delay_ready(delay_ready),
+        .waiting_for_transitions(waiting_for_transitions),
         .bit_align_errors(bit_align_errors),
         .delay_out(delay_out),
         .delay_out_N(delay_out_N),
@@ -171,6 +170,7 @@ module IO_blocks#(
         .rstb_links(rstb_links),
 
 		.bypass_IOBUF(bypass_IOBUF),
+		.tristate_IOBUF(tristate_IOBUF),
         
         .global_reset_counters(global_reset_counters),
         .global_rstb_links(global_rstb_links)
@@ -244,15 +244,22 @@ module IO_blocks#(
 				.CLK(in_clk640),
 				.CLKDIV(in_clk160),
 				.D(in_tdata[i]),
-				.T(~in_tvalid[i]), // T = 1 means tristate, T = 0 means drive data to output
+				.T(~in_tvalid[i] || tristate_IOBUF[i]), // T = 1 means tristate, T = 0 means drive data to output
 				.OQ(DATA_OSERDES_to_IOBUFDS),
-				.T_OUT(TRISTATE_OSERDES_to_IOBUFDS)
+				.T_OUT(TRISTATE_OSERDES_to_IOBUFDS),
+				.RST(global_rstb_links && rstb_links[i])
 			);
    
-            IOBUFDS_DIFF_OUT diff_buf(.IO(D_IN_OUT_P[i]), .IOB(D_IN_OUT_N[i]), 
-                                      .I(DATA_OSERDES_to_IOBUFDS), 
-                                      .O(IOBUFDS_to_ISERDES_P), .OB(IOBUFDS_to_ISERDES_N),
-                                      .TM(TRISTATE_OSERDES_to_IOBUFDS), .TS(TRISTATE_OSERDES_to_IOBUFDS));
+			if (DRIVE_ENABLED == 1) begin
+				IOBUFDS_DIFF_OUT diff_buf(.IO(D_IN_OUT_P[i]), .IOB(D_IN_OUT_N[i]), 
+										  .I(DATA_OSERDES_to_IOBUFDS), 
+										  .O(IOBUFDS_to_ISERDES_P), .OB(IOBUFDS_to_ISERDES_N),
+										  .TM(TRISTATE_OSERDES_to_IOBUFDS),
+										  .TS(TRISTATE_OSERDES_to_IOBUFDS));
+			end else begin
+				IBUFDS_DIFF_OUT diff_buf(.I(D_IN_OUT_P[i]), .IB(D_IN_OUT_N[i]),
+					                     .O(IOBUFDS_to_ISERDES_P), .OB(IOBUFDS_to_ISERDES_N));
+			end
         
             input_blocks sigmon(
                 .clk640(in_clk640),
@@ -273,6 +280,7 @@ module IO_blocks#(
                 .delay_out_N(delay_out_N[i]),
                 .delay_error_offset(delay_error_offset[i]),
                 .delay_ready(delay_ready[i]),
+                .waiting_for_transitions(waiting_for_transitions[i]),
                 
                 .reset_counters(global_reset_counters || reset_counters[i]),
 
@@ -283,6 +291,9 @@ module IO_blocks#(
         end
     endgenerate        
 
+	// Should probably replace this next part with an instance of
+	// xpm_fifo_async...
+	
 	// Clock crossing for the bypass mode
 	// We do not use an actual xpm_cdc module for this because it should not
 	// be necessary.  The input and output 160 MHz clocks should have some

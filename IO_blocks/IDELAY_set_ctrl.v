@@ -20,7 +20,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module IDELAY_set_ctrl #(
+module IDELAY_set_ctrl_utility #(
         parameter N = 0
     )
     (
@@ -31,7 +31,7 @@ module IDELAY_set_ctrl #(
         
         output reg [8:0] delay_set_value = 0,
         output wire delay_wr,
-        output reg delay_ready,
+        output wire delay_ready,
         
         input wire rstb
 
@@ -63,6 +63,7 @@ module IDELAY_set_ctrl #(
     assign idelay_cnt_write_hold_s = $signed({1'b0,idelay_cnt_write_hold});
     assign delay_diff = idelay_cnt_write_hold_s - idelay_cnt_read_hold_s;
     
+    assign delay_ready = (delay_target == delay_out);
     generate
     
         always @(posedge clk160 or negedge rstb)
@@ -74,7 +75,6 @@ module IDELAY_set_ctrl #(
                 idelay_cnt_read_hold <= 0;
                 idelay_cnt_write_hold <= 0;
                 delay_set_value <= 0;
-                delay_ready <= 0;
             end
             else
             case(idelay_state)
@@ -88,7 +88,6 @@ module IDELAY_set_ctrl #(
                     idelay_state <= STATE_IDELAY_CALC;
                     idelay_cnt_read_hold <= delay_out;
                     idelay_cnt_write_hold <= delay_target;
-                    delay_ready <= (delay_target == delay_out);
                 end
                 
                 STATE_IDELAY_CALC:

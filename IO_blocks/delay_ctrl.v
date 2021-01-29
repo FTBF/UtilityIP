@@ -20,7 +20,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module delay_ctrl(
+module delay_ctrl_utility (
         input wire clk160,
         
         input wire [7:0] D_OUT_P,
@@ -45,6 +45,7 @@ module delay_ctrl(
         output wire       delay_wr_N,
         
         output wire       delay_ready,
+        output reg        waiting_for_transitions,
         
         input wire reset_counters,
         input wire rstb
@@ -65,6 +66,13 @@ module delay_ctrl(
     
     wire bae;
     assign bae = |(~(D_OUT_P ^ D_OUT_N));
+    
+    reg last_bit;
+    always @(posedge clk160)
+        last_bit <= D_OUT_P[7];
+
+    wire any_transition;
+    assign any_transition = |({D_OUT_P[8-2:0], last_bit} ^ D_OUT_P);
     
     reg countEnable;
     
@@ -92,7 +100,6 @@ module delay_ctrl(
         end
     end
     
-    
     reg [8:0] delay_target_P = 0;
     reg [8:0] delay_target_N = 0;
     wire delay_ready_P;
@@ -109,7 +116,7 @@ module delay_ctrl(
    
     always @(posedge clk160) delay_set_SR <= {delay_set_SR[1:0], delay_set};
     
-    IDELAY_set_ctrl idelSetCtrl_P(
+    IDELAY_set_ctrl_utility idelSetCtrl_P(
         .clk160(clk160),
         
         .delay_target(delay_target_P),
@@ -123,7 +130,7 @@ module delay_ctrl(
 
     );
     
-    IDELAY_set_ctrl #(1) idelSetCtrl_N(
+    IDELAY_set_ctrl_utility #(1) idelSetCtrl_N(
         .clk160(clk160),
         
         .delay_target(delay_target_N),
@@ -181,6 +188,7 @@ module delay_ctrl(
          delay_ready_automatic <= 0;
          countEnable <= 1;
          state_bitalign <= STATE_BITALIGN_IDLE;
+         waiting_for_transitions <= 1;
       end
       else
       begin
@@ -248,9 +256,12 @@ module delay_ctrl(
             
             STATE_BITALIGN_PHASE1_WAITCNT:
             begin
-                wait_cnt <= wait_cnt - 1;
+                waiting_for_transitions <= !any_transition;
+                if (any_transition)
+                    wait_cnt <= wait_cnt - 1;
                 if(!wait_cnt)
                 begin
+                    waiting_for_transitions <= 0;
                     state_bitalign <= STATE_BITALIGN_PHASE1_CHECK;
                     
                     if(autoErrCnt) step_cnt <= 0;
@@ -320,8 +331,13 @@ module delay_ctrl(
             
             STATE_BITALIGN_PHASE2_WAITCNT:
             begin
-                wait_cnt <= wait_cnt - 1;
-                if(!wait_cnt) state_bitalign <= STATE_BITALIGN_PHASE2_CHECK;
+                waiting_for_transitions <= !any_transition;
+                if (any_transition)
+                    wait_cnt <= wait_cnt - 1;
+                if(!wait_cnt) begin
+                    waiting_for_transitions <= 0;
+                    state_bitalign <= STATE_BITALIGN_PHASE2_CHECK;
+                end
             end
             
             STATE_BITALIGN_PHASE2_CHECK:
