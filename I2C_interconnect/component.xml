@@ -116,12 +116,20 @@
           </spirit:physicalPort>
         </spirit:portMap>
       </spirit:portMaps>
+      <spirit:vendorExtensions>
+        <xilinx:busInterfaceInfo>
+          <xilinx:enablement>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.I2C_1" xilinx:dependency="spirit:decode(id(&apos;PARAM_VALUE.NUM_INTERFACES&apos;)) > 1">true</xilinx:isEnabled>
+          </xilinx:enablement>
+        </xilinx:busInterfaceInfo>
+      </spirit:vendorExtensions>
     </spirit:busInterface>
     <spirit:busInterface>
       <spirit:name>I2C_2</spirit:name>
       <spirit:busType spirit:vendor="xilinx.com" spirit:library="interface" spirit:name="iic" spirit:version="1.0"/>
       <spirit:abstractionType spirit:vendor="xilinx.com" spirit:library="interface" spirit:name="iic_rtl" spirit:version="1.0"/>
       <spirit:slave/>
+      <spirit:connectionRequired>true</spirit:connectionRequired>
       <spirit:portMaps>
         <spirit:portMap>
           <spirit:logicalPort>
@@ -243,6 +251,258 @@
         </xilinx:busInterfaceInfo>
       </spirit:vendorExtensions>
     </spirit:busInterface>
+    <spirit:busInterface>
+      <spirit:name>I2C_4</spirit:name>
+      <spirit:busType spirit:vendor="xilinx.com" spirit:library="interface" spirit:name="iic" spirit:version="1.0"/>
+      <spirit:abstractionType spirit:vendor="xilinx.com" spirit:library="interface" spirit:name="iic_rtl" spirit:version="1.0"/>
+      <spirit:master/>
+      <spirit:portMaps>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>SCL_I</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>I2C_4_SCL_i</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>SCL_O</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>I2C_4_SCL_o</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>SCL_T</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>I2C_4_SCL_t</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>SDA_I</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>I2C_4_SDA_i</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>SDA_O</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>I2C_4_SDA_o</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>SDA_T</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>I2C_4_SDA_t</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+      </spirit:portMaps>
+      <spirit:vendorExtensions>
+        <xilinx:busInterfaceInfo>
+          <xilinx:enablement>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.I2C_4" xilinx:dependency="spirit:decode(id(&apos;PARAM_VALUE.NUM_MASTER_INTERFACES&apos;)) > 0">false</xilinx:isEnabled>
+          </xilinx:enablement>
+        </xilinx:busInterfaceInfo>
+      </spirit:vendorExtensions>
+    </spirit:busInterface>
+    <spirit:busInterface>
+      <spirit:name>I2C_5</spirit:name>
+      <spirit:busType spirit:vendor="xilinx.com" spirit:library="interface" spirit:name="iic" spirit:version="1.0"/>
+      <spirit:abstractionType spirit:vendor="xilinx.com" spirit:library="interface" spirit:name="iic_rtl" spirit:version="1.0"/>
+      <spirit:master/>
+      <spirit:portMaps>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>SCL_I</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>I2C_5_SCL_i</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>SCL_O</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>I2C_5_SCL_o</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>SCL_T</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>I2C_5_SCL_t</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>SDA_I</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>I2C_5_SDA_i</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>SDA_O</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>I2C_5_SDA_o</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>SDA_T</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>I2C_5_SDA_t</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+      </spirit:portMaps>
+      <spirit:vendorExtensions>
+        <xilinx:busInterfaceInfo>
+          <xilinx:enablement>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.I2C_5" xilinx:dependency="spirit:decode(id(&apos;PARAM_VALUE.NUM_MASTER_INTERFACES&apos;)) > 1">false</xilinx:isEnabled>
+          </xilinx:enablement>
+        </xilinx:busInterfaceInfo>
+      </spirit:vendorExtensions>
+    </spirit:busInterface>
+    <spirit:busInterface>
+      <spirit:name>I2C_6</spirit:name>
+      <spirit:busType spirit:vendor="xilinx.com" spirit:library="interface" spirit:name="iic" spirit:version="1.0"/>
+      <spirit:abstractionType spirit:vendor="xilinx.com" spirit:library="interface" spirit:name="iic_rtl" spirit:version="1.0"/>
+      <spirit:master/>
+      <spirit:portMaps>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>SCL_I</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>I2C_6_SCL_i</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>SCL_O</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>I2C_6_SCL_o</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>SCL_T</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>I2C_6_SCL_t</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>SDA_I</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>I2C_6_SDA_i</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>SDA_O</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>I2C_6_SDA_o</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>SDA_T</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>I2C_6_SDA_t</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+      </spirit:portMaps>
+      <spirit:vendorExtensions>
+        <xilinx:busInterfaceInfo>
+          <xilinx:enablement>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.I2C_6" xilinx:dependency="spirit:decode(id(&apos;PARAM_VALUE.NUM_MASTER_INTERFACES&apos;)) > 2">false</xilinx:isEnabled>
+          </xilinx:enablement>
+        </xilinx:busInterfaceInfo>
+      </spirit:vendorExtensions>
+    </spirit:busInterface>
+    <spirit:busInterface>
+      <spirit:name>I2C_7</spirit:name>
+      <spirit:busType spirit:vendor="xilinx.com" spirit:library="interface" spirit:name="iic" spirit:version="1.0"/>
+      <spirit:abstractionType spirit:vendor="xilinx.com" spirit:library="interface" spirit:name="iic_rtl" spirit:version="1.0"/>
+      <spirit:master/>
+      <spirit:portMaps>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>SCL_I</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>I2C_7_SCL_i</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>SCL_O</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>I2C_7_SCL_o</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>SCL_T</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>I2C_7_SCL_t</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>SDA_I</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>I2C_7_SDA_i</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>SDA_O</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>I2C_7_SDA_o</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>SDA_T</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>I2C_7_SDA_t</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+      </spirit:portMaps>
+      <spirit:vendorExtensions>
+        <xilinx:busInterfaceInfo>
+          <xilinx:enablement>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.I2C_7" xilinx:dependency="spirit:decode(id(&apos;PARAM_VALUE.NUM_MASTER_INTERFACES&apos;)) > 3">false</xilinx:isEnabled>
+          </xilinx:enablement>
+        </xilinx:busInterfaceInfo>
+      </spirit:vendorExtensions>
+    </spirit:busInterface>
   </spirit:busInterfaces>
   <spirit:model>
     <spirit:views>
@@ -258,7 +518,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>f4f12376</spirit:value>
+            <spirit:value>54bed5a7</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -274,7 +534,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>f4f12376</spirit:value>
+            <spirit:value>54bed5a7</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -288,7 +548,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>7472e795</spirit:value>
+            <spirit:value>c0fa459b</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -654,6 +914,342 @@
           </spirit:wireTypeDefs>
         </spirit:wire>
       </spirit:port>
+      <spirit:port>
+        <spirit:name>I2C_4_SCL_o</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>I2C_4_SCL_t</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>I2C_4_SCL_i</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+          <spirit:driver>
+            <spirit:defaultValue spirit:format="long">1</spirit:defaultValue>
+          </spirit:driver>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>I2C_4_SDA_o</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>I2C_4_SDA_t</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>I2C_4_SDA_i</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+          <spirit:driver>
+            <spirit:defaultValue spirit:format="long">1</spirit:defaultValue>
+          </spirit:driver>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>I2C_5_SCL_o</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>I2C_5_SCL_t</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>I2C_5_SCL_i</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+          <spirit:driver>
+            <spirit:defaultValue spirit:format="long">1</spirit:defaultValue>
+          </spirit:driver>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>I2C_5_SDA_o</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>I2C_5_SDA_t</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>I2C_5_SDA_i</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+          <spirit:driver>
+            <spirit:defaultValue spirit:format="long">1</spirit:defaultValue>
+          </spirit:driver>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>I2C_6_SCL_o</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>I2C_6_SCL_t</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>I2C_6_SCL_i</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+          <spirit:driver>
+            <spirit:defaultValue spirit:format="long">1</spirit:defaultValue>
+          </spirit:driver>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>I2C_6_SDA_o</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>I2C_6_SDA_t</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>I2C_6_SDA_i</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+          <spirit:driver>
+            <spirit:defaultValue spirit:format="long">1</spirit:defaultValue>
+          </spirit:driver>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>I2C_7_SCL_o</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>I2C_7_SCL_t</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>I2C_7_SCL_i</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+          <spirit:driver>
+            <spirit:defaultValue spirit:format="long">1</spirit:defaultValue>
+          </spirit:driver>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>I2C_7_SDA_o</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>I2C_7_SDA_t</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>I2C_7_SDA_i</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+          <spirit:driver>
+            <spirit:defaultValue spirit:format="long">1</spirit:defaultValue>
+          </spirit:driver>
+        </spirit:wire>
+      </spirit:port>
     </spirit:ports>
   </spirit:model>
   <spirit:fileSets>
@@ -662,7 +1258,7 @@
       <spirit:file>
         <spirit:name>I2C_interconnect.sv</spirit:name>
         <spirit:fileType>systemVerilogSource</spirit:fileType>
-        <spirit:userFileType>CHECKSUM_f4f12376</spirit:userFileType>
+        <spirit:userFileType>CHECKSUM_54bed5a7</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
@@ -677,7 +1273,7 @@
       <spirit:file>
         <spirit:name>xgui/I2C_interconnect_v1_0.tcl</spirit:name>
         <spirit:fileType>tclSource</spirit:fileType>
-        <spirit:userFileType>CHECKSUM_7472e795</spirit:userFileType>
+        <spirit:userFileType>CHECKSUM_c0fa459b</spirit:userFileType>
         <spirit:userFileType>XGUI_VERSION_2</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
@@ -690,8 +1286,13 @@
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>NUM_INTERFACES</spirit:name>
-      <spirit:displayName>Number of interfaces</spirit:displayName>
-      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.NUM_INTERFACES" spirit:minimum="2" spirit:maximum="4" spirit:rangeType="long">2</spirit:value>
+      <spirit:displayName>Number of target interfaces</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.NUM_INTERFACES" spirit:minimum="1" spirit:maximum="4" spirit:rangeType="long">2</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>NUM_MASTER_INTERFACES</spirit:name>
+      <spirit:displayName>Number of master interfaces</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.NUM_MASTER_INTERFACES" spirit:minimum="0" spirit:maximum="4" spirit:rangeType="long">0</spirit:value>
     </spirit:parameter>
   </spirit:parameters>
   <spirit:vendorExtensions>
@@ -725,8 +1326,8 @@
         <xilinx:xpmLibrary>XPM_FIFO</xilinx:xpmLibrary>
         <xilinx:xpmLibrary>XPM_MEMORY</xilinx:xpmLibrary>
       </xilinx:xpmLibraries>
-      <xilinx:coreRevision>3</xilinx:coreRevision>
-      <xilinx:coreCreationDateTime>2021-01-11T20:22:56Z</xilinx:coreCreationDateTime>
+      <xilinx:coreRevision>5</xilinx:coreRevision>
+      <xilinx:coreCreationDateTime>2021-01-25T19:52:08Z</xilinx:coreCreationDateTime>
       <xilinx:tags>
         <xilinx:tag xilinx:name="nopcore"/>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@4c844315_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/I2C_interconnect</xilinx:tag>
@@ -765,14 +1366,68 @@
         <xilinx:tag xilinx:name="ui.data.coregen.dd@3c55136f_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/I2C_interconnect</xilinx:tag>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@2cba1291_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/I2C_interconnect</xilinx:tag>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@666acd02_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/I2C_interconnect</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@76c87cbd_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/I2C_interconnect</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4897d6b8_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/I2C_interconnect</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@40e962f3_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/I2C_interconnect</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@f1ca691_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/I2C_interconnect</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@69a4c760_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/I2C_interconnect</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1c8e7e3b_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/I2C_interconnect</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@270042d5_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/I2C_interconnect</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@358783f1_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/I2C_interconnect</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@496e1aa0_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/I2C_interconnect</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@44f34d1b_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/I2C_interconnect</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@527d064d_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/I2C_interconnect</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7a4f39c2_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/I2C_interconnect</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@76274328_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/I2C_interconnect</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3e2ddeff_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/I2C_interconnect</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4398c96e_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/I2C_interconnect</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2dff0601_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/I2C_interconnect</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@20877bf9_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/I2C_interconnect</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@38edbe8e_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/I2C_interconnect</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@105ef083_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/I2C_interconnect</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@630ee5bd_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/I2C_interconnect</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7412b7a3_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/I2C_interconnect</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2cc5c1f_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/I2C_interconnect</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5d63c7af_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/I2C_interconnect</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2589d140_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/I2C_interconnect</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@461b5a64_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/I2C_interconnect</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@e202d8f_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/I2C_interconnect</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@615c886_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/I2C_interconnect</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3ffbc9ea_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/I2C_interconnect</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1c00c203_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/I2C_interconnect</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@38cf6cdc_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/I2C_interconnect</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7ab23bab_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/I2C_interconnect</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@75da1668_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/I2C_interconnect</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@710e1eeb_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/I2C_interconnect</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3742d677_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/I2C_interconnect</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@18effe25_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/I2C_interconnect</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7e5bb233_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/I2C_interconnect</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@35530a6_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/I2C_interconnect</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4af53e55_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/I2C_interconnect</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@661f9f3a_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/I2C_interconnect</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@35996828_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/I2C_interconnect</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3834d059_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/I2C_interconnect</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@75bcb223_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/I2C_interconnect</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4b25c0a9_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/I2C_interconnect</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@38cf4c41_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/I2C_interconnect</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@13afecae_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/I2C_interconnect</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@159d8e7f_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/I2C_interconnect</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6639411e_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/I2C_interconnect</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@17bec393_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/I2C_interconnect</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7fc07a52_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/I2C_interconnect</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@29af115b_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/I2C_interconnect</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@48a3288c_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/I2C_interconnect</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@40828a2_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/I2C_interconnect</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6e45f100_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/I2C_interconnect</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@99c1aad_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/I2C_interconnect</xilinx:tag>
       </xilinx:tags>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2019.2</xilinx:xilinxVersion>
-      <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="c7e7ba70"/>
-      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="7322a4f7"/>
-      <xilinx:checksum xilinx:scope="ports" xilinx:value="540bb54c"/>
-      <xilinx:checksum xilinx:scope="parameters" xilinx:value="653c6604"/>
+      <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="85b239ab"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="f2a2bc29"/>
+      <xilinx:checksum xilinx:scope="ports" xilinx:value="bddf0fe0"/>
+      <xilinx:checksum xilinx:scope="parameters" xilinx:value="6fd3c0f7"/>
     </xilinx:packagingInfo>
   </spirit:vendorExtensions>
 </spirit:component>
