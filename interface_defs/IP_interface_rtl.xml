@@ -93,8 +93,7 @@
           <spirit:presence>required</spirit:presence>
           <spirit:direction>in</spirit:direction>
         </spirit:onMaster>
-        <spirit:onSlave>
-        </spirit:onSlave>
+        <spirit:onSlave/>
         <spirit:defaultValue>0</spirit:defaultValue>
       </spirit:wire>
     </spirit:port>
@@ -113,6 +112,18 @@
           <spirit:direction>in</spirit:direction>
         </spirit:onSlave>
         <spirit:defaultValue>0</spirit:defaultValue>
+      </spirit:wire>
+    </spirit:port>
+    <spirit:port>
+      <spirit:logicalName>rready</spirit:logicalName>
+      <spirit:wire>
+        <spirit:qualifier>
+          <spirit:isData>true</spirit:isData>
+        </spirit:qualifier>
+        <spirit:onMaster>
+          <spirit:direction>in</spirit:direction>
+        </spirit:onMaster>
+        <spirit:defaultValue>1</spirit:defaultValue>
       </spirit:wire>
     </spirit:port>
   </spirit:ports>
