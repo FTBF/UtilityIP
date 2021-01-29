@@ -35,11 +35,10 @@ module iic_buffer(
 	
     );
     
-    IOBUF sda_buf(.I(iic_sda_o), .O(iic_sda_i), .T(iic_sda_t), .IO(SDA));
-    //IOBUF scl_buf(.I(SCLi), .O(SCLo), .T(SCLt), .IO(SCL));
+    IOBUF sda_buf(.I(1'b0), .O(iic_sda_i), .T(iic_sda_o | iic_sda_t), .IO(SDA));
     
     wire SCLtmp;
     assign SCLtmp =  iic_scl_o| iic_scl_t;
-    IOBUF scl_buf(.I(SCLtmp), .O(iic_scl_i), .T(1'b0), .IO(SCL));
+    IOBUF scl_buf(.I(1'b0), .O(iic_scl_i), .T(SCLtmp), .IO(SCL));
    
 endmodule

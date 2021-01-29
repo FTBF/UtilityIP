@@ -30,7 +30,7 @@ module I2C_interconnect (
 	input  logic I2C_4_SCL_i,
 	output logic I2C_4_SDA_o,
 	output logic I2C_4_SDA_t,
-	inout  logic I2C_4_SDA_i,
+	input  logic I2C_4_SDA_i,
 	output logic I2C_5_SCL_o,
 	output logic I2C_5_SCL_t,
 	input  logic I2C_5_SCL_i,

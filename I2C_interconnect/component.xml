@@ -518,7 +518,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>17fad5f0</spirit:value>
+            <spirit:value>54bed5a7</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -534,7 +534,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>17fad5f0</spirit:value>
+            <spirit:value>54bed5a7</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -565,6 +565,9 @@
               <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
+          <spirit:driver>
+            <spirit:defaultValue spirit:format="long">1</spirit:defaultValue>
+          </spirit:driver>
         </spirit:wire>
       </spirit:port>
       <spirit:port>
@@ -578,6 +581,9 @@
               <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
+          <spirit:driver>
+            <spirit:defaultValue spirit:format="long">1</spirit:defaultValue>
+          </spirit:driver>
         </spirit:wire>
       </spirit:port>
       <spirit:port>
@@ -604,6 +610,9 @@
               <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
+          <spirit:driver>
+            <spirit:defaultValue spirit:format="long">1</spirit:defaultValue>
+          </spirit:driver>
         </spirit:wire>
       </spirit:port>
       <spirit:port>
@@ -617,6 +626,9 @@
               <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
+          <spirit:driver>
+            <spirit:defaultValue spirit:format="long">1</spirit:defaultValue>
+          </spirit:driver>
         </spirit:wire>
       </spirit:port>
       <spirit:port>
@@ -643,6 +655,9 @@
               <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
+          <spirit:driver>
+            <spirit:defaultValue spirit:format="long">1</spirit:defaultValue>
+          </spirit:driver>
         </spirit:wire>
       </spirit:port>
       <spirit:port>
@@ -656,6 +671,9 @@
               <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
+          <spirit:driver>
+            <spirit:defaultValue spirit:format="long">1</spirit:defaultValue>
+          </spirit:driver>
         </spirit:wire>
       </spirit:port>
       <spirit:port>
@@ -682,6 +700,9 @@
               <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
+          <spirit:driver>
+            <spirit:defaultValue spirit:format="long">1</spirit:defaultValue>
+          </spirit:driver>
         </spirit:wire>
       </spirit:port>
       <spirit:port>
@@ -695,6 +716,9 @@
               <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
+          <spirit:driver>
+            <spirit:defaultValue spirit:format="long">1</spirit:defaultValue>
+          </spirit:driver>
         </spirit:wire>
       </spirit:port>
       <spirit:port>
@@ -721,6 +745,9 @@
               <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
+          <spirit:driver>
+            <spirit:defaultValue spirit:format="long">1</spirit:defaultValue>
+          </spirit:driver>
         </spirit:wire>
       </spirit:port>
       <spirit:port>
@@ -734,6 +761,9 @@
               <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
+          <spirit:driver>
+            <spirit:defaultValue spirit:format="long">1</spirit:defaultValue>
+          </spirit:driver>
         </spirit:wire>
       </spirit:port>
       <spirit:port>
@@ -760,6 +790,9 @@
               <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
+          <spirit:driver>
+            <spirit:defaultValue spirit:format="long">1</spirit:defaultValue>
+          </spirit:driver>
         </spirit:wire>
       </spirit:port>
       <spirit:port>
@@ -773,6 +806,9 @@
               <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
+          <spirit:driver>
+            <spirit:defaultValue spirit:format="long">1</spirit:defaultValue>
+          </spirit:driver>
         </spirit:wire>
       </spirit:port>
       <spirit:port>
@@ -799,6 +835,9 @@
               <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
+          <spirit:driver>
+            <spirit:defaultValue spirit:format="long">1</spirit:defaultValue>
+          </spirit:driver>
         </spirit:wire>
       </spirit:port>
       <spirit:port>
@@ -812,6 +851,9 @@
               <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
+          <spirit:driver>
+            <spirit:defaultValue spirit:format="long">1</spirit:defaultValue>
+          </spirit:driver>
         </spirit:wire>
       </spirit:port>
       <spirit:port>
@@ -838,6 +880,9 @@
               <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
+          <spirit:driver>
+            <spirit:defaultValue spirit:format="long">1</spirit:defaultValue>
+          </spirit:driver>
         </spirit:wire>
       </spirit:port>
       <spirit:port>
@@ -851,6 +896,9 @@
               <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
+          <spirit:driver>
+            <spirit:defaultValue spirit:format="long">1</spirit:defaultValue>
+          </spirit:driver>
         </spirit:wire>
       </spirit:port>
       <spirit:port>
@@ -903,6 +951,9 @@
               <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
+          <spirit:driver>
+            <spirit:defaultValue spirit:format="long">1</spirit:defaultValue>
+          </spirit:driver>
         </spirit:wire>
       </spirit:port>
       <spirit:port>
@@ -934,7 +985,7 @@
       <spirit:port>
         <spirit:name>I2C_4_SDA_i</spirit:name>
         <spirit:wire>
-          <spirit:direction>inout</spirit:direction>
+          <spirit:direction>in</spirit:direction>
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
               <spirit:typeName>logic</spirit:typeName>
@@ -942,6 +993,9 @@
               <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
+          <spirit:driver>
+            <spirit:defaultValue spirit:format="long">1</spirit:defaultValue>
+          </spirit:driver>
         </spirit:wire>
       </spirit:port>
       <spirit:port>
@@ -981,6 +1035,9 @@
               <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
+          <spirit:driver>
+            <spirit:defaultValue spirit:format="long">1</spirit:defaultValue>
+          </spirit:driver>
         </spirit:wire>
       </spirit:port>
       <spirit:port>
@@ -1020,6 +1077,9 @@
               <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
+          <spirit:driver>
+            <spirit:defaultValue spirit:format="long">1</spirit:defaultValue>
+          </spirit:driver>
         </spirit:wire>
       </spirit:port>
       <spirit:port>
@@ -1059,6 +1119,9 @@
               <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
+          <spirit:driver>
+            <spirit:defaultValue spirit:format="long">1</spirit:defaultValue>
+          </spirit:driver>
         </spirit:wire>
       </spirit:port>
       <spirit:port>
@@ -1098,6 +1161,9 @@
               <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
+          <spirit:driver>
+            <spirit:defaultValue spirit:format="long">1</spirit:defaultValue>
+          </spirit:driver>
         </spirit:wire>
       </spirit:port>
       <spirit:port>
@@ -1137,6 +1203,9 @@
               <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
+          <spirit:driver>
+            <spirit:defaultValue spirit:format="long">1</spirit:defaultValue>
+          </spirit:driver>
         </spirit:wire>
       </spirit:port>
       <spirit:port>
@@ -1176,6 +1245,9 @@
               <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
+          <spirit:driver>
+            <spirit:defaultValue spirit:format="long">1</spirit:defaultValue>
+          </spirit:driver>
         </spirit:wire>
       </spirit:port>
     </spirit:ports>
@@ -1186,7 +1258,7 @@
       <spirit:file>
         <spirit:name>I2C_interconnect.sv</spirit:name>
         <spirit:fileType>systemVerilogSource</spirit:fileType>
-        <spirit:userFileType>CHECKSUM_17fad5f0</spirit:userFileType>
+        <spirit:userFileType>CHECKSUM_54bed5a7</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
@@ -1254,8 +1326,8 @@
         <xilinx:xpmLibrary>XPM_FIFO</xilinx:xpmLibrary>
         <xilinx:xpmLibrary>XPM_MEMORY</xilinx:xpmLibrary>
       </xilinx:xpmLibraries>
-      <xilinx:coreRevision>4</xilinx:coreRevision>
-      <xilinx:coreCreationDateTime>2021-01-22T21:01:34Z</xilinx:coreCreationDateTime>
+      <xilinx:coreRevision>5</xilinx:coreRevision>
+      <xilinx:coreCreationDateTime>2021-01-25T19:52:08Z</xilinx:coreCreationDateTime>
       <xilinx:tags>
         <xilinx:tag xilinx:name="nopcore"/>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@4c844315_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/I2C_interconnect</xilinx:tag>
@@ -1318,13 +1390,43 @@
         <xilinx:tag xilinx:name="ui.data.coregen.dd@2cc5c1f_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/I2C_interconnect</xilinx:tag>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@5d63c7af_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/I2C_interconnect</xilinx:tag>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@2589d140_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/I2C_interconnect</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@461b5a64_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/I2C_interconnect</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@e202d8f_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/I2C_interconnect</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@615c886_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/I2C_interconnect</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3ffbc9ea_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/I2C_interconnect</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1c00c203_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/I2C_interconnect</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@38cf6cdc_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/I2C_interconnect</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7ab23bab_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/I2C_interconnect</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@75da1668_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/I2C_interconnect</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@710e1eeb_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/I2C_interconnect</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3742d677_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/I2C_interconnect</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@18effe25_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/I2C_interconnect</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7e5bb233_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/I2C_interconnect</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@35530a6_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/I2C_interconnect</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4af53e55_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/I2C_interconnect</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@661f9f3a_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/I2C_interconnect</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@35996828_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/I2C_interconnect</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3834d059_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/I2C_interconnect</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@75bcb223_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/I2C_interconnect</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4b25c0a9_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/I2C_interconnect</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@38cf4c41_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/I2C_interconnect</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@13afecae_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/I2C_interconnect</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@159d8e7f_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/I2C_interconnect</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6639411e_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/I2C_interconnect</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@17bec393_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/I2C_interconnect</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7fc07a52_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/I2C_interconnect</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@29af115b_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/I2C_interconnect</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@48a3288c_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/I2C_interconnect</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@40828a2_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/I2C_interconnect</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6e45f100_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/I2C_interconnect</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@99c1aad_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/I2C_interconnect</xilinx:tag>
       </xilinx:tags>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2019.2</xilinx:xilinxVersion>
       <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="85b239ab"/>
-      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="440ee150"/>
-      <xilinx:checksum xilinx:scope="ports" xilinx:value="39be53cf"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="f2a2bc29"/>
+      <xilinx:checksum xilinx:scope="ports" xilinx:value="bddf0fe0"/>
       <xilinx:checksum xilinx:scope="parameters" xilinx:value="6fd3c0f7"/>
     </xilinx:packagingInfo>
   </spirit:vendorExtensions>
