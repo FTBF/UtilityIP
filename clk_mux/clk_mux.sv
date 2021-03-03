@@ -72,17 +72,18 @@ module clk_mux #(
     localparam CLK_MULT    = (INPUTFREQ == 40)?(24):(3);
     localparam CLK_DIV_320 = (INPUTFREQ == 40)?(3):(3);
     localparam CLK_DIV_40  = (INPUTFREQ == 40)?(24):(24);
+    localparam CLK_PERIOD  = (INPUTFREQ == 40)?(25.0):(3.125);
     
     logic clkFB_ext_I, clkFB_ext_O;
     BUFG BUFG_FB_ext_inst ( .O(clkFB_ext_O), .I(clkFB_ext_I) );
     
     logic clockInStopped;
-    assign clk_ext_active = !clockInStopped;
+    assign clk_ext_active = !clockInStopped && locked_ext;
     
     MMCME4_ADV #(
        .BANDWIDTH("OPTIMIZED"),        // Jitter programming
        .CLKFBOUT_MULT_F(CLK_MULT),     // Multiply value for all CLKOUT
-       .CLKIN1_PERIOD(25.0),           // Input clock period in ns to ps resolution (i.e. 33.333 is 30 MHz).
+       .CLKIN1_PERIOD(CLK_PERIOD),     // Input clock period in ns to ps resolution (i.e. 33.333 is 30 MHz).
        .CLKOUT0_DIVIDE_F(CLK_DIV_320), // Divide amount for CLKOUT0
        .CLKOUT0_PHASE(0.0),            // Phase offset for CLKOUT0
        .CLKOUT1_DIVIDE(CLK_DIV_40),    // Divide amount for CLKOUT (1-128)
