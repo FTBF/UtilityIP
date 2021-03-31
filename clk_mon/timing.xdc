@@ -1,0 +1,5 @@
+set_false_path -through [get_ports clk_test*]
+set_false_path -through [get_ports locked*]
+set_false_path -through [get_pins clks[*].crt/rateCtr_reg[*]/Q]
+set_false_path -through [get_pins clks[*].crt/async_reset_reg/Q]
+set_false_path -through [get_pins clks[*].crt/counting1a_reg/Q]
