@@ -4,6 +4,148 @@
   <spirit:library>user</spirit:library>
   <spirit:name>Fast_Control_Fanout</spirit:name>
   <spirit:version>1.0</spirit:version>
+  <spirit:busInterfaces>
+    <spirit:busInterface>
+      <spirit:name>IPIF_Bus2IP_resetn</spirit:name>
+      <spirit:busType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="reset" spirit:version="1.0"/>
+      <spirit:abstractionType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="reset_rtl" spirit:version="1.0"/>
+      <spirit:slave/>
+      <spirit:portMaps>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>RST</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>IPIF_Bus2IP_resetn</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+      </spirit:portMaps>
+      <spirit:parameters>
+        <spirit:parameter>
+          <spirit:name>POLARITY</spirit:name>
+          <spirit:value spirit:id="BUSIFPARAM_VALUE.IPIF_BUS2IP_RESETN.POLARITY" spirit:choiceRef="choice_list_9d8b0d81">ACTIVE_LOW</spirit:value>
+        </spirit:parameter>
+      </spirit:parameters>
+    </spirit:busInterface>
+    <spirit:busInterface>
+      <spirit:name>IPIF_clk</spirit:name>
+      <spirit:busType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="clock" spirit:version="1.0"/>
+      <spirit:abstractionType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="clock_rtl" spirit:version="1.0"/>
+      <spirit:slave/>
+      <spirit:portMaps>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>CLK</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>IPIF_clk</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+      </spirit:portMaps>
+      <spirit:parameters>
+        <spirit:parameter>
+          <spirit:name>ASSOCIATED_RESET</spirit:name>
+          <spirit:value spirit:id="BUSIFPARAM_VALUE.IPIF_CLK.ASSOCIATED_RESET">IPIF_Bus2IP_resetn</spirit:value>
+        </spirit:parameter>
+      </spirit:parameters>
+    </spirit:busInterface>
+    <spirit:busInterface>
+      <spirit:name>IPIF</spirit:name>
+      <spirit:busType spirit:vendor="NONE" spirit:library="user" spirit:name="IPIF_AXISL_" spirit:version="1.0"/>
+      <spirit:abstractionType spirit:vendor="NONE" spirit:library="user" spirit:name="IPIF_AXISL__rtl" spirit:version="1.0"/>
+      <spirit:slave/>
+      <spirit:portMaps>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>Bus2IP_Addr</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>IPIF_Bus2IP_Addr</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>Bus2IP_Data</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>IPIF_Bus2IP_Data</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>Bus2IP_RNW</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>IPIF_Bus2IP_RNW</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>Bus2IP_BE</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>IPIF_Bus2IP_BE</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>Bus2IP_CS</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>IPIF_Bus2IP_CS</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>Bus2IP_RdCE</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>IPIF_Bus2IP_RdCE</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>Bus2IP_WrCE</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>IPIF_Bus2IP_WrCE</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>IP2Bus_Data</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>IPIF_IP2Bus_Data</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>IP2Bus_RdAck</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>IPIF_IP2Bus_RdAck</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>IP2Bus_WrAck</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>IPIF_IP2Bus_WrAck</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>IP2Bus_Error</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>IPIF_IP2Bus_Error</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+      </spirit:portMaps>
+    </spirit:busInterface>
+  </spirit:busInterfaces>
   <spirit:model>
     <spirit:views>
       <spirit:view>
@@ -18,7 +160,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>0d3d29fd</spirit:value>
+            <spirit:value>933e7a38</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -34,7 +176,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>0d3d29fd</spirit:value>
+            <spirit:value>933e7a38</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -48,7 +190,22 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>78a47034</spirit:value>
+            <spirit:value>a1f3c2f2</spirit:value>
+          </spirit:parameter>
+        </spirit:parameters>
+      </spirit:view>
+      <spirit:view>
+        <spirit:name>xilinx_testbench</spirit:name>
+        <spirit:displayName>Test Bench</spirit:displayName>
+        <spirit:envIdentifier>:vivado.xilinx.com:simulation.testbench</spirit:envIdentifier>
+        <spirit:modelName>testbench</spirit:modelName>
+        <spirit:fileSetRef>
+          <spirit:localName>xilinx_testbench_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
+        <spirit:parameters>
+          <spirit:parameter>
+            <spirit:name>viewChecksum</spirit:name>
+            <spirit:value>e207972d</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -56,6 +213,19 @@
     <spirit:ports>
       <spirit:port>
         <spirit:name>fast_clock_in</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>wire</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>fast_clock_in_orig</spirit:name>
         <spirit:wire>
           <spirit:direction>in</spirit:direction>
           <spirit:wireTypeDefs>
@@ -162,12 +332,243 @@
         </spirit:wire>
       </spirit:port>
       <spirit:port>
+        <spirit:name>IPIF_Bus2IP_resetn</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>wire</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>IPIF_Bus2IP_Addr</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:vector>
+            <spirit:left spirit:format="long" spirit:resolve="dependent" spirit:dependency="(spirit:decode(id(&apos;MODELPARAM_VALUE.C_S_AXI_ADDR_WIDTH&apos;)) - 1)">12</spirit:left>
+            <spirit:right spirit:format="long">0</spirit:right>
+          </spirit:vector>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>wire</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+          <spirit:driver>
+            <spirit:defaultValue spirit:format="long">0</spirit:defaultValue>
+          </spirit:driver>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>IPIF_Bus2IP_RNW</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>wire</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+          <spirit:driver>
+            <spirit:defaultValue spirit:format="long">0</spirit:defaultValue>
+          </spirit:driver>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>IPIF_Bus2IP_BE</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:vector>
+            <spirit:left spirit:format="long" spirit:resolve="dependent" spirit:dependency="((spirit:decode(id(&apos;MODELPARAM_VALUE.C_S_AXI_DATA_WIDTH&apos;)) / 8) - 1)">3</spirit:left>
+            <spirit:right spirit:format="long">0</spirit:right>
+          </spirit:vector>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>wire</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+          <spirit:driver>
+            <spirit:defaultValue spirit:format="long">0</spirit:defaultValue>
+          </spirit:driver>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>IPIF_Bus2IP_CS</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:vector>
+            <spirit:left spirit:format="long">0</spirit:left>
+            <spirit:right spirit:format="long">0</spirit:right>
+          </spirit:vector>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>wire</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+          <spirit:driver>
+            <spirit:defaultValue spirit:format="long">0</spirit:defaultValue>
+          </spirit:driver>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>IPIF_Bus2IP_RdCE</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:vector>
+            <spirit:left spirit:format="long" spirit:resolve="dependent" spirit:dependency="(spirit:decode(id(&apos;MODELPARAM_VALUE.N_REG&apos;)) - 1)">3</spirit:left>
+            <spirit:right spirit:format="long">0</spirit:right>
+          </spirit:vector>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>wire</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+          <spirit:driver>
+            <spirit:defaultValue spirit:format="long">0</spirit:defaultValue>
+          </spirit:driver>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>IPIF_Bus2IP_WrCE</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:vector>
+            <spirit:left spirit:format="long" spirit:resolve="dependent" spirit:dependency="(spirit:decode(id(&apos;MODELPARAM_VALUE.N_REG&apos;)) - 1)">3</spirit:left>
+            <spirit:right spirit:format="long">0</spirit:right>
+          </spirit:vector>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>wire</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+          <spirit:driver>
+            <spirit:defaultValue spirit:format="long">0</spirit:defaultValue>
+          </spirit:driver>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>IPIF_Bus2IP_Data</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:vector>
+            <spirit:left spirit:format="long" spirit:resolve="dependent" spirit:dependency="(spirit:decode(id(&apos;MODELPARAM_VALUE.C_S_AXI_DATA_WIDTH&apos;)) - 1)">31</spirit:left>
+            <spirit:right spirit:format="long">0</spirit:right>
+          </spirit:vector>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>wire</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+          <spirit:driver>
+            <spirit:defaultValue spirit:format="long">0</spirit:defaultValue>
+          </spirit:driver>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>IPIF_IP2Bus_Data</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:vector>
+            <spirit:left spirit:format="long" spirit:resolve="dependent" spirit:dependency="(spirit:decode(id(&apos;MODELPARAM_VALUE.C_S_AXI_DATA_WIDTH&apos;)) - 1)">31</spirit:left>
+            <spirit:right spirit:format="long">0</spirit:right>
+          </spirit:vector>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>wire</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>IPIF_IP2Bus_WrAck</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>wire</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>IPIF_IP2Bus_RdAck</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>wire</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>IPIF_IP2Bus_Error</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>wire</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>IPIF_clk</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>wire</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>debug_trig</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>wire</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
         <spirit:name>arstn</spirit:name>
         <spirit:wire>
           <spirit:direction>in</spirit:direction>
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
-              <spirit:typeName>std_logic</spirit:typeName>
+              <spirit:typeName>wire</spirit:typeName>
               <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
               <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
@@ -191,19 +592,59 @@
         <spirit:displayName>Invert</spirit:displayName>
         <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.INVERT">0</spirit:value>
       </spirit:modelParameter>
+      <spirit:modelParameter spirit:dataType="integer">
+        <spirit:name>RESYNCCLEANUP</spirit:name>
+        <spirit:displayName>Resynccleanup</spirit:displayName>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.RESYNCCLEANUP">1</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter spirit:dataType="integer">
+        <spirit:name>DEBUG</spirit:name>
+        <spirit:displayName>Debug</spirit:displayName>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.DEBUG">1</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter spirit:dataType="integer">
+        <spirit:name>C_S_AXI_DATA_WIDTH</spirit:name>
+        <spirit:displayName>C S Axi Data Width</spirit:displayName>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_S_AXI_DATA_WIDTH">32</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter spirit:dataType="integer">
+        <spirit:name>C_S_AXI_ADDR_WIDTH</spirit:name>
+        <spirit:displayName>C S Axi Addr Width</spirit:displayName>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_S_AXI_ADDR_WIDTH">13</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter spirit:dataType="integer">
+        <spirit:name>N_REG</spirit:name>
+        <spirit:displayName>N Reg</spirit:displayName>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.N_REG">4</spirit:value>
+      </spirit:modelParameter>
     </spirit:modelParameters>
   </spirit:model>
+  <spirit:choices>
+    <spirit:choice>
+      <spirit:name>choice_list_9d8b0d81</spirit:name>
+      <spirit:enumeration>ACTIVE_HIGH</spirit:enumeration>
+      <spirit:enumeration>ACTIVE_LOW</spirit:enumeration>
+    </spirit:choice>
+  </spirit:choices>
   <spirit:fileSets>
     <spirit:fileSet>
       <spirit:name>xilinx_anylanguagesynthesis_view_fileset</spirit:name>
       <spirit:file>
+        <spirit:name>IPIF_parameterDecode.sv</spirit:name>
+        <spirit:fileType>systemVerilogSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
         <spirit:name>Fast_Control_Fanout.sv</spirit:name>
         <spirit:fileType>systemVerilogSource</spirit:fileType>
-        <spirit:userFileType>CHECKSUM_0d3d29fd</spirit:userFileType>
+        <spirit:userFileType>CHECKSUM_c9cd9a9c</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
       <spirit:name>xilinx_anylanguagebehavioralsimulation_view_fileset</spirit:name>
+      <spirit:file>
+        <spirit:name>IPIF_parameterDecode.sv</spirit:name>
+        <spirit:fileType>systemVerilogSource</spirit:fileType>
+      </spirit:file>
       <spirit:file>
         <spirit:name>Fast_Control_Fanout.sv</spirit:name>
         <spirit:fileType>systemVerilogSource</spirit:fileType>
@@ -214,8 +655,18 @@
       <spirit:file>
         <spirit:name>xgui/Fast_Control_Fanout_v1_0.tcl</spirit:name>
         <spirit:fileType>tclSource</spirit:fileType>
-        <spirit:userFileType>CHECKSUM_78a47034</spirit:userFileType>
+        <spirit:userFileType>CHECKSUM_a1f3c2f2</spirit:userFileType>
         <spirit:userFileType>XGUI_VERSION_2</spirit:userFileType>
+      </spirit:file>
+    </spirit:fileSet>
+    <spirit:fileSet>
+      <spirit:name>xilinx_testbench_view_fileset</spirit:name>
+      <spirit:file>
+        <spirit:name>../../../../../../hgc/FCF_sim/FCF_sim.srcs/sim_1/new/testbench.sv</spirit:name>
+        <spirit:fileType>systemVerilogSource</spirit:fileType>
+        <spirit:userFileType>USED_IN_implementation</spirit:userFileType>
+        <spirit:userFileType>USED_IN_simulation</spirit:userFileType>
+        <spirit:userFileType>USED_IN_synthesis</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
   </spirit:fileSets>
@@ -239,6 +690,31 @@
     <spirit:parameter>
       <spirit:name>Component_Name</spirit:name>
       <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.Component_Name" spirit:order="1">Fast_Control_Fanout_v1_0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>RESYNCCLEANUP</spirit:name>
+      <spirit:displayName>Resynccleanup</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.RESYNCCLEANUP">1</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>DEBUG</spirit:name>
+      <spirit:displayName>Debug</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.DEBUG">1</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_S_AXI_DATA_WIDTH</spirit:name>
+      <spirit:displayName>C S Axi Data Width</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_S_AXI_DATA_WIDTH">32</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_S_AXI_ADDR_WIDTH</spirit:name>
+      <spirit:displayName>C S Axi Addr Width</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_S_AXI_ADDR_WIDTH">13</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>N_REG</spirit:name>
+      <spirit:displayName>N Reg</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.N_REG">4</spirit:value>
     </spirit:parameter>
   </spirit:parameters>
   <spirit:vendorExtensions>
@@ -273,8 +749,8 @@
       </xilinx:taxonomies>
       <xilinx:displayName>Fast_Control_Fanout_v1_0</xilinx:displayName>
       <xilinx:definitionSource>package_project</xilinx:definitionSource>
-      <xilinx:coreRevision>3</xilinx:coreRevision>
-      <xilinx:coreCreationDateTime>2021-01-22T18:06:27Z</xilinx:coreCreationDateTime>
+      <xilinx:coreRevision>6</xilinx:coreRevision>
+      <xilinx:coreCreationDateTime>2021-05-04T22:03:15Z</xilinx:coreCreationDateTime>
       <xilinx:tags>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@75d77351_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@6655e1e8_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
@@ -292,14 +768,53 @@
         <xilinx:tag xilinx:name="ui.data.coregen.dd@622a582b_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@4f9f83e1_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@172c6c41_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@61e80671_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@13e7b380_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6092d64f_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5588005e_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2cb620e7_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3232db13_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@483d2c90_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@76932032_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@64da12d4_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5b156f5_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@693064a7_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5082ebbb_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@52547418_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@50e3ae9b_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7853c89b_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1a7bc1eb_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3d047b5d_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2187c0ea_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@e1e29ff_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@37c97b64_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7370761b_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5944f321_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@307c0b37_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6acbe841_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@462e0116_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@53610983_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@727fb841_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5547105e_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3a92dff9_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@22d689_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@12e0a863_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@17541704_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3564b4c7_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3d0653f9_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@336afa7_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1e9eee74_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@659e387e_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@257ca012_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
       </xilinx:tags>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2019.2</xilinx:xilinxVersion>
-      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="cb67df2e"/>
-      <xilinx:checksum xilinx:scope="ports" xilinx:value="27433925"/>
-      <xilinx:checksum xilinx:scope="hdlParameters" xilinx:value="72101eeb"/>
-      <xilinx:checksum xilinx:scope="parameters" xilinx:value="7d67daf4"/>
+      <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="9a26344b"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="4ace8a27"/>
+      <xilinx:checksum xilinx:scope="ports" xilinx:value="56587cf3"/>
+      <xilinx:checksum xilinx:scope="hdlParameters" xilinx:value="4ce91f50"/>
+      <xilinx:checksum xilinx:scope="parameters" xilinx:value="3b6ef629"/>
     </xilinx:packagingInfo>
   </spirit:vendorExtensions>
 </spirit:component>
