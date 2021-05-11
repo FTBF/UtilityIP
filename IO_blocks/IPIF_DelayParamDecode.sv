@@ -18,7 +18,32 @@
 // Additional Comments:
 // 
 //////////////////////////////////////////////////////////////////////////////////
+/*
+ Register map:
+ Addresses 0 - 3 are global for all links
+ [0][0]      (rw) Global reset links (active-low reset)
+ [0][1]      (rw) Global reset counters (active-high reset)
 
+ Link-specific registers start from address 4 and repeat in blocks of 4
+ [4][0]      (rw) Reset link (active-low reset)
+ [4][1]      (rw) Reset counters (active-high reset)
+ [4][2]      (rw) Delay mode: 0=manual delay setting, 1=automatic delay setting (default 0)
+ [4][3]      (rw) Delay set: write 0 then 1 to this in manual mode to set the delays chosen in "Delay in" and "Delay offset".
+ [4][4]      (rw) Bypass IOBUF: 0=use data from IO pin, 1=use data from input stream (default 0)
+ [4][5]      (rw) Tristate IOBUF: 0=drive data to IO pin, 1=keep IO pin in high-impedance state (default 0)
+
+ [5][8:0]    (rw) Delay in: 9-bit delay to use in manual mode
+ [5][17:9]   (rw) Delay offset: offset between P and N side to use in manual mode for bit-error monitoring
+
+ [6][15:0]   (ro) Bit align error counters
+ [6][16]     (ro) Waiting for bit transitions
+
+ [7][0]      (ro) Delay ready
+ [7][9:1]    (ro) Delay out: 9-bit delay actually in use right now by P side
+ [7][18:10]  (ro) Delay out N: in manual mode: delay used by N side; in automatic mode: size of the "eye" of zero bit errors
+
+ Note that addresses 4-7 are for link 0.  The same registers are repeated at addresses 8-11 for link 1, 12-15 for link 2, etc.
+ */
 
 module IPIF_DelayParamDecode #(
         parameter integer NLINKS = 12,
