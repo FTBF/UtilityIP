@@ -62,16 +62,24 @@ proc propagate {cellpath otherInfo } {
         set intf_net_name IP
         set label ""
         set name ""
+        set intf ""
         set pin [get_bd_intf_pins $ip_name/$intf_net_name]
         set modules [get_bd_cells -of [get_bd_intf_nets -of $pin]]
+        set intf_pins [get_bd_intf_pins -of [get_bd_intf_nets -of $pin]]
         foreach {ip} $modules {
             if {[string match $ip_name $ip]} { continue }
             set label $ip
             set name [lindex [split [get_property VLNV $ip] ":"] 2]
             break
         }
+        foreach tpin $intf_pins {
+            if {[string match $pin $tpin]} { continue }
+            set intf [lindex [split "$tpin" "/"] end]
+            break
+        }
         set_property CONFIG.TARGET_LABEL $label $cell_handle
         set_property CONFIG.TARGET_NAME $name $cell_handle
+        set_property CONFIG.TARGET_INTF $intf $cell_handle
         
 	foreach busif $all_busif {
 		if { [string equal -nocase [get_property CONFIG.PROTOCOL $busif] "AXI4"] != 1 } {

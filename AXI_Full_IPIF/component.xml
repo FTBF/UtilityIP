@@ -1532,6 +1532,10 @@
       <spirit:name>TARGET_LABEL</spirit:name>
       <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.TARGET_LABEL"/>
     </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>TARGET_INTF</spirit:name>
+      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.TARGET_INTF"/>
+    </spirit:parameter>
   </spirit:parameters>
   <spirit:vendorExtensions>
     <xilinx:coreExtensions>
