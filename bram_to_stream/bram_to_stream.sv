@@ -102,7 +102,11 @@ module bram_to_stream #(
     logic [9:0] orbit_counter;
     logic fc_orbitSync_sync;
     
-    always_ff @(posedge clk) fc_orbitSync_sync <= fc_orbitSync;
+	always_ff @(posedge clk) begin
+		if (data_stream_TREADY) begin
+			fc_orbitSync_sync <= fc_orbitSync;
+		end
+	end
     
     always_ff @(posedge clk or negedge aresetn)
     begin
@@ -112,7 +116,7 @@ module bram_to_stream #(
             if(data_stream_TREADY)
             begin
                 if(orbit_counter >= 840)   orbit_counter <= 0;
-                else if(fc_orbitSync_sync) orbit_counter <= orbit_counter + 1;
+                else if(!fc_orbitSync_sync && fc_orbitSync) orbit_counter <= orbit_counter + 1;
             end
         end
     end
@@ -123,7 +127,7 @@ module bram_to_stream #(
         case(params_out.sync_mode)
             2'd1:   //orbit sync mode
             begin
-                output_sync = fc_orbitSync_sync && ((orbit_counter % params_out.ram_range[2:0]) == 0);
+                output_sync = !fc_orbitSync_sync && fc_orbitSync && ((orbit_counter % params_out.ram_range[2:0]) == 0);
             end
             2'd2:   //length limited unsynchronous 
             begin
