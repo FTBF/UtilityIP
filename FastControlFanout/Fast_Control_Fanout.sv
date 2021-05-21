@@ -97,6 +97,8 @@ module Fast_Control_Fanout #(
         assign resync_command = fast_command_in;
     end
     endgenerate
+    
+    logic enable_cleaning;
 
     generate
     if(RESYNCCLEANUP == 1)
@@ -134,7 +136,7 @@ module Fast_Control_Fanout #(
             
             if(bit_ctr == lock_val)
             begin
-                if(!header_match || cleanup_in_SR[5:3] == 3'b110 || cleanup_in_SR[4:2] == 3'b110)
+                if(enable_cleaning && (!header_match || cleanup_in_SR[5:3] == 3'b110 || cleanup_in_SR[4:2] == 3'b110))
                 begin
                     cleanup_out_SR <= {cleanup_out_SR[7], 8'b11000001};
                 end
@@ -163,7 +165,8 @@ module Fast_Control_Fanout #(
     
         typedef struct packed
         {
-            logic [31:0] padding4;
+            logic [30:0] padding4;
+            logic        enable_cleaning;
             logic [21:0] padding3;
             logic [9:0]  delay;
             logic [25:0] padding2;
@@ -179,6 +182,8 @@ module Fast_Control_Fanout #(
         assign params_in.offset_raw = params_out.offset_raw;
         assign params_in.offset_clean = params_out.offset_clean;
         assign params_in.delay = params_out.delay;
+        assign params_in.enable_cleaning = params_out.enable_cleaning;
+        assign enable_cleaning = params_out.enable_cleaning;
         
         logic IPIF_IP2Bus_RdAck_pdc;
         logic IPIF_IP2Bus_RdAck_bram;
@@ -197,7 +202,7 @@ module Fast_Control_Fanout #(
             .N_REG(N_REG),
             .W_PULSE_REG(4'b1),
             .PARAM_T(param_t),
-            .DEFAULTS({32'h0, 32'd100, 32'b0, 32'b0})
+            .DEFAULTS({32'h1, 32'd100, 32'b0, 32'b0})
         ) parameterDecoder (
             .clk(IPIF_clk),
             
@@ -353,6 +358,7 @@ module Fast_Control_Fanout #(
     else
     begin
         assign debug_trig = 0;
+        assign enable_cleaning = 1;
     end
     endgenerate
     
