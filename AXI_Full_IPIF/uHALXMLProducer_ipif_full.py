@@ -8,7 +8,7 @@ class UHALXMLProducer(UHALXMLProducerBase):
 
         self.factory = factory
 
-    # CLass MUST define produce_impl which will produce the xml map file(s) and return the top level node for the module 
+    # Class MUST define produce_impl which will produce the xml map file(s) and return the top level node for the module 
     def produce_impl(self, fragment, xmlDir, address, label):
 
         #get target variables 
@@ -16,19 +16,12 @@ class UHALXMLProducer(UHALXMLProducerBase):
         target_intf  = self.getProperty(fragment, 'target_intf')
         target_label = self.getProperty(fragment, 'target_label')
 
-        #Messy ... find the target module with "label" target_lable
-        targetFragment = None
-        for key, frag in self.factory._fullFragment.items():
-            try:
-                if self.getProperty(frag, "label") == target_label:
-                    targetFragment = frag
-                    break
-            except(KeyError, TypeError):
-                pass
-
-        if targetFragment == None:
-            raise KeyError(f"'{target_label}' not found in fragement")
-
-        # forward work to producer for target
+        targetFragment = self.getModule(target_label)
+        
         target_key = "_".join([target_name, target_intf])
-        return self.factory.getImpl(target_key)(targetFragment, xmlDir, address, target_label)
+        if targetFragment == None:
+            return self.factory.getImpl(target_key)(fragment, xmlDir, address, target_label)
+        else:
+            # forward work to producer for target
+            return self.factory.getImpl(target_key)(targetFragment, xmlDir, address, target_label)
+

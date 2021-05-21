@@ -1,0 +1,7 @@
+<node>
+  <node id="reset"         address="0x0" mask="0x001" permission="w"  description="Reset debug capture"/>
+  <node id="offset_raw"    address="0x1" mask="0x007" permission="rw" description="Bit offset for raw fc stream capture"/>
+  <node id="offset_clean"  address="0x1" mask="0x038" permission="rw" description="Bit offset for clean fc stream capture"/>
+  <node id="trig_Delay"    address="0x2" mask="0x3ff" permission="rw" description="Offset in BX for the capture to keep writing after a trigger"/>
+  <node id="enable_clean"  address="0x3" mask="0x001" permission="rw" description="Enable or disable cleaning of fast command stream"/>
+</node>

@@ -7,7 +7,7 @@ mux_my_ip_template = """<node>
 </node>
 """
 
-mux_my_ip_individual_template = """    <node label="%(label)s"  address="0x%(addr)x">
+mux_by_ip_individual_template = """    <node label="%(label)s"  address="0x%(addr)x">
         %(ip_entry)s
     </node>"""
 
@@ -35,14 +35,7 @@ class UHALXMLProducer(UHALXMLProducerBase):
         mux    = bool(self.getProperty(fragment, 'mux_by_chip', 1))
         
         if mux:
-            targetFragment = None
-            for key, frag in self.factory._fullFragment.items():
-                try:
-                    if self.getProperty(frag, "label") == target_labels[0]:
-                        targetFragment = frag
-                        break
-                except(KeyError, TypeError):
-                    pass
+            targetFragment = self.getModule(target_labels[0])
 
             # forward work to producer for target
             target_key = "_".join([target_names[0], target_intfs[0]])
@@ -56,14 +49,7 @@ class UHALXMLProducer(UHALXMLProducerBase):
             
             #Messy ... find the target module with "label" target_lable
             for target_label, target_names, target_intfs in zip(target_labels, target_names, target_intfs):
-                targetFragment = None
-                for key, frag in self.factory._fullFragment.items():
-                    try:
-                        if self.getProperty(frag, "label") == target_label:
-                            targetFragment = frag
-                            break
-                    except(KeyError, TypeError):
-                        pass
+                targetFragment = self.getModule(target_label)
                     
                 # forward work to producer for target
                 if targetFragment == None:
@@ -73,6 +59,6 @@ class UHALXMLProducer(UHALXMLProducerBase):
 
             xmlName = "%s.xml"%label
             with open(os.path.join(xmlDir, "modules", xmlName), "w") as f:
-                f.write(mux_my_ip_template%{"ips":"\n".join([mux_my_ip_individual_template%{"ip":ip, "addr":iip*n_reg, "label":target_names[iip]} for iip, ip in iter(ip_xmls)])})
+                f.write(mux_my_ip_template%{"ips":"\n".join([mux_by_ip_individual_template%{"ip":ip, "addr":iip*n_reg, "label":target_names[iip]} for iip, ip in iter(ip_xmls)])})
 
             return top_level_node_template%{"label":label, "addr":address, "xml":xmlFile}
