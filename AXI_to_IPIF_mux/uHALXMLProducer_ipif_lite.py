@@ -3,13 +3,9 @@ from uhalXMLProducerBase import UHALXMLProducerBase
 import os
 
 mux_my_ip_template = """<node>
-%(ips}s
+%(ips)s
 </node>
 """
-
-mux_by_ip_individual_template = """    <node label="%(label)s"  address="0x%(addr)x">
-        %(ip_entry)s
-    </node>"""
 
 top_level_node_template = '<node id="%(label)s"	    module="file://modules/%(xml)s"	          address="%(addr)s"/>'
 
@@ -33,8 +29,8 @@ class UHALXMLProducer(UHALXMLProducerBase):
         n_reg  = int(self.getProperty(fragment, 'n_target_regs', 1), 0)
         n_chip = int(self.getProperty(fragment, 'n_target', 1), 0)
         mux    = bool(self.getProperty(fragment, 'mux_by_chip', 1))
-        
-        if mux:
+
+        if not mux:
             targetFragment = self.getModule(target_labels[0])
 
             # forward work to producer for target
@@ -48,17 +44,18 @@ class UHALXMLProducer(UHALXMLProducerBase):
             ip_xmls = []
             
             #Messy ... find the target module with "label" target_lable
-            for target_label, target_names, target_intfs in zip(target_labels, target_names, target_intfs):
+            for iTarget, (target_label, target_name, target_intf) in enumerate(zip(target_labels, target_names, target_intfs)):
                 targetFragment = self.getModule(target_label)
-                    
+
                 # forward work to producer for target
+                target_key = "_".join([target_name, target_intf])
                 if targetFragment == None:
-                    ip_xmls.append(self.factory.getImpl(target_key)(fragment, xmlDir, address, target_label))
+                    ip_xmls.append(self.factory.getImpl(target_key)(fragment, xmlDir, n_reg*iTarget, (iTarget, target_label)))
                 else:
-                    ip_xmls.append(self.factory.getImpl(target_key)(targetFragment, xmlDir, address, target_label))
+                    ip_xmls.append(self.factory.getImpl(target_key)(targetFragment, xmlDir, n_reg*iTarget, (iTarget, target_label)))
 
             xmlName = "%s.xml"%label
             with open(os.path.join(xmlDir, "modules", xmlName), "w") as f:
-                f.write(mux_my_ip_template%{"ips":"\n".join([mux_by_ip_individual_template%{"ip":ip, "addr":iip*n_reg, "label":target_names[iip]} for iip, ip in iter(ip_xmls)])})
+                f.write(mux_my_ip_template%{"ips":"\n".join(ip_xmls)})
 
-            return top_level_node_template%{"label":label, "addr":address, "xml":xmlFile}
+            return top_level_node_template%{"label":label, "addr":address, "xml":xmlName}
