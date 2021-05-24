@@ -1,6 +1,7 @@
 from uhalXMLProducerBase import UHALXMLProducerBase
 
 import os
+import distutils.util
 
 mux_my_ip_template = """<node>
 %(ips)s
@@ -28,7 +29,7 @@ class UHALXMLProducer(UHALXMLProducerBase):
         #get setup variables
         n_reg  = int(self.getProperty(fragment, 'n_target_regs', 1), 0)
         n_chip = int(self.getProperty(fragment, 'n_target', 1), 0)
-        mux    = bool(self.getProperty(fragment, 'mux_by_chip', 1))
+        mux    = distutils.util.strtobool(self.getProperty(fragment, 'mux_by_chip', 1))
 
         if not mux:
             targetFragment = self.getModule(target_labels[0])
