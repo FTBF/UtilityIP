@@ -34,12 +34,18 @@ class UHALXMLProducer(UHALXMLProducerBase):
         if not mux:
             targetFragment = self.getModule(target_labels[0])
 
+            #local label
+            try:
+                new_label = self.getProperty(fragment, 'label')
+            except(KeyError):
+                new_label = "%s_%s"%(target_labels[0], target_intfs[0])
+                
             # forward work to producer for target
             target_key = "_".join([target_names[0], target_intfs[0]])
             if targetFragment == None:
-                return self.factory.getImpl(target_key)(fragment, xmlDir, address, target_labels[0])
+                return self.factory.getImpl(target_key)(fragment, xmlDir, address, new_label)
             else:
-                return self.factory.getImpl(target_key)(targetFragment, xmlDir, address, target_labels[0])
+                return self.factory.getImpl(target_key)(targetFragment, xmlDir, address, new_label)
 
         else:
             ip_xmls = []
@@ -48,12 +54,18 @@ class UHALXMLProducer(UHALXMLProducerBase):
             for iTarget, (target_label, target_name, target_intf) in enumerate(zip(target_labels, target_names, target_intfs)):
                 targetFragment = self.getModule(target_label)
 
+                #local label
+                try:
+                    new_label = self.getProperty(fragment, 'label')
+                except(KeyError):
+                    new_label = "%s_%s"%(target_label, target_intf)
+
                 # forward work to producer for target
                 target_key = "_".join([target_name, target_intf])
                 if targetFragment == None:
-                    ip_xmls.append(self.factory.getImpl(target_key)(fragment, xmlDir, n_reg*iTarget, (iTarget, target_label)))
+                    ip_xmls.append(self.factory.getImpl(target_key)(fragment, xmlDir, n_reg*iTarget, (iTarget, new_label)))
                 else:
-                    ip_xmls.append(self.factory.getImpl(target_key)(targetFragment, xmlDir, n_reg*iTarget, (iTarget, target_label)))
+                    ip_xmls.append(self.factory.getImpl(target_key)(targetFragment, xmlDir, n_reg*iTarget, (iTarget, new_label)))
 
             xmlName = "%s.xml"%label
             with open(os.path.join(xmlDir, "modules", xmlName), "w") as f:
