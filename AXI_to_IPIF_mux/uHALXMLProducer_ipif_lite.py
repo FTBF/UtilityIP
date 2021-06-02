@@ -38,7 +38,7 @@ class UHALXMLProducer(UHALXMLProducerBase):
             try:
                 new_label = self.getProperty(fragment, 'label')
             except(KeyError):
-                new_label = "%s_%s"%(target_labels[0], target_intfs[0])
+                new_label = target_labels[0]
                 
             # forward work to producer for target
             target_key = "_".join([target_names[0], target_intfs[0]])
@@ -58,7 +58,7 @@ class UHALXMLProducer(UHALXMLProducerBase):
                 try:
                     new_label = self.getProperty(fragment, 'label')
                 except(KeyError):
-                    new_label = "%s_%s"%(target_label, target_intf)
+                    new_label = target_label
 
                 # forward work to producer for target
                 target_key = "_".join([target_name, target_intf])
