@@ -98,6 +98,24 @@ proc validate_PARAM_VALUE.N_REG { PARAM_VALUE.N_REG } {
 	return true
 }
 
+proc update_PARAM_VALUE.TARGET_LABELS { PARAM_VALUE.TARGET_LABELS } {
+	# Procedure called to update TARGET_LABELS when any of the dependent parameters in the arguments change
+}
+
+proc validate_PARAM_VALUE.TARGET_LABELS { PARAM_VALUE.TARGET_LABELS } {
+	# Procedure called to validate TARGET_LABELS
+	return true
+}
+
+proc update_PARAM_VALUE.TARGET_NAMES { PARAM_VALUE.TARGET_NAMES } {
+	# Procedure called to update TARGET_NAMES when any of the dependent parameters in the arguments change
+}
+
+proc validate_PARAM_VALUE.TARGET_NAMES { PARAM_VALUE.TARGET_NAMES } {
+	# Procedure called to validate TARGET_NAMES
+	return true
+}
+
 
 proc update_MODELPARAM_VALUE.C_S_AXI_DATA_WIDTH { MODELPARAM_VALUE.C_S_AXI_DATA_WIDTH PARAM_VALUE.C_S_AXI_DATA_WIDTH } {
 	# Procedure called to set VHDL generic/Verilog parameter value(s) based on TCL parameter value

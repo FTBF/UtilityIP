@@ -64,6 +64,24 @@ proc validate_PARAM_VALUE.LSB { PARAM_VALUE.LSB } {
 	return true
 }
 
+proc update_PARAM_VALUE.TARGET_LABEL { PARAM_VALUE.TARGET_LABEL } {
+	# Procedure called to update TARGET_LABEL when any of the dependent parameters in the arguments change
+}
+
+proc validate_PARAM_VALUE.TARGET_LABEL { PARAM_VALUE.TARGET_LABEL } {
+	# Procedure called to validate TARGET_LABEL
+	return true
+}
+
+proc update_PARAM_VALUE.TARGET_NAME { PARAM_VALUE.TARGET_NAME } {
+	# Procedure called to update TARGET_NAME when any of the dependent parameters in the arguments change
+}
+
+proc validate_PARAM_VALUE.TARGET_NAME { PARAM_VALUE.TARGET_NAME } {
+	# Procedure called to validate TARGET_NAME
+	return true
+}
+
 proc update_PARAM_VALUE.C_S00_AXI_ID_WIDTH { PARAM_VALUE.C_S00_AXI_ID_WIDTH } {
 	# Procedure called to update C_S00_AXI_ID_WIDTH when any of the dependent parameters in the arguments change
 }
