@@ -1,18 +1,19 @@
 module stream_compare #(
     parameter integer C_S_AXI_ADDR_WIDTH = 32,
     parameter integer C_S_AXI_DATA_WIDTH = 32,
-    parameter integer N_REG = 4
+    parameter integer N_REG = 4,
+	TDATA_WIDTH = 32
 
     )(
 
 	input logic clk,
 	input logic aresetn,
 
-	input logic [31:0] S_AXIS_0_TDATA,
+	input logic [TDATA_WIDTH-1:0] S_AXIS_0_TDATA,
 	input logic S_AXIS_0_TVALID,
 	output logic S_AXIS_0_TREADY,
 
-	input logic [31:0] S_AXIS_1_TDATA,
+	input logic [TDATA_WIDTH-1:0] S_AXIS_1_TDATA,
 	input logic S_AXIS_1_TVALID,
 	output logic S_AXIS_1_TREADY,
 
