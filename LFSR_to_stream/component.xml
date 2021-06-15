@@ -139,7 +139,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>daa9ef20</spirit:value>
+            <spirit:value>984ed5d2</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -155,7 +155,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>daa9ef20</spirit:value>
+            <spirit:value>984ed5d2</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -169,7 +169,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>84459d1f</spirit:value>
+            <spirit:value>ff48dd07</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -183,7 +183,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>61dc0e48</spirit:value>
+            <spirit:value>a8217d79</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -322,6 +322,22 @@
         <spirit:name>polynomial_index</spirit:name>
         <spirit:displayName>Polynomial Index</spirit:displayName>
         <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.polynomial_index">0</spirit:value>
+        <spirit:vendorExtensions>
+          <xilinx:parameterInfo>
+            <xilinx:enablement>
+              <xilinx:isEnabled xilinx:id="MODELPARAM_ENABLEMENT.polynomial_index">false</xilinx:isEnabled>
+            </xilinx:enablement>
+          </xilinx:parameterInfo>
+        </spirit:vendorExtensions>
+      </spirit:modelParameter>
+      <spirit:modelParameter spirit:dataType="string">
+        <spirit:name>PRBS_type</spirit:name>
+        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.PRBS_type"/>
+      </spirit:modelParameter>
+      <spirit:modelParameter spirit:dataType="integer">
+        <spirit:name>iterations</spirit:name>
+        <spirit:displayName>Number of LFSR steps to perform per clock cycle</spirit:displayName>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.iterations">1</spirit:value>
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="string">
         <spirit:name>Usage</spirit:name>
@@ -331,6 +347,12 @@
     </spirit:modelParameters>
   </spirit:model>
   <spirit:choices>
+    <spirit:choice>
+      <spirit:name>choice_list_5841eb8c</spirit:name>
+      <spirit:enumeration>32bit</spirit:enumeration>
+      <spirit:enumeration>PRBS15</spirit:enumeration>
+      <spirit:enumeration>PRBS7</spirit:enumeration>
+    </spirit:choice>
     <spirit:choice>
       <spirit:name>choice_list_9d8b0d81</spirit:name>
       <spirit:enumeration>ACTIVE_HIGH</spirit:enumeration>
@@ -348,7 +370,7 @@
       <spirit:file>
         <spirit:name>LFSR.sv</spirit:name>
         <spirit:fileType>systemVerilogSource</spirit:fileType>
-        <spirit:userFileType>CHECKSUM_daa9ef20</spirit:userFileType>
+        <spirit:userFileType>CHECKSUM_984ed5d2</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
@@ -363,7 +385,7 @@
       <spirit:file>
         <spirit:name>xgui/LFSR_v1_0.tcl</spirit:name>
         <spirit:fileType>tclSource</spirit:fileType>
-        <spirit:userFileType>CHECKSUM_84459d1f</spirit:userFileType>
+        <spirit:userFileType>CHECKSUM_ff48dd07</spirit:userFileType>
         <spirit:userFileType>XGUI_VERSION_2</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
@@ -379,8 +401,20 @@
   <spirit:parameters>
     <spirit:parameter>
       <spirit:name>polynomial_index</spirit:name>
-      <spirit:displayName>Polynomial Index</spirit:displayName>
+      <spirit:displayName>Polynomial Index (for 32-bit LFSR)</spirit:displayName>
       <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.polynomial_index" spirit:order="1" spirit:minimum="0" spirit:maximum="99" spirit:rangeType="long">0</spirit:value>
+      <spirit:vendorExtensions>
+        <xilinx:parameterInfo>
+          <xilinx:enablement>
+            <xilinx:isEnabled xilinx:resolve="generated" xilinx:id="PARAM_ENABLEMENT.polynomial_index">true</xilinx:isEnabled>
+          </xilinx:enablement>
+        </xilinx:parameterInfo>
+      </spirit:vendorExtensions>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>iterations</spirit:name>
+      <spirit:displayName>LFSR iterations</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.iterations" spirit:order="4" spirit:minimum="1" spirit:maximum="64" spirit:rangeType="long">1</spirit:value>
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>Component_Name</spirit:name>
@@ -389,7 +423,7 @@
     <spirit:parameter>
       <spirit:name>Usage</spirit:name>
       <spirit:displayName>Usage</spirit:displayName>
-      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.Usage" spirit:choiceRef="choice_list_a915473a" spirit:order="2">generator</spirit:value>
+      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.Usage" spirit:choiceRef="choice_list_a915473a" spirit:order="5">generator</spirit:value>
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
@@ -397,6 +431,11 @@
           </xilinx:enablement>
         </xilinx:parameterInfo>
       </spirit:vendorExtensions>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>PRBS_type</spirit:name>
+      <spirit:displayName>PRBS Type</spirit:displayName>
+      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.PRBS_type" spirit:choiceRef="choice_list_5841eb8c">32bit</spirit:value>
     </spirit:parameter>
   </spirit:parameters>
   <spirit:vendorExtensions>
@@ -420,8 +459,8 @@
         <xilinx:xpmLibrary>XPM_CDC</xilinx:xpmLibrary>
         <xilinx:xpmLibrary>XPM_MEMORY</xilinx:xpmLibrary>
       </xilinx:xpmLibraries>
-      <xilinx:coreRevision>12</xilinx:coreRevision>
-      <xilinx:coreCreationDateTime>2020-04-24T13:55:52Z</xilinx:coreCreationDateTime>
+      <xilinx:coreRevision>14</xilinx:coreRevision>
+      <xilinx:coreCreationDateTime>2021-06-14T21:02:14Z</xilinx:coreCreationDateTime>
       <xilinx:tags>
         <xilinx:tag xilinx:name="nopcore"/>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@4f04f550_ARCHIVE_LOCATION">/home/jsw/src/temp/LFSR_to_stream</xilinx:tag>
@@ -536,15 +575,35 @@
         <xilinx:tag xilinx:name="ui.data.coregen.dd@70a57deb_ARCHIVE_LOCATION">/home/jsw/src/temp/econ-emu-test/ip_repo/LFSR_to_stream</xilinx:tag>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@38241d0a_ARCHIVE_LOCATION">/home/jsw/src/temp/econ-emu-test/ip_repo/LFSR_to_stream</xilinx:tag>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@ba16a14_ARCHIVE_LOCATION">/home/jsw/src/temp/econ-emu-test/ip_repo/LFSR_to_stream</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@18174450_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/LFSR_to_stream</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7493f45f_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/LFSR_to_stream</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@55c390e1_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/LFSR_to_stream</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6e1f460e_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/LFSR_to_stream</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4122ed97_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/LFSR_to_stream</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7d2e433f_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/LFSR_to_stream</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6d791dcd_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/LFSR_to_stream</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7799e267_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/LFSR_to_stream</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@73b82ec0_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/LFSR_to_stream</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@700f5e51_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/LFSR_to_stream</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@51094c5d_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/LFSR_to_stream</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@30620b47_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/LFSR_to_stream</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@8804578_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/LFSR_to_stream</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@134af73d_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/LFSR_to_stream</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@10faa06d_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/LFSR_to_stream</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@28e03ee4_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/LFSR_to_stream</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@36bc0850_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/LFSR_to_stream</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@34f16478_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/LFSR_to_stream</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@54b4af75_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/LFSR_to_stream</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1d39a5a6_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/LFSR_to_stream</xilinx:tag>
       </xilinx:tags>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2019.2</xilinx:xilinxVersion>
       <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="b0558698"/>
-      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="139fc53f"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="1f3c9be8"/>
       <xilinx:checksum xilinx:scope="ports" xilinx:value="7de68afb"/>
-      <xilinx:checksum xilinx:scope="hdlParameters" xilinx:value="9814d409"/>
-      <xilinx:checksum xilinx:scope="parameters" xilinx:value="65c34e28"/>
+      <xilinx:checksum xilinx:scope="hdlParameters" xilinx:value="c8dc66e6"/>
+      <xilinx:checksum xilinx:scope="parameters" xilinx:value="b4760181"/>
     </xilinx:packagingInfo>
   </spirit:vendorExtensions>
 </spirit:component>

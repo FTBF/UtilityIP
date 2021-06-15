@@ -20,9 +20,13 @@ package LFSR_poly;
 		32'h80000C7F, 32'h80000CA2, 32'h80000CEC, 32'h80000D0F, 32'h80000D22,
 		32'h80000D28, 32'h80000D4E, 32'h80000DD7, 32'h80000E24, 32'h80000E35,
 		32'h80000E66, 32'h80000E74, 32'h80000EA6};
+	logic [31:0] PRBS15 = 32'h00006000;
+	logic [31:0] PRBS7 =  32'h00000060;
 endpackage
 
 module LFSR #(
+		parameter iterations = 1,
+		parameter PRBS_type = "32bit",
 		parameter polynomial_index = 0,
 		parameter Usage = "generator"
 	)
@@ -47,14 +51,19 @@ module LFSR #(
 
 	assign S_AXIS_TREADY = 1'b1;
 
+	logic [32-1:0] poly = ((PRBS_type == "PRBS15") ? LFSR_poly::PRBS15 : ((PRBS_type == "PRBS7") ? LFSR_poly::PRBS7 : LFSR_poly::polynomials[polynomial_index]));
+
 	always_comb begin
 		if (Usage == "generator") begin
 			clk_enable = M_AXIS_TREADY;
-			d.LFSR = {q.LFSR[30:0], ^(q.LFSR & LFSR_poly::polynomials[polynomial_index])};
+			d.LFSR = q.LFSR;
 		end else begin
 			clk_enable = S_AXIS_TVALID;
-			d.LFSR = {S_AXIS_TDATA[30:0], ^(S_AXIS_TDATA & LFSR_poly::polynomials[polynomial_index])};
+			d.LFSR = S_AXIS_TDATA;
 		end
+
+		for (int i = 0; i < iterations; i = i + 1)
+			d.LFSR = {d.LFSR[30:0], ^(d.LFSR & poly)};
 
 		d.M_AXIS_TVALID = 1'b1;
 
