@@ -29,5 +29,5 @@ class UHALXMLProducer(UHALXMLProducerBase):
             return self.factory.getImpl(target_key)(fragment, xmlDir, address, new_label)
         else:
             # forward work to producer for target
-            return self.factory.getImpl(target_key)(targetFragment, xmlDir, address, target_label)
+            return self.factory.getImpl(target_key)(targetFragment, xmlDir, address, new_label)
 
