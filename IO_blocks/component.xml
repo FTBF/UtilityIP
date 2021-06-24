@@ -1184,6 +1184,13 @@
           <spirit:value spirit:id="BUSIFPARAM_VALUE.OUT_CLK160.FREQ_HZ">160000000</spirit:value>
         </spirit:parameter>
       </spirit:parameters>
+      <spirit:vendorExtensions>
+        <xilinx:busInterfaceInfo>
+          <xilinx:enablement>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.OUT_CLK160" xilinx:dependency="$OUTPUT_STREAMS_ENABLE">true</xilinx:isEnabled>
+          </xilinx:enablement>
+        </xilinx:busInterfaceInfo>
+      </spirit:vendorExtensions>
     </spirit:busInterface>
     <spirit:busInterface>
       <spirit:name>D_IN_OUT_P</spirit:name>
@@ -2593,6 +2600,11 @@
         <spirit:name>DRIVE_ENABLED</spirit:name>
         <spirit:displayName>Drive Enabled</spirit:displayName>
         <spirit:value spirit:format="bool" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.DRIVE_ENABLED">true</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter spirit:dataType="integer">
+        <spirit:name>OUTPUT_STREAMS_ENABLE</spirit:name>
+        <spirit:displayName>Enable Output Streams</spirit:displayName>
+        <spirit:value spirit:format="bool" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.OUTPUT_STREAMS_ENABLE">true</spirit:value>
       </spirit:modelParameter>
     </spirit:modelParameters>
   </spirit:model>
