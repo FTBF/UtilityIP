@@ -2616,11 +2616,11 @@
         <spirit:userFileType>xdc</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>IDELAY_set_ctrl.v</spirit:name>
+        <spirit:name>IO_IDELAY_set_ctrl.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>delay_ctrl.v</spirit:name>
+        <spirit:name>IO_delay_ctrl.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
@@ -2640,11 +2640,11 @@
     <spirit:fileSet>
       <spirit:name>xilinx_anylanguagebehavioralsimulation_view_fileset</spirit:name>
       <spirit:file>
-        <spirit:name>IDELAY_set_ctrl.v</spirit:name>
+        <spirit:name>IO_IDELAY_set_ctrl.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>delay_ctrl.v</spirit:name>
+        <spirit:name>IO_delay_ctrl.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
