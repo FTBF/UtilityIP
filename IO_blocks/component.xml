@@ -1184,6 +1184,13 @@
           <spirit:value spirit:id="BUSIFPARAM_VALUE.OUT_CLK160.FREQ_HZ">160000000</spirit:value>
         </spirit:parameter>
       </spirit:parameters>
+      <spirit:vendorExtensions>
+        <xilinx:busInterfaceInfo>
+          <xilinx:enablement>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.OUT_CLK160" xilinx:dependency="$OUTPUT_STREAMS_ENABLE">true</xilinx:isEnabled>
+          </xilinx:enablement>
+        </xilinx:busInterfaceInfo>
+      </spirit:vendorExtensions>
     </spirit:busInterface>
     <spirit:busInterface>
       <spirit:name>D_IN_OUT_P</spirit:name>
@@ -2594,21 +2601,26 @@
         <spirit:displayName>Drive Enabled</spirit:displayName>
         <spirit:value spirit:format="bool" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.DRIVE_ENABLED">true</spirit:value>
       </spirit:modelParameter>
+      <spirit:modelParameter spirit:dataType="integer">
+        <spirit:name>OUTPUT_STREAMS_ENABLE</spirit:name>
+        <spirit:displayName>Enable Output Streams</spirit:displayName>
+        <spirit:value spirit:format="bool" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.OUTPUT_STREAMS_ENABLE">true</spirit:value>
+      </spirit:modelParameter>
     </spirit:modelParameters>
   </spirit:model>
   <spirit:fileSets>
     <spirit:fileSet>
       <spirit:name>xilinx_anylanguagesynthesis_view_fileset</spirit:name>
       <spirit:file>
-        <spirit:name>xdc/timing.xdc</spirit:name>
-        <spirit:userFileType>xdc</spirit:userFileType>
+        <spirit:name>ttcl/timing_xdc.ttcl</spirit:name>
+        <spirit:userFileType>ttcl</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>IDELAY_set_ctrl.v</spirit:name>
+        <spirit:name>IO_IDELAY_set_ctrl.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>delay_ctrl.v</spirit:name>
+        <spirit:name>IO_delay_ctrl.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
@@ -2628,11 +2640,11 @@
     <spirit:fileSet>
       <spirit:name>xilinx_anylanguagebehavioralsimulation_view_fileset</spirit:name>
       <spirit:file>
-        <spirit:name>IDELAY_set_ctrl.v</spirit:name>
+        <spirit:name>IO_IDELAY_set_ctrl.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>delay_ctrl.v</spirit:name>
+        <spirit:name>IO_delay_ctrl.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>

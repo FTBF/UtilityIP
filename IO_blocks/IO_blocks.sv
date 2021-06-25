@@ -23,7 +23,8 @@
 module IO_blocks#(
     parameter integer NLINKS = 12,
     parameter integer WORD_PER_LINK = 4,
-	parameter integer DRIVE_ENABLED = 1
+	parameter integer DRIVE_ENABLED = 1,
+	parameter OUTPUT_STREAMS_ENABLE = 1
     )
     (
     input logic in_clk160,
@@ -250,44 +251,60 @@ module IO_blocks#(
 				.RST(global_rstb_links && rstb_links[i])
 			);
    
-			if (DRIVE_ENABLED == 1) begin
+			if ((DRIVE_ENABLED == 1) && (OUTPUT_STREAMS_ENABLE == 1)) begin
+				// Both FPGA->pin and pin->FPGA are enabled
+				// Use an IOBUF
 				IOBUFDS_DIFF_OUT diff_buf(.IO(D_IN_OUT_P[i]), .IOB(D_IN_OUT_N[i]), 
 										  .I(DATA_OSERDES_to_IOBUFDS), 
 										  .O(IOBUFDS_to_ISERDES_P), .OB(IOBUFDS_to_ISERDES_N),
 										  .TM(TRISTATE_OSERDES_to_IOBUFDS),
 										  .TS(TRISTATE_OSERDES_to_IOBUFDS));
-			end else begin
+			end else if ((DRIVE_ENABLED == 1) && (OUTPUT_STREAMS_ENABLE == 0)) begin
+				// FPGA->pin is enabled, but pin->FPGA is disabled
+				// Use an OBUF
+				OBUFTDS diff_buf(.O(D_IN_OUT_P[i]), .OB(D_IN_OUT_N[i]),
+								 .I(DATA_OSERDES_to_IOBUFDS),
+				                 .T(TRISTATE_OSERDES_to_IOBUFDS));
+			end else if ((DRIVE_ENABLED == 0) && (OUTPUT_STREAMS_ENABLE == 1)) begin
+				// FPGA->pin is disabled, but pin->FPGA is enabled
+				// Use an IBUF
 				IBUFDS_DIFF_OUT diff_buf(.I(D_IN_OUT_P[i]), .IB(D_IN_OUT_N[i]),
 					                     .O(IOBUFDS_to_ISERDES_P), .OB(IOBUFDS_to_ISERDES_N));
+			end else if ((DRIVE_ENABLED == 0) && (OUTPUT_STREAMS_ENABLE == 0)) begin
+				// FPGA->pin and pin->FPGA are both disabled
+				// This is useless and silly and shouldn't ever be done, so
+				// don't do anything at all.
 			end
         
-            input_blocks sigmon(
-                .clk640(in_clk640),
-                .clk160(in_clk160),
-				.fifo_rd_clk(out_clk160),
-                
-                .serial_data_P(IOBUFDS_to_ISERDES_P),
-                .serial_data_N(IOBUFDS_to_ISERDES_N),
+			if (OUTPUT_STREAMS_ENABLE) begin
+				input_blocks sigmon(
+					.clk640(in_clk640),
+					.clk160(in_clk160),
+					.fifo_rd_clk(out_clk160),
+					
+					.serial_data_P(IOBUFDS_to_ISERDES_P),
+					.serial_data_N(IOBUFDS_to_ISERDES_N),
 
-                .D_OUT_P(ISERDES_out[i]),
-                .D_OUT_N(),  //intentionally unconnected
-                
-                .delay_set(delay_set[i]),
-                .delay_mode(delay_mode[i]),
-                .bit_align_errors(bit_align_errors[i]),
-                .delay_in(delay_in[i]),
-                .delay_out(delay_out[i]),
-                .delay_out_N(delay_out_N[i]),
-                .delay_error_offset(delay_error_offset[i]),
-                .delay_ready(delay_ready[i]),
-                .waiting_for_transitions(waiting_for_transitions[i]),
-                
-                .reset_counters(global_reset_counters || reset_counters[i]),
+					.D_OUT_P(ISERDES_out[i]),
+					.D_OUT_N(),  //intentionally unconnected
+					
+					.delay_set(delay_set[i]),
+					.delay_mode(delay_mode[i]),
+					.bit_align_errors(bit_align_errors[i]),
+					.delay_in(delay_in[i]),
+					.delay_out(delay_out[i]),
+					.delay_out_N(delay_out_N[i]),
+					.delay_error_offset(delay_error_offset[i]),
+					.delay_ready(delay_ready[i]),
+					.waiting_for_transitions(waiting_for_transitions[i]),
+					
+					.reset_counters(global_reset_counters || reset_counters[i]),
 
-                .rstb(global_rstb_links && rstb_links[i])
-            );
+					.rstb(global_rstb_links && rstb_links[i])
+				);
 
-			assign out_tdata[i] = (bypass_IOBUF[i] ? bypass_out_data[i] : ISERDES_out[i]);
+				assign out_tdata[i] = (bypass_IOBUF[i] ? bypass_out_data[i] : ISERDES_out[i]);
+			end
         end
     endgenerate        
 

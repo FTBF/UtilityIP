@@ -1,0 +1,13 @@
+<: ;#Component and file information :>
+<: set ComponentName [getComponentNameString] :>
+<: setOutputDirectory "./" :>
+<: setFileName "timing" :>
+<: setFileExtension ".xdc" :>
+<: ;#all other variables :>
+<: set OUTPUT_STREAMS_ENABLE [get_property PARAM_VALUE.OUTPUT_STREAMS_ENABLE] :>
+<: set comment "#" :>
+# file: <=: ComponentName :> timing.xdc
+
+<: if {$OUTPUT_STREAMS_ENABLE} { :>
+set_false_path -through [get_cells -hier *idelay*]
+<: } :>
