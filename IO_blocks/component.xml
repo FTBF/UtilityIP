@@ -2612,8 +2612,8 @@
     <spirit:fileSet>
       <spirit:name>xilinx_anylanguagesynthesis_view_fileset</spirit:name>
       <spirit:file>
-        <spirit:name>xdc/timing.xdc</spirit:name>
-        <spirit:userFileType>xdc</spirit:userFileType>
+        <spirit:name>ttcl/timing_xdc.ttcl</spirit:name>
+        <spirit:userFileType>ttcl</spirit:userFileType>
       </spirit:file>
       <spirit:file>
         <spirit:name>IO_IDELAY_set_ctrl.v</spirit:name>
