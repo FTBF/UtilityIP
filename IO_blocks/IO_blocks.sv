@@ -24,7 +24,8 @@ module IO_blocks#(
     parameter integer NLINKS = 12,
     parameter integer WORD_PER_LINK = 4,
 	parameter integer DRIVE_ENABLED = 1,
-	parameter OUTPUT_STREAMS_ENABLE = 1
+	parameter OUTPUT_STREAMS_ENABLE = 1,
+	parameter logic [NLINKS-1:0] INVERT = '0
     )
     (
     input logic in_clk160,
@@ -244,7 +245,7 @@ module IO_blocks#(
 			) oserdes_inst (
 				.CLK(in_clk640),
 				.CLKDIV(in_clk160),
-				.D(in_tdata[i]),
+				.D(in_tdata[i] ^ INVERT[i]),
 				.T(~in_tvalid[i] || tristate_IOBUF[i]), // T = 1 means tristate, T = 0 means drive data to output
 				.OQ(DATA_OSERDES_to_IOBUFDS),
 				.T_OUT(TRISTATE_OSERDES_to_IOBUFDS),
@@ -303,7 +304,7 @@ module IO_blocks#(
 					.rstb(global_rstb_links && rstb_links[i])
 				);
 
-				assign out_tdata[i] = (bypass_IOBUF[i] ? bypass_out_data[i] : ISERDES_out[i]);
+				assign out_tdata[i] = (bypass_IOBUF[i] ? bypass_out_data[i] : ISERDES_out[i] ^ INVERT[i]);
 			end
         end
     endgenerate        

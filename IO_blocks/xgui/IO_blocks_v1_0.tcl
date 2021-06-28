@@ -14,6 +14,8 @@ proc init_gui { IPINST } {
   set_property tooltip {Enable AXI-stream inputs} ${INPUT_STREAMS_ENABLE}
   set OUTPUT_STREAMS_ENABLE [ipgui::add_param $IPINST -name "OUTPUT_STREAMS_ENABLE" -parent ${Page_0}]
   set_property tooltip {Enable AXI-stream outputs} ${OUTPUT_STREAMS_ENABLE}
+  set INVERT [ipgui::add_param $IPINST -name "INVERT" -parent ${Page_0}]
+  set_property tooltip {Channels with inverted differential pairs (bit vector; 1: inverted, 0: not inverted)} ${INVERT}
 
 
 }
@@ -64,6 +66,15 @@ proc validate_PARAM_VALUE.OUTPUT_STREAMS_ENABLE { PARAM_VALUE.OUTPUT_STREAMS_ENA
 	return true
 }
 
+proc update_PARAM_VALUE.INVERT { PARAM_VALUE.INVERT } {
+	# Procedure called to update INVERT when any of the dependent parameters in the arguments change
+}
+
+proc validate_PARAM_VALUE.INVERT { PARAM_VALUE.INVERT } {
+	# Procedure called to validate INVERT
+	return true
+}
+
 proc update_PARAM_VALUE.WORD_PER_LINK { PARAM_VALUE.WORD_PER_LINK } {
 	# Procedure called to update WORD_PER_LINK when any of the dependent parameters in the arguments change
 }
@@ -92,5 +103,10 @@ proc update_MODELPARAM_VALUE.DRIVE_ENABLED { MODELPARAM_VALUE.DRIVE_ENABLED PARA
 proc update_MODELPARAM_VALUE.OUTPUT_STREAMS_ENABLE { MODELPARAM_VALUE.OUTPUT_STREAMS_ENABLE PARAM_VALUE.OUTPUT_STREAMS_ENABLE } {
 	# Procedure called to set VHDL generic/Verilog parameter value(s) based on TCL parameter value
 	set_property value [get_property value ${PARAM_VALUE.OUTPUT_STREAMS_ENABLE}] ${MODELPARAM_VALUE.OUTPUT_STREAMS_ENABLE}
+}
+
+proc update_MODELPARAM_VALUE.INVERT { MODELPARAM_VALUE.INVERT PARAM_VALUE.INVERT } {
+	# Procedure called to set VHDL generic/Verilog parameter value(s) based on TCL parameter value
+	set_property value [get_property value ${PARAM_VALUE.INVERT}] ${MODELPARAM_VALUE.INVERT}
 }
 
