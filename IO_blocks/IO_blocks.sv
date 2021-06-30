@@ -67,6 +67,23 @@ module IO_blocks#(
 	input logic in_tvalid_14,
 	input logic in_tvalid_15,
 
+	output logic in_tready_00,
+	output logic in_tready_01,
+	output logic in_tready_02,
+	output logic in_tready_03,
+	output logic in_tready_04,
+	output logic in_tready_05,
+	output logic in_tready_06,
+	output logic in_tready_07,
+	output logic in_tready_08,
+	output logic in_tready_09,
+	output logic in_tready_10,
+	output logic in_tready_11,
+	output logic in_tready_12,
+	output logic in_tready_13,
+	output logic in_tready_14,
+	output logic in_tready_15,
+
 	output logic [7:0] out_tdata_00,
 	output logic [7:0] out_tdata_01,
 	output logic [7:0] out_tdata_02,
@@ -195,6 +212,23 @@ module IO_blocks#(
 		                in_tvalid_11, in_tvalid_10, in_tvalid_09, in_tvalid_08,
 		                in_tvalid_07, in_tvalid_06, in_tvalid_05, in_tvalid_04,
 		                in_tvalid_03, in_tvalid_02, in_tvalid_01, in_tvalid_00};
+
+	assign in_tready_00 = 1'b1;
+	assign in_tready_01 = 1'b1;
+	assign in_tready_02 = 1'b1;
+	assign in_tready_03 = 1'b1;
+	assign in_tready_04 = 1'b1;
+	assign in_tready_05 = 1'b1;
+	assign in_tready_06 = 1'b1;
+	assign in_tready_07 = 1'b1;
+	assign in_tready_08 = 1'b1;
+	assign in_tready_09 = 1'b1;
+	assign in_tready_10 = 1'b1;
+	assign in_tready_11 = 1'b1;
+	assign in_tready_12 = 1'b1;
+	assign in_tready_13 = 1'b1;
+	assign in_tready_14 = 1'b1;
+	assign in_tready_15 = 1'b1;
 
 	assign out_tdata_00 = out_tdata[0];
 	assign out_tdata_01 = out_tdata[1];
