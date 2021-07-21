@@ -810,15 +810,23 @@
       <spirit:portMaps>
         <spirit:portMap>
           <spirit:logicalPort>
-            <spirit:name>LinkReset</spirit:name>
+            <spirit:name>LinkReset_ROCd</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>fc_linkReset</spirit:name>
+            <spirit:name>fc_linkReset_ROCd</spirit:name>
           </spirit:physicalPort>
         </spirit:portMap>
         <spirit:portMap>
           <spirit:logicalPort>
-            <spirit:name>OrbitSync</spirit:name>
+            <spirit:name>LinkReset_ROCt</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>fc_linkReset_ROCt</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>BunchCountReset</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
             <spirit:name>fc_orbitSync</spirit:name>

@@ -118,7 +118,8 @@ module data_mux#(
     
     //fast control parameter
     input wire fc_orbitSync,
-    input wire fc_linkReset
+    input wire fc_linkReset_ROCd,
+    input wire fc_linkReset_ROCt
     );
     
     //decode configuration parameters from IPIF bus 
@@ -225,7 +226,7 @@ module data_mux#(
         
         //fast control parameter
         .fc_orbitSync(fc_orbitSync),
-        .fc_linkReset(fc_linkReset)
+        .fc_linkReset(fc_linkReset_ROCd || fc_linkReset_ROCt)
     );
     
     
