@@ -1,0 +1,31 @@
+#
+# (C) Copyright 2014-2015 Xilinx, Inc.
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License as
+# published by the Free Software Foundation; either version 2 of
+# the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+#
+
+OPTION psf_version = 3.0;
+
+BEGIN driver ipif_lite
+
+  OPTION supported_peripherals = (axi_to_ipif_mux);
+  OPTION supported_os_types = (DTS);
+#  OPTION driver_state = ACTIVE;
+  OPTION NAME = ipif_lite;
+  PARAMETER name = dev_type, default = ipif_lite, type = string;
+#  DTGPARAM name = dtg.ip_params, type = boolean;
+  DTGPARAM name = target_names, default = None, type = string;
+  DTGPARAM name = target_labels, default = None, type = string;
+  DTGPARAM name = target_intfs, default = None, type = string;
+  DTGPARAM name = n_target_regs, default = 1, type = int;
+  DTGPARAM name = n_target, default = 1, type = int;             
+  DTGPARAM name = mux_by_chip, default = false, type = string;
+END driver
