@@ -31,7 +31,8 @@ module delay_ctrl_utility (
         input wire [8:0] delay_in,
         input wire [8:0] delay_error_offset,
         
-        output reg [15:0] bit_align_errors,
+        output reg [32-1:0] error_counter,
+        output reg [32-1:0] bit_counter,
         input wire [8:0]  delay_out_P,
         input wire [8:0]  delay_out_N,
         
@@ -80,11 +81,13 @@ module delay_ctrl_utility (
     begin
         if(!totalCounterResetb_manual)
         begin
-            bit_align_errors <= 0;
+            error_counter <= 0;
+			bit_counter <= 0;
         end
         else
         begin
-            if(countEnable && fifo_ready && (!(&bit_align_errors)) && bae) bit_align_errors <= bit_align_errors + 1;
+            if(countEnable && fifo_ready && (!(&error_counter)) && bae) error_counter <= error_counter + 1;
+            if(countEnable && fifo_ready && (!(&bit_counter))) bit_counter <= bit_counter + 1;
         end
     end
     

@@ -31,7 +31,8 @@ module input_blocks(
         output wire [7 : 0] D_OUT_P,
         output wire [7 : 0] D_OUT_N,
         
-        output wire [15:0]   bit_align_errors,
+        output wire [32-1:0]   error_counter,
+        output wire [32-1:0]   bit_counter,
         
         input wire          delay_set,
         input wire          delay_mode,
@@ -83,7 +84,8 @@ module input_blocks(
         .delay_in(delay_in),
         .delay_error_offset(delay_error_offset),
         
-        .bit_align_errors(bit_align_errors),
+        .error_counter(error_counter),
+        .bit_counter(bit_counter),
         .delay_out_P(delay_out),
         .delay_out_N(delay_out_N_local),
         

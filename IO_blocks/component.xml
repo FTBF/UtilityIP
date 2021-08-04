@@ -1230,6 +1230,30 @@
       </spirit:vendorExtensions>
     </spirit:busInterface>
     <spirit:busInterface>
+      <spirit:name>IPIF_clk</spirit:name>
+      <spirit:displayName>IPIF_clk</spirit:displayName>
+      <spirit:description>IPIF Clock</spirit:description>
+      <spirit:busType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="clock" spirit:version="1.0"/>
+      <spirit:abstractionType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="clock_rtl" spirit:version="1.0"/>
+      <spirit:slave/>
+      <spirit:portMaps>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>CLK</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>IPIF_clk</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+      </spirit:portMaps>
+      <spirit:parameters>
+        <spirit:parameter>
+          <spirit:name>ASSOCIATED_BUSIF</spirit:name>
+          <spirit:value spirit:id="BUSIFPARAM_VALUE.IN_CLK160.ASSOCIATED_BUSIF">IPIF</spirit:value>
+        </spirit:parameter>
+      </spirit:parameters>
+    </spirit:busInterface>
+    <spirit:busInterface>
       <spirit:name>in_clk160</spirit:name>
       <spirit:displayName>in_clk160</spirit:displayName>
       <spirit:description>Input Clock 160 MHz</spirit:description>
@@ -1249,7 +1273,7 @@
       <spirit:parameters>
         <spirit:parameter>
           <spirit:name>ASSOCIATED_BUSIF</spirit:name>
-          <spirit:value spirit:id="BUSIFPARAM_VALUE.IN_CLK160.ASSOCIATED_BUSIF">in_00:in_01:in_02:in_03:in_04:in_05:in_06:in_07:in_08:in_09:in_10:in_11:in_12:in_13:in_14:in_15:IPIF</spirit:value>
+          <spirit:value spirit:id="BUSIFPARAM_VALUE.IN_CLK160.ASSOCIATED_BUSIF">in_00:in_01:in_02:in_03:in_04:in_05:in_06:in_07:in_08:in_09:in_10:in_11:in_12:in_13:in_14:in_15</spirit:value>
         </spirit:parameter>
         <spirit:parameter>
           <spirit:name>FREQ_HZ</spirit:name>
@@ -1417,6 +1441,19 @@
       </spirit:view>
     </spirit:views>
     <spirit:ports>
+      <spirit:port>
+        <spirit:name>IPIF_clk</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
       <spirit:port>
         <spirit:name>in_clk160</spirit:name>
         <spirit:wire>
@@ -2969,13 +3006,17 @@
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>IPIF_DelayParamDecode.sv</spirit:name>
-        <spirit:fileType>systemVerilogSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
         <spirit:name>IO_blocks.sv</spirit:name>
         <spirit:fileType>systemVerilogSource</spirit:fileType>
         <spirit:userFileType>CHECKSUM_32df46a5</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>../IPIF_common/IPIF_parameterDecode.sv</spirit:name>
+        <spirit:fileType>systemVerilogSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>../IPIF_common/IPIF_clock_converter.sv</spirit:name>
+        <spirit:fileType>systemVerilogSource</spirit:fileType>
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
@@ -2993,11 +3034,15 @@
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>IPIF_DelayParamDecode.sv</spirit:name>
+        <spirit:name>IO_blocks.sv</spirit:name>
         <spirit:fileType>systemVerilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>IO_blocks.sv</spirit:name>
+        <spirit:name>../IPIF_common/IPIF_parameterDecode.sv</spirit:name>
+        <spirit:fileType>systemVerilogSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>../IPIF_common/IPIF_clock_converter.sv</spirit:name>
         <spirit:fileType>systemVerilogSource</spirit:fileType>
       </spirit:file>
     </spirit:fileSet>
@@ -3100,7 +3145,7 @@
         <xilinx:xpmLibrary>XPM_FIFO</xilinx:xpmLibrary>
         <xilinx:xpmLibrary>XPM_MEMORY</xilinx:xpmLibrary>
       </xilinx:xpmLibraries>
-      <xilinx:coreRevision>10</xilinx:coreRevision>
+      <xilinx:coreRevision>11</xilinx:coreRevision>
       <xilinx:coreCreationDateTime>2021-01-22T16:53:32Z</xilinx:coreCreationDateTime>
       <xilinx:tags>
         <xilinx:tag xilinx:name="nopcore"/>
