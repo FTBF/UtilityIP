@@ -99,7 +99,7 @@ module bram_to_stream #(
 	IPIF_clock_converter #(
 		.INCLUDE_SYNCHRONIZER(INCLUDE_SYNCHRONIZER),
 		.C_S_AXI_DATA_WIDTH(C_S_AXI_DATA_WIDTH),
-		.N_REG((NLINKS+1)*4),
+		.N_REG(N_REG),
 		.PARAM_T(param_t)
 	) IPIF_clock_conv (
 		.IP_clk(in_clk160),
