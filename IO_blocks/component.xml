@@ -2959,6 +2959,11 @@
       </spirit:port>
     </spirit:ports>
     <spirit:modelParameters>
+      <spirit:modelParameter spirit:dataType="integer">
+        <spirit:name>INCLUDE_SYNCHRONIZER</spirit:name>
+        <spirit:displayName>Include IPIF synchronizer</spirit:displayName>
+        <spirit:value spirit:format="bool" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.INCLUDE_SYNCHRONIZER">false</spirit:value>
+      </spirit:modelParameter>
       <spirit:modelParameter xsi:type="spirit:nameValueTypeType" spirit:dataType="integer">
         <spirit:name>NLINKS</spirit:name>
         <spirit:displayName>Nlinks</spirit:displayName>
@@ -3065,6 +3070,11 @@
   </spirit:fileSets>
   <spirit:description>IO_blocks_v1_0</spirit:description>
   <spirit:parameters>
+    <spirit:parameter>
+      <spirit:name>INCLUDE_SYNCHRONIZER</spirit:name>
+      <spirit:displayName>Include IPIF synchronizer</spirit:displayName>
+      <spirit:value spirit:format="bool" spirit:resolve="user" spirit:id="PARAM_VALUE.INCLUDE_SYNCHRONIZER">false</spirit:value>
+    </spirit:parameter>
     <spirit:parameter>
       <spirit:name>NLINKS</spirit:name>
       <spirit:displayName>Nlinks</spirit:displayName>

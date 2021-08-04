@@ -16,6 +16,8 @@ proc init_gui { IPINST } {
   set_property tooltip {Enable AXI-stream outputs} ${OUTPUT_STREAMS_ENABLE}
   set INVERT [ipgui::add_param $IPINST -name "INVERT" -parent ${Page_0}]
   set_property tooltip {Channels with inverted differential pairs (bit vector; 1: inverted, 0: not inverted)} ${INVERT}
+  set INCLUDE_SYNCHRONIZER [ipgui::add_param $IPINST -name "INCLUDE_SYNCHRONIZER" -parent ${Page_0}]
+  set_property tooltip {Include IPIF synchronizer (only necessary if IPIF clock is unrelated to other clocks)} ${INCLUDE_SYNCHRONIZER}
 
 
 }
@@ -36,6 +38,15 @@ proc update_PARAM_VALUE.DRIVE_ENABLED { PARAM_VALUE.DRIVE_ENABLED PARAM_VALUE.IN
 
 proc validate_PARAM_VALUE.DRIVE_ENABLED { PARAM_VALUE.DRIVE_ENABLED } {
 	# Procedure called to validate DRIVE_ENABLED
+	return true
+}
+
+proc update_PARAM_VALUE.INCLUDE_SYNCHRONIZER { PARAM_VALUE.INCLUDE_SYNCHRONIZER } {
+	# Procedure called to update INCLUDE_SYNCHRONIZER when any of the dependent parameters in the arguments change
+}
+
+proc validate_PARAM_VALUE.INCLUDE_SYNCHRONIZER { PARAM_VALUE.INCLUDE_SYNCHRONIZER } {
+	# Procedure called to validate INCLUDE_SYNCHRONIZER
 	return true
 }
 
@@ -84,6 +95,11 @@ proc validate_PARAM_VALUE.WORD_PER_LINK { PARAM_VALUE.WORD_PER_LINK } {
 	return true
 }
 
+
+proc update_MODELPARAM_VALUE.INCLUDE_SYNCHRONIZER { MODELPARAM_VALUE.INCLUDE_SYNCHRONIZER PARAM_VALUE.INCLUDE_SYNCHRONIZER } {
+	# Procedure called to set VHDL generic/Verilog parameter value(s) based on TCL parameter value
+	set_property value [get_property value ${PARAM_VALUE.INCLUDE_SYNCHRONIZER}] ${MODELPARAM_VALUE.INCLUDE_SYNCHRONIZER}
+}
 
 proc update_MODELPARAM_VALUE.NLINKS { MODELPARAM_VALUE.NLINKS PARAM_VALUE.NLINKS } {
 	# Procedure called to set VHDL generic/Verilog parameter value(s) based on TCL parameter value
