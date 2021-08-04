@@ -655,6 +655,28 @@
       </spirit:portMaps>
     </spirit:busInterface>
     <spirit:busInterface>
+      <spirit:name>IPIF_clk</spirit:name>
+      <spirit:busType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="clock" spirit:version="1.0"/>
+      <spirit:abstractionType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="clock_rtl" spirit:version="1.0"/>
+      <spirit:slave/>
+      <spirit:portMaps>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>CLK</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>IPIF_clk</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+      </spirit:portMaps>
+      <spirit:parameters>
+        <spirit:parameter>
+          <spirit:name>ASSOCIATED_BUSIF</spirit:name>
+          <spirit:value spirit:id="BUSIFPARAM_VALUE.CLK.ASSOCIATED_BUSIF">IPIF</spirit:value>
+        </spirit:parameter>
+      </spirit:parameters>
+    </spirit:busInterface>
+    <spirit:busInterface>
       <spirit:name>clk</spirit:name>
       <spirit:busType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="clock" spirit:version="1.0"/>
       <spirit:abstractionType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="clock_rtl" spirit:version="1.0"/>
@@ -672,7 +694,7 @@
       <spirit:parameters>
         <spirit:parameter>
           <spirit:name>ASSOCIATED_BUSIF</spirit:name>
-          <spirit:value spirit:id="BUSIFPARAM_VALUE.CLK.ASSOCIATED_BUSIF">axis_0_in:axis_10_in:axis_11_in:axis_12_in:axis_13_in:axis_14_in:axis_15_in:axis_1_in:axis_2_in:axis_3_in:axis_4_in:axis_5_in:axis_6_in:axis_7_in:axis_8_in:axis_9_in:axis_out:IPIF</spirit:value>
+          <spirit:value spirit:id="BUSIFPARAM_VALUE.CLK.ASSOCIATED_BUSIF">axis_0_in:axis_10_in:axis_11_in:axis_12_in:axis_13_in:axis_14_in:axis_15_in:axis_1_in:axis_2_in:axis_3_in:axis_4_in:axis_5_in:axis_6_in:axis_7_in:axis_8_in:axis_9_in:axis_out</spirit:value>
         </spirit:parameter>
       </spirit:parameters>
     </spirit:busInterface>
@@ -885,6 +907,19 @@
       </spirit:view>
     </spirit:views>
     <spirit:ports>
+      <spirit:port>
+        <spirit:name>IPIF_clk</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>wire</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
       <spirit:port>
         <spirit:name>clk</spirit:name>
         <spirit:wire>
@@ -1929,6 +1964,11 @@
       </spirit:port>
     </spirit:ports>
     <spirit:modelParameters>
+      <spirit:modelParameter spirit:dataType="integer">
+        <spirit:name>INCLUDE_SYNCHRONIZER</spirit:name>
+        <spirit:displayName>Include IPIF synchronizer</spirit:displayName>
+        <spirit:value spirit:format="bool" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.INCLUDE_SYNCHRONIZER">false</spirit:value>
+      </spirit:modelParameter>
       <spirit:modelParameter xsi:type="spirit:nameValueTypeType" spirit:dataType="integer">
         <spirit:name>DATA_WIDTH</spirit:name>
         <spirit:displayName>Data Width</spirit:displayName>
@@ -1972,7 +2012,11 @@
     <spirit:fileSet>
       <spirit:name>xilinx_anylanguagesynthesis_view_fileset</spirit:name>
       <spirit:file>
-        <spirit:name>hdl/IPIF_parameterDecode.sv</spirit:name>
+        <spirit:name>../IPIF_common/IPIF_parameterDecode.sv</spirit:name>
+        <spirit:fileType>systemVerilogSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>../IPIF_common/IPIF_clock_converter.sv</spirit:name>
         <spirit:fileType>systemVerilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
@@ -1988,7 +2032,11 @@
     <spirit:fileSet>
       <spirit:name>xilinx_anylanguagebehavioralsimulation_view_fileset</spirit:name>
       <spirit:file>
-        <spirit:name>hdl/IPIF_parameterDecode.sv</spirit:name>
+        <spirit:name>../IPIF_common/IPIF_parameterDecode.sv</spirit:name>
+        <spirit:fileType>systemVerilogSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>../IPIF_common/IPIF_clock_converter.sv</spirit:name>
         <spirit:fileType>systemVerilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
@@ -2012,6 +2060,11 @@
   </spirit:fileSets>
   <spirit:description>data_mux_v1_0</spirit:description>
   <spirit:parameters>
+    <spirit:parameter>
+      <spirit:name>INCLUDE_SYNCHRONIZER</spirit:name>
+      <spirit:displayName>Include IPIF synchronizer</spirit:displayName>
+      <spirit:value spirit:format="bool" spirit:resolve="user" spirit:id="PARAM_VALUE.INCLUDE_SYNCHRONIZER">false</spirit:value>
+    </spirit:parameter>
     <spirit:parameter>
       <spirit:name>DATA_WIDTH</spirit:name>
       <spirit:displayName>Data Width</spirit:displayName>
