@@ -1,10 +1,12 @@
 module bram_to_stream #(
+		parameter INCLUDE_SYNCHRONIZER = 0,
 		parameter [15:0] MEM_DEPTH = 2048,
 		parameter C_S_AXI_ADDR_WIDTH = 32,
 		parameter C_S_AXI_DATA_WIDTH = 32,
 		parameter N_REG = 4
 	) (
 
+		input logic         IPIF_clk,
 		input logic         clk,
 		input logic         aresetn,
 		
@@ -54,25 +56,27 @@ module bram_to_stream #(
     {
         logic [31:0]   padding4;   //dummy value
         logic [30:0]   padding3;   //dummy value 
-        logic [0:0]    force_sync; // force the logic to reset link calue to zero - this is a broadcast register 
+        logic [0:0]    force_sync; // force the logic to reset link value to zero - this is a broadcast register 
         logic [15:0]   padding2;   // dummy value
         logic [15:0]   ram_range;  // in syncmode 1: ram_range determines pattern length in orbits, in syncmode 2: ram_range determines the number of 32 bit words to send
         logic [29:0]   padding1;   // dummy value
         logic [1:0]    sync_mode;  // syncmode; 0: no sync (send entire ram always),  1: orbit synchronous,  2: fixed length repeating mode,  3: reserved
     } param_t;
     
-    param_t params_in;
-    param_t params_out;
+    param_t params_from_bus;
+    param_t params_from_IP;
+    param_t params_to_bus;
+    param_t params_to_IP;
     
-    assign params_in.padding4 = '0;
-    assign params_in.padding3 = '0;
-    assign params_in.force_sync = params_out.force_sync;
-    assign params_in.padding2 = '0;
-    assign params_in.ram_range = params_out.ram_range;
-    assign params_in.padding1 = '0;
-    assign params_in.sync_mode = params_out.sync_mode;
+	always_comb begin
+		params_from_IP = params_to_IP;
+		params_from_IP.padding4 = '0;
+		params_from_IP.padding3 = '0;
+		params_from_IP.padding2 = '0;
+		params_from_IP.padding1 = '0;
+	end
     	
-	IPIF_parameterDecode#(
+	IPIF_parameterDecode #(
         .C_S_AXI_DATA_WIDTH(C_S_AXI_DATA_WIDTH),
         .N_REG(N_REG),
         .PARAM_T(param_t),
@@ -88,11 +92,23 @@ module bram_to_stream #(
         .IPIF_ip2bus_rdack(IPIF_IP2Bus_RdAck),
         .IPIF_ip2bus_wrack(IPIF_IP2Bus_WrAck),
     
-        .parameters_in(params_in),
-        .parameters_out(params_out)
+        .parameters_in(params_to_bus),
+        .parameters_out(params_from_bus)
     );
     
-    // are there real errors conditions to flag? 
+	IPIF_clock_converter #(
+		.INCLUDE_SYNCHRONIZER(INCLUDE_SYNCHRONIZER),
+		.C_S_AXI_DATA_WIDTH(C_S_AXI_DATA_WIDTH),
+		.N_REG((NLINKS+1)*4),
+		.PARAM_T(param_t)
+	) IPIF_clock_conv (
+		.IP_clk(in_clk160),
+		.bus_clk(IPIF_clk),
+		.params_from_IP(params_from_IP),
+		.params_from_bus(params_from_bus),
+		.params_to_IP(params_to_IP),
+		.params_to_bus(params_to_bus));
+    // ground unused error port
     assign IPIF_IP2Bus_Error = 0;
     
     // interlink synchronization logic 
@@ -124,18 +140,18 @@ module bram_to_stream #(
     //Select sync mode of operation
     always_comb
     begin
-        case(params_out.sync_mode)
+        case(params_to_IP.sync_mode)
             2'd1:   //orbit sync mode
             begin
-                output_sync = !fc_orbitSync_sync && fc_orbitSync && ((orbit_counter % params_out.ram_range[2:0]) == 0);
+                output_sync = !fc_orbitSync_sync && fc_orbitSync && ((orbit_counter % params_to_IP.ram_range[2:0]) == 0);
             end
             2'd2:   //length limited unsynchronous 
             begin
-                output_sync = q.address >= params_out.ram_range - 1 || params_out.force_sync;
+                output_sync = q.address >= params_to_IP.ram_range - 1 || params_to_IP.force_sync;
             end
             default:  //no sync pulse 
             begin
-                output_sync = params_out.force_sync;
+                output_sync = params_to_IP.force_sync;
             end
         endcase
     end
