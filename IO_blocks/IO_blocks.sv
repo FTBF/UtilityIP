@@ -336,8 +336,8 @@ module IO_blocks#(
 	assign out_tvalid_14 = 1'b1;
 	assign out_tvalid_15 = 1'b1;
 
-	logic [32-1:0][NLINKS-1:0] error_counter;
-	logic [32-1:0][NLINKS-1:0] bit_counter;
+	logic [32-1:0] error_counter [NLINKS-1:0];
+	logic [32-1:0] bit_counter [NLINKS-1:0];
 
 	generate
 	genvar i;
@@ -448,16 +448,16 @@ module IO_blocks#(
 
 	always_ff @(posedge in_clk160) begin
 		for (int i = 0; i < NLINKS; i += 1) begin
-			if (params_to_IP.global_counter_reset ||
-			    params_to_IP.links[i].counter_reset ||
-			    ~params_to_IP.global_resetn ||
-			    ~params_to_IP.links[i].link_resetn) begin
-				local_params.links[i].error_counter = '0;
-				local_params.links[i].bit_counter = '0;
+			if   (params_to_IP.global_counter_reset ||
+			      params_to_IP.links[i].counter_reset ||
+			      ~params_to_IP.global_resetn ||
+			      ~params_to_IP.links[i].link_resetn) begin
+				local_params.links[i].error_counter <= '0;
+				local_params.links[i].bit_counter <= '0;
 			end else if (params_to_IP.global_counter_latch ||
 			             params_to_IP.links[i].latch_counters) begin
-				local_params.links[i].error_counter = error_counter[i];
-				local_params.links[i].bit_counter = bit_counter[i];
+				local_params.links[i].error_counter <= error_counter[i];
+				local_params.links[i].bit_counter <= bit_counter[i];
 			end
 		end
 	end

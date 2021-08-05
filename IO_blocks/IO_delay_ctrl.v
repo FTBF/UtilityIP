@@ -86,8 +86,13 @@ module delay_ctrl_utility (
         end
         else
         begin
-            if(countEnable && fifo_ready && (!(&error_counter)) && bae) error_counter <= error_counter + 1;
-            if(countEnable && fifo_ready && (!(&bit_counter))) bit_counter <= bit_counter + 1;
+
+			if(countEnable && fifo_ready && (!(&bit_counter)) && (!(&error_counter))) begin
+				bit_counter <= bit_counter + 1;
+				if (bae) begin
+					error_counter <= error_counter + 1;
+				end
+			end
         end
     end
     
