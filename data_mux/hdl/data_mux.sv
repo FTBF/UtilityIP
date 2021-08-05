@@ -27,7 +27,7 @@ module data_mux#(
     parameter OUTPUT_REVERSE_BITS = 1,
     parameter integer C_S_AXI_DATA_WIDTH = 32,
     parameter integer C_S_AXI_ADDR_WIDTH = 32,
-    parameter integer N_REG = 4
+    parameter integer N_REG = 8
     ) 
     (
     //Clock
@@ -129,11 +129,23 @@ module data_mux#(
     
     typedef struct packed
     {
+		// Register 7
+		logic [DATA_WIDTH-1:0] padding7;
+		// Register 6
+		logic [DATA_WIDTH-1:0] header_BX0;
+		// Register 5
+		logic [DATA_WIDTH-1:0] header;
+		// Register 4
+		logic [DATA_WIDTH-1:0] header_mask;
+		// Register 3
         logic [DATA_WIDTH-1:0] idle_word_BX0;
+		// Register 2
         logic [DATA_WIDTH-1:0] idle_word;
-        logic [15:0]           padding2;
+		// Register 1
+        logic [15:0]           padding1;
         logic [15:0]           n_idle_words;
-        logic [27:0]           padding1;
+		// Register 0
+        logic [27:0]           padding0;
         logic [3:0]            output_select;
     } param_t;
     
@@ -144,15 +156,16 @@ module data_mux#(
     
 	always_comb begin
 		params_from_IP = params_to_IP;
+		params_from_IP.padding0 = '0;
 		params_from_IP.padding1 = '0;
-		params_from_IP.padding2 = '0;
+		params_from_IP.padding7 = '0;
 	end
     
     IPIF_parameterDecode#(
         .C_S_AXI_DATA_WIDTH(C_S_AXI_DATA_WIDTH),
         .N_REG(N_REG),
         .PARAM_T(param_t),
-        .DEFAULTS({32'h9ccccccc, 32'haccccccc, 16'b0, 16'd256, 32'b0})
+        .DEFAULTS({32'b0, 32'h90000000, 32'ha0000000, 32'h00000000, 32'h9ccccccc, 32'haccccccc, 16'b0, 16'd256, 32'b0})
     ) parameterDecoder (
         .clk(IPIF_clk),
         
@@ -241,6 +254,9 @@ module data_mux#(
         .output_select(params_to_IP.output_select),
         .idle_word(params_to_IP.idle_word),
         .idle_word_BX0(params_to_IP.idle_word_BX0),
+		.header_mask(params_to_IP.header_mask),
+		.header(params_to_IP.header),
+		.header_BX0(params_to_IP.header_BX0),
         
         //fast control parameter
         .fc_orbitSync(fc_orbitSync),

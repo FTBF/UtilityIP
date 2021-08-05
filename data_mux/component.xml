@@ -1997,7 +1997,7 @@
       <spirit:modelParameter spirit:dataType="integer">
         <spirit:name>N_REG</spirit:name>
         <spirit:displayName>N Reg</spirit:displayName>
-        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.N_REG">4</spirit:value>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.N_REG">8</spirit:value>
       </spirit:modelParameter>
     </spirit:modelParameters>
   </spirit:model>
@@ -2097,7 +2097,7 @@
     <spirit:parameter>
       <spirit:name>N_REG</spirit:name>
       <spirit:displayName>N Reg</spirit:displayName>
-      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.N_REG">4</spirit:value>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.N_REG">8</spirit:value>
     </spirit:parameter>
   </spirit:parameters>
   <spirit:vendorExtensions>
@@ -2132,7 +2132,7 @@
       </xilinx:taxonomies>
       <xilinx:displayName>data_mux_v1_0</xilinx:displayName>
       <xilinx:definitionSource>package_project</xilinx:definitionSource>
-      <xilinx:coreRevision>10</xilinx:coreRevision>
+      <xilinx:coreRevision>11</xilinx:coreRevision>
       <xilinx:coreCreationDateTime>2020-05-28T05:08:35Z</xilinx:coreCreationDateTime>
       <xilinx:tags>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@4a91ae34_ARCHIVE_LOCATION">/home/pastika/Xilinx/econ-emu-test/ip_repo/data_mux</xilinx:tag>

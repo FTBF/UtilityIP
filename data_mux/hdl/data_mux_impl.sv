@@ -24,6 +24,9 @@ module data_mux_impl# (
     input wire [3:0]            output_select,
     input wire [DATA_WIDTH-1:0] idle_word,
     input wire [DATA_WIDTH-1:0] idle_word_BX0,
+    input wire [DATA_WIDTH-1:0] header_mask,
+    input wire [DATA_WIDTH-1:0] header,
+    input wire [DATA_WIDTH-1:0] header_BX0,
     
     //fast control parameter
     input wire fc_orbitSync,
@@ -70,7 +73,11 @@ module data_mux_impl# (
         end else begin
             for(int i = 0; i < N_INPUTS; i += 1) begin
                 if(output_select == i) begin
-                    tdata_select <= tdata_in[i];
+					if (!fc_orbitSync_dly && fc_orbitSync) begin
+						tdata_select <= (tdata_in[i] & ~header_mask) | (header_BX0 & header_mask);
+					end else begin
+						tdata_select <= (tdata_in[i] & ~header_mask) | (header & header_mask);
+					end
                     tvalid_select <= tvalid_in[i];
                 end
             end
