@@ -493,7 +493,7 @@
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>IPIF_parameterDecode.sv</spirit:name>
+        <spirit:name>../IPIF_common/IPIF_parameterDecode.sv</spirit:name>
         <spirit:fileType>systemVerilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
@@ -513,7 +513,7 @@
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>IPIF_parameterDecode.sv</spirit:name>
+        <spirit:name>../IPIF_common/IPIF_parameterDecode.sv</spirit:name>
         <spirit:fileType>systemVerilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
