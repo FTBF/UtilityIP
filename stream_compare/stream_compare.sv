@@ -1,4 +1,5 @@
 module stream_compare #(
+	parameter INCLUDE_SYNCHRONIZER = 0,
     parameter integer C_S_AXI_ADDR_WIDTH = 32,
     parameter integer C_S_AXI_DATA_WIDTH = 32,
     parameter integer N_REG = 4,
@@ -6,6 +7,7 @@ module stream_compare #(
 
     )(
 
+	input logic IPIF_clk,
 	input logic clk,
 	input logic aresetn,
 
@@ -32,9 +34,6 @@ module stream_compare #(
     output logic                                  IPIF_IP2Bus_Error	
 	);
 	
-	//decode configuration parameters from IPIF bus 
-    assign IPIF_IP2Bus_Error = 0;
-    
     typedef struct packed
     {
         logic [31:0]           padding3;
@@ -45,15 +44,20 @@ module stream_compare #(
         logic [0:0]            reset;
     } param_t;
     
-    param_t params_in;
-    param_t params_out;
+    param_t params_to_bus;
+    param_t params_to_IP;
+    param_t params_from_bus;
+    param_t params_from_IP;
+
+	localparam param_t defaults = '{default:'0};
+	localparam param_t self_reset = '{default:'0, latch:1'b1, reset:1'b1};
     
-    stream_compare_IPIF_parameterDecode#(
+    IPIF_parameterDecode #(
         .C_S_AXI_DATA_WIDTH(C_S_AXI_DATA_WIDTH),
         .N_REG(N_REG),
         .PARAM_T(param_t),
-        .DEFAULTS({32'b0, 32'h0, 32'b0, 32'b0}),
-        .W_PULSE_REG(4'b0001)
+        .DEFAULTS(defaults),
+		.SELF_RESET(self_reset)
     ) parameterDecoder (
         .clk(clk),
         
@@ -65,9 +69,25 @@ module stream_compare #(
         .IPIF_ip2bus_rdack(IPIF_IP2Bus_RdAck),
         .IPIF_ip2bus_wrack(IPIF_IP2Bus_WrAck),
         
-        .parameters_out(params_out),
-        .parameters_in(params_in)
+        .parameters_out(params_from_bus),
+        .parameters_in(params_to_bus)
     );
+
+	IPIF_clock_converter #(
+		.INCLUDE_SYNCHRONIZER(INCLUDE_SYNCHRONIZER),
+		.C_S_AXI_DATA_WIDTH(C_S_AXI_DATA_WIDTH),
+		.N_REG((NLINKS+1)*4),
+		.PARAM_T(param_t)
+	) IPIF_clock_conv (
+		.IP_clk(in_clk160),
+		.bus_clk(IPIF_clk),
+		.params_from_IP(params_from_IP),
+		.params_from_bus(params_from_bus),
+		.params_to_IP(params_to_IP),
+		.params_to_bus(params_to_bus));
+	//
+	//ground unused error port
+	assign IPIF_IP2Bus_Error = 0;
 
 	typedef struct {
 		logic [31:0] word_count;
@@ -98,11 +118,11 @@ module stream_compare #(
 			q.word_count = 0;
 			q.err_count = 0;
 			
-		    params_in.word_count <= 0;
-		    params_in.err_count <= 0;
+			params_in <= '0;
 		end else begin
 			q <= d;
 			
+			params_in <= params_out;
 		    if(params_out.latch == 1)
 		    begin
 		        params_in.word_count <= q.word_count;
