@@ -60,6 +60,9 @@ module IPIF_parameterDecode #(
 	param_union_t param_union_out;
 	assign parameters_out = param_union_out.param_struct;
 
+	logic [C_S_AXI_DATA_WIDTH-1:0] self_reset_cond_temp;
+	logic [C_S_AXI_DATA_WIDTH-1:0] self_reset_data_temp;
+
 	// send write acknowladge
 	always @(posedge clk or negedge IPIF_bus2ip_resetn)
 		if(!IPIF_bus2ip_resetn) IPIF_ip2bus_wrack <= 0;
@@ -70,18 +73,12 @@ module IPIF_parameterDecode #(
 			param_union_out.param_struct <= DEFAULTS;
 		end else begin
 			for(int i = 0; i < N_REG; i += 1) begin
-				if(IPIF_bus2ip_wrce == (1 << i)) begin
-					param_union_out.param_array[i] <= IPIF_bus2ip_data;
-				end else begin
-					for (int j = 0; j < C_S_AXI_DATA_WIDTH; j += 1) begin
-						if ((SR_union.param_array[i][j] == 1'b1) &&
-						    (param_union_in.param_array[i][j] != DEF_union.param_array[i][j])) begin
-							param_union_out.param_array[i][j] <= DEF_union.param_array[i][j];
-						end else begin
-							param_union_out.param_array[i][j] <= param_union_out.param_array[i][j];
-						end
-					end
-				end
+				self_reset_cond_temp = (SR_union.param_array[i] & (param_union_in.param_array[i] ^ DEF_union.param_array[i]));
+
+				self_reset_data_temp = ((DEF_union.param_array[i]       &  self_reset_cond_temp) |
+				                        (param_union_out.param_array[i] & ~self_reset_cond_temp));
+
+				param_union_out.param_array[i] <= (IPIF_bus2ip_wrce[i] ? IPIF_bus2ip_data : self_reset_data_temp);
 			end
 		end
 	end
