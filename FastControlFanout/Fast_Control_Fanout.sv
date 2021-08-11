@@ -200,9 +200,9 @@ module Fast_Control_Fanout #(
         IPIF_parameterDecode#(
             .C_S_AXI_DATA_WIDTH(C_S_AXI_DATA_WIDTH),
             .N_REG(N_REG),
-            .W_PULSE_REG(4'b1),
             .PARAM_T(param_t),
-            .DEFAULTS({32'h1, 32'd100, 32'b0, 32'b0})
+            .DEFAULTS({32'h1, 32'd100, 32'b0, 32'b0}),
+            .SELF_RESET({32'h0, 32'h0, 32'h0, 32'h1})
         ) parameterDecoder (
             .clk(IPIF_clk),
             
