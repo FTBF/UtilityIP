@@ -76,7 +76,7 @@ module stream_compare #(
 	IPIF_clock_converter #(
 		.INCLUDE_SYNCHRONIZER(INCLUDE_SYNCHRONIZER),
 		.C_S_AXI_DATA_WIDTH(C_S_AXI_DATA_WIDTH),
-		.N_REG((NLINKS+1)*4),
+		.N_REG(N_REG),
 		.PARAM_T(param_t)
 	) IPIF_clock_conv (
 		.IP_clk(in_clk160),
@@ -111,24 +111,22 @@ module stream_compare #(
 		end
 	end
 	
-	wire totalReset = aresetn && !params_out.reset;
+	wire totalReset = aresetn && !params_to_IP.reset;
 
 	always_ff @(posedge clk, negedge totalReset) begin
 		if (totalReset == 0) begin
 			q.word_count = 0;
 			q.err_count = 0;
 			
-			params_in <= '0;
+			params_from_IP <= '0;
 		end else begin
 			q <= d;
 			
-			params_in <= params_out;
-		    if(params_out.latch == 1)
-		    begin
-		        params_in.word_count <= q.word_count;
-		        params_in.err_count <= q.err_count;
+			params_from_IP <= params_to_IP;
+		    if(params_to_IP.latch == 1) begin
+		        params_from_IP.word_count <= q.word_count;
+		        params_from_IP.err_count <= q.err_count;
 	        end
 		end
-		
 	end
 endmodule
