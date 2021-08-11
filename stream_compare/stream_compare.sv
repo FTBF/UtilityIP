@@ -19,6 +19,8 @@ module stream_compare #(
 	input logic S_AXIS_1_TVALID,
 	output logic S_AXIS_1_TREADY,
 
+	output logic mismatch,
+
     //configuration parameter interface 
     input  logic                                  IPIF_Bus2IP_resetn,
     input  logic [(C_S_AXI_ADDR_WIDTH-1) : 0]     IPIF_Bus2IP_Addr,   //unused
@@ -36,7 +38,8 @@ module stream_compare #(
 	
     typedef struct packed
     {
-        logic [31:0]           padding3;
+        logic [30:0]           padding3;
+        logic [0:0]            trigger;
         logic [31:0]           err_count;
         logic [31:0]           word_count;
         logic [29:0]           padding1;
@@ -90,6 +93,7 @@ module stream_compare #(
 	assign IPIF_IP2Bus_Error = 0;
 
 	typedef struct {
+		logic mismatch;
 		logic [31:0] word_count;
 		logic [31:0] err_count;
 	} reg_type;
@@ -101,20 +105,25 @@ module stream_compare #(
 
 	always_comb begin
 		d = q;
+		d.mismatch = 1'b0;
 
 		if ((S_AXIS_0_TVALID == 1'b1) && (S_AXIS_1_TVALID == 1'b1)) begin
 			d.word_count = q.word_count + 1;
 
 		   	if (S_AXIS_0_TDATA != S_AXIS_1_TDATA) begin
+				d.mismatch = params_to_IP.trigger;
 				d.err_count = q.err_count + 1;
 			end
 		end
 	end
+
+	assign mismatch = q.mismatch;
 	
 	wire totalReset = aresetn && !params_to_IP.reset;
 
 	always_ff @(posedge clk, negedge totalReset) begin
 		if (totalReset == 0) begin
+			q.mismatch = 1'b0;
 			q.word_count = 0;
 			q.err_count = 0;
 			
