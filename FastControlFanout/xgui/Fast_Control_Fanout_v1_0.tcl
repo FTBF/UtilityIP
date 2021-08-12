@@ -8,8 +8,19 @@ proc init_gui { IPINST } {
   ipgui::add_param $IPINST -name "INVERT" -parent ${Page_0}
   ipgui::add_param $IPINST -name "RESYNCCLEANUP" -parent ${Page_0}
   ipgui::add_param $IPINST -name "DEBUG" -parent ${Page_0}
+  set INCLUDE_SYNCHRONIZER [ipgui::add_param $IPINST -name "INCLUDE_SYNCHRONIZER" -parent ${Page_0}]
+  set_property tooltip {Include IPIF synchronizer (only necessary if IPIF clock is unrelated to other clocks)} ${INCLUDE_SYNCHRONIZER}
 
 
+}
+
+proc update_PARAM_VALUE.INCLUDE_SYNCHRONIZER { PARAM_VALUE.INCLUDE_SYNCHRONIZER } {
+	# Procedure called to update INCLUDE_SYNCHRONIZER when any of the dependent parameters in the arguments change
+}
+
+proc validate_PARAM_VALUE.INCLUDE_SYNCHRONIZER { PARAM_VALUE.INCLUDE_SYNCHRONIZER } {
+	# Procedure called to validate INCLUDE_SYNCHRONIZER
+	return true
 }
 
 proc update_PARAM_VALUE.C_S_AXI_ADDR_WIDTH { PARAM_VALUE.C_S_AXI_ADDR_WIDTH } {
@@ -84,6 +95,11 @@ proc validate_PARAM_VALUE.RESYNCCLEANUP { PARAM_VALUE.RESYNCCLEANUP } {
 	return true
 }
 
+
+proc update_MODELPARAM_VALUE.INCLUDE_SYNCHRONIZER { MODELPARAM_VALUE.INCLUDE_SYNCHRONIZER PARAM_VALUE.INCLUDE_SYNCHRONIZER } {
+	# Procedure called to set VHDL generic/Verilog parameter value(s) based on TCL parameter value
+	set_property value [get_property value ${PARAM_VALUE.INCLUDE_SYNCHRONIZER}] ${MODELPARAM_VALUE.INCLUDE_SYNCHRONIZER}
+}
 
 proc update_MODELPARAM_VALUE.NFANOUT { MODELPARAM_VALUE.NFANOUT PARAM_VALUE.NFANOUT } {
 	# Procedure called to set VHDL generic/Verilog parameter value(s) based on TCL parameter value
