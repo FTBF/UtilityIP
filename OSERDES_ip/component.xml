@@ -355,33 +355,6 @@
       <xilinx:coreCreationDateTime>2020-05-05T14:21:10Z</xilinx:coreCreationDateTime>
       <xilinx:tags>
         <xilinx:tag xilinx:name="nopcore"/>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@6e492250_ARCHIVE_LOCATION">/home/jsw/src/temp/econ-emu-test/ip_repo/OSERDES_ip</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@12d690e2_ARCHIVE_LOCATION">/home/jsw/src/temp/econ-emu-test/ip_repo/OSERDES_ip</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@34d13970_ARCHIVE_LOCATION">/home/jsw/src/temp/econ-emu-test/ip_repo/OSERDES_ip</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@b8c7bc2_ARCHIVE_LOCATION">/home/jsw/src/temp/econ-emu-test/ip_repo/OSERDES_ip</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@25d6f90c_ARCHIVE_LOCATION">/home/jsw/src/temp/econ-emu-test/ip_repo/OSERDES_ip</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@bbeb086_ARCHIVE_LOCATION">/home/jsw/src/temp/econ-emu-test/ip_repo/OSERDES_ip</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@35d15694_ARCHIVE_LOCATION">/home/jsw/src/temp/econ-emu-test/ip_repo/OSERDES_ip</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@7b6398f1_ARCHIVE_LOCATION">/home/jsw/src/temp/econ-emu-test/ip_repo/OSERDES_ip</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@9110c66_ARCHIVE_LOCATION">/home/jsw/src/temp/econ-emu-test/ip_repo/OSERDES_ip</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@396fa7bd_ARCHIVE_LOCATION">/home/jsw/src/temp/econ-emu-test/ip_repo/OSERDES_ip</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@51d7840d_ARCHIVE_LOCATION">/home/jsw/src/temp/econ-emu-test/ip_repo/OSERDES_ip</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@6c286e07_ARCHIVE_LOCATION">/home/jsw/src/temp/econ-emu-test/ip_repo/OSERDES_ip</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@4dd8db6_ARCHIVE_LOCATION">/home/jsw/src/temp/econ-emu-test/ip_repo/OSERDES_ip</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@7af4cc1f_ARCHIVE_LOCATION">/home/jsw/src/temp/econ-emu-test/ip_repo/OSERDES_ip</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@663da080_ARCHIVE_LOCATION">/home/jsw/src/temp/econ-emu-test/ip_repo/OSERDES_ip</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@634fef19_ARCHIVE_LOCATION">/home/jsw/src/temp/econ-emu-test/ip_repo/OSERDES_ip</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@8d4b730_ARCHIVE_LOCATION">/home/jsw/src/temp/econ-emu-test/ip_repo/OSERDES_ip</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@8ec6f7a_ARCHIVE_LOCATION">/home/jsw/src/temp/econ-emu-test/ip_repo/OSERDES_ip</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@6669c093_ARCHIVE_LOCATION">/home/jsw/src/temp/econ-emu-test/ip_repo/OSERDES_ip</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@7dc1db74_ARCHIVE_LOCATION">/home/jsw/src/temp/econ-emu-test/ip_repo/OSERDES_ip</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@42b75af8_ARCHIVE_LOCATION">/home/jsw/src/temp/econ-emu-test/ip_repo/OSERDES_ip</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@1c70bcd9_ARCHIVE_LOCATION">/home/jsw/src/temp/econ-emu-test/ip_repo/OSERDES_ip</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@6969281e_ARCHIVE_LOCATION">/home/jsw/src/temp/econ-emu-test/ip_repo/OSERDES_ip</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@70813be_ARCHIVE_LOCATION">/home/jsw/src/temp/econ-emu-test/ip_repo/OSERDES_ip</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@287ccc6_ARCHIVE_LOCATION">/home/jsw/src/temp/econ-emu-test/ip_repo/OSERDES_ip</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@24201a0e_ARCHIVE_LOCATION">/home/jsw/src/temp/econ-emu-test/ip_repo/OSERDES_ip</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@2e22d145_ARCHIVE_LOCATION">/home/jsw/src/temp/econ-emu-test/ip_repo/OSERDES_ip</xilinx:tag>
       </xilinx:tags>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>

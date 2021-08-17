@@ -297,27 +297,6 @@
       <xilinx:definitionSource>package_project</xilinx:definitionSource>
       <xilinx:coreRevision>3</xilinx:coreRevision>
       <xilinx:coreCreationDateTime>2021-03-12T14:50:30Z</xilinx:coreCreationDateTime>
-      <xilinx:tags>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@58cdc593_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/I2C_driver</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@67b0180b_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/I2C_driver</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@18fccc38_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/I2C_driver</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@766ac417_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/I2C_driver</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@7e20ccc0_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/I2C_driver</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@3b2b2bca_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/I2C_driver</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@11ad0755_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test/shared/ip_repo/utilityip/I2C_driver</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@3fe17dde_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test/shared/ip_repo/utilityip/I2C_driver</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@3e3764d_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test/shared/ip_repo/utilityip/I2C_driver</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@65f7f816_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test/shared/ip_repo/utilityip/I2C_driver</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@4740c18b_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test/shared/ip_repo/utilityip/I2C_driver</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@7d746bdf_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test/shared/ip_repo/utilityip/I2C_driver</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@13fbf62f_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test/shared/ip_repo/utilityip/I2C_driver</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@386ece1c_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test/shared/ip_repo/utilityip/I2C_driver</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@949f121_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test/shared/ip_repo/utilityip/I2C_driver</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@3695c0d6_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test/shared/ip_repo/utilityip/I2C_driver</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@c5b01e6_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test/shared/ip_repo/utilityip/I2C_driver</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@32cdf85e_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test/shared/ip_repo/utilityip/I2C_driver</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@1b9a300e_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test/shared/ip_repo/utilityip/I2C_driver</xilinx:tag>
-      </xilinx:tags>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2019.2</xilinx:xilinxVersion>

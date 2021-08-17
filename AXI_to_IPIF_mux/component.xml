@@ -6537,8 +6537,6 @@
       <xilinx:definitionSource>package_project</xilinx:definitionSource>
       <xilinx:coreRevision>16</xilinx:coreRevision>
       <xilinx:coreCreationDateTime>2021-05-12T19:14:50Z</xilinx:coreCreationDateTime>
-      <xilinx:tags>
-      </xilinx:tags>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2019.2</xilinx:xilinxVersion>

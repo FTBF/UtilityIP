@@ -880,34 +880,6 @@
       <xilinx:definitionSource>package_project</xilinx:definitionSource>
       <xilinx:coreRevision>7</xilinx:coreRevision>
       <xilinx:coreCreationDateTime>2021-08-11T16:00:36Z</xilinx:coreCreationDateTime>
-      <xilinx:tags>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@3b8f8d3e_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/stream_compare</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@6b4c861e_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/stream_compare</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@73575c27_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/stream_compare</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@4edcc507_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/stream_compare</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@b6ff636_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/stream_compare</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@55c6bf7c_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/stream_compare</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@4f735308_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/stream_compare</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@46d5b597_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/stream_compare</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@5b84125a_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/stream_compare</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@1a350b5c_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/stream_compare</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@aa920e1_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/stream_compare</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@5ebf1840_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/stream_compare</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@6239c8e1_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/stream_compare</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@47fa075_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/stream_compare</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@23783700_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/stream_compare</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@6051b728_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/stream_compare</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@770e4218_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/stream_compare</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@7e77bc34_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/stream_compare</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@1d028a8d_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/stream_compare</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@5f0e19b3_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/stream_compare</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@95a0f7e_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/stream_compare</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@5de60ee1_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/stream_compare</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@1bd68895_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/stream_compare</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@9627e1f_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/stream_compare</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@6ff08232_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/stream_compare</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@10949cb0_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/stream_compare</xilinx:tag>
-      </xilinx:tags>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2019.2</xilinx:xilinxVersion>
