@@ -4,7 +4,6 @@ proc init_gui { IPINST } {
   #Adding Page
   set Page_0 [ipgui::add_page $IPINST -name "Page 0"]
   ipgui::add_param $IPINST -name "NFANOUT" -parent ${Page_0}
-  ipgui::add_param $IPINST -name "NRESYNC" -parent ${Page_0}
   ipgui::add_param $IPINST -name "INVERT" -parent ${Page_0}
   ipgui::add_param $IPINST -name "RESYNCCLEANUP" -parent ${Page_0}
   ipgui::add_param $IPINST -name "DEBUG" -parent ${Page_0}
@@ -68,15 +67,6 @@ proc validate_PARAM_VALUE.NFANOUT { PARAM_VALUE.NFANOUT } {
 	return true
 }
 
-proc update_PARAM_VALUE.NRESYNC { PARAM_VALUE.NRESYNC } {
-	# Procedure called to update NRESYNC when any of the dependent parameters in the arguments change
-}
-
-proc validate_PARAM_VALUE.NRESYNC { PARAM_VALUE.NRESYNC } {
-	# Procedure called to validate NRESYNC
-	return true
-}
-
 proc update_PARAM_VALUE.N_REG { PARAM_VALUE.N_REG } {
 	# Procedure called to update N_REG when any of the dependent parameters in the arguments change
 }
@@ -104,11 +94,6 @@ proc update_MODELPARAM_VALUE.INCLUDE_SYNCHRONIZER { MODELPARAM_VALUE.INCLUDE_SYN
 proc update_MODELPARAM_VALUE.NFANOUT { MODELPARAM_VALUE.NFANOUT PARAM_VALUE.NFANOUT } {
 	# Procedure called to set VHDL generic/Verilog parameter value(s) based on TCL parameter value
 	set_property value [get_property value ${PARAM_VALUE.NFANOUT}] ${MODELPARAM_VALUE.NFANOUT}
-}
-
-proc update_MODELPARAM_VALUE.NRESYNC { MODELPARAM_VALUE.NRESYNC PARAM_VALUE.NRESYNC } {
-	# Procedure called to set VHDL generic/Verilog parameter value(s) based on TCL parameter value
-	set_property value [get_property value ${PARAM_VALUE.NRESYNC}] ${MODELPARAM_VALUE.NRESYNC}
 }
 
 proc update_MODELPARAM_VALUE.INVERT { MODELPARAM_VALUE.INVERT PARAM_VALUE.INVERT } {
