@@ -2310,7 +2310,7 @@
         <spirit:wire>
           <spirit:direction>in</spirit:direction>
           <spirit:vector>
-            <spirit:left spirit:format="long" spirit:resolve="dependent" spirit:dependency="(spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) - 1)">11</spirit:left>
+            <spirit:left spirit:format="long" spirit:resolve="dependent" spirit:dependency="(spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) * (1 - spirit:decode(id(&apos;MODELPARAM_VALUE.UNIFIED_STREAMS&apos;))) + spirit:decode(id(&apos;MODELPARAM_VALUE.UNIFIED_STREAMS&apos;)) - 1)">11</spirit:left>
             <spirit:right spirit:format="long">0</spirit:right>
           </spirit:vector>
           <spirit:wireTypeDefs>
@@ -2327,7 +2327,7 @@
         <spirit:wire>
           <spirit:direction>out</spirit:direction>
           <spirit:vector>
-            <spirit:left spirit:format="long" spirit:resolve="dependent" spirit:dependency="(spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) - 1)">11</spirit:left>
+            <spirit:left spirit:format="long" spirit:resolve="dependent" spirit:dependency="(spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) * (1 - spirit:decode(id(&apos;MODELPARAM_VALUE.UNIFIED_STREAMS&apos;))) + spirit:decode(id(&apos;MODELPARAM_VALUE.UNIFIED_STREAMS&apos;)) - 1)">11</spirit:left>
             <spirit:right spirit:format="long">0</spirit:right>
           </spirit:vector>
           <spirit:wireTypeDefs>
@@ -2364,7 +2364,7 @@
         <spirit:wire>
           <spirit:direction>out</spirit:direction>
           <spirit:vector>
-            <spirit:left spirit:format="long" spirit:resolve="dependent" spirit:dependency="(spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) - 1)">11</spirit:left>
+            <spirit:left spirit:format="long" spirit:resolve="dependent" spirit:dependency="(spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) * (1 - spirit:decode(id(&apos;MODELPARAM_VALUE.UNIFIED_STREAMS&apos;))) + spirit:decode(id(&apos;MODELPARAM_VALUE.UNIFIED_STREAMS&apos;)) - 1)">11</spirit:left>
             <spirit:right spirit:format="long">0</spirit:right>
           </spirit:vector>
           <spirit:wireTypeDefs>
@@ -2381,7 +2381,7 @@
         <spirit:wire>
           <spirit:direction>in</spirit:direction>
           <spirit:vector>
-            <spirit:left spirit:format="long" spirit:resolve="dependent" spirit:dependency="(spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) - 1)">11</spirit:left>
+            <spirit:left spirit:format="long" spirit:resolve="dependent" spirit:dependency="(spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) * (1 - spirit:decode(id(&apos;MODELPARAM_VALUE.UNIFIED_STREAMS&apos;))) + spirit:decode(id(&apos;MODELPARAM_VALUE.UNIFIED_STREAMS&apos;)) - 1)">11</spirit:left>
             <spirit:right spirit:format="long">0</spirit:right>
           </spirit:vector>
           <spirit:wireTypeDefs>
@@ -2802,6 +2802,11 @@
         <spirit:displayName>Differential input/output</spirit:displayName>
         <spirit:value spirit:format="bool" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.DIFF_IO">true</spirit:value>
       </spirit:modelParameter>
+      <spirit:modelParameter spirit:dataType="integer">
+        <spirit:name>UNIFIED_STREAMS</spirit:name>
+        <spirit:displayName>UNIFIED AXIS streams</spirit:displayName>
+        <spirit:value spirit:format="bool" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.UNIFIED_STREAMS">false</spirit:value>
+      </spirit:modelParameter>
     </spirit:modelParameters>
   </spirit:model>
   <spirit:fileSets>
@@ -2987,7 +2992,7 @@
         <xilinx:xpmLibrary>XPM_FIFO</xilinx:xpmLibrary>
         <xilinx:xpmLibrary>XPM_MEMORY</xilinx:xpmLibrary>
       </xilinx:xpmLibraries>
-      <xilinx:coreRevision>13</xilinx:coreRevision>
+      <xilinx:coreRevision>14</xilinx:coreRevision>
       <xilinx:coreCreationDateTime>2021-08-19T21:22:09Z</xilinx:coreCreationDateTime>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>

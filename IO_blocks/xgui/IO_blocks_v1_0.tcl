@@ -166,3 +166,8 @@ proc update_MODELPARAM_VALUE.DIFF_IO { MODELPARAM_VALUE.DIFF_IO PARAM_VALUE.DIFF
 	set_property value [get_property value ${PARAM_VALUE.DIFF_IO}] ${MODELPARAM_VALUE.DIFF_IO}
 }
 
+proc update_MODELPARAM_VALUE.UNIFIED_STREAMS { MODELPARAM_VALUE.UNIFIED_STREAMS PARAM_VALUE.UNIFIED_STREAMS } {
+	# Procedure called to set VHDL generic/Verilog parameter value(s) based on TCL parameter value
+	set_property value [get_property value ${PARAM_VALUE.UNIFIED_STREAMS}] ${MODELPARAM_VALUE.UNIFIED_STREAMS}
+}
+
