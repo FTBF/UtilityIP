@@ -20,7 +20,7 @@ class UHALXMLProducer(UHALXMLProducerBase):
         try:
             new_label = self.getProperty(fragment, 'label')
         except(KeyError):
-            new_label = target_label
+            new_label = "_".join([target_label, target_intf])
 
         targetFragment = self.getModule(target_label)
         
