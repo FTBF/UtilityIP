@@ -24,7 +24,8 @@ module IO_blocks#(
     parameter integer NLINKS = 12,
     parameter integer WORD_PER_LINK = 4,
 	parameter integer DRIVE_ENABLED = 1,
-	parameter OUTPUT_STREAMS_ENABLE = 1
+	parameter OUTPUT_STREAMS_ENABLE = 1,
+	parameter logic [NLINKS-1:0] INVERT = '0
     )
     (
     input logic in_clk160,
@@ -65,6 +66,23 @@ module IO_blocks#(
 	input logic in_tvalid_13,
 	input logic in_tvalid_14,
 	input logic in_tvalid_15,
+
+	output logic in_tready_00,
+	output logic in_tready_01,
+	output logic in_tready_02,
+	output logic in_tready_03,
+	output logic in_tready_04,
+	output logic in_tready_05,
+	output logic in_tready_06,
+	output logic in_tready_07,
+	output logic in_tready_08,
+	output logic in_tready_09,
+	output logic in_tready_10,
+	output logic in_tready_11,
+	output logic in_tready_12,
+	output logic in_tready_13,
+	output logic in_tready_14,
+	output logic in_tready_15,
 
 	output logic [7:0] out_tdata_00,
 	output logic [7:0] out_tdata_01,
@@ -195,6 +213,23 @@ module IO_blocks#(
 		                in_tvalid_07, in_tvalid_06, in_tvalid_05, in_tvalid_04,
 		                in_tvalid_03, in_tvalid_02, in_tvalid_01, in_tvalid_00};
 
+	assign in_tready_00 = 1'b1;
+	assign in_tready_01 = 1'b1;
+	assign in_tready_02 = 1'b1;
+	assign in_tready_03 = 1'b1;
+	assign in_tready_04 = 1'b1;
+	assign in_tready_05 = 1'b1;
+	assign in_tready_06 = 1'b1;
+	assign in_tready_07 = 1'b1;
+	assign in_tready_08 = 1'b1;
+	assign in_tready_09 = 1'b1;
+	assign in_tready_10 = 1'b1;
+	assign in_tready_11 = 1'b1;
+	assign in_tready_12 = 1'b1;
+	assign in_tready_13 = 1'b1;
+	assign in_tready_14 = 1'b1;
+	assign in_tready_15 = 1'b1;
+
 	assign out_tdata_00 = out_tdata[0];
 	assign out_tdata_01 = out_tdata[1];
 	assign out_tdata_02 = out_tdata[2];
@@ -244,7 +279,7 @@ module IO_blocks#(
 			) oserdes_inst (
 				.CLK(in_clk640),
 				.CLKDIV(in_clk160),
-				.D(in_tdata[i]),
+				.D(in_tdata[i] ^ INVERT[i]),
 				.T(~in_tvalid[i] || tristate_IOBUF[i]), // T = 1 means tristate, T = 0 means drive data to output
 				.OQ(DATA_OSERDES_to_IOBUFDS),
 				.T_OUT(TRISTATE_OSERDES_to_IOBUFDS),
@@ -303,7 +338,7 @@ module IO_blocks#(
 					.rstb(global_rstb_links && rstb_links[i])
 				);
 
-				assign out_tdata[i] = (bypass_IOBUF[i] ? bypass_out_data[i] : ISERDES_out[i]);
+				assign out_tdata[i] = (bypass_IOBUF[i] ? bypass_out_data[i] : ISERDES_out[i] ^ INVERT[i]);
 			end
         end
     endgenerate        
