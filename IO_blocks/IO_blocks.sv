@@ -52,6 +52,7 @@
 module IO_blocks#(
 		parameter INCLUDE_SYNCHRONIZER = 0,
 		parameter DIFF_IO = 1,
+		parameter UNIFIED_STREAMS = 0,
 		parameter C_S_AXI_DATA_WIDTH = 32,
 		parameter integer NLINKS = 12,
 		parameter integer WORD_PER_LINK = 4,
@@ -66,13 +67,13 @@ module IO_blocks#(
 
 		input logic IPIF_clk,
 
-		input  logic [NLINKS*8-1:0] in_tdata,
-		input  logic [NLINKS-1:0]   in_tvalid,
-		output logic [NLINKS-1:0]   in_tready,
+		input  logic [NLINKS*8-1:0]                                     in_tdata,
+		input  logic [NLINKS*(1-UNIFIED_STREAMS)+UNIFIED_STREAMS-1:0]   in_tvalid,
+		output logic [NLINKS*(1-UNIFIED_STREAMS)+UNIFIED_STREAMS-1:0]   in_tready,
 
-		output logic [NLINKS*8-1:0] out_tdata,
-		output logic [NLINKS-1:0]   out_tvalid,
-		input  logic [NLINKS-1:0]   out_tready,
+		output logic [NLINKS*8-1:0]                                     out_tdata,
+		output logic [NLINKS*(1-UNIFIED_STREAMS)+UNIFIED_STREAMS-1:0]   out_tvalid,
+		input  logic [NLINKS*(1-UNIFIED_STREAMS)+UNIFIED_STREAMS-1:0]   out_tready,
 
 		inout logic [NLINKS-1:0] D_IN_OUT,
 		inout logic [NLINKS-1:0] D_IN_OUT_P,
@@ -202,6 +203,7 @@ module IO_blocks#(
 	assign IPIF_ip2bus_error = 0;
 
 	logic [7:0] in_tdata_i [15:0];
+	logic       in_tvalid_i [15:0];
 	logic [7:0] out_tdata_i [15:0];
 	logic [7:0] ISERDES_out [15:0];
 	logic [7:0] bypass_in_data [15:0];
@@ -217,6 +219,7 @@ module IO_blocks#(
 	genvar i;
 		for (i = 0; i < NLINKS; i += 1)
 		begin : ioblocks
+			assign in_tvalid_i[i] = (UNIFIED_STREAMS ? in_tvalid[0] : in_tvalid[i]);
 			assign in_tdata_i[i] = in_tdata[(8*(i+1))-1:8*i];
 			assign out_tdata[(8*(i+1))-1:8*i] = out_tdata_i[i];
 
@@ -230,8 +233,8 @@ module IO_blocks#(
 			) oserdes_inst (
 				.CLK(in_clk640),
 				.CLKDIV(in_clk160),
-				.D(in_tdata[i] ^ INVERT[i] ^ params_to_IP.links[i].invert),
-				.T(~in_tvalid[i] || params_to_IP.links[i].tristate_IObuf), // T = 1 means tristate, T = 0 means drive data to output
+				.D((INVERT[i] ^ params_to_IP.links[i].invert) ? ~in_tdata_i[i] : in_tdata_i[i]),
+				.T(~in_tvalid_i[i] || params_to_IP.links[i].tristate_IObuf), // T = 1 means tristate, T = 0 means drive data to output
 				.OQ(DATA_OSERDES_to_IOBUFDS),
 				.T_OUT(TRISTATE_OSERDES_to_IOBUFDS),
 				.RST(params_to_IP.global_resetn && params_to_IP.links[i].link_resetn)
@@ -320,7 +323,11 @@ module IO_blocks#(
 					.rstb(params_to_IP.global_resetn && params_to_IP.links[i].link_resetn)
 				);
 
-				assign out_tdata[i] = (params_to_IP.links[i].bypass_IObuf ? bypass_out_data[i] : ISERDES_out[i] ^ INVERT[i] ^ params_to_IP.links[i].invert);
+				assign out_tdata_i[i] = (params_to_IP.links[i].bypass_IObuf ?
+				                         bypass_out_data[i] : 
+				                         ((INVERT[i] ^ params_to_IP.links[i].invert) ?
+				                          ~ISERDES_out[i] :
+				                          ISERDES_out[i]));
 			end
 		end
 	endgenerate
@@ -338,7 +345,7 @@ module IO_blocks#(
 	// roughly mimics OSERDES, which registers the input data)
 	always @(posedge in_clk160) begin
 		for (int i = 0; i < NLINKS; i = i + 1) begin
-			bypass_in_data[i] <= in_tdata[i];
+			bypass_in_data[i] <= in_tdata_i[i];
 		end
 	end
 
