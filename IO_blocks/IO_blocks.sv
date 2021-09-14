@@ -182,7 +182,8 @@ module IO_blocks#(
 		// Register 1
 		logic [32-1:0] bit_counter;
 		// Register 0
-		logic [7-1:0] padding0;
+		logic [6-1:0] padding0;
+		logic invert;
 		logic [9-1:0] delay_offset;
 		logic [9-1:0] delay_in;
 		logic latch_counters;
@@ -354,7 +355,7 @@ module IO_blocks#(
 			) oserdes_inst (
 				.CLK(in_clk640),
 				.CLKDIV(in_clk160),
-				.D(in_tdata[i] ^ INVERT[i]),
+				.D(in_tdata[i] ^ INVERT[i] ^ params_to_IP.links[i].invert),
 				.T(~in_tvalid[i] || params_to_IP.links[i].tristate_IObuf), // T = 1 means tristate, T = 0 means drive data to output
 				.OQ(DATA_OSERDES_to_IOBUFDS),
 				.T_OUT(TRISTATE_OSERDES_to_IOBUFDS),
@@ -419,7 +420,7 @@ module IO_blocks#(
 					.rstb(params_to_IP.global_resetn && params_to_IP.links[i].link_resetn)
 				);
 
-				assign out_tdata[i] = (params_to_IP.links[i].bypass_IObuf ? bypass_out_data[i] : ISERDES_out[i] ^ INVERT[i]);
+				assign out_tdata[i] = (params_to_IP.links[i].bypass_IObuf ? bypass_out_data[i] : ISERDES_out[i] ^ INVERT[i] ^ params_to_IP.links[i].invert);
 			end
 		end
 	endgenerate
