@@ -20,7 +20,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module IPIF_parameterDecode#(
+module stream_compare_IPIF_parameterDecode #(
         parameter integer C_S_AXI_DATA_WIDTH = 32,
         parameter integer N_REG = 2,
         parameter [N_REG-1:0] W_PULSE_REG = '0,

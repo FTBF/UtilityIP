@@ -48,7 +48,7 @@ module stream_compare #(
     param_t params_in;
     param_t params_out;
     
-    IPIF_parameterDecode#(
+    stream_compare_IPIF_parameterDecode#(
         .C_S_AXI_DATA_WIDTH(C_S_AXI_DATA_WIDTH),
         .N_REG(N_REG),
         .PARAM_T(param_t),
