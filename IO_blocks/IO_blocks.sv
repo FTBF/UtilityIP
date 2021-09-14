@@ -51,6 +51,7 @@
 
 module IO_blocks#(
 		parameter INCLUDE_SYNCHRONIZER = 0,
+		parameter DIFF_IO = 1,
 		parameter C_S_AXI_DATA_WIDTH = 32,
 		parameter integer NLINKS = 12,
 		parameter integer WORD_PER_LINK = 4,
@@ -65,93 +66,25 @@ module IO_blocks#(
 
 		input logic IPIF_clk,
 
-		input logic [7:0] in_tdata_00,
-		input logic [7:0] in_tdata_01,
-		input logic [7:0] in_tdata_02,
-		input logic [7:0] in_tdata_03,
-		input logic [7:0] in_tdata_04,
-		input logic [7:0] in_tdata_05,
-		input logic [7:0] in_tdata_06,
-		input logic [7:0] in_tdata_07,
-		input logic [7:0] in_tdata_08,
-		input logic [7:0] in_tdata_09,
-		input logic [7:0] in_tdata_10,
-		input logic [7:0] in_tdata_11,
-		input logic [7:0] in_tdata_12,
-		input logic [7:0] in_tdata_13,
-		input logic [7:0] in_tdata_14,
-		input logic [7:0] in_tdata_15,
+		input  logic [NLINKS*8-1:0] in_tdata,
+		input  logic [NLINKS-1:0]   in_tvalid,
+		output logic [NLINKS-1:0]   in_tready,
 
-		input logic in_tvalid_00,
-		input logic in_tvalid_01,
-		input logic in_tvalid_02,
-		input logic in_tvalid_03,
-		input logic in_tvalid_04,
-		input logic in_tvalid_05,
-		input logic in_tvalid_06,
-		input logic in_tvalid_07,
-		input logic in_tvalid_08,
-		input logic in_tvalid_09,
-		input logic in_tvalid_10,
-		input logic in_tvalid_11,
-		input logic in_tvalid_12,
-		input logic in_tvalid_13,
-		input logic in_tvalid_14,
-		input logic in_tvalid_15,
+		output logic [NLINKS*8-1:0] out_tdata,
+		output logic [NLINKS-1:0]   out_tvalid,
+		input  logic [NLINKS-1:0]   out_tready,
 
-		output logic in_tready_00,
-		output logic in_tready_01,
-		output logic in_tready_02,
-		output logic in_tready_03,
-		output logic in_tready_04,
-		output logic in_tready_05,
-		output logic in_tready_06,
-		output logic in_tready_07,
-		output logic in_tready_08,
-		output logic in_tready_09,
-		output logic in_tready_10,
-		output logic in_tready_11,
-		output logic in_tready_12,
-		output logic in_tready_13,
-		output logic in_tready_14,
-		output logic in_tready_15,
+		inout logic [NLINKS-1:0] D_IN_OUT,
+		inout logic [NLINKS-1:0] D_IN_OUT_P,
+		inout logic [NLINKS-1:0] D_IN_OUT_N,
 
-		output logic [7:0] out_tdata_00,
-		output logic [7:0] out_tdata_01,
-		output logic [7:0] out_tdata_02,
-		output logic [7:0] out_tdata_03,
-		output logic [7:0] out_tdata_04,
-		output logic [7:0] out_tdata_05,
-		output logic [7:0] out_tdata_06,
-		output logic [7:0] out_tdata_07,
-		output logic [7:0] out_tdata_08,
-		output logic [7:0] out_tdata_09,
-		output logic [7:0] out_tdata_10,
-		output logic [7:0] out_tdata_11,
-		output logic [7:0] out_tdata_12,
-		output logic [7:0] out_tdata_13,
-		output logic [7:0] out_tdata_14,
-		output logic [7:0] out_tdata_15,
+		input logic [NLINKS-1:0] D_IN,
+		input logic [NLINKS-1:0] D_IN_P,
+		input logic [NLINKS-1:0] D_IN_N,
 
-		output logic out_tvalid_00,
-		output logic out_tvalid_01,
-		output logic out_tvalid_02,
-		output logic out_tvalid_03,
-		output logic out_tvalid_04,
-		output logic out_tvalid_05,
-		output logic out_tvalid_06,
-		output logic out_tvalid_07,
-		output logic out_tvalid_08,
-		output logic out_tvalid_09,
-		output logic out_tvalid_10,
-		output logic out_tvalid_11,
-		output logic out_tvalid_12,
-		output logic out_tvalid_13,
-		output logic out_tvalid_14,
-		output logic out_tvalid_15,
-
-		inout logic [NLINKS-1:0]  D_IN_OUT_P,
-		inout logic [NLINKS-1:0]  D_IN_OUT_N,
+		output logic [NLINKS-1:0] D_OUT,
+		output logic [NLINKS-1:0] D_OUT_P,
+		output logic [NLINKS-1:0] D_OUT_N,
 
 		//ipif configuration interface ports
 		input logic [31:0] IPIF_bus2ip_addr,  //unused
@@ -268,74 +201,14 @@ module IO_blocks#(
 	//ground unused error port
 	assign IPIF_ip2bus_error = 0;
 
-	logic [7:0] in_tdata [15:0];
-	logic in_tvalid [15:0];
-	logic [7:0] out_tdata [15:0];
+	logic [7:0] in_tdata_i [15:0];
+	logic [7:0] out_tdata_i [15:0];
 	logic [7:0] ISERDES_out [15:0];
 	logic [7:0] bypass_in_data [15:0];
 	logic [7:0] bypass_out_data [15:0];
-	logic out_tvalid [15:0];
 
-	assign in_tdata = {in_tdata_15, in_tdata_14, in_tdata_13, in_tdata_12,
-	                   in_tdata_11, in_tdata_10, in_tdata_09, in_tdata_08,
-	                   in_tdata_07, in_tdata_06, in_tdata_05, in_tdata_04,
-	                   in_tdata_03, in_tdata_02, in_tdata_01, in_tdata_00};
-
-	assign in_tvalid = {in_tvalid_15, in_tvalid_14, in_tvalid_13, in_tvalid_12,
-	                    in_tvalid_11, in_tvalid_10, in_tvalid_09, in_tvalid_08,
-	                    in_tvalid_07, in_tvalid_06, in_tvalid_05, in_tvalid_04,
-	                    in_tvalid_03, in_tvalid_02, in_tvalid_01, in_tvalid_00};
-
-	assign in_tready_00 = 1'b1;
-	assign in_tready_01 = 1'b1;
-	assign in_tready_02 = 1'b1;
-	assign in_tready_03 = 1'b1;
-	assign in_tready_04 = 1'b1;
-	assign in_tready_05 = 1'b1;
-	assign in_tready_06 = 1'b1;
-	assign in_tready_07 = 1'b1;
-	assign in_tready_08 = 1'b1;
-	assign in_tready_09 = 1'b1;
-	assign in_tready_10 = 1'b1;
-	assign in_tready_11 = 1'b1;
-	assign in_tready_12 = 1'b1;
-	assign in_tready_13 = 1'b1;
-	assign in_tready_14 = 1'b1;
-	assign in_tready_15 = 1'b1;
-
-	assign out_tdata_00 = out_tdata[0];
-	assign out_tdata_01 = out_tdata[1];
-	assign out_tdata_02 = out_tdata[2];
-	assign out_tdata_03 = out_tdata[3];
-	assign out_tdata_04 = out_tdata[4];
-	assign out_tdata_05 = out_tdata[5];
-	assign out_tdata_06 = out_tdata[6];
-	assign out_tdata_07 = out_tdata[7];
-	assign out_tdata_08 = out_tdata[8];
-	assign out_tdata_09 = out_tdata[9];
-	assign out_tdata_10 = out_tdata[10];
-	assign out_tdata_11 = out_tdata[11];
-	assign out_tdata_12 = out_tdata[12];
-	assign out_tdata_13 = out_tdata[13];
-	assign out_tdata_14 = out_tdata[14];
-	assign out_tdata_15 = out_tdata[15];
-
-	assign out_tvalid_00 = 1'b1;
-	assign out_tvalid_01 = 1'b1;
-	assign out_tvalid_02 = 1'b1;
-	assign out_tvalid_03 = 1'b1;
-	assign out_tvalid_04 = 1'b1;
-	assign out_tvalid_05 = 1'b1;
-	assign out_tvalid_06 = 1'b1;
-	assign out_tvalid_07 = 1'b1;
-	assign out_tvalid_08 = 1'b1;
-	assign out_tvalid_09 = 1'b1;
-	assign out_tvalid_10 = 1'b1;
-	assign out_tvalid_11 = 1'b1;
-	assign out_tvalid_12 = 1'b1;
-	assign out_tvalid_13 = 1'b1;
-	assign out_tvalid_14 = 1'b1;
-	assign out_tvalid_15 = 1'b1;
+	assign in_tready = '1;
+	assign out_tvalid = '1;
 
 	logic [32-1:0] error_counter [NLINKS-1:0];
 	logic [32-1:0] bit_counter [NLINKS-1:0];
@@ -344,6 +217,8 @@ module IO_blocks#(
 	genvar i;
 		for (i = 0; i < NLINKS; i += 1)
 		begin : ioblocks
+			assign in_tdata_i[i] = in_tdata[(8*(i+1))-1:8*i];
+			assign out_tdata[(8*(i+1))-1:8*i] = out_tdata_i[i];
 
 			logic IOBUFDS_to_ISERDES_P, IOBUFDS_to_ISERDES_N;
 			logic DATA_OSERDES_to_IOBUFDS, TRISTATE_OSERDES_to_IOBUFDS;
@@ -365,22 +240,46 @@ module IO_blocks#(
 			if ((DRIVE_ENABLED == 1) && (OUTPUT_STREAMS_ENABLE == 1)) begin
 				// Both FPGA->pin and pin->FPGA are enabled
 				// Use an IOBUF
-				IOBUFDS_DIFF_OUT diff_buf(.IO(D_IN_OUT_P[i]), .IOB(D_IN_OUT_N[i]),
-				                          .I(DATA_OSERDES_to_IOBUFDS),
-				                          .O(IOBUFDS_to_ISERDES_P), .OB(IOBUFDS_to_ISERDES_N),
-				                          .TM(TRISTATE_OSERDES_to_IOBUFDS),
-				                          .TS(TRISTATE_OSERDES_to_IOBUFDS));
+				if (DIFF_IO == 1) begin
+					IOBUFDS_DIFF_OUT diff_buf(
+						.IO(D_IN_OUT_P[i]), .IOB(D_IN_OUT_N[i]),
+						.I(DATA_OSERDES_to_IOBUFDS),
+						.O(IOBUFDS_to_ISERDES_P), .OB(IOBUFDS_to_ISERDES_N),
+						.TM(TRISTATE_OSERDES_to_IOBUFDS),
+						.TS(TRISTATE_OSERDES_to_IOBUFDS));
+				end else begin
+					IOBUF buf_inst (
+						.IO(D_IN_OUT[i]),
+						.I(DATA_OSERDES_to_IOBUFDS),
+						.O(IOBUFDS_to_ISERDES_P),
+						.T(TRISTATE_OSERDES_to_IOBUFDS));
+				end
 			end else if ((DRIVE_ENABLED == 1) && (OUTPUT_STREAMS_ENABLE == 0)) begin
 				// FPGA->pin is enabled, but pin->FPGA is disabled
 				// Use an OBUF
-				OBUFTDS diff_buf(.O(D_IN_OUT_P[i]), .OB(D_IN_OUT_N[i]),
-				                 .I(DATA_OSERDES_to_IOBUFDS),
-				                 .T(TRISTATE_OSERDES_to_IOBUFDS));
+				if (DIFF_IO == 1) begin
+					OBUFTDS diff_buf(
+						.O(D_OUT_P[i]), .OB(D_OUT_N[i]),
+						.I(DATA_OSERDES_to_IOBUFDS),
+						.T(TRISTATE_OSERDES_to_IOBUFDS));
+				end else begin
+					OBUFT buf_inst (
+						.O(D_OUT[i]),
+						.I(DATA_OSERDES_to_IOBUFDS),
+						.T(TRISTATE_OSERDES_to_IOBUFDS));
+				end
 			end else if ((DRIVE_ENABLED == 0) && (OUTPUT_STREAMS_ENABLE == 1)) begin
 				// FPGA->pin is disabled, but pin->FPGA is enabled
 				// Use an IBUF
-				IBUFDS_DIFF_OUT diff_buf(.I(D_IN_OUT_P[i]), .IB(D_IN_OUT_N[i]),
-				                         .O(IOBUFDS_to_ISERDES_P), .OB(IOBUFDS_to_ISERDES_N));
+				if (DIFF_IO == 1) begin
+					IBUFDS_DIFF_OUT diff_buf(
+						.I(D_IN_P[i]), .IB(D_IN_N[i]),
+						.O(IOBUFDS_to_ISERDES_P), .OB(IOBUFDS_to_ISERDES_N));
+				end else begin
+					IBUF buf_inst (
+						.I(D_IN[i]),
+						.O(IOBUFDS_to_ISERDES_P));
+				end
 			end else if ((DRIVE_ENABLED == 0) && (OUTPUT_STREAMS_ENABLE == 0)) begin
 				// FPGA->pin and pin->FPGA are both disabled
 				// This is useless and silly and shouldn't ever be done, so
@@ -390,6 +289,7 @@ module IO_blocks#(
 			if (OUTPUT_STREAMS_ENABLE) begin
 				input_blocks #(
 					.DELAY_INIT(0),
+					.DIFF_IO(DIFF_IO),
 					.COUNTER_WIDTH(32)
 				) sigmon (
 					.clk640(in_clk640),
@@ -450,6 +350,7 @@ module IO_blocks#(
 		end
 	end
 
+	// Latching of the counters
 	always_ff @(posedge in_clk160) begin
 		for (int i = 0; i < NLINKS; i += 1) begin
 			if   (params_to_IP.global_counter_reset ||

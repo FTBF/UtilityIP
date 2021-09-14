@@ -110,6 +110,57 @@
       </spirit:portMaps>
     </spirit:busInterface>
     <spirit:busInterface>
+      <spirit:name>in_AXIS</spirit:name>
+      <spirit:busType spirit:vendor="xilinx.com" spirit:library="interface" spirit:name="axis" spirit:version="1.0"/>
+      <spirit:abstractionType spirit:vendor="xilinx.com" spirit:library="interface" spirit:name="axis_rtl" spirit:version="1.0"/>
+      <spirit:slave/>
+      <spirit:portMaps>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>TDATA</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>in_tdata</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long" spirit:resolve="dependent" spirit:dependency="((spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) * 8) - 1)">95</spirit:left>
+              <spirit:right spirit:format="long">0</spirit:right>
+            </spirit:vector>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>TVALID</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>in_tvalid</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">0</spirit:left>
+              <spirit:right spirit:format="long">0</spirit:right>
+            </spirit:vector>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>TREADY</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>in_tready</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">0</spirit:left>
+              <spirit:right spirit:format="long">0</spirit:right>
+            </spirit:vector>
+          </spirit:physicalPort>
+        </spirit:portMap>
+      </spirit:portMaps>
+      <spirit:vendorExtensions>
+        <xilinx:busInterfaceInfo>
+          <xilinx:enablement>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.in_AXIS" xilinx:dependency="$INPUT_STREAMS_ENABLE and $UNIFIED_STREAMS">false</xilinx:isEnabled>
+          </xilinx:enablement>
+        </xilinx:busInterfaceInfo>
+      </spirit:vendorExtensions>
+    </spirit:busInterface>
+    <spirit:busInterface>
       <spirit:name>in_00</spirit:name>
       <spirit:busType spirit:vendor="xilinx.com" spirit:library="interface" spirit:name="axis" spirit:version="1.0"/>
       <spirit:abstractionType spirit:vendor="xilinx.com" spirit:library="interface" spirit:name="axis_rtl" spirit:version="1.0"/>
@@ -120,7 +171,11 @@
             <spirit:name>TDATA</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>in_tdata_00</spirit:name>
+            <spirit:name>in_tdata</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">7</spirit:left>
+              <spirit:right spirit:format="long">0</spirit:right>
+            </spirit:vector>
           </spirit:physicalPort>
         </spirit:portMap>
         <spirit:portMap>
@@ -128,7 +183,11 @@
             <spirit:name>TVALID</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>in_tvalid_00</spirit:name>
+            <spirit:name>in_tvalid</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">0</spirit:left>
+              <spirit:right spirit:format="long">0</spirit:right>
+            </spirit:vector>
           </spirit:physicalPort>
         </spirit:portMap>
         <spirit:portMap>
@@ -136,14 +195,18 @@
             <spirit:name>TREADY</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>in_tready_00</spirit:name>
+            <spirit:name>in_tready</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">0</spirit:left>
+              <spirit:right spirit:format="long">0</spirit:right>
+            </spirit:vector>
           </spirit:physicalPort>
         </spirit:portMap>
       </spirit:portMaps>
       <spirit:vendorExtensions>
         <xilinx:busInterfaceInfo>
           <xilinx:enablement>
-            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.in_00" xilinx:dependency="$INPUT_STREAMS_ENABLE">true</xilinx:isEnabled>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.in_00" xilinx:dependency="$INPUT_STREAMS_ENABLE and !$UNIFIED_STREAMS">true</xilinx:isEnabled>
           </xilinx:enablement>
         </xilinx:busInterfaceInfo>
       </spirit:vendorExtensions>
@@ -159,7 +222,11 @@
             <spirit:name>TDATA</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>in_tdata_01</spirit:name>
+            <spirit:name>in_tdata</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">15</spirit:left>
+              <spirit:right spirit:format="long">8</spirit:right>
+            </spirit:vector>
           </spirit:physicalPort>
         </spirit:portMap>
         <spirit:portMap>
@@ -167,7 +234,11 @@
             <spirit:name>TVALID</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>in_tvalid_01</spirit:name>
+            <spirit:name>in_tvalid</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">1</spirit:left>
+              <spirit:right spirit:format="long">1</spirit:right>
+            </spirit:vector>
           </spirit:physicalPort>
         </spirit:portMap>
         <spirit:portMap>
@@ -175,14 +246,18 @@
             <spirit:name>TREADY</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>in_tready_01</spirit:name>
+            <spirit:name>in_tready</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">1</spirit:left>
+              <spirit:right spirit:format="long">1</spirit:right>
+            </spirit:vector>
           </spirit:physicalPort>
         </spirit:portMap>
       </spirit:portMaps>
       <spirit:vendorExtensions>
         <xilinx:busInterfaceInfo>
           <xilinx:enablement>
-            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.in_01" xilinx:dependency="$INPUT_STREAMS_ENABLE and (spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 1)">true</xilinx:isEnabled>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.in_01" xilinx:dependency="$INPUT_STREAMS_ENABLE and !$UNIFIED_STREAMS and (spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 1)">true</xilinx:isEnabled>
           </xilinx:enablement>
         </xilinx:busInterfaceInfo>
       </spirit:vendorExtensions>
@@ -198,7 +273,11 @@
             <spirit:name>TDATA</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>in_tdata_02</spirit:name>
+            <spirit:name>in_tdata</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">23</spirit:left>
+              <spirit:right spirit:format="long">16</spirit:right>
+            </spirit:vector>
           </spirit:physicalPort>
         </spirit:portMap>
         <spirit:portMap>
@@ -206,7 +285,11 @@
             <spirit:name>TVALID</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>in_tvalid_02</spirit:name>
+            <spirit:name>in_tvalid</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">2</spirit:left>
+              <spirit:right spirit:format="long">2</spirit:right>
+            </spirit:vector>
           </spirit:physicalPort>
         </spirit:portMap>
         <spirit:portMap>
@@ -214,14 +297,18 @@
             <spirit:name>TREADY</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>in_tready_02</spirit:name>
+            <spirit:name>in_tready</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">2</spirit:left>
+              <spirit:right spirit:format="long">2</spirit:right>
+            </spirit:vector>
           </spirit:physicalPort>
         </spirit:portMap>
       </spirit:portMaps>
       <spirit:vendorExtensions>
         <xilinx:busInterfaceInfo>
           <xilinx:enablement>
-            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.in_02" xilinx:dependency="$INPUT_STREAMS_ENABLE and (spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 2)">true</xilinx:isEnabled>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.in_02" xilinx:dependency="$INPUT_STREAMS_ENABLE and !$UNIFIED_STREAMS and (spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 2)">true</xilinx:isEnabled>
           </xilinx:enablement>
         </xilinx:busInterfaceInfo>
       </spirit:vendorExtensions>
@@ -237,7 +324,11 @@
             <spirit:name>TDATA</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>in_tdata_03</spirit:name>
+            <spirit:name>in_tdata</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">31</spirit:left>
+              <spirit:right spirit:format="long">24</spirit:right>
+            </spirit:vector>
           </spirit:physicalPort>
         </spirit:portMap>
         <spirit:portMap>
@@ -245,7 +336,11 @@
             <spirit:name>TVALID</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>in_tvalid_03</spirit:name>
+            <spirit:name>in_tvalid</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">3</spirit:left>
+              <spirit:right spirit:format="long">3</spirit:right>
+            </spirit:vector>
           </spirit:physicalPort>
         </spirit:portMap>
         <spirit:portMap>
@@ -253,14 +348,18 @@
             <spirit:name>TREADY</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>in_tready_03</spirit:name>
+            <spirit:name>in_tready</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">3</spirit:left>
+              <spirit:right spirit:format="long">3</spirit:right>
+            </spirit:vector>
           </spirit:physicalPort>
         </spirit:portMap>
       </spirit:portMaps>
       <spirit:vendorExtensions>
         <xilinx:busInterfaceInfo>
           <xilinx:enablement>
-            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.in_03" xilinx:dependency="$INPUT_STREAMS_ENABLE and (spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 3)">true</xilinx:isEnabled>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.in_03" xilinx:dependency="$INPUT_STREAMS_ENABLE and !$UNIFIED_STREAMS and (spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 3)">true</xilinx:isEnabled>
           </xilinx:enablement>
         </xilinx:busInterfaceInfo>
       </spirit:vendorExtensions>
@@ -276,7 +375,11 @@
             <spirit:name>TDATA</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>in_tdata_04</spirit:name>
+            <spirit:name>in_tdata</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">39</spirit:left>
+              <spirit:right spirit:format="long">32</spirit:right>
+            </spirit:vector>
           </spirit:physicalPort>
         </spirit:portMap>
         <spirit:portMap>
@@ -284,7 +387,11 @@
             <spirit:name>TVALID</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>in_tvalid_04</spirit:name>
+            <spirit:name>in_tvalid</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">4</spirit:left>
+              <spirit:right spirit:format="long">4</spirit:right>
+            </spirit:vector>
           </spirit:physicalPort>
         </spirit:portMap>
         <spirit:portMap>
@@ -292,14 +399,18 @@
             <spirit:name>TREADY</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>in_tready_04</spirit:name>
+            <spirit:name>in_tready</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">4</spirit:left>
+              <spirit:right spirit:format="long">4</spirit:right>
+            </spirit:vector>
           </spirit:physicalPort>
         </spirit:portMap>
       </spirit:portMaps>
       <spirit:vendorExtensions>
         <xilinx:busInterfaceInfo>
           <xilinx:enablement>
-            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.in_04" xilinx:dependency="$INPUT_STREAMS_ENABLE and (spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 4)">true</xilinx:isEnabled>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.in_04" xilinx:dependency="$INPUT_STREAMS_ENABLE and !$UNIFIED_STREAMS and (spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 4)">true</xilinx:isEnabled>
           </xilinx:enablement>
         </xilinx:busInterfaceInfo>
       </spirit:vendorExtensions>
@@ -315,7 +426,11 @@
             <spirit:name>TDATA</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>in_tdata_05</spirit:name>
+            <spirit:name>in_tdata</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">47</spirit:left>
+              <spirit:right spirit:format="long">40</spirit:right>
+            </spirit:vector>
           </spirit:physicalPort>
         </spirit:portMap>
         <spirit:portMap>
@@ -323,7 +438,11 @@
             <spirit:name>TVALID</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>in_tvalid_05</spirit:name>
+            <spirit:name>in_tvalid</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">5</spirit:left>
+              <spirit:right spirit:format="long">5</spirit:right>
+            </spirit:vector>
           </spirit:physicalPort>
         </spirit:portMap>
         <spirit:portMap>
@@ -331,14 +450,18 @@
             <spirit:name>TREADY</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>in_tready_05</spirit:name>
+            <spirit:name>in_tready</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">5</spirit:left>
+              <spirit:right spirit:format="long">5</spirit:right>
+            </spirit:vector>
           </spirit:physicalPort>
         </spirit:portMap>
       </spirit:portMaps>
       <spirit:vendorExtensions>
         <xilinx:busInterfaceInfo>
           <xilinx:enablement>
-            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.in_05" xilinx:dependency="$INPUT_STREAMS_ENABLE and (spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 5)">true</xilinx:isEnabled>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.in_05" xilinx:dependency="$INPUT_STREAMS_ENABLE and !$UNIFIED_STREAMS and (spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 5)">true</xilinx:isEnabled>
           </xilinx:enablement>
         </xilinx:busInterfaceInfo>
       </spirit:vendorExtensions>
@@ -354,7 +477,11 @@
             <spirit:name>TDATA</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>in_tdata_06</spirit:name>
+            <spirit:name>in_tdata</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">55</spirit:left>
+              <spirit:right spirit:format="long">48</spirit:right>
+            </spirit:vector>
           </spirit:physicalPort>
         </spirit:portMap>
         <spirit:portMap>
@@ -362,7 +489,11 @@
             <spirit:name>TVALID</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>in_tvalid_06</spirit:name>
+            <spirit:name>in_tvalid</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">6</spirit:left>
+              <spirit:right spirit:format="long">6</spirit:right>
+            </spirit:vector>
           </spirit:physicalPort>
         </spirit:portMap>
         <spirit:portMap>
@@ -370,14 +501,18 @@
             <spirit:name>TREADY</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>in_tready_06</spirit:name>
+            <spirit:name>in_tready</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">6</spirit:left>
+              <spirit:right spirit:format="long">6</spirit:right>
+            </spirit:vector>
           </spirit:physicalPort>
         </spirit:portMap>
       </spirit:portMaps>
       <spirit:vendorExtensions>
         <xilinx:busInterfaceInfo>
           <xilinx:enablement>
-            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.in_06" xilinx:dependency="$INPUT_STREAMS_ENABLE and (spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 6)">true</xilinx:isEnabled>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.in_06" xilinx:dependency="$INPUT_STREAMS_ENABLE and !$UNIFIED_STREAMS and (spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 6)">true</xilinx:isEnabled>
           </xilinx:enablement>
         </xilinx:busInterfaceInfo>
       </spirit:vendorExtensions>
@@ -393,7 +528,11 @@
             <spirit:name>TDATA</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>in_tdata_07</spirit:name>
+            <spirit:name>in_tdata</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">63</spirit:left>
+              <spirit:right spirit:format="long">56</spirit:right>
+            </spirit:vector>
           </spirit:physicalPort>
         </spirit:portMap>
         <spirit:portMap>
@@ -401,7 +540,11 @@
             <spirit:name>TVALID</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>in_tvalid_07</spirit:name>
+            <spirit:name>in_tvalid</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">7</spirit:left>
+              <spirit:right spirit:format="long">7</spirit:right>
+            </spirit:vector>
           </spirit:physicalPort>
         </spirit:portMap>
         <spirit:portMap>
@@ -409,14 +552,18 @@
             <spirit:name>TREADY</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>in_tready_07</spirit:name>
+            <spirit:name>in_tready</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">7</spirit:left>
+              <spirit:right spirit:format="long">7</spirit:right>
+            </spirit:vector>
           </spirit:physicalPort>
         </spirit:portMap>
       </spirit:portMaps>
       <spirit:vendorExtensions>
         <xilinx:busInterfaceInfo>
           <xilinx:enablement>
-            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.in_07" xilinx:dependency="$INPUT_STREAMS_ENABLE and (spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 7)">true</xilinx:isEnabled>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.in_07" xilinx:dependency="$INPUT_STREAMS_ENABLE and !$UNIFIED_STREAMS and (spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 7)">true</xilinx:isEnabled>
           </xilinx:enablement>
         </xilinx:busInterfaceInfo>
       </spirit:vendorExtensions>
@@ -432,7 +579,11 @@
             <spirit:name>TDATA</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>in_tdata_08</spirit:name>
+            <spirit:name>in_tdata</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">71</spirit:left>
+              <spirit:right spirit:format="long">64</spirit:right>
+            </spirit:vector>
           </spirit:physicalPort>
         </spirit:portMap>
         <spirit:portMap>
@@ -440,7 +591,11 @@
             <spirit:name>TVALID</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>in_tvalid_08</spirit:name>
+            <spirit:name>in_tvalid</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">8</spirit:left>
+              <spirit:right spirit:format="long">8</spirit:right>
+            </spirit:vector>
           </spirit:physicalPort>
         </spirit:portMap>
         <spirit:portMap>
@@ -448,14 +603,18 @@
             <spirit:name>TREADY</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>in_tready_08</spirit:name>
+            <spirit:name>in_tready</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">8</spirit:left>
+              <spirit:right spirit:format="long">8</spirit:right>
+            </spirit:vector>
           </spirit:physicalPort>
         </spirit:portMap>
       </spirit:portMaps>
       <spirit:vendorExtensions>
         <xilinx:busInterfaceInfo>
           <xilinx:enablement>
-            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.in_08" xilinx:dependency="$INPUT_STREAMS_ENABLE and (spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 8)">true</xilinx:isEnabled>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.in_08" xilinx:dependency="$INPUT_STREAMS_ENABLE and !$UNIFIED_STREAMS and (spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 8)">true</xilinx:isEnabled>
           </xilinx:enablement>
         </xilinx:busInterfaceInfo>
       </spirit:vendorExtensions>
@@ -471,7 +630,11 @@
             <spirit:name>TDATA</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>in_tdata_09</spirit:name>
+            <spirit:name>in_tdata</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">79</spirit:left>
+              <spirit:right spirit:format="long">72</spirit:right>
+            </spirit:vector>
           </spirit:physicalPort>
         </spirit:portMap>
         <spirit:portMap>
@@ -479,7 +642,11 @@
             <spirit:name>TVALID</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>in_tvalid_09</spirit:name>
+            <spirit:name>in_tvalid</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">9</spirit:left>
+              <spirit:right spirit:format="long">9</spirit:right>
+            </spirit:vector>
           </spirit:physicalPort>
         </spirit:portMap>
         <spirit:portMap>
@@ -487,14 +654,18 @@
             <spirit:name>TREADY</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>in_tready_09</spirit:name>
+            <spirit:name>in_tready</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">9</spirit:left>
+              <spirit:right spirit:format="long">9</spirit:right>
+            </spirit:vector>
           </spirit:physicalPort>
         </spirit:portMap>
       </spirit:portMaps>
       <spirit:vendorExtensions>
         <xilinx:busInterfaceInfo>
           <xilinx:enablement>
-            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.in_09" xilinx:dependency="$INPUT_STREAMS_ENABLE and (spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 9)">true</xilinx:isEnabled>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.in_09" xilinx:dependency="$INPUT_STREAMS_ENABLE and !$UNIFIED_STREAMS and (spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 9)">true</xilinx:isEnabled>
           </xilinx:enablement>
         </xilinx:busInterfaceInfo>
       </spirit:vendorExtensions>
@@ -510,7 +681,11 @@
             <spirit:name>TDATA</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>in_tdata_10</spirit:name>
+            <spirit:name>in_tdata</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">87</spirit:left>
+              <spirit:right spirit:format="long">80</spirit:right>
+            </spirit:vector>
           </spirit:physicalPort>
         </spirit:portMap>
         <spirit:portMap>
@@ -518,7 +693,11 @@
             <spirit:name>TVALID</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>in_tvalid_10</spirit:name>
+            <spirit:name>in_tvalid</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">10</spirit:left>
+              <spirit:right spirit:format="long">10</spirit:right>
+            </spirit:vector>
           </spirit:physicalPort>
         </spirit:portMap>
         <spirit:portMap>
@@ -526,14 +705,18 @@
             <spirit:name>TREADY</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>in_tready_10</spirit:name>
+            <spirit:name>in_tready</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">10</spirit:left>
+              <spirit:right spirit:format="long">10</spirit:right>
+            </spirit:vector>
           </spirit:physicalPort>
         </spirit:portMap>
       </spirit:portMaps>
       <spirit:vendorExtensions>
         <xilinx:busInterfaceInfo>
           <xilinx:enablement>
-            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.in_10" xilinx:dependency="$INPUT_STREAMS_ENABLE and (spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 10)">true</xilinx:isEnabled>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.in_10" xilinx:dependency="$INPUT_STREAMS_ENABLE and !$UNIFIED_STREAMS and (spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 10)">true</xilinx:isEnabled>
           </xilinx:enablement>
         </xilinx:busInterfaceInfo>
       </spirit:vendorExtensions>
@@ -549,7 +732,11 @@
             <spirit:name>TDATA</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>in_tdata_11</spirit:name>
+            <spirit:name>in_tdata</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">95</spirit:left>
+              <spirit:right spirit:format="long">88</spirit:right>
+            </spirit:vector>
           </spirit:physicalPort>
         </spirit:portMap>
         <spirit:portMap>
@@ -557,7 +744,11 @@
             <spirit:name>TVALID</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>in_tvalid_11</spirit:name>
+            <spirit:name>in_tvalid</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">11</spirit:left>
+              <spirit:right spirit:format="long">11</spirit:right>
+            </spirit:vector>
           </spirit:physicalPort>
         </spirit:portMap>
         <spirit:portMap>
@@ -565,14 +756,18 @@
             <spirit:name>TREADY</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>in_tready_11</spirit:name>
+            <spirit:name>in_tready</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">11</spirit:left>
+              <spirit:right spirit:format="long">11</spirit:right>
+            </spirit:vector>
           </spirit:physicalPort>
         </spirit:portMap>
       </spirit:portMaps>
       <spirit:vendorExtensions>
         <xilinx:busInterfaceInfo>
           <xilinx:enablement>
-            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.in_11" xilinx:dependency="$INPUT_STREAMS_ENABLE and (spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 11)">true</xilinx:isEnabled>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.in_11" xilinx:dependency="$INPUT_STREAMS_ENABLE and !$UNIFIED_STREAMS and (spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 11)">true</xilinx:isEnabled>
           </xilinx:enablement>
         </xilinx:busInterfaceInfo>
       </spirit:vendorExtensions>
@@ -588,7 +783,11 @@
             <spirit:name>TDATA</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>in_tdata_12</spirit:name>
+            <spirit:name>in_tdata</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">103</spirit:left>
+              <spirit:right spirit:format="long">96</spirit:right>
+            </spirit:vector>
           </spirit:physicalPort>
         </spirit:portMap>
         <spirit:portMap>
@@ -596,7 +795,11 @@
             <spirit:name>TVALID</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>in_tvalid_12</spirit:name>
+            <spirit:name>in_tvalid</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">12</spirit:left>
+              <spirit:right spirit:format="long">12</spirit:right>
+            </spirit:vector>
           </spirit:physicalPort>
         </spirit:portMap>
         <spirit:portMap>
@@ -604,14 +807,18 @@
             <spirit:name>TREADY</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>in_tready_12</spirit:name>
+            <spirit:name>in_tready</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">12</spirit:left>
+              <spirit:right spirit:format="long">12</spirit:right>
+            </spirit:vector>
           </spirit:physicalPort>
         </spirit:portMap>
       </spirit:portMaps>
       <spirit:vendorExtensions>
         <xilinx:busInterfaceInfo>
           <xilinx:enablement>
-            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.in_12" xilinx:dependency="$INPUT_STREAMS_ENABLE and (spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 12)">false</xilinx:isEnabled>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.in_12" xilinx:dependency="$INPUT_STREAMS_ENABLE and !$UNIFIED_STREAMS and (spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 12)">false</xilinx:isEnabled>
           </xilinx:enablement>
         </xilinx:busInterfaceInfo>
       </spirit:vendorExtensions>
@@ -627,7 +834,11 @@
             <spirit:name>TDATA</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>in_tdata_13</spirit:name>
+            <spirit:name>in_tdata</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">111</spirit:left>
+              <spirit:right spirit:format="long">104</spirit:right>
+            </spirit:vector>
           </spirit:physicalPort>
         </spirit:portMap>
         <spirit:portMap>
@@ -635,7 +846,11 @@
             <spirit:name>TVALID</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>in_tvalid_13</spirit:name>
+            <spirit:name>in_tvalid</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">13</spirit:left>
+              <spirit:right spirit:format="long">13</spirit:right>
+            </spirit:vector>
           </spirit:physicalPort>
         </spirit:portMap>
         <spirit:portMap>
@@ -643,14 +858,18 @@
             <spirit:name>TREADY</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>in_tready_13</spirit:name>
+            <spirit:name>in_tready</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">13</spirit:left>
+              <spirit:right spirit:format="long">13</spirit:right>
+            </spirit:vector>
           </spirit:physicalPort>
         </spirit:portMap>
       </spirit:portMaps>
       <spirit:vendorExtensions>
         <xilinx:busInterfaceInfo>
           <xilinx:enablement>
-            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.in_13" xilinx:dependency="$INPUT_STREAMS_ENABLE and (spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 13)">false</xilinx:isEnabled>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.in_13" xilinx:dependency="$INPUT_STREAMS_ENABLE and !$UNIFIED_STREAMS and (spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 13)">false</xilinx:isEnabled>
           </xilinx:enablement>
         </xilinx:busInterfaceInfo>
       </spirit:vendorExtensions>
@@ -666,7 +885,11 @@
             <spirit:name>TDATA</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>in_tdata_14</spirit:name>
+            <spirit:name>in_tdata</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">119</spirit:left>
+              <spirit:right spirit:format="long">112</spirit:right>
+            </spirit:vector>
           </spirit:physicalPort>
         </spirit:portMap>
         <spirit:portMap>
@@ -674,7 +897,11 @@
             <spirit:name>TVALID</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>in_tvalid_14</spirit:name>
+            <spirit:name>in_tvalid</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">14</spirit:left>
+              <spirit:right spirit:format="long">14</spirit:right>
+            </spirit:vector>
           </spirit:physicalPort>
         </spirit:portMap>
         <spirit:portMap>
@@ -682,14 +909,18 @@
             <spirit:name>TREADY</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>in_tready_14</spirit:name>
+            <spirit:name>in_tready</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">14</spirit:left>
+              <spirit:right spirit:format="long">14</spirit:right>
+            </spirit:vector>
           </spirit:physicalPort>
         </spirit:portMap>
       </spirit:portMaps>
       <spirit:vendorExtensions>
         <xilinx:busInterfaceInfo>
           <xilinx:enablement>
-            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.in_14" xilinx:dependency="$INPUT_STREAMS_ENABLE and (spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 14)">false</xilinx:isEnabled>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.in_14" xilinx:dependency="$INPUT_STREAMS_ENABLE and !$UNIFIED_STREAMS and (spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 14)">false</xilinx:isEnabled>
           </xilinx:enablement>
         </xilinx:busInterfaceInfo>
       </spirit:vendorExtensions>
@@ -705,7 +936,11 @@
             <spirit:name>TDATA</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>in_tdata_15</spirit:name>
+            <spirit:name>in_tdata</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">127</spirit:left>
+              <spirit:right spirit:format="long">120</spirit:right>
+            </spirit:vector>
           </spirit:physicalPort>
         </spirit:portMap>
         <spirit:portMap>
@@ -713,7 +948,11 @@
             <spirit:name>TVALID</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>in_tvalid_15</spirit:name>
+            <spirit:name>in_tvalid</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">15</spirit:left>
+              <spirit:right spirit:format="long">15</spirit:right>
+            </spirit:vector>
           </spirit:physicalPort>
         </spirit:portMap>
         <spirit:portMap>
@@ -721,14 +960,69 @@
             <spirit:name>TREADY</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>in_tready_15</spirit:name>
+            <spirit:name>in_tready</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">15</spirit:left>
+              <spirit:right spirit:format="long">15</spirit:right>
+            </spirit:vector>
           </spirit:physicalPort>
         </spirit:portMap>
       </spirit:portMaps>
       <spirit:vendorExtensions>
         <xilinx:busInterfaceInfo>
           <xilinx:enablement>
-            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.in_15" xilinx:dependency="$INPUT_STREAMS_ENABLE and (spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 15)">false</xilinx:isEnabled>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.in_15" xilinx:dependency="$INPUT_STREAMS_ENABLE and !$UNIFIED_STREAMS and (spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 15)">false</xilinx:isEnabled>
+          </xilinx:enablement>
+        </xilinx:busInterfaceInfo>
+      </spirit:vendorExtensions>
+    </spirit:busInterface>
+    <spirit:busInterface>
+      <spirit:name>out_AXIS</spirit:name>
+      <spirit:busType spirit:vendor="xilinx.com" spirit:library="interface" spirit:name="axis" spirit:version="1.0"/>
+      <spirit:abstractionType spirit:vendor="xilinx.com" spirit:library="interface" spirit:name="axis_rtl" spirit:version="1.0"/>
+      <spirit:master/>
+      <spirit:portMaps>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>TDATA</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>out_tdata</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long" spirit:resolve="dependent" spirit:dependency="((spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) * 8) - 1)">95</spirit:left>
+              <spirit:right spirit:format="long">0</spirit:right>
+            </spirit:vector>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>TVALID</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>out_tvalid</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">0</spirit:left>
+              <spirit:right spirit:format="long">0</spirit:right>
+            </spirit:vector>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>TREADY</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>out_tready</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">0</spirit:left>
+              <spirit:right spirit:format="long">0</spirit:right>
+            </spirit:vector>
+          </spirit:physicalPort>
+        </spirit:portMap>
+      </spirit:portMaps>
+      <spirit:vendorExtensions>
+        <xilinx:busInterfaceInfo>
+          <xilinx:enablement>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.out_AXIS" xilinx:dependency="$OUTPUT_STREAMS_ENABLE and $UNIFIED_STREAMS">false</xilinx:isEnabled>
           </xilinx:enablement>
         </xilinx:busInterfaceInfo>
       </spirit:vendorExtensions>
@@ -744,7 +1038,11 @@
             <spirit:name>TDATA</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>out_tdata_00</spirit:name>
+            <spirit:name>out_tdata</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">7</spirit:left>
+              <spirit:right spirit:format="long">0</spirit:right>
+            </spirit:vector>
           </spirit:physicalPort>
         </spirit:portMap>
         <spirit:portMap>
@@ -752,14 +1050,30 @@
             <spirit:name>TVALID</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>out_tvalid_00</spirit:name>
+            <spirit:name>out_tvalid</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">0</spirit:left>
+              <spirit:right spirit:format="long">0</spirit:right>
+            </spirit:vector>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>TREADY</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>out_tready</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">0</spirit:left>
+              <spirit:right spirit:format="long">0</spirit:right>
+            </spirit:vector>
           </spirit:physicalPort>
         </spirit:portMap>
       </spirit:portMaps>
       <spirit:vendorExtensions>
         <xilinx:busInterfaceInfo>
           <xilinx:enablement>
-            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.out_00" xilinx:dependency="$OUTPUT_STREAMS_ENABLE">true</xilinx:isEnabled>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.out_00" xilinx:dependency="$OUTPUT_STREAMS_ENABLE and !$UNIFIED_STREAMS">true</xilinx:isEnabled>
           </xilinx:enablement>
         </xilinx:busInterfaceInfo>
       </spirit:vendorExtensions>
@@ -775,7 +1089,11 @@
             <spirit:name>TDATA</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>out_tdata_01</spirit:name>
+            <spirit:name>out_tdata</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">15</spirit:left>
+              <spirit:right spirit:format="long">8</spirit:right>
+            </spirit:vector>
           </spirit:physicalPort>
         </spirit:portMap>
         <spirit:portMap>
@@ -783,14 +1101,30 @@
             <spirit:name>TVALID</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>out_tvalid_01</spirit:name>
+            <spirit:name>out_tvalid</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">1</spirit:left>
+              <spirit:right spirit:format="long">1</spirit:right>
+            </spirit:vector>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>TREADY</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>out_tready</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">1</spirit:left>
+              <spirit:right spirit:format="long">1</spirit:right>
+            </spirit:vector>
           </spirit:physicalPort>
         </spirit:portMap>
       </spirit:portMaps>
       <spirit:vendorExtensions>
         <xilinx:busInterfaceInfo>
           <xilinx:enablement>
-            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.out_01" xilinx:dependency="$OUTPUT_STREAMS_ENABLE and (spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 1)">true</xilinx:isEnabled>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.out_01" xilinx:dependency="$OUTPUT_STREAMS_ENABLE and !$UNIFIED_STREAMS and (spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 1)">true</xilinx:isEnabled>
           </xilinx:enablement>
         </xilinx:busInterfaceInfo>
       </spirit:vendorExtensions>
@@ -806,7 +1140,11 @@
             <spirit:name>TDATA</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>out_tdata_02</spirit:name>
+            <spirit:name>out_tdata</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">23</spirit:left>
+              <spirit:right spirit:format="long">16</spirit:right>
+            </spirit:vector>
           </spirit:physicalPort>
         </spirit:portMap>
         <spirit:portMap>
@@ -814,14 +1152,30 @@
             <spirit:name>TVALID</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>out_tvalid_02</spirit:name>
+            <spirit:name>out_tvalid</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">2</spirit:left>
+              <spirit:right spirit:format="long">2</spirit:right>
+            </spirit:vector>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>TREADY</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>out_tready</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">2</spirit:left>
+              <spirit:right spirit:format="long">2</spirit:right>
+            </spirit:vector>
           </spirit:physicalPort>
         </spirit:portMap>
       </spirit:portMaps>
       <spirit:vendorExtensions>
         <xilinx:busInterfaceInfo>
           <xilinx:enablement>
-            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.out_02" xilinx:dependency="$OUTPUT_STREAMS_ENABLE and (spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 2)">true</xilinx:isEnabled>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.out_02" xilinx:dependency="$OUTPUT_STREAMS_ENABLE and !$UNIFIED_STREAMS and (spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 2)">true</xilinx:isEnabled>
           </xilinx:enablement>
         </xilinx:busInterfaceInfo>
       </spirit:vendorExtensions>
@@ -837,7 +1191,11 @@
             <spirit:name>TDATA</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>out_tdata_03</spirit:name>
+            <spirit:name>out_tdata</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">31</spirit:left>
+              <spirit:right spirit:format="long">24</spirit:right>
+            </spirit:vector>
           </spirit:physicalPort>
         </spirit:portMap>
         <spirit:portMap>
@@ -845,14 +1203,30 @@
             <spirit:name>TVALID</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>out_tvalid_03</spirit:name>
+            <spirit:name>out_tvalid</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">3</spirit:left>
+              <spirit:right spirit:format="long">3</spirit:right>
+            </spirit:vector>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>TREADY</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>out_tready</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">3</spirit:left>
+              <spirit:right spirit:format="long">3</spirit:right>
+            </spirit:vector>
           </spirit:physicalPort>
         </spirit:portMap>
       </spirit:portMaps>
       <spirit:vendorExtensions>
         <xilinx:busInterfaceInfo>
           <xilinx:enablement>
-            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.out_03" xilinx:dependency="$OUTPUT_STREAMS_ENABLE and (spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 3)">true</xilinx:isEnabled>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.out_03" xilinx:dependency="$OUTPUT_STREAMS_ENABLE and !$UNIFIED_STREAMS and (spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 3)">true</xilinx:isEnabled>
           </xilinx:enablement>
         </xilinx:busInterfaceInfo>
       </spirit:vendorExtensions>
@@ -868,7 +1242,11 @@
             <spirit:name>TDATA</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>out_tdata_04</spirit:name>
+            <spirit:name>out_tdata</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">39</spirit:left>
+              <spirit:right spirit:format="long">32</spirit:right>
+            </spirit:vector>
           </spirit:physicalPort>
         </spirit:portMap>
         <spirit:portMap>
@@ -876,14 +1254,30 @@
             <spirit:name>TVALID</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>out_tvalid_04</spirit:name>
+            <spirit:name>out_tvalid</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">4</spirit:left>
+              <spirit:right spirit:format="long">4</spirit:right>
+            </spirit:vector>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>TREADY</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>out_tready</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">4</spirit:left>
+              <spirit:right spirit:format="long">4</spirit:right>
+            </spirit:vector>
           </spirit:physicalPort>
         </spirit:portMap>
       </spirit:portMaps>
       <spirit:vendorExtensions>
         <xilinx:busInterfaceInfo>
           <xilinx:enablement>
-            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.out_04" xilinx:dependency="$OUTPUT_STREAMS_ENABLE and (spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 4)">true</xilinx:isEnabled>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.out_04" xilinx:dependency="$OUTPUT_STREAMS_ENABLE and !$UNIFIED_STREAMS and (spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 4)">true</xilinx:isEnabled>
           </xilinx:enablement>
         </xilinx:busInterfaceInfo>
       </spirit:vendorExtensions>
@@ -899,7 +1293,11 @@
             <spirit:name>TDATA</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>out_tdata_05</spirit:name>
+            <spirit:name>out_tdata</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">47</spirit:left>
+              <spirit:right spirit:format="long">40</spirit:right>
+            </spirit:vector>
           </spirit:physicalPort>
         </spirit:portMap>
         <spirit:portMap>
@@ -907,14 +1305,30 @@
             <spirit:name>TVALID</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>out_tvalid_05</spirit:name>
+            <spirit:name>out_tvalid</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">5</spirit:left>
+              <spirit:right spirit:format="long">5</spirit:right>
+            </spirit:vector>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>TREADY</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>out_tready</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">5</spirit:left>
+              <spirit:right spirit:format="long">5</spirit:right>
+            </spirit:vector>
           </spirit:physicalPort>
         </spirit:portMap>
       </spirit:portMaps>
       <spirit:vendorExtensions>
         <xilinx:busInterfaceInfo>
           <xilinx:enablement>
-            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.out_05" xilinx:dependency="$OUTPUT_STREAMS_ENABLE and (spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 5)">true</xilinx:isEnabled>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.out_05" xilinx:dependency="$OUTPUT_STREAMS_ENABLE and !$UNIFIED_STREAMS and (spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 5)">true</xilinx:isEnabled>
           </xilinx:enablement>
         </xilinx:busInterfaceInfo>
       </spirit:vendorExtensions>
@@ -930,7 +1344,11 @@
             <spirit:name>TDATA</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>out_tdata_06</spirit:name>
+            <spirit:name>out_tdata</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">55</spirit:left>
+              <spirit:right spirit:format="long">48</spirit:right>
+            </spirit:vector>
           </spirit:physicalPort>
         </spirit:portMap>
         <spirit:portMap>
@@ -938,14 +1356,30 @@
             <spirit:name>TVALID</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>out_tvalid_06</spirit:name>
+            <spirit:name>out_tvalid</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">6</spirit:left>
+              <spirit:right spirit:format="long">6</spirit:right>
+            </spirit:vector>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>TREADY</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>out_tready</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">6</spirit:left>
+              <spirit:right spirit:format="long">6</spirit:right>
+            </spirit:vector>
           </spirit:physicalPort>
         </spirit:portMap>
       </spirit:portMaps>
       <spirit:vendorExtensions>
         <xilinx:busInterfaceInfo>
           <xilinx:enablement>
-            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.out_06" xilinx:dependency="$OUTPUT_STREAMS_ENABLE and (spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 6)">true</xilinx:isEnabled>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.out_06" xilinx:dependency="$OUTPUT_STREAMS_ENABLE and !$UNIFIED_STREAMS and (spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 6)">true</xilinx:isEnabled>
           </xilinx:enablement>
         </xilinx:busInterfaceInfo>
       </spirit:vendorExtensions>
@@ -961,7 +1395,11 @@
             <spirit:name>TDATA</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>out_tdata_07</spirit:name>
+            <spirit:name>out_tdata</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">63</spirit:left>
+              <spirit:right spirit:format="long">56</spirit:right>
+            </spirit:vector>
           </spirit:physicalPort>
         </spirit:portMap>
         <spirit:portMap>
@@ -969,14 +1407,30 @@
             <spirit:name>TVALID</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>out_tvalid_07</spirit:name>
+            <spirit:name>out_tvalid</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">7</spirit:left>
+              <spirit:right spirit:format="long">7</spirit:right>
+            </spirit:vector>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>TREADY</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>out_tready</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">7</spirit:left>
+              <spirit:right spirit:format="long">7</spirit:right>
+            </spirit:vector>
           </spirit:physicalPort>
         </spirit:portMap>
       </spirit:portMaps>
       <spirit:vendorExtensions>
         <xilinx:busInterfaceInfo>
           <xilinx:enablement>
-            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.out_07" xilinx:dependency="$OUTPUT_STREAMS_ENABLE and (spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 7)">true</xilinx:isEnabled>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.out_07" xilinx:dependency="$OUTPUT_STREAMS_ENABLE and !$UNIFIED_STREAMS and (spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 7)">true</xilinx:isEnabled>
           </xilinx:enablement>
         </xilinx:busInterfaceInfo>
       </spirit:vendorExtensions>
@@ -992,7 +1446,11 @@
             <spirit:name>TDATA</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>out_tdata_08</spirit:name>
+            <spirit:name>out_tdata</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">71</spirit:left>
+              <spirit:right spirit:format="long">64</spirit:right>
+            </spirit:vector>
           </spirit:physicalPort>
         </spirit:portMap>
         <spirit:portMap>
@@ -1000,14 +1458,30 @@
             <spirit:name>TVALID</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>out_tvalid_08</spirit:name>
+            <spirit:name>out_tvalid</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">8</spirit:left>
+              <spirit:right spirit:format="long">8</spirit:right>
+            </spirit:vector>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>TREADY</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>out_tready</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">8</spirit:left>
+              <spirit:right spirit:format="long">8</spirit:right>
+            </spirit:vector>
           </spirit:physicalPort>
         </spirit:portMap>
       </spirit:portMaps>
       <spirit:vendorExtensions>
         <xilinx:busInterfaceInfo>
           <xilinx:enablement>
-            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.out_08" xilinx:dependency="$OUTPUT_STREAMS_ENABLE and (spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 8)">true</xilinx:isEnabled>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.out_08" xilinx:dependency="$OUTPUT_STREAMS_ENABLE and !$UNIFIED_STREAMS and (spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 8)">true</xilinx:isEnabled>
           </xilinx:enablement>
         </xilinx:busInterfaceInfo>
       </spirit:vendorExtensions>
@@ -1023,7 +1497,11 @@
             <spirit:name>TDATA</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>out_tdata_09</spirit:name>
+            <spirit:name>out_tdata</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">79</spirit:left>
+              <spirit:right spirit:format="long">72</spirit:right>
+            </spirit:vector>
           </spirit:physicalPort>
         </spirit:portMap>
         <spirit:portMap>
@@ -1031,14 +1509,30 @@
             <spirit:name>TVALID</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>out_tvalid_09</spirit:name>
+            <spirit:name>out_tvalid</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">9</spirit:left>
+              <spirit:right spirit:format="long">9</spirit:right>
+            </spirit:vector>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>TREADY</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>out_tready</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">9</spirit:left>
+              <spirit:right spirit:format="long">9</spirit:right>
+            </spirit:vector>
           </spirit:physicalPort>
         </spirit:portMap>
       </spirit:portMaps>
       <spirit:vendorExtensions>
         <xilinx:busInterfaceInfo>
           <xilinx:enablement>
-            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.out_09" xilinx:dependency="$OUTPUT_STREAMS_ENABLE and (spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 9)">true</xilinx:isEnabled>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.out_09" xilinx:dependency="$OUTPUT_STREAMS_ENABLE and !$UNIFIED_STREAMS and (spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 9)">true</xilinx:isEnabled>
           </xilinx:enablement>
         </xilinx:busInterfaceInfo>
       </spirit:vendorExtensions>
@@ -1054,7 +1548,11 @@
             <spirit:name>TDATA</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>out_tdata_10</spirit:name>
+            <spirit:name>out_tdata</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">87</spirit:left>
+              <spirit:right spirit:format="long">80</spirit:right>
+            </spirit:vector>
           </spirit:physicalPort>
         </spirit:portMap>
         <spirit:portMap>
@@ -1062,14 +1560,30 @@
             <spirit:name>TVALID</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>out_tvalid_10</spirit:name>
+            <spirit:name>out_tvalid</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">10</spirit:left>
+              <spirit:right spirit:format="long">10</spirit:right>
+            </spirit:vector>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>TREADY</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>out_tready</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">10</spirit:left>
+              <spirit:right spirit:format="long">10</spirit:right>
+            </spirit:vector>
           </spirit:physicalPort>
         </spirit:portMap>
       </spirit:portMaps>
       <spirit:vendorExtensions>
         <xilinx:busInterfaceInfo>
           <xilinx:enablement>
-            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.out_10" xilinx:dependency="$OUTPUT_STREAMS_ENABLE and (spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 10)">true</xilinx:isEnabled>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.out_10" xilinx:dependency="$OUTPUT_STREAMS_ENABLE and !$UNIFIED_STREAMS and (spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 10)">true</xilinx:isEnabled>
           </xilinx:enablement>
         </xilinx:busInterfaceInfo>
       </spirit:vendorExtensions>
@@ -1085,7 +1599,11 @@
             <spirit:name>TDATA</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>out_tdata_11</spirit:name>
+            <spirit:name>out_tdata</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">95</spirit:left>
+              <spirit:right spirit:format="long">88</spirit:right>
+            </spirit:vector>
           </spirit:physicalPort>
         </spirit:portMap>
         <spirit:portMap>
@@ -1093,14 +1611,30 @@
             <spirit:name>TVALID</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>out_tvalid_11</spirit:name>
+            <spirit:name>out_tvalid</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">11</spirit:left>
+              <spirit:right spirit:format="long">11</spirit:right>
+            </spirit:vector>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>TREADY</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>out_tready</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">11</spirit:left>
+              <spirit:right spirit:format="long">11</spirit:right>
+            </spirit:vector>
           </spirit:physicalPort>
         </spirit:portMap>
       </spirit:portMaps>
       <spirit:vendorExtensions>
         <xilinx:busInterfaceInfo>
           <xilinx:enablement>
-            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.out_11" xilinx:dependency="$OUTPUT_STREAMS_ENABLE and (spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 11)">true</xilinx:isEnabled>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.out_11" xilinx:dependency="$OUTPUT_STREAMS_ENABLE and !$UNIFIED_STREAMS and (spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 11)">true</xilinx:isEnabled>
           </xilinx:enablement>
         </xilinx:busInterfaceInfo>
       </spirit:vendorExtensions>
@@ -1116,7 +1650,11 @@
             <spirit:name>TDATA</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>out_tdata_12</spirit:name>
+            <spirit:name>out_tdata</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">103</spirit:left>
+              <spirit:right spirit:format="long">96</spirit:right>
+            </spirit:vector>
           </spirit:physicalPort>
         </spirit:portMap>
         <spirit:portMap>
@@ -1124,14 +1662,30 @@
             <spirit:name>TVALID</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>out_tvalid_12</spirit:name>
+            <spirit:name>out_tvalid</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">12</spirit:left>
+              <spirit:right spirit:format="long">12</spirit:right>
+            </spirit:vector>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>TREADY</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>out_tready</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">12</spirit:left>
+              <spirit:right spirit:format="long">12</spirit:right>
+            </spirit:vector>
           </spirit:physicalPort>
         </spirit:portMap>
       </spirit:portMaps>
       <spirit:vendorExtensions>
         <xilinx:busInterfaceInfo>
           <xilinx:enablement>
-            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.out_12" xilinx:dependency="$OUTPUT_STREAMS_ENABLE and (spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 12)">false</xilinx:isEnabled>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.out_12" xilinx:dependency="$OUTPUT_STREAMS_ENABLE and !$UNIFIED_STREAMS and (spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 12)">false</xilinx:isEnabled>
           </xilinx:enablement>
         </xilinx:busInterfaceInfo>
       </spirit:vendorExtensions>
@@ -1147,7 +1701,11 @@
             <spirit:name>TDATA</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>out_tdata_13</spirit:name>
+            <spirit:name>out_tdata</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">111</spirit:left>
+              <spirit:right spirit:format="long">104</spirit:right>
+            </spirit:vector>
           </spirit:physicalPort>
         </spirit:portMap>
         <spirit:portMap>
@@ -1155,14 +1713,30 @@
             <spirit:name>TVALID</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>out_tvalid_13</spirit:name>
+            <spirit:name>out_tvalid</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">13</spirit:left>
+              <spirit:right spirit:format="long">13</spirit:right>
+            </spirit:vector>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>TREADY</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>out_tready</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">13</spirit:left>
+              <spirit:right spirit:format="long">13</spirit:right>
+            </spirit:vector>
           </spirit:physicalPort>
         </spirit:portMap>
       </spirit:portMaps>
       <spirit:vendorExtensions>
         <xilinx:busInterfaceInfo>
           <xilinx:enablement>
-            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.out_13" xilinx:dependency="$OUTPUT_STREAMS_ENABLE and (spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 13)">false</xilinx:isEnabled>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.out_13" xilinx:dependency="$OUTPUT_STREAMS_ENABLE and !$UNIFIED_STREAMS and (spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 13)">false</xilinx:isEnabled>
           </xilinx:enablement>
         </xilinx:busInterfaceInfo>
       </spirit:vendorExtensions>
@@ -1178,7 +1752,11 @@
             <spirit:name>TDATA</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>out_tdata_14</spirit:name>
+            <spirit:name>out_tdata</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">119</spirit:left>
+              <spirit:right spirit:format="long">112</spirit:right>
+            </spirit:vector>
           </spirit:physicalPort>
         </spirit:portMap>
         <spirit:portMap>
@@ -1186,14 +1764,30 @@
             <spirit:name>TVALID</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>out_tvalid_14</spirit:name>
+            <spirit:name>out_tvalid</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">14</spirit:left>
+              <spirit:right spirit:format="long">14</spirit:right>
+            </spirit:vector>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>TREADY</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>out_tready</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">14</spirit:left>
+              <spirit:right spirit:format="long">14</spirit:right>
+            </spirit:vector>
           </spirit:physicalPort>
         </spirit:portMap>
       </spirit:portMaps>
       <spirit:vendorExtensions>
         <xilinx:busInterfaceInfo>
           <xilinx:enablement>
-            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.out_14" xilinx:dependency="$OUTPUT_STREAMS_ENABLE and (spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 14)">false</xilinx:isEnabled>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.out_14" xilinx:dependency="$OUTPUT_STREAMS_ENABLE and !$UNIFIED_STREAMS and (spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 14)">false</xilinx:isEnabled>
           </xilinx:enablement>
         </xilinx:busInterfaceInfo>
       </spirit:vendorExtensions>
@@ -1209,7 +1803,11 @@
             <spirit:name>TDATA</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>out_tdata_15</spirit:name>
+            <spirit:name>out_tdata</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">127</spirit:left>
+              <spirit:right spirit:format="long">120</spirit:right>
+            </spirit:vector>
           </spirit:physicalPort>
         </spirit:portMap>
         <spirit:portMap>
@@ -1217,14 +1815,30 @@
             <spirit:name>TVALID</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>out_tvalid_15</spirit:name>
+            <spirit:name>out_tvalid</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">15</spirit:left>
+              <spirit:right spirit:format="long">15</spirit:right>
+            </spirit:vector>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>TREADY</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>out_tready</spirit:name>
+            <spirit:vector>
+              <spirit:left spirit:format="long">15</spirit:left>
+              <spirit:right spirit:format="long">15</spirit:right>
+            </spirit:vector>
           </spirit:physicalPort>
         </spirit:portMap>
       </spirit:portMaps>
       <spirit:vendorExtensions>
         <xilinx:busInterfaceInfo>
           <xilinx:enablement>
-            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.out_15" xilinx:dependency="$OUTPUT_STREAMS_ENABLE and (spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 15)">false</xilinx:isEnabled>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.out_15" xilinx:dependency="$OUTPUT_STREAMS_ENABLE and !$UNIFIED_STREAMS and (spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) > 15)">false</xilinx:isEnabled>
           </xilinx:enablement>
         </xilinx:busInterfaceInfo>
       </spirit:vendorExtensions>
@@ -1273,7 +1887,7 @@
       <spirit:parameters>
         <spirit:parameter>
           <spirit:name>ASSOCIATED_BUSIF</spirit:name>
-          <spirit:value spirit:id="BUSIFPARAM_VALUE.IN_CLK160.ASSOCIATED_BUSIF">in_00:in_01:in_02:in_03:in_04:in_05:in_06:in_07:in_08:in_09:in_10:in_11:in_12:in_13:in_14:in_15</spirit:value>
+          <spirit:value spirit:id="BUSIFPARAM_VALUE.IN_CLK160.ASSOCIATED_BUSIF">in_AXIS:in_00:in_01:in_02:in_03:in_04:in_05:in_06:in_07:in_08:in_09:in_10:in_11:in_12:in_13:in_14:in_15</spirit:value>
         </spirit:parameter>
         <spirit:parameter>
           <spirit:name>FREQ_HZ</spirit:name>
@@ -1305,7 +1919,7 @@
         </spirit:parameter>
         <spirit:parameter>
           <spirit:name>ASSOCIATED_BUSIF</spirit:name>
-          <spirit:value spirit:id="BUSIFPARAM_VALUE.IN_CLK640.ASSOCIATED_BUSIF">D_IN_OUT_P:D_IN_OUT_N</spirit:value>
+          <spirit:value spirit:id="BUSIFPARAM_VALUE.IN_CLK640.ASSOCIATED_BUSIF">D_IN_OUT:D_IN_OUT_P:D_IN_OUT_N:D_IN:D_IN_P:D_IN_N:D_OUT:D_OUT_P:D_OUT_N</spirit:value>
         </spirit:parameter>
       </spirit:parameters>
     </spirit:busInterface>
@@ -1329,7 +1943,7 @@
       <spirit:parameters>
         <spirit:parameter>
           <spirit:name>ASSOCIATED_BUSIF</spirit:name>
-          <spirit:value spirit:id="BUSIFPARAM_VALUE.OUT_CLK160.ASSOCIATED_BUSIF">out_00:out_01:out_02:out_03:out_04:out_05:out_06:out_07:out_08:out_09:out_10:out_11:out_12:out_13:out_14:out_15</spirit:value>
+          <spirit:value spirit:id="BUSIFPARAM_VALUE.OUT_CLK160.ASSOCIATED_BUSIF">out_AXIS:out_00:out_01:out_02:out_03:out_04:out_05:out_06:out_07:out_08:out_09:out_10:out_11:out_12:out_13:out_14:out_15</spirit:value>
         </spirit:parameter>
         <spirit:parameter>
           <spirit:name>FREQ_HZ</spirit:name>
@@ -1339,7 +1953,30 @@
       <spirit:vendorExtensions>
         <xilinx:busInterfaceInfo>
           <xilinx:enablement>
-            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.OUT_CLK160" xilinx:dependency="$OUTPUT_STREAMS_ENABLE">true</xilinx:isEnabled>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.out_clk160" xilinx:dependency="$OUTPUT_STREAMS_ENABLE">true</xilinx:isEnabled>
+          </xilinx:enablement>
+        </xilinx:busInterfaceInfo>
+      </spirit:vendorExtensions>
+    </spirit:busInterface>
+    <spirit:busInterface>
+      <spirit:name>D_IN_OUT</spirit:name>
+      <spirit:busType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="data" spirit:version="1.0"/>
+      <spirit:abstractionType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="data_rtl" spirit:version="1.0"/>
+      <spirit:slave/>
+      <spirit:portMaps>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>DATA</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>D_IN_OUT</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+      </spirit:portMaps>
+      <spirit:vendorExtensions>
+        <xilinx:busInterfaceInfo>
+          <xilinx:enablement>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.D_IN_OUT" xilinx:dependency="$OUTPUT_STREAMS_ENABLE and $DRIVE_ENABLED and !$DIFF_IO">false</xilinx:isEnabled>
           </xilinx:enablement>
         </xilinx:busInterfaceInfo>
       </spirit:vendorExtensions>
@@ -1359,6 +1996,13 @@
           </spirit:physicalPort>
         </spirit:portMap>
       </spirit:portMaps>
+      <spirit:vendorExtensions>
+        <xilinx:busInterfaceInfo>
+          <xilinx:enablement>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.D_IN_OUT_P" xilinx:dependency="$OUTPUT_STREAMS_ENABLE and $DRIVE_ENABLED and $DIFF_IO">true</xilinx:isEnabled>
+          </xilinx:enablement>
+        </xilinx:busInterfaceInfo>
+      </spirit:vendorExtensions>
     </spirit:busInterface>
     <spirit:busInterface>
       <spirit:name>D_IN_OUT_N</spirit:name>
@@ -1375,6 +2019,151 @@
           </spirit:physicalPort>
         </spirit:portMap>
       </spirit:portMaps>
+      <spirit:vendorExtensions>
+        <xilinx:busInterfaceInfo>
+          <xilinx:enablement>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.D_IN_OUT_N" xilinx:dependency="$OUTPUT_STREAMS_ENABLE and $DRIVE_ENABLED and $DIFF_IO">true</xilinx:isEnabled>
+          </xilinx:enablement>
+        </xilinx:busInterfaceInfo>
+      </spirit:vendorExtensions>
+    </spirit:busInterface>
+    <spirit:busInterface>
+      <spirit:name>D_IN</spirit:name>
+      <spirit:busType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="data" spirit:version="1.0"/>
+      <spirit:abstractionType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="data_rtl" spirit:version="1.0"/>
+      <spirit:slave/>
+      <spirit:portMaps>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>DATA</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>D_IN</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+      </spirit:portMaps>
+      <spirit:vendorExtensions>
+        <xilinx:busInterfaceInfo>
+          <xilinx:enablement>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.D_IN" xilinx:dependency="$OUTPUT_STREAMS_ENABLE and !$DRIVE_ENABLED and !$DIFF_IO">false</xilinx:isEnabled>
+          </xilinx:enablement>
+        </xilinx:busInterfaceInfo>
+      </spirit:vendorExtensions>
+    </spirit:busInterface>
+    <spirit:busInterface>
+      <spirit:name>D_IN_P</spirit:name>
+      <spirit:busType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="data" spirit:version="1.0"/>
+      <spirit:abstractionType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="data_rtl" spirit:version="1.0"/>
+      <spirit:slave/>
+      <spirit:portMaps>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>DATA</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>D_IN_P</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+      </spirit:portMaps>
+      <spirit:vendorExtensions>
+        <xilinx:busInterfaceInfo>
+          <xilinx:enablement>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.D_IN_P" xilinx:dependency="$OUTPUT_STREAMS_ENABLE and !$DRIVE_ENABLED and $DIFF_IO">false</xilinx:isEnabled>
+          </xilinx:enablement>
+        </xilinx:busInterfaceInfo>
+      </spirit:vendorExtensions>
+    </spirit:busInterface>
+    <spirit:busInterface>
+      <spirit:name>D_IN_N</spirit:name>
+      <spirit:busType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="data" spirit:version="1.0"/>
+      <spirit:abstractionType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="data_rtl" spirit:version="1.0"/>
+      <spirit:slave/>
+      <spirit:portMaps>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>DATA</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>D_IN_N</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+      </spirit:portMaps>
+      <spirit:vendorExtensions>
+        <xilinx:busInterfaceInfo>
+          <xilinx:enablement>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.D_IN_N" xilinx:dependency="$OUTPUT_STREAMS_ENABLE and !$DRIVE_ENABLED and $DIFF_IO">false</xilinx:isEnabled>
+          </xilinx:enablement>
+        </xilinx:busInterfaceInfo>
+      </spirit:vendorExtensions>
+    </spirit:busInterface>
+    <spirit:busInterface>
+      <spirit:name>D_OUT</spirit:name>
+      <spirit:busType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="data" spirit:version="1.0"/>
+      <spirit:abstractionType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="data_rtl" spirit:version="1.0"/>
+      <spirit:master/>
+      <spirit:portMaps>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>DATA</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>D_OUT</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+      </spirit:portMaps>
+      <spirit:vendorExtensions>
+        <xilinx:busInterfaceInfo>
+          <xilinx:enablement>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.D_OUT" xilinx:dependency="!$OUTPUT_STREAMS_ENABLE and $DRIVE_ENABLED and !$DIFF_IO">false</xilinx:isEnabled>
+          </xilinx:enablement>
+        </xilinx:busInterfaceInfo>
+      </spirit:vendorExtensions>
+    </spirit:busInterface>
+    <spirit:busInterface>
+      <spirit:name>D_OUT_P</spirit:name>
+      <spirit:busType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="data" spirit:version="1.0"/>
+      <spirit:abstractionType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="data_rtl" spirit:version="1.0"/>
+      <spirit:master/>
+      <spirit:portMaps>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>DATA</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>D_OUT_P</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+      </spirit:portMaps>
+      <spirit:vendorExtensions>
+        <xilinx:busInterfaceInfo>
+          <xilinx:enablement>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.D_OUT_P" xilinx:dependency="!$OUTPUT_STREAMS_ENABLE and $DRIVE_ENABLED and $DIFF_IO">false</xilinx:isEnabled>
+          </xilinx:enablement>
+        </xilinx:busInterfaceInfo>
+      </spirit:vendorExtensions>
+    </spirit:busInterface>
+    <spirit:busInterface>
+      <spirit:name>D_OUT_N</spirit:name>
+      <spirit:busType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="data" spirit:version="1.0"/>
+      <spirit:abstractionType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="data_rtl" spirit:version="1.0"/>
+      <spirit:master/>
+      <spirit:portMaps>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>DATA</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>D_OUT_N</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+      </spirit:portMaps>
+      <spirit:vendorExtensions>
+        <xilinx:busInterfaceInfo>
+          <xilinx:enablement>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.D_OUT_N" xilinx:dependency="!$OUTPUT_STREAMS_ENABLE and $DRIVE_ENABLED and $DIFF_IO">false</xilinx:isEnabled>
+          </xilinx:enablement>
+        </xilinx:busInterfaceInfo>
+      </spirit:vendorExtensions>
     </spirit:busInterface>
   </spirit:busInterfaces>
   <spirit:model>
@@ -1394,7 +2183,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>012dfffa</spirit:value>
+            <spirit:value>c6dee9d4</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -1413,7 +2202,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>bf7cc11f</spirit:value>
+            <spirit:value>a4a759b4</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -1427,7 +2216,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>97c366fd</spirit:value>
+            <spirit:value>e55dc66c</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -1447,19 +2236,6 @@
       </spirit:view>
     </spirit:views>
     <spirit:ports>
-      <spirit:port>
-        <spirit:name>IPIF_clk</spirit:name>
-        <spirit:wire>
-          <spirit:direction>in</spirit:direction>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-        </spirit:wire>
-      </spirit:port>
       <spirit:port>
         <spirit:name>in_clk160</spirit:name>
         <spirit:wire>
@@ -1500,11 +2276,58 @@
         </spirit:wire>
       </spirit:port>
       <spirit:port>
-        <spirit:name>in_tdata_00</spirit:name>
+        <spirit:name>IPIF_clk</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>in_tdata</spirit:name>
         <spirit:wire>
           <spirit:direction>in</spirit:direction>
           <spirit:vector>
-            <spirit:left spirit:format="long">7</spirit:left>
+            <spirit:left spirit:format="long" spirit:resolve="dependent" spirit:dependency="((spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) * 8) - 1)">95</spirit:left>
+            <spirit:right spirit:format="long">0</spirit:right>
+          </spirit:vector>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>in_tvalid</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:vector>
+            <spirit:left spirit:format="long" spirit:resolve="dependent" spirit:dependency="(spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) - 1)">11</spirit:left>
+            <spirit:right spirit:format="long">0</spirit:right>
+          </spirit:vector>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>in_tready</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:vector>
+            <spirit:left spirit:format="long" spirit:resolve="dependent" spirit:dependency="(spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) - 1)">11</spirit:left>
             <spirit:right spirit:format="long">0</spirit:right>
           </spirit:vector>
           <spirit:wireTypeDefs>
@@ -1515,732 +2338,16 @@
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
           <spirit:driver>
-            <spirit:defaultValue spirit:format="long">0</spirit:defaultValue>
+            <spirit:defaultValue spirit:format="long">1</spirit:defaultValue>
           </spirit:driver>
         </spirit:wire>
       </spirit:port>
       <spirit:port>
-        <spirit:name>in_tdata_01</spirit:name>
-        <spirit:wire>
-          <spirit:direction>in</spirit:direction>
-          <spirit:vector>
-            <spirit:left spirit:format="long">7</spirit:left>
-            <spirit:right spirit:format="long">0</spirit:right>
-          </spirit:vector>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-          <spirit:driver>
-            <spirit:defaultValue spirit:format="long">0</spirit:defaultValue>
-          </spirit:driver>
-        </spirit:wire>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>in_tdata_02</spirit:name>
-        <spirit:wire>
-          <spirit:direction>in</spirit:direction>
-          <spirit:vector>
-            <spirit:left spirit:format="long">7</spirit:left>
-            <spirit:right spirit:format="long">0</spirit:right>
-          </spirit:vector>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-          <spirit:driver>
-            <spirit:defaultValue spirit:format="long">0</spirit:defaultValue>
-          </spirit:driver>
-        </spirit:wire>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>in_tdata_03</spirit:name>
-        <spirit:wire>
-          <spirit:direction>in</spirit:direction>
-          <spirit:vector>
-            <spirit:left spirit:format="long">7</spirit:left>
-            <spirit:right spirit:format="long">0</spirit:right>
-          </spirit:vector>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-          <spirit:driver>
-            <spirit:defaultValue spirit:format="long">0</spirit:defaultValue>
-          </spirit:driver>
-        </spirit:wire>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>in_tdata_04</spirit:name>
-        <spirit:wire>
-          <spirit:direction>in</spirit:direction>
-          <spirit:vector>
-            <spirit:left spirit:format="long">7</spirit:left>
-            <spirit:right spirit:format="long">0</spirit:right>
-          </spirit:vector>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-          <spirit:driver>
-            <spirit:defaultValue spirit:format="long">0</spirit:defaultValue>
-          </spirit:driver>
-        </spirit:wire>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>in_tdata_05</spirit:name>
-        <spirit:wire>
-          <spirit:direction>in</spirit:direction>
-          <spirit:vector>
-            <spirit:left spirit:format="long">7</spirit:left>
-            <spirit:right spirit:format="long">0</spirit:right>
-          </spirit:vector>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-          <spirit:driver>
-            <spirit:defaultValue spirit:format="long">0</spirit:defaultValue>
-          </spirit:driver>
-        </spirit:wire>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>in_tdata_06</spirit:name>
-        <spirit:wire>
-          <spirit:direction>in</spirit:direction>
-          <spirit:vector>
-            <spirit:left spirit:format="long">7</spirit:left>
-            <spirit:right spirit:format="long">0</spirit:right>
-          </spirit:vector>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-          <spirit:driver>
-            <spirit:defaultValue spirit:format="long">0</spirit:defaultValue>
-          </spirit:driver>
-        </spirit:wire>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>in_tdata_07</spirit:name>
-        <spirit:wire>
-          <spirit:direction>in</spirit:direction>
-          <spirit:vector>
-            <spirit:left spirit:format="long">7</spirit:left>
-            <spirit:right spirit:format="long">0</spirit:right>
-          </spirit:vector>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-          <spirit:driver>
-            <spirit:defaultValue spirit:format="long">0</spirit:defaultValue>
-          </spirit:driver>
-        </spirit:wire>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>in_tdata_08</spirit:name>
-        <spirit:wire>
-          <spirit:direction>in</spirit:direction>
-          <spirit:vector>
-            <spirit:left spirit:format="long">7</spirit:left>
-            <spirit:right spirit:format="long">0</spirit:right>
-          </spirit:vector>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-          <spirit:driver>
-            <spirit:defaultValue spirit:format="long">0</spirit:defaultValue>
-          </spirit:driver>
-        </spirit:wire>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>in_tdata_09</spirit:name>
-        <spirit:wire>
-          <spirit:direction>in</spirit:direction>
-          <spirit:vector>
-            <spirit:left spirit:format="long">7</spirit:left>
-            <spirit:right spirit:format="long">0</spirit:right>
-          </spirit:vector>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-          <spirit:driver>
-            <spirit:defaultValue spirit:format="long">0</spirit:defaultValue>
-          </spirit:driver>
-        </spirit:wire>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>in_tdata_10</spirit:name>
-        <spirit:wire>
-          <spirit:direction>in</spirit:direction>
-          <spirit:vector>
-            <spirit:left spirit:format="long">7</spirit:left>
-            <spirit:right spirit:format="long">0</spirit:right>
-          </spirit:vector>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-          <spirit:driver>
-            <spirit:defaultValue spirit:format="long">0</spirit:defaultValue>
-          </spirit:driver>
-        </spirit:wire>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>in_tdata_11</spirit:name>
-        <spirit:wire>
-          <spirit:direction>in</spirit:direction>
-          <spirit:vector>
-            <spirit:left spirit:format="long">7</spirit:left>
-            <spirit:right spirit:format="long">0</spirit:right>
-          </spirit:vector>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-          <spirit:driver>
-            <spirit:defaultValue spirit:format="long">0</spirit:defaultValue>
-          </spirit:driver>
-        </spirit:wire>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>in_tdata_12</spirit:name>
-        <spirit:wire>
-          <spirit:direction>in</spirit:direction>
-          <spirit:vector>
-            <spirit:left spirit:format="long">7</spirit:left>
-            <spirit:right spirit:format="long">0</spirit:right>
-          </spirit:vector>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-          <spirit:driver>
-            <spirit:defaultValue spirit:format="long">0</spirit:defaultValue>
-          </spirit:driver>
-        </spirit:wire>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>in_tdata_13</spirit:name>
-        <spirit:wire>
-          <spirit:direction>in</spirit:direction>
-          <spirit:vector>
-            <spirit:left spirit:format="long">7</spirit:left>
-            <spirit:right spirit:format="long">0</spirit:right>
-          </spirit:vector>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-          <spirit:driver>
-            <spirit:defaultValue spirit:format="long">0</spirit:defaultValue>
-          </spirit:driver>
-        </spirit:wire>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>in_tdata_14</spirit:name>
-        <spirit:wire>
-          <spirit:direction>in</spirit:direction>
-          <spirit:vector>
-            <spirit:left spirit:format="long">7</spirit:left>
-            <spirit:right spirit:format="long">0</spirit:right>
-          </spirit:vector>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-          <spirit:driver>
-            <spirit:defaultValue spirit:format="long">0</spirit:defaultValue>
-          </spirit:driver>
-        </spirit:wire>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>in_tdata_15</spirit:name>
-        <spirit:wire>
-          <spirit:direction>in</spirit:direction>
-          <spirit:vector>
-            <spirit:left spirit:format="long">7</spirit:left>
-            <spirit:right spirit:format="long">0</spirit:right>
-          </spirit:vector>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-          <spirit:driver>
-            <spirit:defaultValue spirit:format="long">0</spirit:defaultValue>
-          </spirit:driver>
-        </spirit:wire>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>in_tvalid_00</spirit:name>
-        <spirit:wire>
-          <spirit:direction>in</spirit:direction>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-        </spirit:wire>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>in_tvalid_01</spirit:name>
-        <spirit:wire>
-          <spirit:direction>in</spirit:direction>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-        </spirit:wire>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>in_tvalid_02</spirit:name>
-        <spirit:wire>
-          <spirit:direction>in</spirit:direction>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-        </spirit:wire>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>in_tvalid_03</spirit:name>
-        <spirit:wire>
-          <spirit:direction>in</spirit:direction>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-        </spirit:wire>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>in_tvalid_04</spirit:name>
-        <spirit:wire>
-          <spirit:direction>in</spirit:direction>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-        </spirit:wire>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>in_tvalid_05</spirit:name>
-        <spirit:wire>
-          <spirit:direction>in</spirit:direction>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-        </spirit:wire>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>in_tvalid_06</spirit:name>
-        <spirit:wire>
-          <spirit:direction>in</spirit:direction>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-        </spirit:wire>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>in_tvalid_07</spirit:name>
-        <spirit:wire>
-          <spirit:direction>in</spirit:direction>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-        </spirit:wire>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>in_tvalid_08</spirit:name>
-        <spirit:wire>
-          <spirit:direction>in</spirit:direction>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-        </spirit:wire>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>in_tvalid_09</spirit:name>
-        <spirit:wire>
-          <spirit:direction>in</spirit:direction>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-        </spirit:wire>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>in_tvalid_10</spirit:name>
-        <spirit:wire>
-          <spirit:direction>in</spirit:direction>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-        </spirit:wire>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>in_tvalid_11</spirit:name>
-        <spirit:wire>
-          <spirit:direction>in</spirit:direction>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-        </spirit:wire>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>in_tvalid_12</spirit:name>
-        <spirit:wire>
-          <spirit:direction>in</spirit:direction>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-        </spirit:wire>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>in_tvalid_13</spirit:name>
-        <spirit:wire>
-          <spirit:direction>in</spirit:direction>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-        </spirit:wire>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>in_tvalid_14</spirit:name>
-        <spirit:wire>
-          <spirit:direction>in</spirit:direction>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-        </spirit:wire>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>in_tvalid_15</spirit:name>
-        <spirit:wire>
-          <spirit:direction>in</spirit:direction>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-        </spirit:wire>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>in_tready_00</spirit:name>
-        <spirit:wire>
-          <spirit:direction>out</spirit:direction>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-        </spirit:wire>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>in_tready_01</spirit:name>
-        <spirit:wire>
-          <spirit:direction>out</spirit:direction>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-        </spirit:wire>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>in_tready_02</spirit:name>
-        <spirit:wire>
-          <spirit:direction>out</spirit:direction>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-        </spirit:wire>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>in_tready_03</spirit:name>
-        <spirit:wire>
-          <spirit:direction>out</spirit:direction>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-        </spirit:wire>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>in_tready_04</spirit:name>
-        <spirit:wire>
-          <spirit:direction>out</spirit:direction>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-        </spirit:wire>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>in_tready_05</spirit:name>
-        <spirit:wire>
-          <spirit:direction>out</spirit:direction>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-        </spirit:wire>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>in_tready_06</spirit:name>
-        <spirit:wire>
-          <spirit:direction>out</spirit:direction>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-        </spirit:wire>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>in_tready_07</spirit:name>
-        <spirit:wire>
-          <spirit:direction>out</spirit:direction>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-        </spirit:wire>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>in_tready_08</spirit:name>
-        <spirit:wire>
-          <spirit:direction>out</spirit:direction>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-        </spirit:wire>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>in_tready_09</spirit:name>
-        <spirit:wire>
-          <spirit:direction>out</spirit:direction>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-        </spirit:wire>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>in_tready_10</spirit:name>
-        <spirit:wire>
-          <spirit:direction>out</spirit:direction>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-        </spirit:wire>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>in_tready_11</spirit:name>
-        <spirit:wire>
-          <spirit:direction>out</spirit:direction>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-        </spirit:wire>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>in_tready_12</spirit:name>
-        <spirit:wire>
-          <spirit:direction>out</spirit:direction>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-        </spirit:wire>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>in_tready_13</spirit:name>
-        <spirit:wire>
-          <spirit:direction>out</spirit:direction>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-        </spirit:wire>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>in_tready_14</spirit:name>
-        <spirit:wire>
-          <spirit:direction>out</spirit:direction>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-        </spirit:wire>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>in_tready_15</spirit:name>
-        <spirit:wire>
-          <spirit:direction>out</spirit:direction>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-        </spirit:wire>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>out_tdata_00</spirit:name>
+        <spirit:name>out_tdata</spirit:name>
         <spirit:wire>
           <spirit:direction>out</spirit:direction>
           <spirit:vector>
-            <spirit:left spirit:format="long">7</spirit:left>
+            <spirit:left spirit:format="long" spirit:resolve="dependent" spirit:dependency="((spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) * 8) - 1)">95</spirit:left>
             <spirit:right spirit:format="long">0</spirit:right>
           </spirit:vector>
           <spirit:wireTypeDefs>
@@ -2253,11 +2360,11 @@
         </spirit:wire>
       </spirit:port>
       <spirit:port>
-        <spirit:name>out_tdata_01</spirit:name>
+        <spirit:name>out_tvalid</spirit:name>
         <spirit:wire>
           <spirit:direction>out</spirit:direction>
           <spirit:vector>
-            <spirit:left spirit:format="long">7</spirit:left>
+            <spirit:left spirit:format="long" spirit:resolve="dependent" spirit:dependency="(spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) - 1)">11</spirit:left>
             <spirit:right spirit:format="long">0</spirit:right>
           </spirit:vector>
           <spirit:wireTypeDefs>
@@ -2270,11 +2377,11 @@
         </spirit:wire>
       </spirit:port>
       <spirit:port>
-        <spirit:name>out_tdata_02</spirit:name>
+        <spirit:name>out_tready</spirit:name>
         <spirit:wire>
-          <spirit:direction>out</spirit:direction>
+          <spirit:direction>in</spirit:direction>
           <spirit:vector>
-            <spirit:left spirit:format="long">7</spirit:left>
+            <spirit:left spirit:format="long" spirit:resolve="dependent" spirit:dependency="(spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) - 1)">11</spirit:left>
             <spirit:right spirit:format="long">0</spirit:right>
           </spirit:vector>
           <spirit:wireTypeDefs>
@@ -2287,425 +2394,13 @@
         </spirit:wire>
       </spirit:port>
       <spirit:port>
-        <spirit:name>out_tdata_03</spirit:name>
+        <spirit:name>D_IN_OUT</spirit:name>
         <spirit:wire>
-          <spirit:direction>out</spirit:direction>
+          <spirit:direction>inout</spirit:direction>
           <spirit:vector>
-            <spirit:left spirit:format="long">7</spirit:left>
+            <spirit:left spirit:format="long" spirit:resolve="dependent" spirit:dependency="(spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) - 1)">11</spirit:left>
             <spirit:right spirit:format="long">0</spirit:right>
           </spirit:vector>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-        </spirit:wire>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>out_tdata_04</spirit:name>
-        <spirit:wire>
-          <spirit:direction>out</spirit:direction>
-          <spirit:vector>
-            <spirit:left spirit:format="long">7</spirit:left>
-            <spirit:right spirit:format="long">0</spirit:right>
-          </spirit:vector>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-        </spirit:wire>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>out_tdata_05</spirit:name>
-        <spirit:wire>
-          <spirit:direction>out</spirit:direction>
-          <spirit:vector>
-            <spirit:left spirit:format="long">7</spirit:left>
-            <spirit:right spirit:format="long">0</spirit:right>
-          </spirit:vector>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-        </spirit:wire>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>out_tdata_06</spirit:name>
-        <spirit:wire>
-          <spirit:direction>out</spirit:direction>
-          <spirit:vector>
-            <spirit:left spirit:format="long">7</spirit:left>
-            <spirit:right spirit:format="long">0</spirit:right>
-          </spirit:vector>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-        </spirit:wire>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>out_tdata_07</spirit:name>
-        <spirit:wire>
-          <spirit:direction>out</spirit:direction>
-          <spirit:vector>
-            <spirit:left spirit:format="long">7</spirit:left>
-            <spirit:right spirit:format="long">0</spirit:right>
-          </spirit:vector>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-        </spirit:wire>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>out_tdata_08</spirit:name>
-        <spirit:wire>
-          <spirit:direction>out</spirit:direction>
-          <spirit:vector>
-            <spirit:left spirit:format="long">7</spirit:left>
-            <spirit:right spirit:format="long">0</spirit:right>
-          </spirit:vector>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-        </spirit:wire>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>out_tdata_09</spirit:name>
-        <spirit:wire>
-          <spirit:direction>out</spirit:direction>
-          <spirit:vector>
-            <spirit:left spirit:format="long">7</spirit:left>
-            <spirit:right spirit:format="long">0</spirit:right>
-          </spirit:vector>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-        </spirit:wire>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>out_tdata_10</spirit:name>
-        <spirit:wire>
-          <spirit:direction>out</spirit:direction>
-          <spirit:vector>
-            <spirit:left spirit:format="long">7</spirit:left>
-            <spirit:right spirit:format="long">0</spirit:right>
-          </spirit:vector>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-        </spirit:wire>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>out_tdata_11</spirit:name>
-        <spirit:wire>
-          <spirit:direction>out</spirit:direction>
-          <spirit:vector>
-            <spirit:left spirit:format="long">7</spirit:left>
-            <spirit:right spirit:format="long">0</spirit:right>
-          </spirit:vector>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-        </spirit:wire>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>out_tdata_12</spirit:name>
-        <spirit:wire>
-          <spirit:direction>out</spirit:direction>
-          <spirit:vector>
-            <spirit:left spirit:format="long">7</spirit:left>
-            <spirit:right spirit:format="long">0</spirit:right>
-          </spirit:vector>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-        </spirit:wire>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>out_tdata_13</spirit:name>
-        <spirit:wire>
-          <spirit:direction>out</spirit:direction>
-          <spirit:vector>
-            <spirit:left spirit:format="long">7</spirit:left>
-            <spirit:right spirit:format="long">0</spirit:right>
-          </spirit:vector>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-        </spirit:wire>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>out_tdata_14</spirit:name>
-        <spirit:wire>
-          <spirit:direction>out</spirit:direction>
-          <spirit:vector>
-            <spirit:left spirit:format="long">7</spirit:left>
-            <spirit:right spirit:format="long">0</spirit:right>
-          </spirit:vector>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-        </spirit:wire>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>out_tdata_15</spirit:name>
-        <spirit:wire>
-          <spirit:direction>out</spirit:direction>
-          <spirit:vector>
-            <spirit:left spirit:format="long">7</spirit:left>
-            <spirit:right spirit:format="long">0</spirit:right>
-          </spirit:vector>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-        </spirit:wire>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>out_tvalid_00</spirit:name>
-        <spirit:wire>
-          <spirit:direction>out</spirit:direction>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-        </spirit:wire>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>out_tvalid_01</spirit:name>
-        <spirit:wire>
-          <spirit:direction>out</spirit:direction>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-        </spirit:wire>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>out_tvalid_02</spirit:name>
-        <spirit:wire>
-          <spirit:direction>out</spirit:direction>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-        </spirit:wire>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>out_tvalid_03</spirit:name>
-        <spirit:wire>
-          <spirit:direction>out</spirit:direction>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-        </spirit:wire>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>out_tvalid_04</spirit:name>
-        <spirit:wire>
-          <spirit:direction>out</spirit:direction>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-        </spirit:wire>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>out_tvalid_05</spirit:name>
-        <spirit:wire>
-          <spirit:direction>out</spirit:direction>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-        </spirit:wire>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>out_tvalid_06</spirit:name>
-        <spirit:wire>
-          <spirit:direction>out</spirit:direction>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-        </spirit:wire>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>out_tvalid_07</spirit:name>
-        <spirit:wire>
-          <spirit:direction>out</spirit:direction>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-        </spirit:wire>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>out_tvalid_08</spirit:name>
-        <spirit:wire>
-          <spirit:direction>out</spirit:direction>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-        </spirit:wire>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>out_tvalid_09</spirit:name>
-        <spirit:wire>
-          <spirit:direction>out</spirit:direction>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-        </spirit:wire>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>out_tvalid_10</spirit:name>
-        <spirit:wire>
-          <spirit:direction>out</spirit:direction>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-        </spirit:wire>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>out_tvalid_11</spirit:name>
-        <spirit:wire>
-          <spirit:direction>out</spirit:direction>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-        </spirit:wire>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>out_tvalid_12</spirit:name>
-        <spirit:wire>
-          <spirit:direction>out</spirit:direction>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-        </spirit:wire>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>out_tvalid_13</spirit:name>
-        <spirit:wire>
-          <spirit:direction>out</spirit:direction>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-        </spirit:wire>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>out_tvalid_14</spirit:name>
-        <spirit:wire>
-          <spirit:direction>out</spirit:direction>
-          <spirit:wireTypeDefs>
-            <spirit:wireTypeDef>
-              <spirit:typeName>logic</spirit:typeName>
-              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
-              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
-            </spirit:wireTypeDef>
-          </spirit:wireTypeDefs>
-        </spirit:wire>
-      </spirit:port>
-      <spirit:port>
-        <spirit:name>out_tvalid_15</spirit:name>
-        <spirit:wire>
-          <spirit:direction>out</spirit:direction>
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
               <spirit:typeName>logic</spirit:typeName>
@@ -2753,6 +2448,108 @@
           <spirit:driver>
             <spirit:defaultValue spirit:format="long">1</spirit:defaultValue>
           </spirit:driver>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>D_IN</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:vector>
+            <spirit:left spirit:format="long" spirit:resolve="dependent" spirit:dependency="(spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) - 1)">11</spirit:left>
+            <spirit:right spirit:format="long">0</spirit:right>
+          </spirit:vector>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>D_IN_P</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:vector>
+            <spirit:left spirit:format="long" spirit:resolve="dependent" spirit:dependency="(spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) - 1)">11</spirit:left>
+            <spirit:right spirit:format="long">0</spirit:right>
+          </spirit:vector>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>D_IN_N</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:vector>
+            <spirit:left spirit:format="long" spirit:resolve="dependent" spirit:dependency="(spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) - 1)">11</spirit:left>
+            <spirit:right spirit:format="long">0</spirit:right>
+          </spirit:vector>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>D_OUT</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:vector>
+            <spirit:left spirit:format="long" spirit:resolve="dependent" spirit:dependency="(spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) - 1)">11</spirit:left>
+            <spirit:right spirit:format="long">0</spirit:right>
+          </spirit:vector>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>D_OUT_P</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:vector>
+            <spirit:left spirit:format="long" spirit:resolve="dependent" spirit:dependency="(spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) - 1)">11</spirit:left>
+            <spirit:right spirit:format="long">0</spirit:right>
+          </spirit:vector>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>D_OUT_N</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:vector>
+            <spirit:left spirit:format="long" spirit:resolve="dependent" spirit:dependency="(spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) - 1)">11</spirit:left>
+            <spirit:right spirit:format="long">0</spirit:right>
+          </spirit:vector>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
         </spirit:wire>
       </spirit:port>
       <spirit:port>
@@ -2965,12 +2762,12 @@
       </spirit:port>
     </spirit:ports>
     <spirit:modelParameters>
-      <spirit:modelParameter spirit:dataType="integer">
+      <spirit:modelParameter xsi:type="spirit:nameValueTypeType" spirit:dataType="integer">
         <spirit:name>INCLUDE_SYNCHRONIZER</spirit:name>
         <spirit:displayName>Include IPIF synchronizer</spirit:displayName>
         <spirit:value spirit:format="bool" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.INCLUDE_SYNCHRONIZER">false</spirit:value>
       </spirit:modelParameter>
-      <spirit:modelParameter xsi:type="spirit:nameValueTypeType" spirit:dataType="integer">
+      <spirit:modelParameter spirit:dataType="integer">
         <spirit:name>NLINKS</spirit:name>
         <spirit:displayName>Nlinks</spirit:displayName>
         <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.NLINKS">12</spirit:value>
@@ -2990,10 +2787,20 @@
         <spirit:displayName>Enable Output Streams</spirit:displayName>
         <spirit:value spirit:format="bool" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.OUTPUT_STREAMS_ENABLE">true</spirit:value>
       </spirit:modelParameter>
-      <spirit:modelParameter spirit:dataType="integer">
+      <spirit:modelParameter spirit:dataType="logic((NLINKS - 1) 0)">
         <spirit:name>INVERT</spirit:name>
         <spirit:displayName>Inverted channels</spirit:displayName>
-        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.INVERT">0</spirit:value>
+        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.INVERT" spirit:bitStringLength="1">&quot;0&quot;</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter spirit:dataType="integer">
+        <spirit:name>C_S_AXI_DATA_WIDTH</spirit:name>
+        <spirit:displayName>C S Axi Data Width</spirit:displayName>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_S_AXI_DATA_WIDTH">32</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter spirit:dataType="integer">
+        <spirit:name>DIFF_IO</spirit:name>
+        <spirit:displayName>Differential input/output</spirit:displayName>
+        <spirit:value spirit:format="bool" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.DIFF_IO">true</spirit:value>
       </spirit:modelParameter>
     </spirit:modelParameters>
   </spirit:model>
@@ -3019,7 +2826,7 @@
       <spirit:file>
         <spirit:name>IO_blocks.sv</spirit:name>
         <spirit:fileType>systemVerilogSource</spirit:fileType>
-        <spirit:userFileType>CHECKSUM_32df46a5</spirit:userFileType>
+        <spirit:userFileType>CHECKSUM_b91f82cb</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
@@ -3052,15 +2859,6 @@
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
-      <spirit:name>xilinx_xpgui_view_fileset</spirit:name>
-      <spirit:file>
-        <spirit:name>xgui/IO_blocks_v1_0.tcl</spirit:name>
-        <spirit:fileType>tclSource</spirit:fileType>
-        <spirit:userFileType>CHECKSUM_97c366fd</spirit:userFileType>
-        <spirit:userFileType>XGUI_VERSION_2</spirit:userFileType>
-      </spirit:file>
-    </spirit:fileSet>
-    <spirit:fileSet>
       <spirit:name>xilinx_anylanguagebehavioralsimulation_baylor_edu_IPIF_common_IPIF_common_1_0__ref_view_fileset</spirit:name>
       <spirit:vendorExtensions>
         <xilinx:subCoreRef>
@@ -3069,6 +2867,15 @@
           </xilinx:componentRef>
         </xilinx:subCoreRef>
       </spirit:vendorExtensions>
+    </spirit:fileSet>
+    <spirit:fileSet>
+      <spirit:name>xilinx_xpgui_view_fileset</spirit:name>
+      <spirit:file>
+        <spirit:name>xgui/IO_blocks_v1_0.tcl</spirit:name>
+        <spirit:fileType>tclSource</spirit:fileType>
+        <spirit:userFileType>CHECKSUM_e55dc66c</spirit:userFileType>
+        <spirit:userFileType>XGUI_VERSION_2</spirit:userFileType>
+      </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
       <spirit:name>xilinx_utilityxitfiles_view_fileset</spirit:name>
@@ -3131,7 +2938,22 @@
     <spirit:parameter>
       <spirit:name>INVERT</spirit:name>
       <spirit:displayName>Invert</spirit:displayName>
-      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.INVERT">0</spirit:value>
+      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.INVERT" spirit:bitStringLength="1">&quot;0&quot;</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_S_AXI_DATA_WIDTH</spirit:name>
+      <spirit:displayName>C S Axi Data Width</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_S_AXI_DATA_WIDTH">32</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>DIFF_IO</spirit:name>
+      <spirit:displayName>Differential input/output</spirit:displayName>
+      <spirit:value spirit:format="bool" spirit:resolve="user" spirit:id="PARAM_VALUE.DIFF_IO">true</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>UNIFIED_STREAMS</spirit:name>
+      <spirit:displayName>Unified AXIS streams</spirit:displayName>
+      <spirit:value spirit:format="bool" spirit:resolve="user" spirit:id="PARAM_VALUE.UNIFIED_STREAMS">false</spirit:value>
     </spirit:parameter>
   </spirit:parameters>
   <spirit:vendorExtensions>
@@ -3165,19 +2987,16 @@
         <xilinx:xpmLibrary>XPM_FIFO</xilinx:xpmLibrary>
         <xilinx:xpmLibrary>XPM_MEMORY</xilinx:xpmLibrary>
       </xilinx:xpmLibraries>
-      <xilinx:coreRevision>11</xilinx:coreRevision>
-      <xilinx:coreCreationDateTime>2021-01-22T16:53:32Z</xilinx:coreCreationDateTime>
-      <xilinx:tags>
-        <xilinx:tag xilinx:name="nopcore"/>
-      </xilinx:tags>
+      <xilinx:coreRevision>13</xilinx:coreRevision>
+      <xilinx:coreCreationDateTime>2021-08-19T21:22:09Z</xilinx:coreCreationDateTime>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2019.2</xilinx:xilinxVersion>
-      <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="3213d847"/>
-      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="6dc4fbfa"/>
-      <xilinx:checksum xilinx:scope="ports" xilinx:value="22cf88fe"/>
-      <xilinx:checksum xilinx:scope="hdlParameters" xilinx:value="3dbcde50"/>
-      <xilinx:checksum xilinx:scope="parameters" xilinx:value="fd853cb8"/>
+      <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="08de3a54"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="b6397bc0"/>
+      <xilinx:checksum xilinx:scope="ports" xilinx:value="b7671ca1"/>
+      <xilinx:checksum xilinx:scope="hdlParameters" xilinx:value="276f7766"/>
+      <xilinx:checksum xilinx:scope="parameters" xilinx:value="952e3f54"/>
     </xilinx:packagingInfo>
   </spirit:vendorExtensions>
 </spirit:component>
