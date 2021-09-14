@@ -577,6 +577,11 @@
       </spirit:port>
     </spirit:ports>
     <spirit:modelParameters>
+      <spirit:modelParameter spirit:dataType="integer">
+        <spirit:name>INCLUDE_SYNCHRONIZER</spirit:name>
+        <spirit:displayName>Include IPIF synchronizer</spirit:displayName>
+        <spirit:value spirit:format="bool" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.INCLUDE_SYNCHRONIZER">true</spirit:value>
+      </spirit:modelParameter>
       <spirit:modelParameter xsi:type="spirit:nameValueTypeType" spirit:dataType="integer">
         <spirit:name>NFANOUT</spirit:name>
         <spirit:displayName>Nfanout</spirit:displayName>
@@ -630,7 +635,11 @@
     <spirit:fileSet>
       <spirit:name>xilinx_anylanguagesynthesis_view_fileset</spirit:name>
       <spirit:file>
-        <spirit:name>IPIF_parameterDecode.sv</spirit:name>
+        <spirit:name>../IPIF_common/IPIF_parameterDecode.sv</spirit:name>
+        <spirit:fileType>systemVerilogSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>../IPIF_common/IPIF_clock_converter.sv</spirit:name>
         <spirit:fileType>systemVerilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
@@ -642,7 +651,11 @@
     <spirit:fileSet>
       <spirit:name>xilinx_anylanguagebehavioralsimulation_view_fileset</spirit:name>
       <spirit:file>
-        <spirit:name>IPIF_parameterDecode.sv</spirit:name>
+        <spirit:name>../IPIF_common/IPIF_parameterDecode.sv</spirit:name>
+        <spirit:fileType>systemVerilogSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>../IPIF_common/IPIF_clock_converter.sv</spirit:name>
         <spirit:fileType>systemVerilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
@@ -672,6 +685,11 @@
   </spirit:fileSets>
   <spirit:description>Fast_Control_Fanout_v1_0</spirit:description>
   <spirit:parameters>
+    <spirit:parameter>
+      <spirit:name>INCLUDE_SYNCHRONIZER</spirit:name>
+      <spirit:displayName>Include IPIF synchronizer</spirit:displayName>
+      <spirit:value spirit:format="bool" spirit:resolve="user" spirit:id="PARAM_VALUE.INCLUDE_SYNCHRONIZER">true</spirit:value>
+    </spirit:parameter>
     <spirit:parameter>
       <spirit:name>NFANOUT</spirit:name>
       <spirit:displayName>Nfanout</spirit:displayName>

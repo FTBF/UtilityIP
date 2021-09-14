@@ -4,6 +4,7 @@ proc init_gui { IPINST } {
   #Adding Page
   set Page_0 [ipgui::add_page $IPINST -name "Page 0"]
   ipgui::add_param $IPINST -name "MEM_DEPTH" -parent ${Page_0}
+  ipgui::add_param $IPINST -name "INCLUDE_SYNCHRONIZER" -parent ${Page_0}
 
 
 }
@@ -26,6 +27,15 @@ proc validate_PARAM_VALUE.C_S_AXI_DATA_WIDTH { PARAM_VALUE.C_S_AXI_DATA_WIDTH } 
 	return true
 }
 
+proc update_PARAM_VALUE.INCLUDE_SYNCHRONIZER { PARAM_VALUE.INCLUDE_SYNCHRONIZER } {
+	# Procedure called to update INCLUDE_SYNCHRONIZER when any of the dependent parameters in the arguments change
+}
+
+proc validate_PARAM_VALUE.INCLUDE_SYNCHRONIZER { PARAM_VALUE.INCLUDE_SYNCHRONIZER } {
+	# Procedure called to validate INCLUDE_SYNCHRONIZER
+	return true
+}
+
 proc update_PARAM_VALUE.MEM_DEPTH { PARAM_VALUE.MEM_DEPTH } {
 	# Procedure called to update MEM_DEPTH when any of the dependent parameters in the arguments change
 }
@@ -44,6 +54,11 @@ proc validate_PARAM_VALUE.N_REG { PARAM_VALUE.N_REG } {
 	return true
 }
 
+
+proc update_MODELPARAM_VALUE.INCLUDE_SYNCHRONIZER { MODELPARAM_VALUE.INCLUDE_SYNCHRONIZER PARAM_VALUE.INCLUDE_SYNCHRONIZER } {
+	# Procedure called to set VHDL generic/Verilog parameter value(s) based on TCL parameter value
+	set_property value [get_property value ${PARAM_VALUE.INCLUDE_SYNCHRONIZER}] ${MODELPARAM_VALUE.INCLUDE_SYNCHRONIZER}
+}
 
 proc update_MODELPARAM_VALUE.MEM_DEPTH { MODELPARAM_VALUE.MEM_DEPTH PARAM_VALUE.MEM_DEPTH } {
 	# Procedure called to set VHDL generic/Verilog parameter value(s) based on TCL parameter value

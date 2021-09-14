@@ -21,6 +21,7 @@
 
 
 module Fast_Control_Fanout #(
+        parameter INCLUDE_SYNCHRONIZER = 1,
         parameter integer NFANOUT = 1,
         parameter integer NRESYNC = 1,
         parameter integer RESYNCCLEANUP = 1,
@@ -176,14 +177,21 @@ module Fast_Control_Fanout #(
             logic        reset;
         } param_t;
         
-        param_t params_in;
-        param_t params_out;
+        param_t params_to_bus;
+        param_t params_to_IP;
+        param_t params_from_bus;
+        param_t params_from_IP;
         
-        assign params_in.offset_raw = params_out.offset_raw;
-        assign params_in.offset_clean = params_out.offset_clean;
-        assign params_in.delay = params_out.delay;
-        assign params_in.enable_cleaning = params_out.enable_cleaning;
-        assign enable_cleaning = params_out.enable_cleaning;
+        always_comb begin
+            params_from_IP = params_to_IP;
+            params_from_IP.padding1 = debug_state;
+            params_from_IP.padding2 = '0;
+            params_from_IP.padding3 = '0;
+            params_from_IP.padding4 = '0;
+        
+        end
+
+        assign enable_cleaning = params_to_IP.enable_cleaning;
         
         logic IPIF_IP2Bus_RdAck_pdc;
         logic IPIF_IP2Bus_RdAck_bram;
@@ -200,9 +208,9 @@ module Fast_Control_Fanout #(
         IPIF_parameterDecode#(
             .C_S_AXI_DATA_WIDTH(C_S_AXI_DATA_WIDTH),
             .N_REG(N_REG),
-            .W_PULSE_REG(4'b1),
             .PARAM_T(param_t),
-            .DEFAULTS({32'h1, 32'd100, 32'b0, 32'b0})
+            .DEFAULTS({32'h1, 32'd100, 32'b0, 32'b0}),
+            .SELF_RESET({32'h0, 32'h0, 32'h0, 32'h1})
         ) parameterDecoder (
             .clk(IPIF_clk),
             
@@ -214,9 +222,22 @@ module Fast_Control_Fanout #(
             .IPIF_ip2bus_rdack(IPIF_IP2Bus_RdAck_pdc),
             .IPIF_ip2bus_wrack(IPIF_IP2Bus_WrAck),
             
-            .parameters_out(params_out),
-            .parameters_in(params_in)
+            .parameters_out(params_from_bus),
+            .parameters_in(params_to_bus)
         );
+
+        IPIF_clock_converter #(
+            .INCLUDE_SYNCHRONIZER(INCLUDE_SYNCHRONIZER),
+            .C_S_AXI_DATA_WIDTH(C_S_AXI_DATA_WIDTH),
+            .N_REG(N_REG),
+            .PARAM_T(param_t)
+        ) IPIF_clock_conv (
+            .IP_clk(fast_clock_in),
+            .bus_clk(IPIF_clk),
+            .params_from_IP(params_from_IP),
+            .params_from_bus(params_from_bus),
+            .params_to_IP(params_to_IP),
+            .params_to_bus(params_to_bus));
 
         
         logic [16:0] debug_in;
@@ -244,11 +265,11 @@ module Fast_Control_Fanout #(
                 eight_count <= eight_count + 1;
                 
                 debug_in <= debug_in;                
-                if(eight_count == params_out.offset_raw)
+                if(eight_count == params_to_IP.offset_raw)
                 begin
                     debug_in[16:8] <= {debug_sr_raw[8:6] != 3'b110, debug_sr_raw[8:1]};
                 end
-                if(eight_count == params_out.offset_clean)
+                if(eight_count == params_to_IP.offset_clean)
                 begin
                     debug_in[7:0] <= debug_sr_clean[8:1];
                 end
@@ -261,9 +282,7 @@ module Fast_Control_Fanout #(
         logic [9:0] write_addr;
         logic [9:0] wait_ctr;
         logic resetn;
-        assign resetn = arstn && !params_out.reset;
-        
-        assign params_in.padding1 = debug_state;
+        assign resetn = arstn && !params_to_IP.reset;
         
         logic triggered;
         assign debug_trig = triggered;
@@ -301,7 +320,7 @@ module Fast_Control_Fanout #(
                         if(eight_count == '0) triggered <= 1'b0;
                         if(eight_count == '0) wait_ctr <= wait_ctr + 1;
                         write_enable <= 1;
-                        if(wait_ctr == params_out.delay) debug_state <= READING;
+                        if(wait_ctr == params_to_IP.delay) debug_state <= READING;
                     end
                     READING:
                     begin
