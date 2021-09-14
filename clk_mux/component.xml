@@ -180,6 +180,11 @@
       <spirit:file>
         <spirit:name>timing.xdc</spirit:name>
         <spirit:userFileType>xdc</spirit:userFileType>
+		<spirit:userFileType>USED_IN_implementation</spirit:userFileType>
+        <spirit:define>
+          <spirit:name>processing_order</spirit:name>
+          <spirit:value>late</spirit:value>
+        </spirit:define>
       </spirit:file>
       <spirit:file>
         <spirit:name>clk_mux.sv</spirit:name>
