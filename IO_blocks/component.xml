@@ -1386,6 +1386,9 @@
         <spirit:language>SystemVerilog</spirit:language>
         <spirit:modelName>IO_blocks</spirit:modelName>
         <spirit:fileSetRef>
+          <spirit:localName>xilinx_anylanguagesynthesis_baylor_edu_IPIF_common_IPIF_common_1_0__ref_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
+        <spirit:fileSetRef>
           <spirit:localName>xilinx_anylanguagesynthesis_view_fileset</spirit:localName>
         </spirit:fileSetRef>
         <spirit:parameters>
@@ -1401,6 +1404,9 @@
         <spirit:envIdentifier>:vivado.xilinx.com:simulation</spirit:envIdentifier>
         <spirit:language>SystemVerilog</spirit:language>
         <spirit:modelName>IO_blocks</spirit:modelName>
+        <spirit:fileSetRef>
+          <spirit:localName>xilinx_anylanguagebehavioralsimulation_baylor_edu_IPIF_common_IPIF_common_1_0__ref_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
         <spirit:fileSetRef>
           <spirit:localName>xilinx_anylanguagebehavioralsimulation_view_fileset</spirit:localName>
         </spirit:fileSetRef>
@@ -2999,11 +3005,11 @@
         <spirit:userFileType>ttcl</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>IO_IDELAY_set_ctrl.v</spirit:name>
+        <spirit:name>IDELAY_set_ctrl.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>IO_delay_ctrl.v</spirit:name>
+        <spirit:name>delay_ctrl.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
@@ -3015,23 +3021,25 @@
         <spirit:fileType>systemVerilogSource</spirit:fileType>
         <spirit:userFileType>CHECKSUM_32df46a5</spirit:userFileType>
       </spirit:file>
-      <spirit:file>
-        <spirit:name>../IPIF_common/IPIF_parameterDecode.sv</spirit:name>
-        <spirit:fileType>systemVerilogSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>../IPIF_common/IPIF_clock_converter.sv</spirit:name>
-        <spirit:fileType>systemVerilogSource</spirit:fileType>
-      </spirit:file>
+    </spirit:fileSet>
+    <spirit:fileSet>
+      <spirit:name>xilinx_anylanguagesynthesis_baylor_edu_IPIF_common_IPIF_common_1_0__ref_view_fileset</spirit:name>
+      <spirit:vendorExtensions>
+        <xilinx:subCoreRef>
+          <xilinx:componentRef xilinx:vendor="baylor.edu" xilinx:library="IPIF_common" xilinx:name="IPIF_common" xilinx:version="1.0">
+            <xilinx:mode xilinx:name="copy_mode"/>
+          </xilinx:componentRef>
+        </xilinx:subCoreRef>
+      </spirit:vendorExtensions>
     </spirit:fileSet>
     <spirit:fileSet>
       <spirit:name>xilinx_anylanguagebehavioralsimulation_view_fileset</spirit:name>
       <spirit:file>
-        <spirit:name>IO_IDELAY_set_ctrl.v</spirit:name>
+        <spirit:name>IDELAY_set_ctrl.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>IO_delay_ctrl.v</spirit:name>
+        <spirit:name>delay_ctrl.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
@@ -3040,14 +3048,6 @@
       </spirit:file>
       <spirit:file>
         <spirit:name>IO_blocks.sv</spirit:name>
-        <spirit:fileType>systemVerilogSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>../IPIF_common/IPIF_parameterDecode.sv</spirit:name>
-        <spirit:fileType>systemVerilogSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>../IPIF_common/IPIF_clock_converter.sv</spirit:name>
         <spirit:fileType>systemVerilogSource</spirit:fileType>
       </spirit:file>
     </spirit:fileSet>
@@ -3059,6 +3059,16 @@
         <spirit:userFileType>CHECKSUM_97c366fd</spirit:userFileType>
         <spirit:userFileType>XGUI_VERSION_2</spirit:userFileType>
       </spirit:file>
+    </spirit:fileSet>
+    <spirit:fileSet>
+      <spirit:name>xilinx_anylanguagebehavioralsimulation_baylor_edu_IPIF_common_IPIF_common_1_0__ref_view_fileset</spirit:name>
+      <spirit:vendorExtensions>
+        <xilinx:subCoreRef>
+          <xilinx:componentRef xilinx:vendor="baylor.edu" xilinx:library="IPIF_common" xilinx:name="IPIF_common" xilinx:version="1.0">
+            <xilinx:mode xilinx:name="copy_mode"/>
+          </xilinx:componentRef>
+        </xilinx:subCoreRef>
+      </spirit:vendorExtensions>
     </spirit:fileSet>
     <spirit:fileSet>
       <spirit:name>xilinx_utilityxitfiles_view_fileset</spirit:name>
@@ -3159,97 +3169,6 @@
       <xilinx:coreCreationDateTime>2021-01-22T16:53:32Z</xilinx:coreCreationDateTime>
       <xilinx:tags>
         <xilinx:tag xilinx:name="nopcore"/>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@4fa9800d_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@4367bb8c_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@36bfab3c_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@3e252a89_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@2bae2879_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@46e82036_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@6848091_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@3a6beff3_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@4f2bc811_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@541bf32d_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@6c2ba0d4_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@1f73ea33_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@6bb40a77_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@72ecc57a_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@7977cef7_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@ce266fb_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@27109c5f_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@f28701b_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@545c280_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@30aa0081_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@59015c6_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@1dd4fd9f_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@728e57a_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@7e2d4972_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@5614236_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@35b8dda2_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@6f4b70d6_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@2db21936_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@2c714d58_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@1b1e249f_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@7f655d7f_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@68ef5d72_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@4804dd0c_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@6a5834f_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@1c95c4cc_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@2f02cfc9_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@bb37c84_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@257f7385_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@24b48b81_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@65737329_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@57677471_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@3190c0e9_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@38370a18_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@107fdc61_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@7492cdf8_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@298fdc77_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@4f1e15b1_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@7fe37892_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@172e2627_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@407c67e6_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@57890bb8_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@70def183_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@4849433e_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@683614ad_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@421851d9_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@1c1c951d_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@48234536_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@42e23fe2_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@625d3c22_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@4495a9c2_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@3106b63a_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@65096f4a_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@4c7510e1_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@13cd5dd2_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@1c0cc008_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@703e1397_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@214c69fb_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@71c015f0_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@3a8ec32e_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@36998cd7_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@4eb899b4_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@50818b7_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@201f4f72_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@1b9bc349_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@64b346b5_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@6c001dca_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@2badc4b6_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@6016d763_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@1f28f0d9_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@123b9025_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@228c568b_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@3e6e1b64_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@686c09ec_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@5ef88130_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@16fe481a_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@6d8b42d9_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@2286ee54_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@38b9f926_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@5da274eb_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@300e98f9_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@545d6_ARCHIVE_LOCATION">/home/jsw/src/econ-emu-test/shared/ip_repo/utilityip/IO_blocks</xilinx:tag>
       </xilinx:tags>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>

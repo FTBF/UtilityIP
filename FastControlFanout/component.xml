@@ -155,6 +155,9 @@
         <spirit:language>SystemVerilog</spirit:language>
         <spirit:modelName>Fast_Control_Fanout</spirit:modelName>
         <spirit:fileSetRef>
+          <spirit:localName>xilinx_anylanguagesynthesis_baylor_edu_IPIF_common_IPIF_common_1_0__ref_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
+        <spirit:fileSetRef>
           <spirit:localName>xilinx_anylanguagesynthesis_view_fileset</spirit:localName>
         </spirit:fileSetRef>
         <spirit:parameters>
@@ -170,6 +173,9 @@
         <spirit:envIdentifier>:vivado.xilinx.com:simulation</spirit:envIdentifier>
         <spirit:language>SystemVerilog</spirit:language>
         <spirit:modelName>Fast_Control_Fanout</spirit:modelName>
+        <spirit:fileSetRef>
+          <spirit:localName>xilinx_anylanguagebehavioralsimulation_baylor_edu_IPIF_common_IPIF_common_1_0__ref_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
         <spirit:fileSetRef>
           <spirit:localName>xilinx_anylanguagebehavioralsimulation_view_fileset</spirit:localName>
         </spirit:fileSetRef>
@@ -635,29 +641,23 @@
     <spirit:fileSet>
       <spirit:name>xilinx_anylanguagesynthesis_view_fileset</spirit:name>
       <spirit:file>
-        <spirit:name>../IPIF_common/IPIF_parameterDecode.sv</spirit:name>
-        <spirit:fileType>systemVerilogSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>../IPIF_common/IPIF_clock_converter.sv</spirit:name>
-        <spirit:fileType>systemVerilogSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
         <spirit:name>Fast_Control_Fanout.sv</spirit:name>
         <spirit:fileType>systemVerilogSource</spirit:fileType>
         <spirit:userFileType>CHECKSUM_c9cd9a9c</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
+      <spirit:name>xilinx_anylanguagesynthesis_baylor_edu_IPIF_common_IPIF_common_1_0__ref_view_fileset</spirit:name>
+      <spirit:vendorExtensions>
+        <xilinx:subCoreRef>
+          <xilinx:componentRef xilinx:vendor="baylor.edu" xilinx:library="IPIF_common" xilinx:name="IPIF_common" xilinx:version="1.0">
+            <xilinx:mode xilinx:name="copy_mode"/>
+          </xilinx:componentRef>
+        </xilinx:subCoreRef>
+      </spirit:vendorExtensions>
+    </spirit:fileSet>
+    <spirit:fileSet>
       <spirit:name>xilinx_anylanguagebehavioralsimulation_view_fileset</spirit:name>
-      <spirit:file>
-        <spirit:name>../IPIF_common/IPIF_parameterDecode.sv</spirit:name>
-        <spirit:fileType>systemVerilogSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>../IPIF_common/IPIF_clock_converter.sv</spirit:name>
-        <spirit:fileType>systemVerilogSource</spirit:fileType>
-      </spirit:file>
       <spirit:file>
         <spirit:name>Fast_Control_Fanout.sv</spirit:name>
         <spirit:fileType>systemVerilogSource</spirit:fileType>
@@ -671,6 +671,16 @@
         <spirit:userFileType>CHECKSUM_a1f3c2f2</spirit:userFileType>
         <spirit:userFileType>XGUI_VERSION_2</spirit:userFileType>
       </spirit:file>
+    </spirit:fileSet>
+    <spirit:fileSet>
+      <spirit:name>xilinx_anylanguagebehavioralsimulation_baylor_edu_IPIF_common_IPIF_common_1_0__ref_view_fileset</spirit:name>
+      <spirit:vendorExtensions>
+        <xilinx:subCoreRef>
+          <xilinx:componentRef xilinx:vendor="baylor.edu" xilinx:library="IPIF_common" xilinx:name="IPIF_common" xilinx:version="1.0">
+            <xilinx:mode xilinx:name="copy_mode"/>
+          </xilinx:componentRef>
+        </xilinx:subCoreRef>
+      </spirit:vendorExtensions>
     </spirit:fileSet>
     <spirit:fileSet>
       <spirit:name>xilinx_testbench_view_fileset</spirit:name>
@@ -769,62 +779,6 @@
       <xilinx:definitionSource>package_project</xilinx:definitionSource>
       <xilinx:coreRevision>6</xilinx:coreRevision>
       <xilinx:coreCreationDateTime>2021-05-04T22:03:15Z</xilinx:coreCreationDateTime>
-      <xilinx:tags>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@75d77351_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@6655e1e8_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@48e15522_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@460476b9_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@552d7d56_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@39390582_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@2f1b75d4_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@7bf5d870_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@6898fd75_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@4b141836_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@680fdb6_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@5a10c8f5_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@101f0491_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@622a582b_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@4f9f83e1_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@172c6c41_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test_copy/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@61e80671_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@13e7b380_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@6092d64f_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@5588005e_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@2cb620e7_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@3232db13_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@483d2c90_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@76932032_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@64da12d4_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@5b156f5_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@693064a7_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@5082ebbb_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@52547418_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@50e3ae9b_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@7853c89b_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@1a7bc1eb_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@3d047b5d_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@2187c0ea_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@e1e29ff_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@37c97b64_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@7370761b_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@5944f321_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@307c0b37_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@6acbe841_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@462e0116_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@53610983_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@727fb841_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@5547105e_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@3a92dff9_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@22d689_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@12e0a863_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@17541704_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@3564b4c7_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@3d0653f9_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@336afa7_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@1e9eee74_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@659e387e_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.dd@257ca012_ARCHIVE_LOCATION">/home/pastika/Xilinx/ECON/econ-emu-test/shared/ip_repo/utilityip/FastControlFanout</xilinx:tag>
-      </xilinx:tags>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2019.2</xilinx:xilinxVersion>

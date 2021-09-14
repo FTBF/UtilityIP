@@ -387,7 +387,10 @@ module IO_blocks#(
 			end
 
 			if (OUTPUT_STREAMS_ENABLE) begin
-				input_blocks sigmon(
+				input_blocks #(
+					.DELAY_INIT(0),
+					.COUNTER_WIDTH(32)
+				) sigmon (
 					.clk640(in_clk640),
 					.clk160(in_clk160),
 					.fifo_rd_clk(out_clk160),

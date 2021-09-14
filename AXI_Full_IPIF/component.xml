@@ -1564,8 +1564,6 @@
       <xilinx:displayName>AXI_Full_IPIF</xilinx:displayName>
       <xilinx:coreRevision>2</xilinx:coreRevision>
       <xilinx:coreCreationDateTime>2021-05-12T16:26:20Z</xilinx:coreCreationDateTime>
-      <xilinx:tags>
-      </xilinx:tags>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2019.2</xilinx:xilinxVersion>
