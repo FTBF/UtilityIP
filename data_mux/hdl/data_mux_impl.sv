@@ -39,19 +39,13 @@ module data_mux_impl# (
     logic [DATA_WIDTH-1:0] tdata_select;
     logic                  tvalid_select;
 
-    logic                  fc_linkReset_dly;
-    logic                  fc_orbitSync_dly;
     logic [15:0]           idleCountdown;
-    logic                  sendIdle = |idleCountdown;
+    logic                  sendIdle;
+    assign sendIdle = |idleCountdown;
     
     //check if idle pattern should be sent
     always_ff @(posedge clk) begin
-        if (tready_out) begin
-            fc_linkReset_dly <= fc_linkReset;
-            fc_orbitSync_dly <= fc_orbitSync;
-        end
-        
-        if(!fc_linkReset_dly && fc_linkReset) idleCountdown <= n_idle_words;
+        if(fc_linkReset) idleCountdown <= n_idle_words;
         else if(sendIdle && tready_out)       idleCountdown <= idleCountdown - 1;
     end
     
@@ -61,7 +55,7 @@ module data_mux_impl# (
         tvalid_select <= 0;
         
         if(sendIdle) begin
-            if (!fc_orbitSync_dly && fc_orbitSync) begin
+            if (fc_orbitSync) begin
                 tdata_select <= idle_word_BX0;
             end else begin
                 tdata_select <= idle_word;
@@ -70,7 +64,7 @@ module data_mux_impl# (
         end else begin
             for(int i = 0; i < N_INPUTS; i += 1) begin
                 if(output_select == i) begin
-					if (!fc_orbitSync_dly && fc_orbitSync) begin
+					if (fc_orbitSync) begin
 						tdata_select <= (tdata_in[i] & ~header_mask) | (header_BX0 & header_mask);
 					end else begin
 						tdata_select <= (tdata_in[i] & ~header_mask) | (header & header_mask);
