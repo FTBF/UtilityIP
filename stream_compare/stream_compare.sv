@@ -4,7 +4,7 @@ module stream_compare #(
 		parameter integer C_S_AXI_DATA_WIDTH = 32,
 		parameter integer N_REG = 4,
 		TDATA_WIDTH = 32
-    )(
+	)(
 		input logic IPIF_clk,
 		input logic clk,
 		input logic aresetn,
@@ -102,27 +102,34 @@ module stream_compare #(
 
 	reg_type d, q;
 
-	assign S_AXIS_0_TREADY = (S_AXIS_0_TVALID && S_AXIS_1_TVALID);
-	assign S_AXIS_1_TREADY = (S_AXIS_0_TVALID && S_AXIS_1_TVALID);
-
+	logic both_valid;
+	logic both_valid_mismatch;
 	always_comb begin
 		d = q;
-		d.mismatch = 1'b0;
 
-		if ((S_AXIS_0_TVALID == 1'b1) && (S_AXIS_1_TVALID == 1'b1)) begin
+		both_valid = (S_AXIS_0_TVALID && S_AXIS_1_TVALID);
+		both_valid_mismatch = both_valid && (S_AXIS_0_TDATA != S_AXIS_1_TDATA);
+
+		S_AXIS_0_TREADY = both_valid;
+		S_AXIS_1_TREADY = both_valid;
+
+		if (both_valid) begin
 			d.word_count = q.word_count + 1;
 		end
 
-		if ((S_AXIS_0_TVALID == 1'b1) && (S_AXIS_1_TVALID == 1'b1) && (S_AXIS_0_TDATA != S_AXIS_1_TDATA)) begin
-			d.mismatch = params_to_IP.trigger;
+		if (both_valid_mismatch) begin
 			d.err_count = q.err_count + 1;
 		end
+
+		d.mismatch = (params_to_IP.trigger && both_valid_mismatch);
 	end
 
 	assign mismatch = q.mismatch;
 
+	logic areset;
+	assign areset = !aresetn;
 	always_ff @(posedge clk) begin
-		if (!aresetn || params_to_IP.reset) begin
+		if (areset || params_to_IP.reset) begin
 			q.mismatch   <= 1'b0;
 			q.word_count <= '0;
 			q.err_count  <= '0;
@@ -131,15 +138,20 @@ module stream_compare #(
 		end
 	end
 
+	assign params_from_IP.padding0 = '0;
+	assign params_from_IP.padding3 = '0;
+
 	always_ff @(posedge clk) begin
-		if (!aresetn) begin
-			params_from_IP <= '0;
+		if (areset) begin
+			params_from_IP.reset      <= '0;
+			params_from_IP.latch      <= '0;
+			params_from_IP.trigger    <= '0;
+			params_from_IP.word_count <= '0;
+			params_from_IP.err_count  <= '0;
 		end else begin
 			params_from_IP.reset    <= params_to_IP.reset;
 			params_from_IP.latch    <= params_to_IP.latch;
-			params_from_IP.padding0 <= '0;
 			params_from_IP.trigger  <= params_to_IP.trigger;
-			params_from_IP.padding3 <= '0;
 			if(params_to_IP.latch == 1) begin
 				params_from_IP.word_count <= q.word_count;
 				params_from_IP.err_count  <= q.err_count;
