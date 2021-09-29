@@ -195,9 +195,11 @@ module data_mux#(
         .params_to_bus(params_to_bus));
     
     //map ports (necessary for IP packaging) to a more user friends data structure 
-    logic [DATA_WIDTH-1:0] tdata_in_all  [16] = {axis_0_tdata_in,  axis_1_tdata_in,  axis_2_tdata_in,  axis_3_tdata_in,  axis_4_tdata_in,  axis_5_tdata_in,  axis_6_tdata_in,  axis_7_tdata_in,  axis_8_tdata_in,  axis_9_tdata_in,  axis_10_tdata_in,  axis_11_tdata_in,  axis_12_tdata_in,  axis_13_tdata_in,  axis_14_tdata_in,  axis_15_tdata_in};
-    logic                  tvalid_in_all [16] = {axis_0_tvalid_in, axis_1_tvalid_in, axis_2_tvalid_in, axis_3_tvalid_in, axis_4_tvalid_in, axis_5_tvalid_in, axis_6_tvalid_in, axis_7_tvalid_in, axis_8_tvalid_in, axis_9_tvalid_in, axis_10_tvalid_in, axis_11_tvalid_in, axis_12_tvalid_in, axis_13_tvalid_in, axis_14_tvalid_in, axis_15_tvalid_in};
+	logic [DATA_WIDTH-1:0] tdata_in_all  [16];
+    logic                  tvalid_in_all [16];
     logic                  tready_in_all [16];
+    assign tvalid_in_all = {axis_0_tvalid_in, axis_1_tvalid_in, axis_2_tvalid_in, axis_3_tvalid_in, axis_4_tvalid_in, axis_5_tvalid_in, axis_6_tvalid_in, axis_7_tvalid_in, axis_8_tvalid_in, axis_9_tvalid_in, axis_10_tvalid_in, axis_11_tvalid_in, axis_12_tvalid_in, axis_13_tvalid_in, axis_14_tvalid_in, axis_15_tvalid_in};
+    assign tdata_in_all  = {axis_0_tdata_in,  axis_1_tdata_in,  axis_2_tdata_in,  axis_3_tdata_in,  axis_4_tdata_in,  axis_5_tdata_in,  axis_6_tdata_in,  axis_7_tdata_in,  axis_8_tdata_in,  axis_9_tdata_in,  axis_10_tdata_in,  axis_11_tdata_in,  axis_12_tdata_in,  axis_13_tdata_in,  axis_14_tdata_in,  axis_15_tdata_in};
     
     assign axis_0_tready_in = tready_in_all[0];
     assign axis_1_tready_in = tready_in_all[1];

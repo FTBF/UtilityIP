@@ -7,54 +7,45 @@ module data_mux_impl# (
     )
     (
     //Clock
-    input wire clk,
+    input logic clk,
     
     //Input AXIS busses
-    input  wire [DATA_WIDTH-1:0] tdata_in  [N_INPUTS],
-    input  wire                  tvalid_in [N_INPUTS],
-    output wire                  tready_in [N_INPUTS],
+    input  logic [DATA_WIDTH-1:0] tdata_in  [N_INPUTS],
+    input  logic                  tvalid_in [N_INPUTS],
+    output logic                  tready_in [N_INPUTS],
     
     //Output AXIS bus
-    output reg [DATA_WIDTH-1:0] tdata_out,
-    output reg                  tvalid_out,
-    input  wire                 tready_out,
+    output logic [DATA_WIDTH-1:0] tdata_out,
+    output logic                  tvalid_out,
+    input  logic                  tready_out,
     
     //configuration parameters 
-    input wire [15:0]           n_idle_words,
-    input wire [3:0]            output_select,
-    input wire [DATA_WIDTH-1:0] idle_word,
-    input wire [DATA_WIDTH-1:0] idle_word_BX0,
-    input wire [DATA_WIDTH-1:0] header_mask,
-    input wire [DATA_WIDTH-1:0] header,
-    input wire [DATA_WIDTH-1:0] header_BX0,
+    input logic [15:0]           n_idle_words,
+    input logic [3:0]            output_select,
+    input logic [DATA_WIDTH-1:0] idle_word,
+    input logic [DATA_WIDTH-1:0] idle_word_BX0,
+    input logic [DATA_WIDTH-1:0] header_mask,
+    input logic [DATA_WIDTH-1:0] header,
+    input logic [DATA_WIDTH-1:0] header_BX0,
     
     //fast control parameter
-    input wire fc_orbitSync,
-    input wire fc_linkReset
+    input logic fc_orbitSync,
+    input logic fc_linkReset
     );
+
+	logic r_tvalid = 1'b0;
+	logic [DATA_WIDTH-1:0] r_tdata = '0;
     
-    //We want all links advancing always, so we pass all input streams tready
-    generate
-        genvar i;
-        for(i = 0; i < N_INPUTS; i += 1) assign tready_in[i] = tready_out;
-    endgenerate
-    
-    reg [DATA_WIDTH-1:0] tdata_select;
-    reg                  tvalid_select;
-    
-    reg                  fc_linkReset_dly;
-    reg                  fc_orbitSync_dly;
-    reg [15:0]           idleCountdown;
-    wire                 sendIdle = |idleCountdown;
+    logic [DATA_WIDTH-1:0] tdata_select;
+    logic                  tvalid_select;
+
+    logic [15:0]           idleCountdown;
+    logic                  sendIdle;
+    assign sendIdle = |idleCountdown;
     
     //check if idle pattern should be sent
     always_ff @(posedge clk) begin
-        if (tready_out) begin
-            fc_linkReset_dly <= fc_linkReset;
-            fc_orbitSync_dly <= fc_orbitSync;
-        end
-        
-        if(!fc_linkReset_dly && fc_linkReset) idleCountdown <= n_idle_words;
+        if(fc_linkReset) idleCountdown <= n_idle_words;
         else if(sendIdle && tready_out)       idleCountdown <= idleCountdown - 1;
     end
     
@@ -64,7 +55,7 @@ module data_mux_impl# (
         tvalid_select <= 0;
         
         if(sendIdle) begin
-            if (!fc_orbitSync_dly && fc_orbitSync) begin
+            if (fc_orbitSync) begin
                 tdata_select <= idle_word_BX0;
             end else begin
                 tdata_select <= idle_word;
@@ -73,7 +64,7 @@ module data_mux_impl# (
         end else begin
             for(int i = 0; i < N_INPUTS; i += 1) begin
                 if(output_select == i) begin
-					if (!fc_orbitSync_dly && fc_orbitSync) begin
+					if (fc_orbitSync) begin
 						tdata_select <= (tdata_in[i] & ~header_mask) | (header_BX0 & header_mask);
 					end else begin
 						tdata_select <= (tdata_in[i] & ~header_mask) | (header & header_mask);
@@ -83,23 +74,36 @@ module data_mux_impl# (
             end
         end
     end
-    
-    //output data reverser
-    always_ff @(posedge clk) begin
-        if (tready_out) begin
-            tvalid_out <= tvalid_select;
-            
-            if(OUTPUT_REVERSE_BITS == 1) begin
-                for(int i = 0; i < DATA_WIDTH; i += 1) begin
-                    tdata_out[i] <= tdata_select[DATA_WIDTH - 1 - i];
-                end
-            end else begin
-                tdata_out <= tdata_select;
-            end
-        end else begin
-            tdata_out <= tdata_out;
-            tvalid_out <= tvalid_out;
-        end
-    end
-    
+
+	// Skid buffer to handle the output
+	always_ff @(posedge clk) begin
+		if (tvalid_select && !r_tvalid && !tready_out) begin
+			r_tvalid <= 1'b1;
+		end else if (tready_out) begin
+			r_tvalid <= 1'b0;
+		end
+
+		if (!r_tvalid) begin
+			r_tdata <= tdata_select;
+		end
+	end
+
+	logic [DATA_WIDTH-1:0] temp_tdata;
+	always_comb begin
+		tvalid_out = (tvalid_select || r_tvalid);
+
+		for(int j = 0; j < N_INPUTS; j += 1) begin
+			tready_in[j] = !r_tvalid;
+		end
+
+		temp_tdata = (r_tvalid ? r_tdata : tdata_select);
+		if (OUTPUT_REVERSE_BITS == 1) begin
+			//output data reverser
+			for (int i = 0; i < DATA_WIDTH; i += 1) begin
+				tdata_out[i] = temp_tdata[DATA_WIDTH - 1 - i];
+			end
+		end else begin
+			tdata_out = temp_tdata;
+		end
+	end
 endmodule
