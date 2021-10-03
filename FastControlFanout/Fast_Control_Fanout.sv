@@ -101,14 +101,12 @@ module Fast_Control_Fanout #(
 	   .dest_out(FC_from_ext)     // 1-bit output: src_in synchronized to the destination clock domain. This output is
 	);
 
-	always_comb begin
-		if (~clk_ext_active || FC_int_select) begin
-			FC_sel = FC_from_int;
-		end else begin
-			FC_sel = FC_from_ext;
-		end
-	end
-    
+	logic FC_select;
+	always @(posedge sel_fast_clock)
+		FC_select <= (~clk_ext_active || FC_int_select);
+
+	assign FC_sel = (FC_select ? FC_from_int : FC_from_ext);
+
     logic enable_cleaning;
 
     generate
