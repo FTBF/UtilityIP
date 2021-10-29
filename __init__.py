@@ -4,3 +4,4 @@ from .clk_mon import uHALXMLProducer
 from .IO_blocks import uHALXMLProducer_io_blocks
 from .FastControlFanout import uHALXMLProducer_fcf
 from .stream_compare import uHALXMLProducer_stream_compare
+from .axis_delay import uHALXMLProducer_axis_delay
