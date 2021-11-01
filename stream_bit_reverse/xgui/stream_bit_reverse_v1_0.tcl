@@ -4,6 +4,8 @@ proc init_gui { IPINST } {
   #Adding Page
   set Page_0 [ipgui::add_page $IPINST -name "Page 0"]
   ipgui::add_param $IPINST -name "DATA_WIDTH" -parent ${Page_0}
+  set N_STREAMS [ipgui::add_param $IPINST -name "N_STREAMS" -parent ${Page_0}]
+  set_property tooltip {Number of sub-streams contained within the input stream} ${N_STREAMS}
 
 
 }
@@ -14,6 +16,15 @@ proc update_PARAM_VALUE.DATA_WIDTH { PARAM_VALUE.DATA_WIDTH } {
 
 proc validate_PARAM_VALUE.DATA_WIDTH { PARAM_VALUE.DATA_WIDTH } {
 	# Procedure called to validate DATA_WIDTH
+	return true
+}
+
+proc update_PARAM_VALUE.N_STREAMS { PARAM_VALUE.N_STREAMS } {
+	# Procedure called to update N_STREAMS when any of the dependent parameters in the arguments change
+}
+
+proc validate_PARAM_VALUE.N_STREAMS { PARAM_VALUE.N_STREAMS } {
+	# Procedure called to validate N_STREAMS
 	return true
 }
 
