@@ -84,7 +84,7 @@ module stream_compare #(
 		.N_REG(N_REG),
 		.PARAM_T(param_t)
 	) IPIF_clock_conv (
-		.IP_clk(in_clk160),
+		.IP_clk(clk),
 		.bus_clk(IPIF_clk),
 		.params_from_IP(params_from_IP),
 		.params_from_bus(params_from_bus),

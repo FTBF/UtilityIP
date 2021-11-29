@@ -102,7 +102,7 @@ module bram_to_stream #(
 		.N_REG(N_REG),
 		.PARAM_T(param_t)
 	) IPIF_clock_conv (
-		.IP_clk(in_clk160),
+		.IP_clk(clk),
 		.bus_clk(IPIF_clk),
 		.params_from_IP(params_from_IP),
 		.params_from_bus(params_from_bus),
@@ -152,8 +152,9 @@ module bram_to_stream #(
 	always_comb
 	begin
 		if (data_stream_TREADY == 1)
-		    if(output_sync == 1) d.address = 0;
-		    else                 d.address = q.address + 1;
+		    d.address = q.address + 1;
+		else if (output_sync == 1)
+			d.address = 0;
 		else
 			d.address = q.address;
 
@@ -162,18 +163,16 @@ module bram_to_stream #(
 
 		bram_CLK = clk;
 		bram_RST = !aresetn; // bram requires active-high reset
-		bram_ADDR = {19'b0, q.address, 2'b0};
-		bram_EN = 1'b1; // combinational output to avoid an extra cycle of latency
-		data_stream_TDATA = q.data_stream_out;
-		data_stream_TVALID = q.data_stream_valid;;
+		bram_ADDR = {19'b0, d.address, 2'b0}; // combinational output to avoid an extra cycle of latency
+		bram_EN = 1'b1;
+		data_stream_TDATA = d.data_stream_out;
+		data_stream_TVALID = d.data_stream_valid;;
 	end
 
 	always_ff @(posedge clk, negedge aresetn)
 	begin
 		if (aresetn == 0) begin
-			q.address <= 0;
-			q.data_stream_out <= 32'b0;
-			q.data_stream_valid <= 1'b0;
+			q <= '{default:'0};
 		end else begin
 			q <= d;
 		end

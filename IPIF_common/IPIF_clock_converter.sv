@@ -44,7 +44,8 @@ module repeating_handshake #(
 				.dest_out(dest_data_union.flat_vector),
 				.dest_req(data_valid));
 		end else begin
-			assign dest_data = src_data;
+			always @(posedge dest_clk)
+				dest_data <= src_data;
 		end
 	endgenerate
 endmodule
