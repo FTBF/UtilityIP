@@ -11,38 +11,49 @@ module repeating_handshake #(
 		output PARAM_T dest_data
 	);
 
+
 	generate
+		genvar i;
 		if (INCLUDE_SYNCHRONIZER) begin
+			localparam WIDTH = N_REG * C_S_AXI_DATA_WIDTH;
+			localparam HANDSHAKE_WIDTH = 1024;
+			localparam N_HANDSHAKES = ((WIDTH - 1) / HANDSHAKE_WIDTH) + 1;
+			localparam FULL_WIDTH = N_HANDSHAKES * HANDSHAKE_WIDTH;
+
 			typedef union packed {
 				PARAM_T param_struct;
 				logic [N_REG*C_S_AXI_DATA_WIDTH-1:0] flat_vector;
 			} param_union_t;
 
-			param_union_t src_data_union, dest_data_union;
-			logic send, recv, data_valid;
+			param_union_t src_data_union;
+			param_union_t dest_data_union;
+			logic [FULL_WIDTH-1:0] src_flat;
+			logic [FULL_WIDTH-1:0] dest_flat;
 
 			assign src_data_union.param_struct = src_data;
+			assign src_flat[WIDTH-1:0] = src_data_union.flat_vector;
+			assign dest_data_union.flat_vector = dest_flat[WIDTH-1:0]
+			assign dest_data = dest_data_union.param_struct;
 
-			always_ff @(posedge dest_clk)
-				if (data_valid == 1)
-					dest_data <= dest_data_union.param_struct;
+			for (i = 0; i < N_HANDSHAKES; i += 1) begin
+				logic send, recv;
+				assign send = ~recv;
+				xpm_cdc_handshake #(
+					.DEST_SYNC_FF(2),
+					.SRC_SYNC_FF(2),
+					.INIT_SYNC_FF(1),
+					.DEST_EXT_HSK(0),
+					.WIDTH(HANDSHAKE_WIDTH),
+					.SIM_ASSERT_CHK(1)
+				) handshake (
+					.src_clk(src_clk),
+					.src_in(src_flat[i*HANDSHAKE_WIDTH +: HANDSHAKE_WIDTH]),
+					.src_send(send),
+					.src_rcv(recv),
+					.dest_clk(dest_clk),
+					.dest_out(dest_flat[i*HANDSHAKE_WIDTH +: HANDSHAKE_WIDTH]));
+			end
 
-			assign send = ~recv;
-			xpm_cdc_handshake #(
-				.DEST_SYNC_FF(2),
-				.SRC_SYNC_FF(2),
-				.INIT_SYNC_FF(1),
-				.DEST_EXT_HSK(0),
-				.WIDTH(N_REG*C_S_AXI_DATA_WIDTH),
-				.SIM_ASSERT_CHK(1)
-			) handshake (
-				.src_clk(src_clk),
-				.src_in(src_data_union.flat_vector),
-				.src_send(send),
-				.src_rcv(recv),
-				.dest_clk(dest_clk),
-				.dest_out(dest_data_union.flat_vector),
-				.dest_req(data_valid));
 		end else begin
 			always @(posedge dest_clk)
 				dest_data <= src_data;
