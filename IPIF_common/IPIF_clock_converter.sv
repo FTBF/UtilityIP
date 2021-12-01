@@ -32,7 +32,7 @@ module repeating_handshake #(
 
 			assign src_data_union.param_struct = src_data;
 			assign src_flat[WIDTH-1:0] = src_data_union.flat_vector;
-			assign dest_data_union.flat_vector = dest_flat[WIDTH-1:0]
+			assign dest_data_union.flat_vector = dest_flat[WIDTH-1:0];
 			assign dest_data = dest_data_union.param_struct;
 
 			for (i = 0; i < N_HANDSHAKES; i += 1) begin
