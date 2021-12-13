@@ -9,7 +9,7 @@ top_level_node_template = '<node id="%(label)s"	    module="file://modules/%(xml
 class UHALXMLProducer(UHALXMLProducerBase):
     def __init__(self, factory):
         # Class MUST have "name" attribute defined and this must match the dtbo name of the IP it is meant to manage 
-        self.name = "Fast_Control_Fanout_IPIF"
+        self.name = "Fast_Control_Fanout"
 
     # Class MUST define produce_impl which will produce the xml map file(s) and return the top level node for the module 
     def produce_impl(self, fragment, xmlDir, address, label):
