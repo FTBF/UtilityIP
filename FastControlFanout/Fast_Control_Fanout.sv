@@ -5,7 +5,7 @@ module Fast_Control_Fanout #(
 		parameter integer NFANOUT = 1,
 		parameter [NFANOUT-1:0] INVERT = 0,
 		parameter C_S_AXI_DATA_WIDTH = 32,
-		parameter C_S_AXI_ADDR_WIDTH = 13,
+		parameter C_S_AXI_ADDR_WIDTH = 13
 	) (
 		input  logic ext_fast_clock,
 		input  logic int_fast_clock,
