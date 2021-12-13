@@ -16,7 +16,7 @@ class UHALXMLProducer(UHALXMLProducerBase):
 
         local_dir = os.path.dirname(os.path.realpath(__file__))
         
-        topXML = "fastcontrolfanout_debug.xml"
+        topXML = "FC_control.xml"
 
         shutil.copyfile(os.path.join(local_dir, topXML), os.path.join(xmlDir, "modules", topXML))
 
