@@ -1,16 +1,16 @@
 module bram_to_stream #(
-		parameter INCLUDE_SYNCHRONIZER = 0,
-		parameter [15:0] MEM_DEPTH = 2048,
-		parameter C_S_AXI_ADDR_WIDTH = 32,
-		parameter C_S_AXI_DATA_WIDTH = 32,
-		parameter N_REG = 4
-	) (
+        parameter INCLUDE_SYNCHRONIZER = 0,
+        parameter [15:0] MEM_DEPTH = 2048,
+        parameter C_S_AXI_ADDR_WIDTH = 32,
+        parameter C_S_AXI_DATA_WIDTH = 32,
+        parameter N_REG = 4
+    ) (
 
-		input logic         IPIF_clk,
-		input logic         clk,
-		input logic         aresetn,
-		
-		//configuration parameter interface 
+        input logic         IPIF_clk,
+        input logic         clk,
+        input logic         aresetn,
+        
+        //configuration parameter interface 
         input  logic                                  IPIF_Bus2IP_resetn,
         input  logic [(C_S_AXI_ADDR_WIDTH-1) : 0]     IPIF_Bus2IP_Addr,   //unused
         input  logic                                  IPIF_Bus2IP_RNW,    //unused
@@ -27,29 +27,29 @@ module bram_to_stream #(
         //fast comannd input 
         input logic fc_orbitSync,
                                              
-		// block RAM access
-		output logic        bram_CLK,
-		output logic        bram_RST,
-		output logic        bram_EN,
-		output logic [31:0] bram_ADDR,
-		input logic [31:0]  bram_DOUT,
+        // block RAM access
+        output logic        bram_CLK,
+        output logic        bram_RST,
+        output logic        bram_EN,
+        output logic [31:0] bram_ADDR,
+        input logic [31:0]  bram_DOUT,
 
-		// output AXI stream
-		output logic [31:0] data_stream_TDATA,
-		input logic         data_stream_TREADY,
-		output logic        data_stream_TVALID
-	);
+        // output AXI stream
+        output logic [31:0] data_stream_TDATA,
+        input logic         data_stream_TREADY,
+        output logic        data_stream_TVALID
+    );
 
-	typedef struct
-	{
-		logic [$clog2(MEM_DEPTH)-1:0] address;
-		logic [31:0] data_stream_out;
-		logic data_stream_valid;
-	} reg_type;
+    typedef struct
+    {
+        logic [$clog2(MEM_DEPTH)-1:0] address;
+        logic [31:0] data_stream_out;
+        logic data_stream_valid;
+        logic [9:0] orbit_counter;
+        logic output_sync;
+    } reg_type;
 
-	reg_type d, q;
-    
-    logic output_sync;
+    reg_type d, q;
     
     //IPIF parameter decoding logic 
     typedef struct packed
@@ -68,15 +68,15 @@ module bram_to_stream #(
     param_t params_to_bus;
     param_t params_to_IP;
     
-	always_comb begin
-		params_from_IP = params_to_IP;
-		params_from_IP.padding4 = '0;
-		params_from_IP.padding3 = '0;
-		params_from_IP.padding2 = '0;
-		params_from_IP.padding1 = '0;
-	end
-    	
-	IPIF_parameterDecode #(
+    always_comb begin
+        params_from_IP = params_to_IP;
+        params_from_IP.padding4 = '0;
+        params_from_IP.padding3 = '0;
+        params_from_IP.padding2 = '0;
+        params_from_IP.padding1 = '0;
+    end
+        
+    IPIF_parameterDecode #(
         .C_S_AXI_DATA_WIDTH(C_S_AXI_DATA_WIDTH),
         .N_REG(N_REG),
         .PARAM_T(param_t),
@@ -96,85 +96,72 @@ module bram_to_stream #(
         .parameters_out(params_from_bus)
     );
     
-	IPIF_clock_converter #(
-		.INCLUDE_SYNCHRONIZER(INCLUDE_SYNCHRONIZER),
-		.C_S_AXI_DATA_WIDTH(C_S_AXI_DATA_WIDTH),
-		.N_REG(N_REG),
-		.PARAM_T(param_t)
-	) IPIF_clock_conv (
-		.IP_clk(clk),
-		.bus_clk(IPIF_clk),
-		.params_from_IP(params_from_IP),
-		.params_from_bus(params_from_bus),
-		.params_to_IP(params_to_IP),
-		.params_to_bus(params_to_bus));
+    IPIF_clock_converter #(
+        .INCLUDE_SYNCHRONIZER(INCLUDE_SYNCHRONIZER),
+        .C_S_AXI_DATA_WIDTH(C_S_AXI_DATA_WIDTH),
+        .N_REG(N_REG),
+        .PARAM_T(param_t)
+    ) IPIF_clock_conv (
+        .IP_clk(clk),
+        .bus_clk(IPIF_clk),
+        .params_from_IP(params_from_IP),
+        .params_from_bus(params_from_bus),
+        .params_to_IP(params_to_IP),
+        .params_to_bus(params_to_bus));
     // ground unused error port
     assign IPIF_IP2Bus_Error = 0;
     
-    // interlink synchronization logic 
-    // this logic will keep things synchronous for repeats up to 8 orbits long
-    // uses counter counting to 840, which is the LCM of 1, 2, ... 8
-    
-    logic [9:0] orbit_counter;
-    
-    always_ff @(posedge clk or negedge aresetn)
-    begin
-        if(!aresetn)             orbit_counter <= 0;
-        else
-        begin
-            if(data_stream_TREADY)
-            begin
-                if(orbit_counter >= 840)   orbit_counter <= 0;
-                else if(fc_orbitSync) orbit_counter <= orbit_counter + 1;
-            end
-        end
-    end
-    
-    //Select sync mode of operation
     always_comb
     begin
+        d = q;
+        //Select sync mode of operation
         case(params_to_IP.sync_mode)
             2'd1:   //orbit sync mode
-            begin
-                output_sync = fc_orbitSync && ((orbit_counter % params_to_IP.ram_range[2:0]) == 0);
-            end
+                d.output_sync = fc_orbitSync && ((q.orbit_counter % params_to_IP.ram_range[2:0]) == 0);
             2'd2:   //length limited unsynchronous 
-            begin
-                output_sync = q.address >= params_to_IP.ram_range - 1 || params_to_IP.force_sync;
-            end
+                d.output_sync = q.address >= params_to_IP.ram_range - 1 || params_to_IP.force_sync;
             default:  //no sync pulse 
-            begin
-                output_sync = params_to_IP.force_sync;
-            end
+                d.output_sync = params_to_IP.force_sync;
         endcase
+
+        // interlink synchronization logic 
+        // this logic will keep things synchronous for repeats up to 8 orbits long
+        // uses counter counting to 840, which is the LCM of 1, 2, ... 8
+        if(data_stream_TREADY) begin
+            if(q.orbit_counter >= 840) begin
+                d.orbit_counter <= 0;
+            end else begin
+                if(fc_orbitSync) begin
+                    d.orbit_counter <= q.orbit_counter + 1;
+                end
+            end
+        end
+
+        if ((d.output_sync == 1) && (q.output_sync == 0)) begin
+            d.address = 0;
+        end else if (data_stream_TREADY == 1) begin
+            d.address = q.address + 1;
+        end else begin
+            d.address = q.address;
+        end
+
+        d.data_stream_out = bram_DOUT;
+        d.data_stream_valid = 1'b1;
+
+        bram_CLK = clk;
+        bram_RST = !aresetn; // bram requires active-high reset
+        bram_ADDR = {19'b0, d.address, 2'b0}; // combinational output to avoid an extra cycle of latency
+        bram_EN = 1'b1;
+        data_stream_TDATA = d.data_stream_out;
+        data_stream_TVALID = d.data_stream_valid;;
     end
 
-	always_comb
-	begin
-		if (data_stream_TREADY == 1)
-		    d.address = q.address + 1;
-		else if (output_sync == 1)
-			d.address = 0;
-		else
-			d.address = q.address;
-
-		d.data_stream_out = bram_DOUT;
-		d.data_stream_valid = 1'b1;
-
-		bram_CLK = clk;
-		bram_RST = !aresetn; // bram requires active-high reset
-		bram_ADDR = {19'b0, d.address, 2'b0}; // combinational output to avoid an extra cycle of latency
-		bram_EN = 1'b1;
-		data_stream_TDATA = d.data_stream_out;
-		data_stream_TVALID = d.data_stream_valid;;
-	end
-
-	always_ff @(posedge clk, negedge aresetn)
-	begin
-		if (aresetn == 0) begin
-			q <= '{default:'0};
-		end else begin
-			q <= d;
-		end
-	end
+    always_ff @(posedge clk)
+    begin
+        if (aresetn == 0) begin
+            q <= '{default:'0};
+        end else begin
+            q <= d;
+        end
+    end
 endmodule
