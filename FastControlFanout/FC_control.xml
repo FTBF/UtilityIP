@@ -1,0 +1,7 @@
+<node>
+  <node id="EdgeSel"        address="0x0" mask="0x00000001" permission="rw" description="Edge of fast command clock to sample fast command data on.  0=rising, 1=falling (default: rising)"/>
+  <node id="Polarity"       address="0x0" mask="0x00000002" permission="rw" description="Polarity of fast command data. 1=invert, 0=do not invert (default: do not invert)"/>
+  <node id="clk_int_select" address="0x1" mask="0x00000001" permission="rw" description="Fast command clock source selection. 0=external FC clock, 1=internal FC clock (default: external FC clock)"/>
+  <node id="FC_int_select"  address="0x1" mask="0x00000002" permission="rw" description="Fast command data source selection. 0=external FC data, 1=internal FC data (default: external FC data)"/>
+  <node id="ext_clk_active" address="0x1" mask="0x00000004" permission="r"  description="External fast command clock activity indicator. 0=external clock inactive, 1=external clock active"/>
+</node>
