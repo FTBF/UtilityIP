@@ -204,7 +204,7 @@ module Fast_Control_Fanout #(
 	logic FC_sel;
 	assign FC_sel = (FC_select ? FC_from_int : FC_from_ext);
 
-	assign fast_command_out = (params_to_IP.Polarity ? FC_sel : ~FC_sel);
+	assign fast_command_out = (params_to_IP.Polarity ? ~FC_sel : FC_sel);
     
     generate
         genvar i;
