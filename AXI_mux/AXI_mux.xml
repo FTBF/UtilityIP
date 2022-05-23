@@ -1,0 +1,5 @@
+<!-- https://gitlab.cern.ch/cms-hgcal-firmware/utilityip/blob/master/AXI_mux/AXI_mux.xml -->
+
+<node>
+	<node id="select" address="0x0" mask="0xff" permission="rw" description="Input select"/>
+</node>

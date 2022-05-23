@@ -4,6 +4,7 @@
 	<node id="control" address="0x0">
 		<node id="reset" mask="0x1" permission="rw" description="Active high reset"/>
 		<node id="latch" mask="0x2" permission="rw" description="Write 1 to latch counters for readout"/>
+		<node id="active_links" mask="0xffff0000" permission="rw" description="Number of active 32-bit links in the data. Inactive links will be masked and not compared.  Active links start from index 0."/>
 	</node>
 	<node id="word_count" address="0x1" permission="r" description="Number of words received"/>
 	<node id="err_count"  address="0x2" permission="r" description="Number of mismatched words"/>
