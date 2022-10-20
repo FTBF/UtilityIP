@@ -23,7 +23,7 @@
 module clk_mon #(
     parameter NCLK = 1,
     
-    parameter C_S_AXI_ADDR_WIDTH = 8,
+    parameter C_S_AXI_ADDR_WIDTH = 32,
     parameter C_S_AXI_DATA_WIDTH = 32,
     parameter N_REG = 2
     )(
