@@ -1,0 +1,37 @@
+<node>
+	<node id="update_settings" address="0x0" mask="0x2" permission="rw" description="Write a 1 to update the routing settings you've written to the MIx_MUX and MIx_DISABLE registers"/>
+
+	<node id="MI0_MUX"  address="0x10" mask="0xf" permission="rw" description="Select which of the inputs [0-15] should be routed to output 0.  Write 1 to update_settings after you write this register to actually use what you've written."/>
+	<node id="MI1_MUX"  address="0x11" mask="0xf" permission="rw" description="Select which of the inputs [0-15] should be routed to output 1.  Write 1 to update_settings after you write this register to actually use what you've written."/>
+	<node id="MI2_MUX"  address="0x12" mask="0xf" permission="rw" description="Select which of the inputs [0-15] should be routed to output 2.  Write 1 to update_settings after you write this register to actually use what you've written."/>
+	<node id="MI3_MUX"  address="0x13" mask="0xf" permission="rw" description="Select which of the inputs [0-15] should be routed to output 3.  Write 1 to update_settings after you write this register to actually use what you've written."/>
+	<node id="MI4_MUX"  address="0x14" mask="0xf" permission="rw" description="Select which of the inputs [0-15] should be routed to output 4.  Write 1 to update_settings after you write this register to actually use what you've written."/>
+	<node id="MI5_MUX"  address="0x15" mask="0xf" permission="rw" description="Select which of the inputs [0-15] should be routed to output 5.  Write 1 to update_settings after you write this register to actually use what you've written."/>
+	<node id="MI6_MUX"  address="0x16" mask="0xf" permission="rw" description="Select which of the inputs [0-15] should be routed to output 6.  Write 1 to update_settings after you write this register to actually use what you've written."/>
+	<node id="MI7_MUX"  address="0x17" mask="0xf" permission="rw" description="Select which of the inputs [0-15] should be routed to output 7.  Write 1 to update_settings after you write this register to actually use what you've written."/>
+	<node id="MI8_MUX"  address="0x18" mask="0xf" permission="rw" description="Select which of the inputs [0-15] should be routed to output 8.  Write 1 to update_settings after you write this register to actually use what you've written."/>
+	<node id="MI9_MUX"  address="0x19" mask="0xf" permission="rw" description="Select which of the inputs [0-15] should be routed to output 9.  Write 1 to update_settings after you write this register to actually use what you've written."/>
+	<node id="MI10_MUX" address="0x1a" mask="0xf" permission="rw" description="Select which of the inputs [0-15] should be routed to output 10.  Write 1 to update_settings after you write this register to actually use what you've written."/>
+	<node id="MI11_MUX" address="0x1b" mask="0xf" permission="rw" description="Select which of the inputs [0-15] should be routed to output 11.  Write 1 to update_settings after you write this register to actually use what you've written."/>
+	<node id="MI12_MUX" address="0x1c" mask="0xf" permission="rw" description="Select which of the inputs [0-15] should be routed to output 12.  Write 1 to update_settings after you write this register to actually use what you've written."/>
+	<node id="MI13_MUX" address="0x1d" mask="0xf" permission="rw" description="Select which of the inputs [0-15] should be routed to output 13.  Write 1 to update_settings after you write this register to actually use what you've written."/>
+	<node id="MI14_MUX" address="0x1e" mask="0xf" permission="rw" description="Select which of the inputs [0-15] should be routed to output 14.  Write 1 to update_settings after you write this register to actually use what you've written."/>
+	<node id="MI15_MUX" address="0x1f" mask="0xf" permission="rw" description="Select which of the inputs [0-15] should be routed to output 15.  Write 1 to update_settings after you write this register to actually use what you've written."/>
+
+	<node id="MI0_DISABLE"  address="0x10" mask="0x80000000" permission="rw" description="1: disable output 0; 0: enable output 0.  DISABLED BY DEFAULT!  You need to enable each of the outputs!"/>
+	<node id="MI1_DISABLE"  address="0x11" mask="0x80000000" permission="rw" description="1: disable output 1; 0: enable output 1.  DISABLED BY DEFAULT!  You need to enable each of the outputs!"/>
+	<node id="MI2_DISABLE"  address="0x12" mask="0x80000000" permission="rw" description="1: disable output 2; 0: enable output 2.  DISABLED BY DEFAULT!  You need to enable each of the outputs!"/>
+	<node id="MI3_DISABLE"  address="0x13" mask="0x80000000" permission="rw" description="1: disable output 3; 0: enable output 3.  DISABLED BY DEFAULT!  You need to enable each of the outputs!"/>
+	<node id="MI4_DISABLE"  address="0x14" mask="0x80000000" permission="rw" description="1: disable output 4; 0: enable output 4.  DISABLED BY DEFAULT!  You need to enable each of the outputs!"/>
+	<node id="MI5_DISABLE"  address="0x15" mask="0x80000000" permission="rw" description="1: disable output 5; 0: enable output 5.  DISABLED BY DEFAULT!  You need to enable each of the outputs!"/>
+	<node id="MI6_DISABLE"  address="0x16" mask="0x80000000" permission="rw" description="1: disable output 6; 0: enable output 6.  DISABLED BY DEFAULT!  You need to enable each of the outputs!"/>
+	<node id="MI7_DISABLE"  address="0x17" mask="0x80000000" permission="rw" description="1: disable output 7; 0: enable output 7.  DISABLED BY DEFAULT!  You need to enable each of the outputs!"/>
+	<node id="MI8_DISABLE"  address="0x18" mask="0x80000000" permission="rw" description="1: disable output 8; 0: enable output 8.  DISABLED BY DEFAULT!  You need to enable each of the outputs!"/>
+	<node id="MI9_DISABLE"  address="0x19" mask="0x80000000" permission="rw" description="1: disable output 9; 0: enable output 9.  DISABLED BY DEFAULT!  You need to enable each of the outputs!"/>
+	<node id="MI10_DISABLE" address="0x1a" mask="0x80000000" permission="rw" description="1: disable output 10; 0: enable output 10.  DISABLED BY DEFAULT!  You need to enable each of the outputs!"/>
+	<node id="MI11_DISABLE" address="0x1b" mask="0x80000000" permission="rw" description="1: disable output 11; 0: enable output 11.  DISABLED BY DEFAULT!  You need to enable each of the outputs!"/>
+	<node id="MI12_DISABLE" address="0x1c" mask="0x80000000" permission="rw" description="1: disable output 12; 0: enable output 12.  DISABLED BY DEFAULT!  You need to enable each of the outputs!"/>
+	<node id="MI13_DISABLE" address="0x1d" mask="0x80000000" permission="rw" description="1: disable output 13; 0: enable output 13.  DISABLED BY DEFAULT!  You need to enable each of the outputs!"/>
+	<node id="MI14_DISABLE" address="0x1e" mask="0x80000000" permission="rw" description="1: disable output 14; 0: enable output 14.  DISABLED BY DEFAULT!  You need to enable each of the outputs!"/>
+	<node id="MI15_DISABLE" address="0x1f" mask="0x80000000" permission="rw" description="1: disable output 15; 0: enable output 15.  DISABLED BY DEFAULT!  You need to enable each of the outputs!"/>
+</node>
