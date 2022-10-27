@@ -18,6 +18,6 @@ class UHALXMLProducer(UHALXMLProducerBase):
 
         topXML = "%s.xml"%label
 
-        shutil.copyfile(os.path.join(local_dir, "axis_switch.xml"), os.path.join(xmlDir, "modules", "axis_switch.xml"))
+        shutil.copyfile(os.path.join(local_dir, "axis_switch.xml"), os.path.join(xmlDir, "modules", topXML))
 
         return top_level_node_template%{"label": label, "xml": topXML, "addr": address}
