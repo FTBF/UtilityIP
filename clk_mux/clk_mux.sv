@@ -75,13 +75,13 @@ module clk_mux #(
     );
 	
 	logic S0, S1;
+    logic clk100_ext_buf, clk100_int_buf;
 	always @(posedge clk100_ext_buf)
 		S0 <= clk_ext_active && !clk_int_select;
 	
 	always @(posedge clk100_int_buf)
 		S1 <= !clk_ext_active || clk_int_select;
 
-    logic clk100_ext_buf, clk100_int_buf;
     BUFG BUFG_100_ext_inst ( .O(clk100_ext_buf), .I(clk100_ext) );
     BUFG BUFG_100_int_inst ( .O(clk100_int_buf), .I(clk_int) );
     BUFGCTRL #(
