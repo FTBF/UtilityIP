@@ -2,67 +2,67 @@
 
 <node>
 	<node id="output0" address="0x0">
-		<node id="input_select" mask="0x0000000f" permission="rw" description="Select which trigger input will be routed to this trigger output; default:0"/>
+		<node id="input_select" mask="0x0000000f" permission="rw" description="Select which trigger input will be routed to this trigger output; default: 5"/>
 		<node id="direction"    mask="0x00010000" permission="rw" description="Direction for external trigger pins; 1: INPUT, 0: OUTPUT; default: 1"/>
 	</node>
 	<node id="output1" address="0x1">
-		<node id="input_select" mask="0x0000000f" permission="rw" description="Select which trigger input will be routed to this trigger output; default:0"/>
+		<node id="input_select" mask="0x0000000f" permission="rw" description="Select which trigger input will be routed to this trigger output; default: 5"/>
 		<node id="direction"    mask="0x00010000" permission="rw" description="Direction for external trigger pins; 1: INPUT, 0: OUTPUT; default: 1"/>
 	</node>
 	<node id="output2" address="0x2">
-		<node id="input_select" mask="0x0000000f" permission="rw" description="Select which trigger input will be routed to this trigger output; default:0"/>
+		<node id="input_select" mask="0x0000000f" permission="rw" description="Select which trigger input will be routed to this trigger output; default: 5"/>
 		<node id="direction"    mask="0x00010000" permission="rw" description="Direction for external trigger pins; 1: INPUT, 0: OUTPUT; default: 1"/>
 	</node>
 	<node id="output3" address="0x3">
-		<node id="input_select" mask="0x0000000f" permission="rw" description="Select which trigger input will be routed to this trigger output; default:0"/>
+		<node id="input_select" mask="0x0000000f" permission="rw" description="Select which trigger input will be routed to this trigger output; default: 5"/>
 		<node id="direction"    mask="0x00010000" permission="rw" description="Direction for external trigger pins; 1: INPUT, 0: OUTPUT; default: 1"/>
 	</node>
 	<node id="output4" address="0x4">
-		<node id="input_select" mask="0x0000000f" permission="rw" description="Select which trigger input will be routed to this trigger output; default:0"/>
+		<node id="input_select" mask="0x0000000f" permission="rw" description="Select which trigger input will be routed to this trigger output; default: 5"/>
 		<node id="direction"    mask="0x00010000" permission="rw" description="Direction for external trigger pins; 1: INPUT, 0: OUTPUT; default: 1"/>
 	</node>
 	<node id="output5" address="0x5">
-		<node id="input_select" mask="0x0000000f" permission="rw" description="Select which trigger input will be routed to this trigger output; default:0"/>
+		<node id="input_select" mask="0x0000000f" permission="rw" description="Select which trigger input will be routed to this trigger output; default: 1"/>
 		<node id="direction"    mask="0x00010000" permission="rw" description="Direction for external trigger pins; 1: INPUT, 0: OUTPUT; default: 1"/>
 	</node>
 	<node id="output6" address="0x6">
-		<node id="input_select" mask="0x0000000f" permission="rw" description="Select which trigger input will be routed to this trigger output; default:0"/>
+		<node id="input_select" mask="0x0000000f" permission="rw" description="Select which trigger input will be routed to this trigger output; default: 2"/>
 		<node id="direction"    mask="0x00010000" permission="rw" description="Direction for external trigger pins; 1: INPUT, 0: OUTPUT; default: 1"/>
 	</node>
 	<node id="output7" address="0x7">
-		<node id="input_select" mask="0x0000000f" permission="rw" description="Select which trigger input will be routed to this trigger output; default:0"/>
+		<node id="input_select" mask="0x0000000f" permission="rw" description="Select which trigger input will be routed to this trigger output; default: 3"/>
 		<node id="direction"    mask="0x00010000" permission="rw" description="Direction for external trigger pins; 1: INPUT, 0: OUTPUT; default: 1"/>
 	</node>
 	<node id="output8" address="0x8">
-		<node id="input_select" mask="0x0000000f" permission="rw" description="Select which trigger input will be routed to this trigger output; default:0"/>
+		<node id="input_select" mask="0x0000000f" permission="rw" description="Select which trigger input will be routed to this trigger output; default: 0"/>
 		<node id="direction"    mask="0x00010000" permission="rw" description="Direction for external trigger pins; 1: INPUT, 0: OUTPUT; default: 1"/>
 	</node>
 	<node id="output9" address="0x9">
-		<node id="input_select" mask="0x0000000f" permission="rw" description="Select which trigger input will be routed to this trigger output; default:0"/>
+		<node id="input_select" mask="0x0000000f" permission="rw" description="Select which trigger input will be routed to this trigger output; default: 0"/>
 		<node id="direction"    mask="0x00010000" permission="rw" description="Direction for external trigger pins; 1: INPUT, 0: OUTPUT; default: 1"/>
 	</node>
 	<node id="output10" address="0xa">
-		<node id="input_select" mask="0x0000000f" permission="rw" description="Select which trigger input will be routed to this trigger output; default:0"/>
+		<node id="input_select" mask="0x0000000f" permission="rw" description="Select which trigger input will be routed to this trigger output; default: 0"/>
 		<node id="direction"    mask="0x00010000" permission="rw" description="Direction for external trigger pins; 1: INPUT, 0: OUTPUT; default: 1"/>
 	</node>
 	<node id="output11" address="0xb">
-		<node id="input_select" mask="0x0000000f" permission="rw" description="Select which trigger input will be routed to this trigger output; default:0"/>
+		<node id="input_select" mask="0x0000000f" permission="rw" description="Select which trigger input will be routed to this trigger output; default: 0"/>
 		<node id="direction"    mask="0x00010000" permission="rw" description="Direction for external trigger pins; 1: INPUT, 0: OUTPUT; default: 1"/>
 	</node>
 	<node id="output12" address="0xc">
-		<node id="input_select" mask="0x0000000f" permission="rw" description="Select which trigger input will be routed to this trigger output; default:0"/>
+		<node id="input_select" mask="0x0000000f" permission="rw" description="Select which trigger input will be routed to this trigger output; default: 0"/>
 		<node id="direction"    mask="0x00010000" permission="rw" description="Direction for external trigger pins; 1: INPUT, 0: OUTPUT; default: 1"/>
 	</node>
 	<node id="output13" address="0xd">
-		<node id="input_select" mask="0x0000000f" permission="rw" description="Select which trigger input will be routed to this trigger output; default:0"/>
+		<node id="input_select" mask="0x0000000f" permission="rw" description="Select which trigger input will be routed to this trigger output; default: 0"/>
 		<node id="direction"    mask="0x00010000" permission="rw" description="Direction for external trigger pins; 1: INPUT, 0: OUTPUT; default: 1"/>
 	</node>
 	<node id="output14" address="0xe">
-		<node id="input_select" mask="0x0000000f" permission="rw" description="Select which trigger input will be routed to this trigger output; default:0"/>
+		<node id="input_select" mask="0x0000000f" permission="rw" description="Select which trigger input will be routed to this trigger output; default: 0"/>
 		<node id="direction"    mask="0x00010000" permission="rw" description="Direction for external trigger pins; 1: INPUT, 0: OUTPUT; default: 1"/>
 	</node>
 	<node id="output15" address="0xf">
-		<node id="input_select" mask="0x0000000f" permission="rw" description="Select which trigger input will be routed to this trigger output; default:0"/>
+		<node id="input_select" mask="0x0000000f" permission="rw" description="Select which trigger input will be routed to this trigger output; default: 0"/>
 		<node id="direction"    mask="0x00010000" permission="rw" description="Direction for external trigger pins; 1: INPUT, 0: OUTPUT; default: 1"/>
 	</node>
 </node>
