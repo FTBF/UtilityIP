@@ -144,22 +144,22 @@ module trigger_xbar #(
 	param_t params_to_IP;
 
 	// Set the defaults to match the original behavior of tileboard tester v2
-	localparam param_t defaults = '{links:{'{default:'0, direction:1'b1, input_select:4'd0},
-		                                   '{default:'0, direction:1'b1, input_select:4'd0},
-		                                   '{default:'0, direction:1'b1, input_select:4'd0},
-		                                   '{default:'0, direction:1'b1, input_select:4'd0},
-		                                   '{default:'0, direction:1'b1, input_select:4'd0},
-		                                   '{default:'0, direction:1'b1, input_select:4'd0},
-		                                   '{default:'0, direction:1'b1, input_select:4'd0},
-		                                   '{default:'0, direction:1'b1, input_select:4'd0},
-		                                   '{default:'0, direction:1'b1, input_select:4'd3},
-		                                   '{default:'0, direction:1'b1, input_select:4'd2},
-		                                   '{default:'0, direction:1'b1, input_select:4'd1},
-		                                   '{default:'0, direction:1'b1, input_select:4'd5},
-		                                   '{default:'0, direction:1'b1, input_select:4'd5},
-		                                   '{default:'0, direction:1'b1, input_select:4'd5},
-		                                   '{default:'0, direction:1'b1, input_select:4'd5},
-		                                   '{default:'0, direction:1'b1, input_select:4'd5}}};
+	localparam param_t defaults = param_t'{links:{link_param_t'{default:'0, direction:1'b1, input_select:4'd0},
+		                                          link_param_t'{default:'0, direction:1'b1, input_select:4'd0},
+		                                          link_param_t'{default:'0, direction:1'b1, input_select:4'd0},
+		                                          link_param_t'{default:'0, direction:1'b1, input_select:4'd0},
+		                                          link_param_t'{default:'0, direction:1'b1, input_select:4'd0},
+		                                          link_param_t'{default:'0, direction:1'b1, input_select:4'd0},
+		                                          link_param_t'{default:'0, direction:1'b1, input_select:4'd0},
+		                                          link_param_t'{default:'0, direction:1'b1, input_select:4'd0},
+		                                          link_param_t'{default:'0, direction:1'b1, input_select:4'd3},
+		                                          link_param_t'{default:'0, direction:1'b1, input_select:4'd2},
+		                                          link_param_t'{default:'0, direction:1'b1, input_select:4'd1},
+		                                          link_param_t'{default:'0, direction:1'b1, input_select:4'd6},
+		                                          link_param_t'{default:'0, direction:1'b1, input_select:4'd6},
+		                                          link_param_t'{default:'0, direction:1'b1, input_select:4'd6},
+		                                          link_param_t'{default:'0, direction:1'b1, input_select:4'd6},
+		                                          link_param_t'{default:'0, direction:1'b1, input_select:4'd6}}};
 
 	IPIF_parameterDecode #(
 		.C_S_AXI_DATA_WIDTH(C_S_AXI_DATA_WIDTH),
