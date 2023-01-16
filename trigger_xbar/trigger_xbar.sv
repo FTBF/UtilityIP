@@ -49,6 +49,7 @@ module trigger_xbar #(
 		input  logic [N_INPUTS-1:0]   trigger_inputs,
 		output logic [N_OUTPUTS-1:0]  trigger_outputs,
 		output logic [N_EXTERNAL-1:0] trigger_dirs,
+		output logic                  output_enable_bar,
 
 		input  logic                                S_AXI_ACLK,
 		input  logic                                S_AXI_ARESETN,
