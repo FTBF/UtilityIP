@@ -34,6 +34,9 @@
 *               1: configure as input (tri-state the output)
 *               0: configure as output
 *               Note that this is only used for the first N_EXTERNAL registers---any higher registers are ignored
+* [16]    bit 0: output enable bar: default 1
+*               write 0 to enable the bus transceiver on the misc mezzanine
+*               defaults to 1: bus transceiver disabled
 */
 
 module trigger_xbar #(
@@ -70,7 +73,7 @@ module trigger_xbar #(
 		input  logic                                S_AXI_RREADY
 	);
 
-	localparam N_REG = 16;
+	localparam N_REG = 32;
 
 	logic                                  IPIF_Bus2IP_resetn;
 	logic [(C_S_AXI_ADDR_WIDTH-1) : 0]     IPIF_Bus2IP_Addr;
@@ -129,6 +132,12 @@ module trigger_xbar #(
 	);
 
 	typedef struct packed {
+		// registers 31-17
+		logic [32*15-1:0] padding17_31;
+		// register 16
+		logic [32-1-1:0] padding16;
+		logic            output_enable_bar;
+		// registers 15-0
 		logic [16-1-1:0] padding_high;
 		logic            direction;
 		logic [16-4-1:0] padding_low;
@@ -144,7 +153,8 @@ module trigger_xbar #(
 	param_t params_to_IP;
 
 	// Set the defaults to match the original behavior of tileboard tester v2
-	localparam param_t defaults = param_t'{links:{link_param_t'{default:'0, direction:1'b1, input_select:4'd0},
+	localparam param_t defaults = param_t'{output_enable_bar: 1'b1,
+	                                       links:{link_param_t'{default:'0, direction:1'b1, input_select:4'd0},
 		                                          link_param_t'{default:'0, direction:1'b1, input_select:4'd0},
 		                                          link_param_t'{default:'0, direction:1'b1, input_select:4'd0},
 		                                          link_param_t'{default:'0, direction:1'b1, input_select:4'd0},
@@ -186,6 +196,8 @@ module trigger_xbar #(
 
 	always_comb begin
 		params_from_IP = params_to_IP;
+		params_from_IP.padding16 = '0;
+		params_from_IP.padding17_31 = '0;
 		for (int i = 0; i < 16; i++) begin
 			params_from_IP.links[i].padding_high = '0;
 			params_from_IP.links[i].padding_low = '0;
@@ -203,5 +215,7 @@ module trigger_xbar #(
 		for (int i = 0; i < N_EXTERNAL; i++) begin
 			trigger_dirs[i] = params_to_IP.links[i].direction;
 		end
+
+		output_enable_bar = params_to_IP.output_enable_bar;
 	end
 endmodule

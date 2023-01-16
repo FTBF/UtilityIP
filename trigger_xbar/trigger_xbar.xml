@@ -65,4 +65,5 @@
 		<node id="input_select" mask="0x0000000f" permission="rw" description="Select which trigger input will be routed to this trigger output; default: 0"/>
 		<node id="direction"    mask="0x00010000" permission="rw" description="Direction for external trigger pins; 1: INPUT, 0: OUTPUT; default: 1"/>
 	</node>
+	<node id="output_enable_bar" address="0x10" mask="0x00000001" permission="rw" description="Output enable (inverted) for the bus transceiver; 1: DISABLE, 0: ENABLE; default: 1 (DISABLE)"/>
 </node>
