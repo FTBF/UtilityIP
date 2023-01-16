@@ -133,12 +133,6 @@ module trigger_xbar #(
 	);
 
 	typedef struct packed {
-		// registers 31-17
-		logic [32*15-1:0] padding17_31;
-		// register 16
-		logic [32-1-1:0] padding16;
-		logic            output_enable_bar;
-		// registers 15-0
 		logic [16-1-1:0] padding_high;
 		logic            direction;
 		logic [16-4-1:0] padding_low;
@@ -146,6 +140,12 @@ module trigger_xbar #(
 	} link_param_t;
 
 	typedef struct packed {
+		// registers 31-17
+		logic [32*15-1:0] padding17_31;
+		// register 16
+		logic [32-1-1:0] padding16;
+		logic            output_enable_bar;
+		// registers 15-0
 		// Registers 15:0 (configuration for links 15--0)
 		link_param_t [16-1:0] links;
 	} param_t;
@@ -154,7 +154,8 @@ module trigger_xbar #(
 	param_t params_to_IP;
 
 	// Set the defaults to match the original behavior of tileboard tester v2
-	localparam param_t defaults = param_t'{output_enable_bar: 1'b1,
+	localparam param_t defaults = param_t'{default:'0,
+	                                       output_enable_bar: 1'b1,
 	                                       links:{link_param_t'{default:'0, direction:1'b1, input_select:4'd0},
 		                                          link_param_t'{default:'0, direction:1'b1, input_select:4'd0},
 		                                          link_param_t'{default:'0, direction:1'b1, input_select:4'd0},
