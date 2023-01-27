@@ -6,6 +6,8 @@ proc init_gui { IPINST } {
   set USE_AXI [ipgui::add_param $IPINST -name "USE_AXI" -parent ${Page_0}]
   set_property tooltip {Provide an AXI interface for configuration and status readout} ${USE_AXI}
   ipgui::add_param $IPINST -name "INPUTFREQ" -parent ${Page_0} -widget comboBox
+
+
 }
 
 proc update_PARAM_VALUE.C_S_AXI_ADDR_WIDTH { PARAM_VALUE.C_S_AXI_ADDR_WIDTH } {

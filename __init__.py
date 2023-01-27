@@ -6,5 +6,6 @@ from .FastControlFanout import uHALXMLProducer_fcf
 from .stream_compare import uHALXMLProducer_stream_compare
 from .axis_delay import uHALXMLProducer_axis_delay
 from .AXI_mux import uHALXMLProducer_AXI_mux
+from .clk_mux import uHALXMLProducer_clk_mux
 from .AXIS_switch import uHALXMLProducer_AXIS_switch
 from .trigger_xbar import uHALXMLProducer_trigger_xbar

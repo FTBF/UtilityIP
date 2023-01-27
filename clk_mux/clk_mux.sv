@@ -63,7 +63,7 @@ module clk_mux #(
 
     // First, all of the AXI / IPIF stuff
 
-    localparam N_REG = 2;
+    localparam N_REG = 4;
 
     logic                                  IPIF_Bus2IP_resetn;
     logic [(C_S_AXI_ADDR_WIDTH-1) : 0]     IPIF_Bus2IP_Addr;
