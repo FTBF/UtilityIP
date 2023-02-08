@@ -74,7 +74,7 @@ module trigger_xbar #(
 		input  logic                                S_AXI_RREADY
 	);
 
-	localparam N_REG = 32;
+	localparam N_REG = 64;
 
 	logic                                  IPIF_Bus2IP_resetn;
 	logic [(C_S_AXI_ADDR_WIDTH-1) : 0]     IPIF_Bus2IP_Addr;
@@ -133,21 +133,36 @@ module trigger_xbar #(
 	);
 
 	typedef struct packed {
-		logic [16-1-1:0] padding_high;
-		logic            direction;
-		logic [16-4-1:0] padding_low;
-		logic [4-1:0]    input_select;
-	} link_param_t;
+		logic [8-1-1:0] padding_3;
+		logic                       current_value;
+		logic [8-2-1:0] padding_2;
+		logic                       force_value;
+		logic                       force_enable;
+		logic [8-1-1:0] padding_1;
+		logic                       direction;
+		logic [8-4-1:0] padding_0;
+		logic [4-1:0]               input_select;
+	} output_param_t;
 
 	typedef struct packed {
-		// registers 31-17
-		logic [32*15-1:0] padding17_31;
-		// register 16
-		logic [32-1-1:0] padding16;
-		logic            output_enable_bar;
+		logic [8-1-1:0]  padding_2;
+		logic                       current_value;
+		logic [8-2-1:0]  padding_1;
+		logic                       force_value;
+		logic                       force_enable;
+		logic [16-0-1:0] padding_0;
+	} input_param_t;
+
+	typedef struct packed {
+		// registers 63-33 are all unused
+		logic [32*31-1:0] padding63_33;
+		// register 32
+		logic [32-1-1:0] padding32;
+		logic                       output_enable_bar;
+		// registers 31-16
+		input_param_t  [16-1:0]     input_links;
 		// registers 15-0
-		// Registers 15:0 (configuration for links 15--0)
-		link_param_t [16-1:0] links;
+		output_param_t [16-1:0]     output_links;
 	} param_t;
 
 	param_t params_from_IP;
@@ -156,22 +171,22 @@ module trigger_xbar #(
 	// Set the defaults to match the original behavior of tileboard tester v2
 	localparam param_t defaults = param_t'{default:'0,
 	                                       output_enable_bar: 1'b1,
-	                                       links:{link_param_t'{default:'0, direction:1'b1, input_select:4'd0},
-		                                          link_param_t'{default:'0, direction:1'b1, input_select:4'd0},
-		                                          link_param_t'{default:'0, direction:1'b1, input_select:4'd0},
-		                                          link_param_t'{default:'0, direction:1'b1, input_select:4'd0},
-		                                          link_param_t'{default:'0, direction:1'b1, input_select:4'd0},
-		                                          link_param_t'{default:'0, direction:1'b1, input_select:4'd0},
-		                                          link_param_t'{default:'0, direction:1'b1, input_select:4'd0},
-		                                          link_param_t'{default:'0, direction:1'b1, input_select:4'd0},
-		                                          link_param_t'{default:'0, direction:1'b1, input_select:4'd3},
-		                                          link_param_t'{default:'0, direction:1'b1, input_select:4'd2},
-		                                          link_param_t'{default:'0, direction:1'b1, input_select:4'd1},
-		                                          link_param_t'{default:'0, direction:1'b1, input_select:4'd6},
-		                                          link_param_t'{default:'0, direction:1'b1, input_select:4'd6},
-		                                          link_param_t'{default:'0, direction:1'b1, input_select:4'd6},
-		                                          link_param_t'{default:'0, direction:1'b1, input_select:4'd6},
-		                                          link_param_t'{default:'0, direction:1'b1, input_select:4'd6}}};
+	                                       output_links:{output_param_t'{default:'0, direction:1'b1, input_select:4'd0},
+		                                                 output_param_t'{default:'0, direction:1'b1, input_select:4'd0},
+		                                                 output_param_t'{default:'0, direction:1'b1, input_select:4'd0},
+		                                                 output_param_t'{default:'0, direction:1'b1, input_select:4'd0},
+		                                                 output_param_t'{default:'0, direction:1'b1, input_select:4'd0},
+		                                                 output_param_t'{default:'0, direction:1'b1, input_select:4'd0},
+		                                                 output_param_t'{default:'0, direction:1'b1, input_select:4'd0},
+		                                                 output_param_t'{default:'0, direction:1'b1, input_select:4'd0},
+		                                                 output_param_t'{default:'0, direction:1'b1, input_select:4'd3},
+		                                                 output_param_t'{default:'0, direction:1'b1, input_select:4'd2},
+		                                                 output_param_t'{default:'0, direction:1'b1, input_select:4'd1},
+		                                                 output_param_t'{default:'0, direction:1'b1, input_select:4'd6},
+		                                                 output_param_t'{default:'0, direction:1'b1, input_select:4'd6},
+		                                                 output_param_t'{default:'0, direction:1'b1, input_select:4'd6},
+		                                                 output_param_t'{default:'0, direction:1'b1, input_select:4'd6},
+		                                                 output_param_t'{default:'0, direction:1'b1, input_select:4'd6}}};
 
 	IPIF_parameterDecode #(
 		.C_S_AXI_DATA_WIDTH(C_S_AXI_DATA_WIDTH),
@@ -198,24 +213,39 @@ module trigger_xbar #(
 
 	always_comb begin
 		params_from_IP = params_to_IP;
-		params_from_IP.padding16 = '0;
-		params_from_IP.padding17_31 = '0;
+		params_from_IP.padding32 = '0;
+		params_from_IP.padding63_33 = '0;
 		for (int i = 0; i < 16; i++) begin
-			params_from_IP.links[i].padding_high = '0;
-			params_from_IP.links[i].padding_low = '0;
+			params_from_IP.output_links[i].padding_0 = '0;
+			params_from_IP.output_links[i].padding_1 = '0;
+			params_from_IP.output_links[i].padding_2 = '0;
+			params_from_IP.output_links[i].padding_3 = '0;
+			params_from_IP.input_links[i].padding_0 = '0;
+			params_from_IP.input_links[i].padding_1 = '0;
+			params_from_IP.input_links[i].padding_2 = '0;
 		end
 
 		internal_trigger_inputs = '0;
 		for (int i = 0; i < N_INPUTS; i++) begin
-			internal_trigger_inputs[i] = trigger_inputs[i];
+			if (params_to_IP.input_links[i].force_enable == 1'b1) begin
+				internal_trigger_inputs[i] = params_to_IP.input_links[i].force_value;
+			end else begin
+				internal_trigger_inputs[i] = trigger_inputs[i];
+			end
+			params_from_IP.input_links[i].current_value = internal_trigger_inputs[i];
 		end
 
 		for (int i = 0; i < N_OUTPUTS; i++) begin
-			trigger_outputs[i] = internal_trigger_inputs[params_to_IP.links[i].input_select];
+			if (params_to_IP.output_links[i].force_enable == 1'b1) begin
+				trigger_outputs[i] = params_to_IP.output_links[i].force_value;
+			end else begin
+				trigger_outputs[i] = internal_trigger_inputs[params_to_IP.output_links[i].input_select];
+			end
+			params_from_IP.output_links[i].current_value = trigger_outputs[i];
 		end
 
 		for (int i = 0; i < N_EXTERNAL; i++) begin
-			trigger_dirs[i] = params_to_IP.links[i].direction;
+			trigger_dirs[i] = params_to_IP.output_links[i].direction;
 		end
 
 		output_enable_bar = params_to_IP.output_enable_bar;
