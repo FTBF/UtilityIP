@@ -154,8 +154,16 @@ module trigger_xbar #(
 	} input_param_t;
 
 	typedef struct packed {
-		// registers 63-33 are all unused
-		logic [32*31-1:0] padding63_33;
+		// register 63
+		logic [32-1:0] block_version;
+		// registers 62-36 are all unused
+		logic [32*27-1:0] padding62_36;
+		// register 35
+		logic [32-1:0] N_external;
+		// register 34
+		logic [32-1:0] N_outputs;
+		// register 33
+		logic [32-1:0] N_inputs;
 		// register 32
 		logic [32-1-1:0] padding32;
 		logic                       output_enable_bar;
@@ -214,7 +222,14 @@ module trigger_xbar #(
 	always_comb begin
 		params_from_IP = params_to_IP;
 		params_from_IP.padding32 = '0;
-		params_from_IP.padding63_33 = '0;
+		params_from_IP.padding62_36 = '0;
+
+		params_from_IP.block_version = 32'h00010000; // version 1.0.0, encoded as 0001.00.00
+
+		params_from_IP.N_inputs = N_INPUTS;
+		params_from_IP.N_outputs = N_OUTPUTS;
+		params_from_IP.N_external = N_EXTERNAL;
+
 		for (int i = 0; i < 16; i++) begin
 			params_from_IP.output_links[i].padding_0 = '0;
 			params_from_IP.output_links[i].padding_1 = '0;
