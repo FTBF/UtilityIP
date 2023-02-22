@@ -197,13 +197,13 @@
 		
 	<node id="output_enable_bar" address="0x20" mask="0x00000001" permission="rw" description="Output enable (inverted) for the bus transceiver; 1: DISABLE, 0: ENABLE; default: 1 (DISABLE)"/>
 
-	<node id="N_INPUTS"   address="0x21" mask="0xffffffff" permission="ro" description="Number of inputs available in this block"/>
-	<node id="N_OUTPUTS"  address="0x22" mask="0xffffffff" permission="ro" description="Number of outputs available in this block"/>
-	<node id="N_EXTERNAL" address="0x23" mask="0xffffffff" permission="ro" description="Number of IOs that are external"/>
+	<node id="N_INPUTS"   address="0x21" mask="0xffffffff" permission="r" description="Number of inputs available in this block"/>
+	<node id="N_OUTPUTS"  address="0x22" mask="0xffffffff" permission="r" description="Number of outputs available in this block"/>
+	<node id="N_EXTERNAL" address="0x23" mask="0xffffffff" permission="r" description="Number of IOs that are external"/>
 
 	<node id="block_version" address="0x3f">
-		<node id="major" mask="0xffff0000" permission="ro" description="Major version"/>
-		<node id="minor" mask="0x0000ff00" permission="ro" description="Minor version"/>
-		<node id="patch" mask="0x000000ff" permission="ro" description="Patch version"/>
+		<node id="major" mask="0xffff0000" permission="r" description="Major version"/>
+		<node id="minor" mask="0x0000ff00" permission="r" description="Minor version"/>
+		<node id="patch" mask="0x000000ff" permission="r" description="Patch version"/>
 	</node>
 </node>
