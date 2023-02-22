@@ -213,8 +213,8 @@ module trigger_xbar #(
 		.IPIF_ip2bus_rdack(IPIF_ip2bus_rdack),
 		.IPIF_ip2bus_wrack(IPIF_ip2bus_wrack),
 
-		.parameters_in(params_to_IP),
-		.parameters_out(params_from_IP)
+		.parameters_in(params_from_IP),
+		.parameters_out(params_to_IP)
 	);
 
 	logic [16-1:0] internal_trigger_inputs;
