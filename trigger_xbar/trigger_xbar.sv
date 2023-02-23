@@ -290,7 +290,7 @@ module trigger_xbar #(
 				internal_trigger_inputs[i] = params_to_IP.input_links[i].force_value;
 				internal_trigger_inputs_deserialized[i] = {8{params_to_IP.input_links[i].force_value}};
 			end else begin
-				internal_trigger_inputs[i] = trigger_inputs[i];
+				internal_trigger_inputs[i] = trigger_inputs_deserialized[i][0];
 				internal_trigger_inputs_deserialized[i] = trigger_inputs_deserialized[i];
 			end
 			params_from_IP.input_links[i].current_value = internal_trigger_inputs[i];
