@@ -205,13 +205,13 @@ module trigger_xbar #(
 		.clk(S_AXI_ACLK),
 
 		//ipif configuration interface ports
-		.IPIF_bus2ip_data(IPIF_Bus2IP_data),
-		.IPIF_bus2ip_rdce(IPIF_Bus2IP_rdce),
+		.IPIF_bus2ip_data(IPIF_Bus2IP_Data),
+		.IPIF_bus2ip_rdce(IPIF_Bus2IP_RdCE),
 		.IPIF_bus2ip_resetn(IPIF_Bus2IP_resetn),
-		.IPIF_bus2ip_wrce(IPIF_Bus2IP_wrce),
-		.IPIF_ip2bus_data(IPIF_IP2Bus_data),
-		.IPIF_ip2bus_rdack(IPIF_IP2Bus_rdack),
-		.IPIF_ip2bus_wrack(IPIF_IP2Bus_wrack),
+		.IPIF_bus2ip_wrce(IPIF_Bus2IP_WrCE),
+		.IPIF_ip2bus_data(IPIF_IP2Bus_Data),
+		.IPIF_ip2bus_rdack(IPIF_IP2Bus_RdAck),
+		.IPIF_ip2bus_wrack(IPIF_IP2Bus_WrAck),
 
 		.parameters_in(params_from_IP),
 		.parameters_out(params_to_IP)
