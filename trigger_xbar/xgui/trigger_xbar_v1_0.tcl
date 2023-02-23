@@ -9,6 +9,8 @@ proc init_gui { IPINST } {
   set_property tooltip {Number of trigger outputs} ${N_OUTPUTS}
   set N_EXTERNAL [ipgui::add_param $IPINST -name "N_EXTERNAL" -parent ${Page_0}]
   set_property tooltip {Number of trigger outputs that are external pins} ${N_EXTERNAL}
+  set UNIFIED_STREAMS [ipgui::add_param $IPINST -name "UNIFIED_STREAMS" -parent ${Page_0}]
+  set_property tooltip {Present the deserialized trigger outputs as a single wide AXIS stream, or split into one stream per link} ${UNIFIED_STREAMS}
 
 
 }
@@ -37,6 +39,15 @@ proc update_PARAM_VALUE.N_EXTERNAL { PARAM_VALUE.N_EXTERNAL } {
 
 proc validate_PARAM_VALUE.N_EXTERNAL { PARAM_VALUE.N_EXTERNAL } {
 	# Procedure called to validate N_EXTERNAL
+	return true
+}
+
+proc update_PARAM_VALUE.UNIFIED_STREAMS { PARAM_VALUE.UNIFIED_STREAMS } {
+	# Procedure called to update UNIFIED_STREAMS when any of the dependent parameters in the arguments change
+}
+
+proc validate_PARAM_VALUE.UNIFIED_STREAMS { PARAM_VALUE.UNIFIED_STREAMS } {
+	# Procedure called to validate UNIFIED_STREAMS
 	return true
 }
 
@@ -72,6 +83,11 @@ proc update_MODELPARAM_VALUE.N_OUTPUTS { MODELPARAM_VALUE.N_OUTPUTS PARAM_VALUE.
 proc update_MODELPARAM_VALUE.N_EXTERNAL { MODELPARAM_VALUE.N_EXTERNAL PARAM_VALUE.N_EXTERNAL } {
 	# Procedure called to set VHDL generic/Verilog parameter value(s) based on TCL parameter value
 	set_property value [get_property value ${PARAM_VALUE.N_EXTERNAL}] ${MODELPARAM_VALUE.N_EXTERNAL}
+}
+
+proc update_MODELPARAM_VALUE.UNIFIED_STREAMS { MODELPARAM_VALUE.UNIFIED_STREAMS PARAM_VALUE.UNIFIED_STREAMS } {
+	# Procedure called to set VHDL generic/Verilog parameter value(s) based on TCL parameter value
+	set_property value [get_property value ${PARAM_VALUE.UNIFIED_STREAMS}] ${MODELPARAM_VALUE.UNIFIED_STREAMS}
 }
 
 proc update_MODELPARAM_VALUE.C_S_AXI_DATA_WIDTH { MODELPARAM_VALUE.C_S_AXI_DATA_WIDTH PARAM_VALUE.C_S_AXI_DATA_WIDTH } {
