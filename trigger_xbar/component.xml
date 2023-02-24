@@ -1290,7 +1290,7 @@ alized_trigger_output_15</spirit:value>
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>fbb08237</spirit:value>
+            <spirit:value>e6d07df1</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -1312,7 +1312,7 @@ alized_trigger_output_15</spirit:value>
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>fbb08237</spirit:value>
+            <spirit:value>e6d07df1</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -1897,7 +1897,7 @@ alized_trigger_output_15</spirit:value>
       <spirit:file>
         <spirit:name>trigger_xbar.sv</spirit:name>
         <spirit:fileType>systemVerilogSource</spirit:fileType>
-        <spirit:userFileType>CHECKSUM_fbb08237</spirit:userFileType>
+        <spirit:userFileType>CHECKSUM_e6d07df1</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
@@ -2005,14 +2005,14 @@ alized_trigger_output_15</spirit:value>
       <xilinx:xpmLibraries>
         <xilinx:xpmLibrary>XPM_CDC</xilinx:xpmLibrary>
       </xilinx:xpmLibraries>
-      <xilinx:coreRevision>5</xilinx:coreRevision>
-      <xilinx:coreCreationDateTime>2023-02-23T19:17:08Z</xilinx:coreCreationDateTime>
+      <xilinx:coreRevision>6</xilinx:coreRevision>
+      <xilinx:coreCreationDateTime>2023-02-24T16:42:15Z</xilinx:coreCreationDateTime>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2021.2</xilinx:xilinxVersion>
-      <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="e35f6d0a"/>
+      <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="83359083"/>
       <xilinx:checksum xilinx:scope="memoryMaps" xilinx:value="871a59ce"/>
-      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="5362376e"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="37eb8de3"/>
       <xilinx:checksum xilinx:scope="ports" xilinx:value="1c510644"/>
       <xilinx:checksum xilinx:scope="hdlParameters" xilinx:value="b9140e5c"/>
       <xilinx:checksum xilinx:scope="parameters" xilinx:value="3cd816f5"/>

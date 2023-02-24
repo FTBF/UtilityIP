@@ -89,8 +89,8 @@ module trigger_xbar #(
 	logic                                  IPIF_Bus2IP_RNW;
 	logic [((C_S_AXI_DATA_WIDTH/8)-1) : 0] IPIF_Bus2IP_BE;
 	logic [0 : 0]                          IPIF_Bus2IP_CS;
-	logic [1 : 0]                          IPIF_Bus2IP_RdCE;
-	logic [1 : 0]                          IPIF_Bus2IP_WrCE;
+	logic [N_REG-1 : 0]                    IPIF_Bus2IP_RdCE;
+	logic [N_REG-1 : 0]                    IPIF_Bus2IP_WrCE;
 	logic [(C_S_AXI_DATA_WIDTH-1) : 0]     IPIF_Bus2IP_Data;
 	logic [(C_S_AXI_DATA_WIDTH-1) : 0]     IPIF_IP2Bus_Data;
 	logic                                  IPIF_IP2Bus_WrAck;
@@ -184,9 +184,18 @@ module trigger_xbar #(
 	param_t params_from_IP;
 	param_t params_to_IP;
 
+	localparam input_param_t input_defaults = '{default:'0, force_enable:1'b0, force_value:1'b0};
+
+	localparam logic [32-1:0] block_version = 32'h00010000; // version 1.0.0, encoded as 0001.00.00
+
 	// Set the defaults to match the original behavior of tileboard tester v2
 	localparam param_t defaults = param_t'{default:'0,
 	                                       output_enable_bar: 1'b1,
+										   input_links:{16{input_defaults}},
+										   N_inputs:N_INPUTS,
+										   N_outputs:N_OUTPUTS,
+										   N_external:N_EXTERNAL,
+										   block_version:block_version,
 	                                       output_links:{output_param_t'{default:'0, direction:1'b1, input_select:4'd0},
 		                                                 output_param_t'{default:'0, direction:1'b1, input_select:4'd0},
 		                                                 output_param_t'{default:'0, direction:1'b1, input_select:4'd0},
@@ -268,7 +277,7 @@ module trigger_xbar #(
 		params_from_IP.padding32 = '0;
 		params_from_IP.padding62_36 = '0;
 
-		params_from_IP.block_version = 32'h00010000; // version 1.0.0, encoded as 0001.00.00
+		params_from_IP.block_version = block_version;
 
 		params_from_IP.N_inputs = N_INPUTS;
 		params_from_IP.N_outputs = N_OUTPUTS;
