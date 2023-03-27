@@ -50,6 +50,7 @@ module trigger_xbar #(
 		input  logic [N_INPUTS-1:0]    trigger_inputs,
 		output logic [N_OUTPUTS-1:0]   trigger_outputs,
 		output logic [N_EXTERNAL-1:0]  trigger_dirs,
+		output logic [N_EXTERNAL-1:0]  trigger_Ts,
 		output logic                   output_enable_bar,
 
 		input  logic                   clk640,
@@ -318,7 +319,8 @@ module trigger_xbar #(
 		end
 
 		for (int i = 0; i < N_EXTERNAL; i++) begin
-			trigger_dirs[i] = params_to_IP.output_links[i].direction;
+			trigger_dirs[i] = ~params_to_IP.output_links[i].direction;
+			trigger_Ts[i]   =  params_to_IP.output_links[i].direction;
 		end
 
 		output_enable_bar = params_to_IP.output_enable_bar;
