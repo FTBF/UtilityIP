@@ -6540,7 +6540,7 @@
       <xilinx:coreCreationDateTime>2021-05-12T19:14:50Z</xilinx:coreCreationDateTime>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
-      <xilinx:xilinxVersion>2019.2</xilinx:xilinxVersion>
+      <xilinx:xilinxVersion>2021.2</xilinx:xilinxVersion>
       <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="5ce4e369"/>
       <xilinx:checksum xilinx:scope="memoryMaps" xilinx:value="1de18f45"/>
       <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="369ccb74"/>

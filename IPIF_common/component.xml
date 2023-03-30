@@ -86,7 +86,7 @@
       <xilinx:coreCreationDateTime>2021-08-17T17:01:26Z</xilinx:coreCreationDateTime>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
-      <xilinx:xilinxVersion>2019.2</xilinx:xilinxVersion>
+      <xilinx:xilinxVersion>2021.2</xilinx:xilinxVersion>
       <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="4800b0e5"/>
       <xilinx:checksum xilinx:scope="parameters" xilinx:value="6ec2be94"/>
     </xilinx:packagingInfo>
