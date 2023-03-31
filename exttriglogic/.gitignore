@@ -1,0 +1,14 @@
+*.bxml
+*.jou
+*.log
+
+*~
+*.txt
+*.pdf
+*.png
+*.root
+#*#
+
+**/.Xil
+
+__pycache__

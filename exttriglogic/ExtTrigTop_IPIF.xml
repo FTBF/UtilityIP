@@ -1,0 +1,7 @@
+<node>
+    <!--<node id="reset"  address="0x0" mask="0x00000001" description="active-high reset for the core (but doesn't currently reset anything; automatically returns to 0 after you write a 1 to it"/>-->
+    <node id="startRun" address="0x0" mask="0x00000002" description="write a 1 to start the run; automatically returns to 0"/>
+    <node id="stopRun" address="0x0" mask="0x00000004" description="write a 1 to stop the run; automatically returns to 0"/>
+    <node id="trig_in_count" address="0x1" description="Number of triggers accepted during this run"/>
+    <node id="trigDelay" address="0x3" mask="0x0000001f" description="Number of BX to delay the trigger by, but NB the actual delay is 1+this value"/>
+</node>
