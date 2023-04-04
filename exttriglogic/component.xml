@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <spirit:component xmlns:xilinx="http://www.xilinx.com" xmlns:spirit="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1685-2009" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <spirit:vendor>user.org</spirit:vendor>
+  <spirit:vendor>fnal.gov</spirit:vendor>
   <spirit:library>user</spirit:library>
   <spirit:name>ExtTrigTop</spirit:name>
   <spirit:version>1.0</spirit:version>
@@ -20,26 +20,10 @@
           </spirit:physicalPort>
         </spirit:portMap>
       </spirit:portMaps>
-    </spirit:busInterface>
-    <spirit:busInterface>
-      <spirit:name>IPIF_Bus2IP_resetn</spirit:name>
-      <spirit:busType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="reset" spirit:version="1.0"/>
-      <spirit:abstractionType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="reset_rtl" spirit:version="1.0"/>
-      <spirit:slave/>
-      <spirit:portMaps>
-        <spirit:portMap>
-          <spirit:logicalPort>
-            <spirit:name>RST</spirit:name>
-          </spirit:logicalPort>
-          <spirit:physicalPort>
-            <spirit:name>IPIF_Bus2IP_resetn</spirit:name>
-          </spirit:physicalPort>
-        </spirit:portMap>
-      </spirit:portMaps>
       <spirit:parameters>
         <spirit:parameter>
-          <spirit:name>POLARITY</spirit:name>
-          <spirit:value spirit:id="BUSIFPARAM_VALUE.IPIF_BUS2IP_RESETN.POLARITY" spirit:choiceRef="choice_list_9d8b0d81">ACTIVE_LOW</spirit:value>
+          <spirit:name>ASSOCIATED_BUSIF</spirit:name>
+          <spirit:value spirit:id="BUSIFPARAM_VALUE.CLOCK.ASSOCIATED_BUSIF">syncTrigOut</spirit:value>
         </spirit:parameter>
       </spirit:parameters>
     </spirit:busInterface>
@@ -60,8 +44,8 @@
       </spirit:portMaps>
       <spirit:parameters>
         <spirit:parameter>
-          <spirit:name>ASSOCIATED_RESET</spirit:name>
-          <spirit:value spirit:id="BUSIFPARAM_VALUE.IPIF_CLK.ASSOCIATED_RESET">IPIF_Bus2IP_resetn</spirit:value>
+          <spirit:name>ASSOCIATED_BUSIF</spirit:name>
+          <spirit:value spirit:id="BUSIFPARAM_VALUE.IPIF_CLK.ASSOCIATED_BUSIF">IPIF</spirit:value>
         </spirit:parameter>
       </spirit:parameters>
     </spirit:busInterface>
@@ -169,6 +153,22 @@
         </spirit:portMap>
       </spirit:portMaps>
     </spirit:busInterface>
+    <spirit:busInterface>
+      <spirit:name>syncTrigOut</spirit:name>
+      <spirit:busType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="data" spirit:version="1.0"/>
+      <spirit:abstractionType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="data_rtl" spirit:version="1.0"/>
+      <spirit:master/>
+      <spirit:portMaps>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>DATA</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>syncTrigOut</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+      </spirit:portMaps>
+    </spirit:busInterface>
   </spirit:busInterfaces>
   <spirit:model>
     <spirit:views>
@@ -187,7 +187,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>334d9ea4</spirit:value>
+            <spirit:value>183b7e83</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -203,7 +203,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>334d9ea4</spirit:value>
+            <spirit:value>183b7e83</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -217,7 +217,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>11ec4950</spirit:value>
+            <spirit:value>9866ea34</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -743,26 +743,24 @@
         <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_S_AXI_ADDR_WIDTH">32</spirit:value>
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="integer">
+        <spirit:name>INCLUDE_AXI_SYNC</spirit:name>
+        <spirit:displayName>Include Axi Sync</spirit:displayName>
+        <spirit:value spirit:format="bool" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.INCLUDE_AXI_SYNC">true</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter spirit:dataType="integer">
         <spirit:name>N_REG</spirit:name>
         <spirit:displayName>N Reg</spirit:displayName>
         <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.N_REG">4</spirit:value>
       </spirit:modelParameter>
     </spirit:modelParameters>
   </spirit:model>
-  <spirit:choices>
-    <spirit:choice>
-      <spirit:name>choice_list_9d8b0d81</spirit:name>
-      <spirit:enumeration>ACTIVE_HIGH</spirit:enumeration>
-      <spirit:enumeration>ACTIVE_LOW</spirit:enumeration>
-    </spirit:choice>
-  </spirit:choices>
   <spirit:fileSets>
     <spirit:fileSet>
       <spirit:name>xilinx_anylanguagesynthesis_view_fileset</spirit:name>
       <spirit:file>
         <spirit:name>hdl/ExtTrigTop.sv</spirit:name>
         <spirit:fileType>systemVerilogSource</spirit:fileType>
-        <spirit:userFileType>CHECKSUM_d2a58c3b</spirit:userFileType>
+        <spirit:userFileType>CHECKSUM_183b7e83</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
@@ -787,7 +785,7 @@
       <spirit:file>
         <spirit:name>xgui/ExtTrigTop_v1_0.tcl</spirit:name>
         <spirit:fileType>tclSource</spirit:fileType>
-        <spirit:userFileType>CHECKSUM_11ec4950</spirit:userFileType>
+        <spirit:userFileType>CHECKSUM_9866ea34</spirit:userFileType>
         <spirit:userFileType>XGUI_VERSION_2</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
@@ -809,6 +807,11 @@
       <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_S_AXI_ADDR_WIDTH">32</spirit:value>
     </spirit:parameter>
     <spirit:parameter>
+      <spirit:name>INCLUDE_AXI_SYNC</spirit:name>
+      <spirit:displayName>Include AXI Synchronizer</spirit:displayName>
+      <spirit:value spirit:format="bool" spirit:resolve="user" spirit:id="PARAM_VALUE.INCLUDE_AXI_SYNC">true</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
       <spirit:name>N_REG</spirit:name>
       <spirit:displayName>N Reg</spirit:displayName>
       <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.N_REG">4</spirit:value>
@@ -816,204 +819,28 @@
   </spirit:parameters>
   <spirit:vendorExtensions>
     <xilinx:coreExtensions>
-      <xilinx:supportedFamilies>
-        <xilinx:family xilinx:lifeCycle="Production">virtex7</xilinx:family>
-        <xilinx:family xilinx:lifeCycle="Production">qvirtex7</xilinx:family>
-        <xilinx:family xilinx:lifeCycle="Production">versal</xilinx:family>
-        <xilinx:family xilinx:lifeCycle="Production">kintex7</xilinx:family>
-        <xilinx:family xilinx:lifeCycle="Production">kintex7l</xilinx:family>
-        <xilinx:family xilinx:lifeCycle="Production">qkintex7</xilinx:family>
-        <xilinx:family xilinx:lifeCycle="Production">qkintex7l</xilinx:family>
-        <xilinx:family xilinx:lifeCycle="Production">akintex7</xilinx:family>
-        <xilinx:family xilinx:lifeCycle="Production">artix7</xilinx:family>
-        <xilinx:family xilinx:lifeCycle="Production">artix7l</xilinx:family>
-        <xilinx:family xilinx:lifeCycle="Production">aartix7</xilinx:family>
-        <xilinx:family xilinx:lifeCycle="Production">qartix7</xilinx:family>
-        <xilinx:family xilinx:lifeCycle="Production">zynq</xilinx:family>
-        <xilinx:family xilinx:lifeCycle="Production">qzynq</xilinx:family>
-        <xilinx:family xilinx:lifeCycle="Production">azynq</xilinx:family>
-        <xilinx:family xilinx:lifeCycle="Production">spartan7</xilinx:family>
-        <xilinx:family xilinx:lifeCycle="Production">aspartan7</xilinx:family>
-        <xilinx:family xilinx:lifeCycle="Production">virtexu</xilinx:family>
-        <xilinx:family xilinx:lifeCycle="Production">zynquplus</xilinx:family>
-        <xilinx:family xilinx:lifeCycle="Production">virtexuplus</xilinx:family>
-        <xilinx:family xilinx:lifeCycle="Production">virtexuplusHBM</xilinx:family>
-        <xilinx:family xilinx:lifeCycle="Production">virtexuplus58g</xilinx:family>
-        <xilinx:family xilinx:lifeCycle="Production">kintexuplus</xilinx:family>
-        <xilinx:family xilinx:lifeCycle="Production">artixuplus</xilinx:family>
-        <xilinx:family xilinx:lifeCycle="Production">kintexu</xilinx:family>
-      </xilinx:supportedFamilies>
       <xilinx:taxonomies>
         <xilinx:taxonomy>/UserIP</xilinx:taxonomy>
       </xilinx:taxonomies>
       <xilinx:displayName>ExtTrigTop_v1_0</xilinx:displayName>
+      <xilinx:autoFamilySupportLevel>level_2</xilinx:autoFamilySupportLevel>
       <xilinx:definitionSource>package_project</xilinx:definitionSource>
       <xilinx:xpmLibraries>
         <xilinx:xpmLibrary>XPM_CDC</xilinx:xpmLibrary>
       </xilinx:xpmLibraries>
-      <xilinx:coreRevision>8</xilinx:coreRevision>
-      <xilinx:coreCreationDateTime>2023-03-31T15:39:10Z</xilinx:coreCreationDateTime>
-      <xilinx:tags>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@222a639a_ARCHIVE_LOCATION">/home/agrummer/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@75dd270e_ARCHIVE_LOCATION">/home/agrummer/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@1537cf6d_ARCHIVE_LOCATION">/home/agrummer/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@1ccf33dc_ARCHIVE_LOCATION">/home/agrummer/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@42266b3b_ARCHIVE_LOCATION">/home/agrummer/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@bca9044_ARCHIVE_LOCATION">/home/agrummer/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@3c9b500e_ARCHIVE_LOCATION">/home/agrummer/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@6df4285_ARCHIVE_LOCATION">/home/agrummer/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@771438f2_ARCHIVE_LOCATION">/home/agrummer/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@4dfcd2c5_ARCHIVE_LOCATION">/home/agrummer/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@65e35ac1_ARCHIVE_LOCATION">/home/agrummer/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@fcdb520_ARCHIVE_LOCATION">/home/agrummer/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@602691bd_ARCHIVE_LOCATION">/home/agrummer/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@42fc060f_ARCHIVE_LOCATION">/home/agrummer/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@460211ae_ARCHIVE_LOCATION">/home/agrummer/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@41758192_ARCHIVE_LOCATION">/home/agrummer/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@3b2aef4a_ARCHIVE_LOCATION">/home/agrummer/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@54c44722_ARCHIVE_LOCATION">/home/agrummer/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@74bffa5a_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@40ba81a7_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@76a7500d_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@68ed1ed8_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@14730955_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@766e65f7_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@73293519_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@358632d9_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@5de6e507_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@2536945f_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@7c0c81d6_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@40bc38e9_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@6638c233_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@5f36c139_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@6c31c0f7_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@b736acf_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@16fffba1_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@71fff045_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@742932a7_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@6bc22e7b_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@44a12833_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@6b35c338_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@6f030f77_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@540547fb_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@49235ba1_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@47b5dd36_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@540d93fd_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@6f2f010_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@40cb7d14_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@16154483_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@3c3c4da3_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@4c48c9ae_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@641b5c0f_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@135fcfd3_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@696cff7a_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@46d959b1_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@44854c8c_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@7dca4fa8_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@6ccb9a29_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@5e21795e_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@68a3fc26_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@7f2d1411_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@b93c0ab_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@66b02336_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@5c92eb34_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@11117045_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@dc1781d_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@38ae5e91_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@4370ea4_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@69f4d4a4_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@62b1f1a3_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@1dbda77a_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@5ac8a8db_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@4e419464_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@525fcf7d_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@656fe990_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@75f95d51_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@16ca5b30_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@6b5eefc5_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@20bbc351_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@3a0413c5_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@1704f16f_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@f5bd120_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@3fa817c5_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@4430a791_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@1235d30f_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@53390d8_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@556f361_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@791890c3_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@7dab5d15_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@3f2758cb_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@1d033558_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@16e59687_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@191145f1_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@a21a57b_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@48e184c9_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@76fd7537_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@52ffe0cb_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@593c19a8_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@54190bcf_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@5c7e0a4f_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@11f945a3_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@656ac9fb_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@3cba6702_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@aebee32_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@32ef8c71_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@77687cd9_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@7e85d2e0_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@2768b916_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@3a814da1_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@404bc5a9_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@6c2d0e6d_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@32159e63_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@39e8b7df_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@41e3646_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@754385d8_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@38a292d1_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@33db99f5_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@254a981e_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@deb3bc5_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@2c1f6430_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@461938df_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@5b0b89fc_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@535c0ab5_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@1991fe11_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@3f27c402_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@506fbc34_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@4f16b6c7_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@7a8977f9_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@23f92ee9_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@4f76eac5_ARCHIVE_LOCATION">/home/zgecse/cass-fw/ExtTrigLogic/ExtTrigLogic.srcs/sources_1/new</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@64f7027f_ARCHIVE_LOCATION">/home/agrummer/cass-fw/fromZ_2023Feb9/cass-fw/ExtTrigLogic</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@6baa168d_ARCHIVE_LOCATION">/home/agrummer/cass-fw/fromZ_2023Feb9/cass-fw/ExtTrigLogic</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@7c10bf5b_ARCHIVE_LOCATION">/home/agrummer/cass-fw/fromZ_2023Feb9/cass-fw/ExtTrigLogic</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@1579c570_ARCHIVE_LOCATION">/home/agrummer/cass-fw/fromZ_2023Feb9/cass-fw/ExtTrigLogic</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@2266d3ae_ARCHIVE_LOCATION">/home/agrummer/cass-fw/fromZ_2023Feb9/cass-fw/ExtTrigLogic</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@7a55a0b9_ARCHIVE_LOCATION">/home/agrummer/cass-fw/fromZ_2023Feb9/cass-fw/ExtTrigLogic</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@5d6dd33f_ARCHIVE_LOCATION">/home/agrummer/cass-fw/fromZ_2023Feb9/cass-fw/ExtTrigLogic</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@3eca6aa5_ARCHIVE_LOCATION">/home/agrummer/cass-fw/fromZ_2023Feb9/cass-fw/ExtTrigLogic</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@7e8b3f69_ARCHIVE_LOCATION">/home/agrummer/cass-fw/fromZ_2023Feb9/cass-fw/ExtTrigLogic</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@67e2695_ARCHIVE_LOCATION">/home/agrummer/cass-fw/fromZ_2023Feb9/cass-fw/ExtTrigLogic</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@27f1290f_ARCHIVE_LOCATION">/home/agrummer/cass-fw/fromZ_2023Feb9/cass-fw/ExtTrigLogic</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@6a561873_ARCHIVE_LOCATION">/home/agrummer/cass-fw/2023Mar30_2/engine_zcu/shared/ip_repo/exttriglogic</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@2ae7a43e_ARCHIVE_LOCATION">/home/agrummer/cass-fw/2023Mar30_2/engine_zcu/shared/ip_repo/exttriglogic</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@51713b8a_ARCHIVE_LOCATION">/home/agrummer/cass-fw/2023Mar30_2/engine_zcu/shared/ip_repo/exttriglogic</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@777214c8_ARCHIVE_LOCATION">/home/agrummer/cass-fw/2023Mar30_2/engine_zcu/shared/ip_repo/exttriglogic</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@10a07ca2_ARCHIVE_LOCATION">/home/agrummer/cass-fw/2023Mar30_2/engine_zcu/shared/ip_repo/exttriglogic</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@1aaa8ea9_ARCHIVE_LOCATION">/home/agrummer/cass-fw/2023Mar30_2/engine_zcu/shared/ip_repo/exttriglogic</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@b5abef9_ARCHIVE_LOCATION">/home/agrummer/cass-fw/2023Mar30_2/engine_zcu/shared/ip_repo/exttriglogic</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@4b237436_ARCHIVE_LOCATION">/home/agrummer/cass-fw/2023Mar30_2/engine_zcu/shared/ip_repo/exttriglogic</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@1395dc9f_ARCHIVE_LOCATION">/home/agrummer/cass-fw/2023Mar30_2/engine_zcu/shared/ip_repo/exttriglogic</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@418b5c4e_ARCHIVE_LOCATION">/home/agrummer/cass-fw/2023Mar30_2/engine_zcu/shared/ip_repo/exttriglogic</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@2cbfff5f_ARCHIVE_LOCATION">/home/agrummer/cass-fw/2023Mar30_2/engine_zcu/shared/ip_repo/exttriglogic</xilinx:tag>
-      </xilinx:tags>
+      <xilinx:coreRevision>1</xilinx:coreRevision>
+      <xilinx:upgrades>
+        <xilinx:canUpgradeFrom>user.org:user:ExtTrigTop:1.0</xilinx:canUpgradeFrom>
+      </xilinx:upgrades>
+      <xilinx:coreCreationDateTime>2023-04-04T18:22:19Z</xilinx:coreCreationDateTime>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2021.2</xilinx:xilinxVersion>
-      <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="90533a08"/>
-      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="55721c5e"/>
-      <xilinx:checksum xilinx:scope="ports" xilinx:value="dfcb0a78"/>
-      <xilinx:checksum xilinx:scope="hdlParameters" xilinx:value="2dd2287b"/>
-      <xilinx:checksum xilinx:scope="parameters" xilinx:value="1d1ca91b"/>
+      <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="b7c2f366"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="f8858247"/>
+      <xilinx:checksum xilinx:scope="ports" xilinx:value="90d1c60e"/>
+      <xilinx:checksum xilinx:scope="hdlParameters" xilinx:value="5fd81404"/>
+      <xilinx:checksum xilinx:scope="parameters" xilinx:value="fe2218a1"/>
     </xilinx:packagingInfo>
   </spirit:vendorExtensions>
 </spirit:component>
