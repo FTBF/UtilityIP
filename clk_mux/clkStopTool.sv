@@ -19,6 +19,7 @@ module clkStopTool #(
 
 	logic [24-1:0] refCtr;
 	logic [24-1:0] rateCtr;
+	logic [24-1:0] rateCtr_refclk;
 	logic value_valid;
 
 	logic async_reset;
@@ -48,7 +49,7 @@ module clkStopTool #(
 
 			// After we're done measuring, take the value in the test clock counter
 			if (refCtr == SAMPLE_TIME) begin
-				value <= rateCtr;
+				value <= rateCtr_refclk;
 				value_valid <= 1'b1;
 			end
 
@@ -76,6 +77,22 @@ module clkStopTool #(
 		.dest_arst(async_reset_clk_test),
 		.dest_clk(clk_test),
 		.src_arst(async_reset)
+	);
+
+	// This CDC block helps make timing closure easier by moving the rateCtr
+	// into the clk_ref domain.
+	xpm_cdc_gray #(
+		.DEST_SYNC_FF(2),
+		.INIT_SYNC_FF(0),
+		.REG_OUTPUT(0),
+		.SIM_ASSERT_CHK(1),
+		.SIM_LOSSLESS_GRAY_CHK(1),
+		.WIDTH(24)
+	) xpm_cdc_gray_inst (
+		.dest_out_bin(rateCtr_refclk),
+		.dest_clk(clk_ref),
+		.src_clk(clk_test),
+		.src_in_bin(rateCtr)
 	);
 
 	//=======================================================================
