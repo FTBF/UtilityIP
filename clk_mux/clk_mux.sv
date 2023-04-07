@@ -149,7 +149,7 @@ module clk_mux #(
 		.PARAM_T(param_t)
 	) IPIF_clock_conv (
 		.IP_clk(clk_int),
-		.bus_clk(IPIF_clk),
+		.bus_clk(S_AXI_ACLK),
 		.params_from_IP(params_from_IP),
 		.params_from_bus(params_from_bus),
 		.params_to_IP(params_to_IP),
