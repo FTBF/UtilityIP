@@ -70,10 +70,12 @@ module clk_mon #(
     //decode configuration parameters from IPIF bus 
     assign IPIF_IP2Bus_Error = 0;
     
-    typedef struct packed
-    {
+    typedef struct packed {
+		// Register 1
         logic [31:0]  unlocks;
-        logic [31:0]  rate;
+		// Register 0
+		logic [32-24-1:0] padding0;
+        logic [24-1:0]  rate;
     } param_t;
         
     generate
@@ -81,6 +83,8 @@ module clk_mon #(
     begin : clks
         
         param_t params_in;
+
+		assign params_in.padding0 = '0;
     
         IPIF_parameterDecode#(
             .C_S_AXI_DATA_WIDTH(C_S_AXI_DATA_WIDTH),
@@ -103,7 +107,7 @@ module clk_mon #(
         );
     
         //calculate clock rate 
-        clkRateTool crt (.reset_in(!aresetn), .clk100(clk_ref), .clktest(clk_test[i]), .value(params_in.rate));
+        clkRateTool crt (.reset_in(!aresetn), .clk_ref(clk_ref), .clk_test(clk_test[i]), .value(params_in.rate));
         
         //count unlocks 
         unlockCtr ulm(.clk_ref(clk_ref), .locked(locked[i]), .unlocks(params_in.unlocks), .reset(aresetn && !(IPIF_Bus2IP_WrCE[2*i+1] && IPIF_Bus2IP_CS[i])));
