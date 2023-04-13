@@ -1,31 +1,11 @@
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 02/19/2021 04:50:25 PM
-// Design Name: 
-// Module Name: clk_mux
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
-
 
 module clk_mux #(
         parameter INPUTFREQ = 40,
         parameter USE_AXI = 0,
         parameter integer C_S_AXI_DATA_WIDTH = 32,
         parameter integer C_S_AXI_ADDR_WIDTH = 11
-    ) (
+    )(
         input wire clk_ext,
         input wire clk_int,
 
@@ -121,9 +101,11 @@ module clk_mux #(
         .IPIF_IP2Bus_Error(IPIF_IP2Bus_Error)
     );
 
+	// Maybe add clk_mon stuff in here?
     typedef struct packed {
         // Register 3
-        logic [32-1:0] padding3;
+        logic [32-24-1:0] padding3;
+		logic [24-1:0] clk40_ext_rate;
         // Register 2
         logic [32-1-1:0] padding2;
         logic locked;
@@ -136,7 +118,9 @@ module clk_mux #(
     } param_t;
 
     param_t params_from_IP;
+    param_t params_from_bus;
     param_t params_to_IP;
+    param_t params_to_bus;
 
     //IPIF parameters are decoded here
     IPIF_parameterDecode #(
@@ -154,9 +138,36 @@ module clk_mux #(
         .IPIF_ip2bus_rdack(IPIF_IP2Bus_RdAck),
         .IPIF_ip2bus_wrack(IPIF_IP2Bus_WrAck),
 
-        .parameters_in(params_from_IP),
-        .parameters_out(params_to_IP)
+        .parameters_in(params_to_bus),
+        .parameters_out(params_from_bus)
     );
+
+	IPIF_clock_converter #(
+		.INCLUDE_SYNCHRONIZER(1),
+		.C_S_AXI_DATA_WIDTH(C_S_AXI_DATA_WIDTH),
+		.N_REG(N_REG),
+		.PARAM_T(param_t)
+	) IPIF_clock_conv (
+		.IP_clk(clk_int),
+		.bus_clk(S_AXI_ACLK),
+		.params_from_IP(params_from_IP),
+		.params_from_bus(params_from_bus),
+		.params_to_IP(params_to_IP),
+		.params_to_bus(params_to_bus));
+
+	logic clk40_ext_stopped;
+	logic [24-1:0] clk40_ext_rate;
+	logic locked_sync;
+
+	xpm_cdc_async_rst #(
+		.DEST_SYNC_FF(2),
+		.INIT_SYNC_FF(1),
+		.RST_ACTIVE_HIGH(0)
+	) locked_CDC (
+		.dest_arst(locked_sync),
+		.dest_clk(clk_int),
+		.src_arst(locked)
+	);
 
     always_comb begin
         params_from_IP = params_to_IP;
@@ -164,118 +175,170 @@ module clk_mux #(
         params_from_IP.padding1 = '0;
         params_from_IP.padding2 = '0;
         params_from_IP.padding3 = '0;
-        params_from_IP.clk_ext_active = clk_ext_active;
-        params_from_IP.locked = locked;
+		params_from_IP.clk40_ext_rate = clk40_ext_rate;
+        params_from_IP.clk_ext_active = !clk40_ext_stopped;
+        params_from_IP.locked = locked_sync;
     end
 
     // Clock mux logic begins here
 
-    // clk_ext immediately goes to an MMCM to produce a 100 MHz clock
-    // This MMCM also produces the clk_ext_active output signal
-    // The feedback path of this MMCM goes through a BUFG
-    // The output is clk100_ext
-    //
-    // Next, both clk_int and clk100_ext go through a BUFG before going to the
-    // multiplexer
-    // In order to switch to the external clock, the external clock must be
-    // active.  If the external clock ever becomes inactive, the mux will fall
-    // back on the internal clock.
-    //
-    // Lastly, the mux output goes through another MMCM to produce the 40 and
-    // 320 MHz output clocks.  This MMCM produces the locked output signal.
+	// First, we will take clk_int (100 MHz) and run it through a PLL to
+	// produce a 40 MHz clock.  We use a PLL instead of an MMCM because they
+	// are a more plentiful resource, and we don't need the MMCM's
+	// capabilities for this purpose.
+	//
+	// clk_ext is either 40 MHz or 320 MHz.  If it's 40 MHz, we don't need to
+	// do anything.  If it's 320 MHz, then run it through a BUFGCE_DIV to
+	// produce 40 MHz.
+	//
+	// Then we have two 40 MHz clocks.  We can use them as the CLKIN1 and
+	// CLKIN0 inputs to an MMCM.
+	//
+	// We will also run clk_ext into a clkStopTool instance to both measure
+	// its frequency and to detect when it has stopped.  When clk_ext has
+	// stopped or clk_int is selected, we will use clk_int.  Whenever we
+	// switch the clock, we will reset the MMCM
 
-    localparam CLK_MULT    = (INPUTFREQ == 40)?(30):(3.750);
-    localparam CLK_DIV_100 = (INPUTFREQ == 40)?(12):(12);
-    localparam CLK_PERIOD  = (INPUTFREQ == 40)?(25.0):(3.125);
+	logic clk40_int;
+	logic PLL_clkfbout, PLL_clkfbin;
+	logic PLL_locked;
+	PLLE4_BASE #(
+		.CLKFBOUT_MULT(8),
+		.CLKFBOUT_PHASE(0.0),
+		.CLKIN_PERIOD(10.0),
+		.CLKOUT0_DIVIDE(20),
+		.CLKOUT0_DUTY_CYCLE(0.5),
+		.CLKOUT0_PHASE(0.0),
+		.DIVCLK_DIVIDE(1),
+		.REF_JITTER(0.010),
+		.IS_RST_INVERTED(1),
+		.STARTUP_WAIT("FALSE")
+	) clk_int_PLL_100_to_40_MHz (
+		.CLKFBOUT(PLL_clkfbout),
+		.CLKOUT0(clk40_int),
+		.LOCKED(PLL_locked),
+		.CLKFBIN(PLL_clkfbin),
+		.CLKIN(clk_int),
+		.CLKOUTPHYEN(1'b0),
+		.PWRDWN(1'b0),
+		.RST(aresetn)
+	);
 
-    logic clockInStopped;
-    logic locked_ext;
-    assign clk_ext_active = !clockInStopped && locked_ext;
+	BUFG PLL_fb_bufg (.I(PLL_clkfbout), .O(PLL_clkfbin));
 
-    logic clk100_ext;
-    logic clkFB_ext_I, clkFB_ext_O;
-    BUFG BUFG_FB_ext_inst ( .O(clkFB_ext_O), .I(clkFB_ext_I) );
+	logic clk40_ext;
+	generate
+	if (INPUTFREQ == 40) begin
+		assign clk40_ext = clk_ext;
+	end else begin
+		BUFGCE_DIV #(
+			.BUFGCE_DIVIDE(8),
+			.SIM_DEVICE("ULTRASCALE_PLUS")
+		) divider_320_to_40 (
+			.I(clk_ext),
+			.CE(1'b1),
+			.CLR(1'b0),
+			.O(clk40_ext)
+		);
+	end
+	endgenerate
 
-    MMCME4_ADV #(
-        .BANDWIDTH("OPTIMIZED"),        // Jitter programming
-        .CLKFBOUT_MULT_F(CLK_MULT),     // Multiply value for all CLKOUT
-        .CLKIN1_PERIOD(CLK_PERIOD),     // Input clock period in ns to ps resolution (i.e. 33.333 is 30 MHz).
-        .CLKOUT0_DIVIDE_F(CLK_DIV_100), // Divide amount for CLKOUT0
-        .CLKOUT0_PHASE(0.0),            // Phase offset for CLKOUT0
-        .COMPENSATION("AUTO"),          // Clock input compensation
-        .DIVCLK_DIVIDE(1),              // Master division value
-        .IS_RST_INVERTED(1'b1)          // Optional inversion for RST
-    ) MMCME4_ADV_EXT (
-        .CLKINSTOPPED(clockInStopped),  // 1-bit output: Input clock stopped
-        .CLKFBOUT(clkFB_ext_I),         // 1-bit output: Feedback clock
-        .CLKFBIN(clkFB_ext_O),          // 1-bit input: Feedback clock
-        .CLKOUT0(clk100_ext),           // 1-bit output: CLKOUT0
-        .LOCKED(locked_ext),            // 1-bit output: LOCK
-        .CLKIN1(clk_ext),               // 1-bit input: Primary clock
-        .RST(aresetn)                   // 1-bit input: Reset
-    );
+	clkStopTool #(
+		.CLK_REF_RATE_HZ(100000000), // 100 MHz reference clock
+		.CLK_TEST_RATE_HZ(40000000), //  40 MHz test clock
+		.TOLERANCE_HZ     (1000000), //   1 MHz tolerance
+		.MEASURE_PERIOD_s(0.001),     // Measure every 1 ms
+		.MEASURE_TIME_s  (0.000125)  // Spend 1/8th ms measuring
+	) clk_ext_stopped (
+		.reset_in(!aresetn),
+		.clk_ref(clk_int),
+		.clk_test(clk40_ext),
+		.value(clk40_ext_rate),
+		.stopped(clk40_ext_stopped)
+	);
 
-    logic clk100_ext_buf, clk100_int_buf;
-    BUFG BUFG_100_ext_inst ( .O(clk100_ext_buf), .I(clk100_ext) );
-    BUFG BUFG_100_int_inst ( .O(clk100_int_buf), .I(clk_int) );
 
-    logic S0, S1;
-    always @(posedge clk100_ext_buf) begin
-        if (USE_AXI == 1) begin
-            S0 <= clk_ext_active && !params_to_IP.clk_int_select;
-        end else begin
-            S0 <= clk_ext_active && !clk_int_select;
-        end
-    end
+	logic mmcm_clk_sel, mmcm_clk_sel_delay;
+	logic mmcm_reset;
+	always_comb begin
+		// Use the external clock unless
+		// (a) it is not running, or
+		// (b) the internal clock is selected by the user
+		if (USE_AXI == 1) begin
+			mmcm_clk_sel = !clk40_ext_stopped && !params_to_IP.clk_int_select;
+		end else begin
+			mmcm_clk_sel = !clk40_ext_stopped && !clk_int_select;
+		end
 
-    always @(posedge clk100_int_buf) begin
-        if (USE_AXI == 1) begin
-            S1 <= !clk_ext_active || params_to_IP.clk_int_select;
-        end else begin
-            S1 <= !clk_ext_active || clk_int_select;
-        end
-    end
+		// Reset the MMCM whenever mmcm_clk_sel changes, or when we have an
+		// external reset signal
+		mmcm_reset = (mmcm_clk_sel ^ mmcm_clk_sel_delay) || !aresetn;
+	end
 
-    logic clk100_mux;
-    BUFGCTRL #(
-        .INIT_OUT(0),               // Initial value of BUFGCTRL output, 0-1
-        .PRESELECT_I0("FALSE"),     // BUFGCTRL output uses I0 input, FALSE, TRUE
-        .PRESELECT_I1("FALSE")     // BUFGCTRL output uses I1 input, FALSE, TRUE
-    ) BUFGCTRL_100_inst (
-        .O(clk100_mux),            // 1-bit output: Clock output
-        .CE0(1'b1),                // 1-bit input: Clock enable input for I0
-        .CE1(1'b1),                // 1-bit input: Clock enable input for I1
-        .I0(clk100_ext_buf),       // 1-bit input: Primary clock
-        .I1(clk100_int_buf),       // 1-bit input: Secondary clock
-        .IGNORE0(~clk_ext_active), // 1-bit input: Clock ignore input for I0
-        .IGNORE1(1'b0),            // 1-bit input: Clock ignore input for I1
-        .S0(S0),                   // 1-bit input: Clock select for I0
-        .S1(S1)                    // 1-bit input: Clock select for I1
-    );   
+	always_ff @(posedge clk_int) begin
+		mmcm_clk_sel_delay <= mmcm_clk_sel;
+	end
 
-    logic clkFB_100_I, clkFB_100_O;
-    BUFG BUFG_FB_int_inst ( .O(clkFB_100_O), .I(clkFB_100_I) );
+	logic clkfbout, clkfbin;
+	logic clk40_mmcm, clk320_mmcm;
+	MMCME4_ADV #(
+		.BANDWIDTH            ("OPTIMIZED"),
+		.CLKOUT4_CASCADE      ("FALSE"),
+		.COMPENSATION         ("AUTO"),
+		.STARTUP_WAIT         ("FALSE"),
+		.DIVCLK_DIVIDE        (1),
+		.CLKFBOUT_MULT_F      (32.000),
+		.CLKFBOUT_PHASE       (0.000),
+		.CLKFBOUT_USE_FINE_PS ("FALSE"),
+		.CLKOUT0_DIVIDE_F     (32.000),
+		.CLKOUT0_PHASE        (0.000),
+		.CLKOUT0_DUTY_CYCLE   (0.500),
+		.CLKOUT0_USE_FINE_PS  ("FALSE"),
+		.CLKOUT1_DIVIDE       (4),
+		.CLKOUT1_PHASE        (0.000),
+		.CLKOUT1_DUTY_CYCLE   (0.500),
+		.CLKOUT1_USE_FINE_PS  ("FALSE"),
+		.CLKIN1_PERIOD        (25.000),
+		.CLKIN2_PERIOD        (25.0)
+	) mmcme4_adv_inst (
+		.CLKFBOUT            (clkfbout),
+		.CLKOUT0             (clk40_mmcm),
+		.CLKOUT1             (clk320_mmcm),
+		.CLKFBIN             (clkfbin),
+		.CLKIN1              (clk40_ext),
+		.CLKIN2              (clk40_int),
+		.CLKINSEL            (mmcm_clk_sel),
+		.DADDR               (7'h0),
+		.DCLK                (1'b0),
+		.DEN                 (1'b0),
+		.DI                  (16'h0),
+		.DWE                 (1'b0),
+		.CDDCREQ             (1'b0),
+		.PSCLK               (1'b0),
+		.PSEN                (1'b0),
+		.PSINCDEC            (1'b0),
+		.LOCKED              (locked),
+		.PWRDWN              (1'b0),
+		.RST                 (mmcm_reset)
+	);
 
-    MMCME4_ADV #(
-        .BANDWIDTH("OPTIMIZED"),        // Jitter programming
-        .CLKFBOUT_MULT_F(12),           // Multiply value for all CLKOUT
-        .CLKIN1_PERIOD(10.0),           // Input clock period in ns to ps resolution (i.e. 33.333 is 30 MHz).
-        .CLKOUT0_DIVIDE_F(3.75),        // Divide amount for CLKOUT0
-        .CLKOUT0_PHASE(0.0),            // Phase offset for CLKOUT0
-        .CLKOUT1_DIVIDE(30),            // Divide amount for CLKOUT (1-128)
-        .CLKOUT1_PHASE(0.0),            // Phase offset for CLKOUT outputs (-360.000-360.000).
-        .COMPENSATION("AUTO"),          // Clock input compensation
-        .DIVCLK_DIVIDE(1),              // Master division value
-        .IS_RST_INVERTED(1'b1)          // Optional inversion for RST
-    ) MMCME4_ADV_100 (
-        .CLKINSTOPPED(), // 1-bit output: Input clock stopped
-        .CLKFBOUT(clkFB_100_I),         // 1-bit output: Feedback clock
-        .CLKFBIN(clkFB_100_O),          // 1-bit input: Feedback clock
-        .CLKOUT0(clk320_out),           // 1-bit output: CLKOUT0
-        .CLKOUT1(clk40_out),            // 1-bit output: CLKOUT1
-        .LOCKED(locked),                // 1-bit output: LOCK
-        .CLKIN1(clk100_mux),            // 1-bit input: Primary clock
-        .RST(aresetn)                      // 1-bit input: Reset
-    );
+	BUFG mmcm_fb_bufg (.O(clkfbin), .I(clkfbout));
 
+	BUFGCE_DIV #(
+		.BUFGCE_DIVIDE(1)
+	) clk40_buf (
+		.I(clk40_mmcm),
+		.CE(1'b1),
+		.CLR(1'b0),
+		.O(clk40_out)
+	);
+
+	BUFGCE_DIV #(
+		.BUFGCE_DIVIDE(1)
+	) clk320_buf (
+		.I(clk320_mmcm),
+		.CE(1'b1),
+		.CLR(1'b0),
+		.O(clk320_out)
+	);
 endmodule
