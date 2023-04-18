@@ -184,7 +184,7 @@ module clk_FC_mux #(
 		.TOLERANCE_HZ      (1000000), //   1 MHz tolerance
 		.MEASURE_PERIOD_s(0.008),     // Measure every 8 ms
 		.MEASURE_TIME_s  (0.001)      // Spend 1 ms measuring
-	) clk_ext_stopped (
+	) clk_ext_stopped_checker (
 		.reset_in(!aresetn),
 		.clk_ref(clk_int),
 		.clk_test(clk_ext),
