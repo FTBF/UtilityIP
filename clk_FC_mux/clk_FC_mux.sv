@@ -250,7 +250,7 @@ module clk_FC_mux #(
 		.Q2(command_rx320_fall),
 		.C(clk320_out),
 		.CB(clk320_out),
-		.D(ext_fast_command),
+		.D(FC_ext),
 		.R(!aresetn)
 	);
 
