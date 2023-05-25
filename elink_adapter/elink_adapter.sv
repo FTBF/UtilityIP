@@ -17,7 +17,7 @@ module elink_adapter #(
 		input  logic M_AXIS_tready
 	);
 
-	typedef enum {WAIT, BYTE_0, BYTE_1, BYTE_2, BYTE_3} state_type;
+	typedef enum {WAIT, BYTE0, BYTE1, BYTE2, BYTE3} state_type;
 
 	typedef struct {
 		state_type state;
@@ -99,6 +99,13 @@ module elink_adapter #(
 							D.state = WAIT;
 						end
 					end
+				end
+
+				default: begin
+					S_AXIS_tready = 1'b0;
+					M_AXIS_tvalid = 1'b0;
+					M_AXIS_tdata = 'X;
+					D.state = WAIT;
 				end
 			endcase
 		end
@@ -182,6 +189,13 @@ module elink_adapter #(
 					S_AXIS_tready = 1'b0;
 					M_AXIS_tvalid = 1'b1;
 					M_AXIS_tdata = D.data;
+				end
+
+				default: begin
+					S_AXIS_tready = 1'b0;
+					M_AXIS_tvalid = 1'b0;
+					M_AXIS_tdata = 'X;
+					D.state = BYTE0;
 				end
 			endcase
 		end
