@@ -120,8 +120,8 @@ module IPIF_clock_converter #(
 	// easily access the correct RdCE/WrCE signal in user code
 	always_comb begin
 		for (int i = 0; i < N_REG; i++) begin
-			RdCE_union.param_array[i] = {C_S_AXIS_DATA_WIDTH{RdCE_to_IP_raw[i] & ~RdCE_to_IP_raw_edge_detect[i]}};
-			WrCE_union.param_array[i] = {C_S_AXIS_DATA_WIDTH{WrCE_to_IP_raw[i] & ~WrCE_to_IP_raw_edge_detect[i]}};
+			RdCE_union.param_array[i] = {C_S_AXI_DATA_WIDTH{RdCE_to_IP_raw[i] & ~RdCE_to_IP_raw_edge_detect[i]}};
+			WrCE_union.param_array[i] = {C_S_AXI_DATA_WIDTH{WrCE_to_IP_raw[i] & ~WrCE_to_IP_raw_edge_detect[i]}};
 		end
 		RdCE_to_IP = RdCE_union.param_struct;
 		WrCE_to_IP = WrCE_union.param_struct;
