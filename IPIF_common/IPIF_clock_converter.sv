@@ -69,11 +69,63 @@ module IPIF_clock_converter #(
 	)(
 		input  logic   IP_clk,
 		input  logic   bus_clk,
+		input  logic [N_REG-1:0] RdCE_from_bus,
+		output PARAM_T RdCE_to_IP,
+		input  logic [N_REG-1:0] WrCE_from_bus,
+		output PARAM_T WrCE_to_IP,
 		input  PARAM_T params_from_IP,
 		input  PARAM_T params_from_bus,
 		output PARAM_T params_to_IP,
 		output PARAM_T params_to_bus
 	);
+
+	// We delay the RdCE/WrCE one bus_clk cycle, because it takes one bus_clk
+	// cycle for the data to get through IPIF_paramDecode
+	logic [N_REG-1:0] RdCE_from_bus_delay;
+	logic [N_REG-1:0] WrCE_from_bus_delay;
+	always_ff @(posedge bus_clk) begin
+		RdCE_from_bus_delay <= RdCE_from_bus;
+		WrCE_from_bus_delay <= WrCE_from_bus;
+	end
+
+	logic [N_REG-1:0] RdCE_to_IP_raw;
+	logic [N_REG-1:0] WrCE_to_IP_raw;
+	repeating_handshake #(
+		.INCLUDE_SYNCHRONIZER(INCLUDE_SYNCHRONIZER),
+		.C_S_AXI_DATA_WIDTH(1),
+		.N_REG(2*N_REG)
+	) RW2ip (
+		.src_clk(bus_clk),
+		.dest_clk(IP_clk),
+		.src_data({RdCE_from_bus_delay, WrCE_from_bus_delay}),
+		.dest_data({RdCE_to_IP_raw, WrCE_to_IP_raw})
+	);
+
+	typedef union packed {
+		PARAM_T param_struct;
+		logic [N_REG-1:0][C_S_AXI_DATA_WIDTH-1:0] param_array;
+	} param_union_t;
+	param_union_t RdCE_union;
+	param_union_t WrCE_union;
+
+	// We only want a single IP_clk cycle pulse, so use edge-detection logic
+	logic [N_REG-1:0] RdCE_to_IP_raw_edge_detect;
+	logic [N_REG-1:0] WrCE_to_IP_raw_edge_detect;
+	always_ff @(posedge IP_clk) begin
+		RdCE_to_IP_raw_edge_detect <= RdCE_to_IP_raw;
+		WrCE_to_IP_raw_edge_detect <= WrCE_to_IP_raw;
+	end
+
+	// Copy the single-cycle pulse into the param_t struct so we can more
+	// easily access the correct RdCE/WrCE signal in user code
+	always_comb begin
+		for (int i = 0; i < N_REG; i++) begin
+			RdCE_union.param_array[i] = {C_S_AXIS_DATA_WIDTH{RdCE_to_IP_raw[i] & ~RdCE_to_IP_raw_edge_detect[i]}};
+			WrCE_union.param_array[i] = {C_S_AXIS_DATA_WIDTH{WrCE_to_IP_raw[i] & ~WrCE_to_IP_raw_edge_detect[i]}};
+		end
+		RdCE_to_IP = RdCE_union.param_struct;
+		WrCE_to_IP = WrCE_union.param_struct;
+	end
 
 	repeating_handshake #(
 		.INCLUDE_SYNCHRONIZER(INCLUDE_SYNCHRONIZER),
