@@ -70,84 +70,11 @@ module IPIF_clock_converter #(
 		input  logic   IP_clk,
 		input  logic   bus_clk,
 		input  logic   bus_clk_aresetn,
-		input  logic [N_REG-1:0] RdCE_from_bus,
-		output PARAM_T RdCE_to_IP,
-		input  logic [N_REG-1:0] WrCE_from_bus,
-		output PARAM_T WrCE_to_IP,
 		input  PARAM_T params_from_IP,
 		input  PARAM_T params_from_bus,
 		output PARAM_T params_to_IP,
 		output PARAM_T params_to_bus
 	);
-
-	// First deal with all the RdCE/WrCE stuff
-	typedef union packed {
-		PARAM_T param_struct;
-		logic [N_REG-1:0][C_S_AXI_DATA_WIDTH-1:0] param_array;
-	} param_union_t;
-	param_union_t RdCE_union, WrCE_union;
-
-	logic [N_REG-1:0] RdCE_bus_internal = '0, WrCE_bus_internal = '0;
-	logic [N_REG-1:0] RdCE_to_bus, WrCE_to_bus;
-	logic [N_REG-1:0] RdCE_to_IP_raw, WrCE_to_IP_raw;
-	logic [N_REG-1:0] RdCE_to_IP_raw_edge_detect, WrCE_to_IP_raw_edge_detect;
-
-	always_ff @(posedge bus_clk) begin
-		for (int i = 0; i < N_REG; i++) begin
-			if (bus_clk_aresetn == 1'b1) begin
-				RdCE_bus_internal <= '0;
-				WrCE_bus_internal <= '0;
-			end else begin
-				if (RdCE_from_bus[i] == 1'b1) begin
-					RdCE_bus_internal[i] <= 1'b1;
-				end else if (RdCE_to_bus[i] == 1'b1) begin
-					RdCE_bus_internal[i] <= 1'b0;
-				end
-				if (WrCE_from_bus[i] == 1'b1) begin
-					WrCE_bus_internal[i] <= 1'b1;
-				end else if (WrCE_to_bus[i] == 1'b1) begin
-					WrCE_bus_internal[i] <= 1'b0;
-				end
-			end
-		end
-	end
-
-	repeating_handshake #(
-		.INCLUDE_SYNCHRONIZER(INCLUDE_SYNCHRONIZER),
-		.C_S_AXI_DATA_WIDTH(1),
-		.N_REG(2*N_REG)
-	) RW_bus2ip (
-		.src_clk(bus_clk),
-		.dest_clk(IP_clk),
-		.src_data({RdCE_bus_internal, WrCE_bus_internal}),
-		.dest_data({RdCE_to_IP_raw, WrCE_to_IP_raw}));
-	repeating_handshake #(
-		.INCLUDE_SYNCHRONIZER(INCLUDE_SYNCHRONIZER),
-		.C_S_AXI_DATA_WIDTH(1),
-		.N_REG(2*N_REG)
-	) RW_ip2bus (
-		.src_clk(IP_clk),
-		.dest_clk(bus_clk),
-		.src_data({RdCE_to_IP_raw, WrCE_to_IP_raw}),
-		.dest_data({RdCE_to_bus, WrCE_to_bus}));
-
-	// We only want a single IP_clk cycle pulse, so use edge-detection logic
-	always_ff @(posedge IP_clk) begin
-		RdCE_to_IP_raw_edge_detect <= RdCE_to_IP_raw;
-		WrCE_to_IP_raw_edge_detect <= WrCE_to_IP_raw;
-	end
-
-	// Copy the single-cycle pulse into the param_t struct so we can more
-	// easily access the correct RdCE/WrCE signal in user code
-	always_comb begin
-		for (int i = 0; i < N_REG; i++) begin
-			RdCE_union.param_array[i] = {C_S_AXI_DATA_WIDTH{RdCE_to_IP_raw[i] & ~RdCE_to_IP_raw_edge_detect[i]}};
-			WrCE_union.param_array[i] = {C_S_AXI_DATA_WIDTH{WrCE_to_IP_raw[i] & ~WrCE_to_IP_raw_edge_detect[i]}};
-		end
-		RdCE_to_IP = RdCE_union.param_struct;
-		WrCE_to_IP = WrCE_union.param_struct;
-	end
-	// Now we're done with all the RdCE/WrCE stuff.  Here's the actual data.
 
 	repeating_handshake #(
 		.INCLUDE_SYNCHRONIZER(INCLUDE_SYNCHRONIZER),
