@@ -1,7 +1,7 @@
 module clkRateTool #(
 		parameter integer CLK_REF_RATE_HZ     = 100000000,
 		parameter real MEASURE_PERIOD_s = 1,
-		parameter real MEASURE_TIME_s   = 0.125
+		parameter real MEASURE_TIME_s   = 0.001
 	)(
 		input  logic reset_in,
 		input  logic clk_ref,
