@@ -33,6 +33,7 @@ module data_mux#(
     //Clock
 	input logic IPIF_clk,
     input logic clk,
+	input logic aresetn,
     
     //Input AXIS busses
     input  logic [DATA_WIDTH-1:0] axis_0_tdata_in,
@@ -240,6 +241,7 @@ module data_mux#(
     (
         //Clock
         .clk(clk),
+		.aresetn(aresetn),
         
         //Input AXIS busses
         .tdata_in(tdata_in),
