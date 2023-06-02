@@ -760,7 +760,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>96b594c7</spirit:value>
+            <spirit:value>321ee185</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -776,7 +776,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>96b594c7</spirit:value>
+            <spirit:value>321ee185</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -790,7 +790,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>4160d58f</spirit:value>
+            <spirit:value>aaf83397</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -1846,6 +1846,10 @@
         <spirit:displayName>C S Axi Addr Width</spirit:displayName>
         <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_S_AXI_ADDR_WIDTH">11</spirit:value>
       </spirit:modelParameter>
+      <spirit:modelParameter spirit:dataType="integer">
+        <spirit:name>ENABLE_AXI</spirit:name>
+        <spirit:value spirit:format="bool" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.ENABLE_AXI">false</spirit:value>
+      </spirit:modelParameter>
     </spirit:modelParameters>
   </spirit:model>
   <spirit:choices>
@@ -1861,7 +1865,7 @@
       <spirit:file>
         <spirit:name>I2C_interconnect.sv</spirit:name>
         <spirit:fileType>systemVerilogSource</spirit:fileType>
-        <spirit:userFileType>CHECKSUM_96b594c7</spirit:userFileType>
+        <spirit:userFileType>CHECKSUM_321ee185</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
@@ -1876,7 +1880,7 @@
       <spirit:file>
         <spirit:name>xgui/I2C_interconnect_v1_0.tcl</spirit:name>
         <spirit:fileType>tclSource</spirit:fileType>
-        <spirit:userFileType>CHECKSUM_4160d58f</spirit:userFileType>
+        <spirit:userFileType>CHECKSUM_aaf83397</spirit:userFileType>
         <spirit:userFileType>XGUI_VERSION_2</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
@@ -1921,16 +1925,16 @@
       <xilinx:displayName>I2C_interconnect_v1_0</xilinx:displayName>
       <xilinx:autoFamilySupportLevel>level_2</xilinx:autoFamilySupportLevel>
       <xilinx:definitionSource>package_project</xilinx:definitionSource>
-      <xilinx:coreRevision>8</xilinx:coreRevision>
-      <xilinx:coreCreationDateTime>2023-06-02T14:30:20Z</xilinx:coreCreationDateTime>
+      <xilinx:coreRevision>9</xilinx:coreRevision>
+      <xilinx:coreCreationDateTime>2023-06-02T14:58:30Z</xilinx:coreCreationDateTime>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2021.2</xilinx:xilinxVersion>
       <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="3b980b7f"/>
       <xilinx:checksum xilinx:scope="memoryMaps" xilinx:value="4f2328e5"/>
-      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="d87f403d"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="58ec18f8"/>
       <xilinx:checksum xilinx:scope="ports" xilinx:value="19282eef"/>
-      <xilinx:checksum xilinx:scope="hdlParameters" xilinx:value="4e15a70b"/>
+      <xilinx:checksum xilinx:scope="hdlParameters" xilinx:value="7d89285c"/>
       <xilinx:checksum xilinx:scope="parameters" xilinx:value="3b4e6814"/>
     </xilinx:packagingInfo>
   </spirit:vendorExtensions>

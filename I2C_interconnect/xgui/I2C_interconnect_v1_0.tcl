@@ -68,3 +68,8 @@ proc update_MODELPARAM_VALUE.C_S_AXI_ADDR_WIDTH { MODELPARAM_VALUE.C_S_AXI_ADDR_
 	set_property value [get_property value ${PARAM_VALUE.C_S_AXI_ADDR_WIDTH}] ${MODELPARAM_VALUE.C_S_AXI_ADDR_WIDTH}
 }
 
+proc update_MODELPARAM_VALUE.ENABLE_AXI { MODELPARAM_VALUE.ENABLE_AXI PARAM_VALUE.ENABLE_AXI } {
+	# Procedure called to set VHDL generic/Verilog parameter value(s) based on TCL parameter value
+	set_property value [get_property value ${PARAM_VALUE.ENABLE_AXI}] ${MODELPARAM_VALUE.ENABLE_AXI}
+}
+

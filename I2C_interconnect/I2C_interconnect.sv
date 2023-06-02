@@ -1,6 +1,7 @@
 module I2C_interconnect #(
 	parameter integer C_S_AXI_DATA_WIDTH = 32,
-	parameter integer C_S_AXI_ADDR_WIDTH = 11
+	parameter integer C_S_AXI_ADDR_WIDTH = 11,
+	parameter ENABLE_AXI = 0
 )(
 	input  logic I2C_0_SCL_o,
 	input  logic I2C_0_SCL_t,
@@ -170,8 +171,17 @@ IPIF_parameterDecode #(
 	.parameters_out(params_to_IP)
 );
 
+logic [8-1:0] enable;
 always_comb begin
 	params_from_IP = params_to_IP;
+	for (int i = 0; i < 8; i++) begin
+		params_from_IP.links[i].padding = '0;
+		if (ENABLE_AXI == 1) begin
+			enable[i] = params_to_IP.links[i].enable;
+		end else begin
+			enable[i] = 1'b1;
+		end
+	end
 end
 
 // For a disabled channel, set the output to 1 and the tristate to 1, and
@@ -179,62 +189,62 @@ end
 
 logic SCL_i, SDA_i, SCL_t, SCA_t;
 
-assign SCL_i = ((~params_to_IP.links[0].enable | I2C_0_SCL_t | I2C_0_SCL_o) &
-                (~params_to_IP.links[1].enable | I2C_1_SCL_t | I2C_1_SCL_o) &
-                (~params_to_IP.links[2].enable | I2C_2_SCL_t | I2C_2_SCL_o) &
-                (~params_to_IP.links[3].enable | I2C_3_SCL_t | I2C_3_SCL_o) &
-                (~params_to_IP.links[4].enable | I2C_4_SCL_i) &
-                (~params_to_IP.links[5].enable | I2C_5_SCL_i) &
-                (~params_to_IP.links[6].enable | I2C_6_SCL_i) &
-                (~params_to_IP.links[7].enable | I2C_7_SCL_i));
+assign SCL_i = ((~enable[0] | I2C_0_SCL_t | I2C_0_SCL_o) &
+                (~enable[1] | I2C_1_SCL_t | I2C_1_SCL_o) &
+                (~enable[2] | I2C_2_SCL_t | I2C_2_SCL_o) &
+                (~enable[3] | I2C_3_SCL_t | I2C_3_SCL_o) &
+                (~enable[4] | I2C_4_SCL_i) &
+                (~enable[5] | I2C_5_SCL_i) &
+                (~enable[6] | I2C_6_SCL_i) &
+                (~enable[7] | I2C_7_SCL_i));
 
-assign SDA_i = ((~params_to_IP.links[0].enable | I2C_0_SDA_t | I2C_0_SDA_o) &
-                (~params_to_IP.links[1].enable | I2C_1_SDA_t | I2C_1_SDA_o) &
-                (~params_to_IP.links[2].enable | I2C_2_SDA_t | I2C_2_SDA_o) &
-                (~params_to_IP.links[3].enable | I2C_3_SDA_t | I2C_3_SDA_o) &
-                (~params_to_IP.links[4].enable | I2C_4_SDA_i) &
-                (~params_to_IP.links[5].enable | I2C_5_SDA_i) &
-                (~params_to_IP.links[6].enable | I2C_6_SDA_i) &
-                (~params_to_IP.links[7].enable | I2C_7_SDA_i));
+assign SDA_i = ((~enable[0] | I2C_0_SDA_t | I2C_0_SDA_o) &
+                (~enable[1] | I2C_1_SDA_t | I2C_1_SDA_o) &
+                (~enable[2] | I2C_2_SDA_t | I2C_2_SDA_o) &
+                (~enable[3] | I2C_3_SDA_t | I2C_3_SDA_o) &
+                (~enable[4] | I2C_4_SDA_i) &
+                (~enable[5] | I2C_5_SDA_i) &
+                (~enable[6] | I2C_6_SDA_i) &
+                (~enable[7] | I2C_7_SDA_i));
 
-assign SCL_t = ((~params_to_IP.links[0].enable | I2C_0_SCL_t) & 
-                (~params_to_IP.links[1].enable | I2C_1_SCL_t) &
-                (~params_to_IP.links[2].enable | I2C_2_SCL_t) &
-                (~params_to_IP.links[3].enable | I2C_3_SCL_t));
+assign SCL_t = ((~enable[0] | I2C_0_SCL_t) & 
+                (~enable[1] | I2C_1_SCL_t) &
+                (~enable[2] | I2C_2_SCL_t) &
+                (~enable[3] | I2C_3_SCL_t));
 
-assign SDA_t = ((~params_to_IP.links[0].enable | I2C_0_SDA_t) &
-                (~params_to_IP.links[1].enable | I2C_1_SDA_t) &
-                (~params_to_IP.links[2].enable | I2C_2_SDA_t) &
-                (~params_to_IP.links[3].enable | I2C_3_SDA_t));
+assign SDA_t = ((~enable[0] | I2C_0_SDA_t) &
+                (~enable[1] | I2C_1_SDA_t) &
+                (~enable[2] | I2C_2_SDA_t) &
+                (~enable[3] | I2C_3_SDA_t));
 
-assign I2C_0_SCL_i = (~params_to_IP.links[0].enable | SCL_i);
-assign I2C_1_SCL_i = (~params_to_IP.links[1].enable | SCL_i);
-assign I2C_2_SCL_i = (~params_to_IP.links[2].enable | SCL_i);
-assign I2C_3_SCL_i = (~params_to_IP.links[3].enable | SCL_i);
+assign I2C_0_SCL_i = (~enable[0] | SCL_i);
+assign I2C_1_SCL_i = (~enable[1] | SCL_i);
+assign I2C_2_SCL_i = (~enable[2] | SCL_i);
+assign I2C_3_SCL_i = (~enable[3] | SCL_i);
 
-assign I2C_0_SDA_i = (~params_to_IP.links[0].enable | SDA_i);
-assign I2C_1_SDA_i = (~params_to_IP.links[1].enable | SDA_i);
-assign I2C_2_SDA_i = (~params_to_IP.links[2].enable | SDA_i);
-assign I2C_3_SDA_i = (~params_to_IP.links[3].enable | SDA_i);
+assign I2C_0_SDA_i = (~enable[0] | SDA_i);
+assign I2C_1_SDA_i = (~enable[1] | SDA_i);
+assign I2C_2_SDA_i = (~enable[2] | SDA_i);
+assign I2C_3_SDA_i = (~enable[3] | SDA_i);
 
-assign I2C_4_SCL_t = (~params_to_IP.links[4].enable | SCL_t);
-assign I2C_5_SCL_t = (~params_to_IP.links[5].enable | SCL_t);
-assign I2C_6_SCL_t = (~params_to_IP.links[6].enable | SCL_t);
-assign I2C_7_SCL_t = (~params_to_IP.links[7].enable | SCL_t);
+assign I2C_4_SCL_t = (~enable[4] | SCL_t);
+assign I2C_5_SCL_t = (~enable[5] | SCL_t);
+assign I2C_6_SCL_t = (~enable[6] | SCL_t);
+assign I2C_7_SCL_t = (~enable[7] | SCL_t);
 
-assign I2C_4_SDA_t = (~params_to_IP.links[4].enable | SDA_t);
-assign I2C_5_SDA_t = (~params_to_IP.links[5].enable | SDA_t);
-assign I2C_6_SDA_t = (~params_to_IP.links[6].enable | SDA_t);
-assign I2C_7_SDA_t = (~params_to_IP.links[7].enable | SDA_t);
+assign I2C_4_SDA_t = (~enable[4] | SDA_t);
+assign I2C_5_SDA_t = (~enable[5] | SDA_t);
+assign I2C_6_SDA_t = (~enable[6] | SDA_t);
+assign I2C_7_SDA_t = (~enable[7] | SDA_t);
 
-assign I2C_4_SCL_o = (~params_to_IP.links[4].enable | SCL_i);
-assign I2C_5_SCL_o = (~params_to_IP.links[5].enable | SCL_i);
-assign I2C_6_SCL_o = (~params_to_IP.links[6].enable | SCL_i);
-assign I2C_7_SCL_o = (~params_to_IP.links[7].enable | SCL_i);
+assign I2C_4_SCL_o = (~enable[4] | SCL_i);
+assign I2C_5_SCL_o = (~enable[5] | SCL_i);
+assign I2C_6_SCL_o = (~enable[6] | SCL_i);
+assign I2C_7_SCL_o = (~enable[7] | SCL_i);
 
-assign I2C_4_SDA_o = (~params_to_IP.links[4].enable | SDA_i);
-assign I2C_5_SDA_o = (~params_to_IP.links[5].enable | SDA_i);
-assign I2C_6_SDA_o = (~params_to_IP.links[6].enable | SDA_i);
-assign I2C_7_SDA_o = (~params_to_IP.links[7].enable | SDA_i);
+assign I2C_4_SDA_o = (~enable[4] | SDA_i);
+assign I2C_5_SDA_o = (~enable[5] | SDA_i);
+assign I2C_6_SDA_o = (~enable[6] | SDA_i);
+assign I2C_7_SDA_o = (~enable[7] | SDA_i);
 
 endmodule
