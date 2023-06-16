@@ -58,7 +58,7 @@ module stream_compare #(
 	param_t params_from_bus;
 	param_t params_from_IP;
 
-	localparam param_t defaults = '{default:'0, active_links: {NLINKS{1'b1}}};
+	localparam param_t defaults = '{default:'0, active_links: NLINKS};
 	localparam param_t self_reset = '{default:'0, latch:1'b1, reset:1'b1};
 
 	IPIF_parameterDecode #(
