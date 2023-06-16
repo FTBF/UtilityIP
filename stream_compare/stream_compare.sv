@@ -48,6 +48,7 @@ module stream_compare #(
 		// Register 0
 		logic [16-1:0] active_links;
 		logic [16-2-1:0] padding0;
+		logic          active_links_map;
 		logic          latch;
 		logic          reset;
 	} param_t;
@@ -57,7 +58,7 @@ module stream_compare #(
 	param_t params_from_bus;
 	param_t params_from_IP;
 
-	localparam param_t defaults = '{default:'0, active_links: NLINKS};
+	localparam param_t defaults = '{default:'0, active_links: {NLINKS{1'b1}}};
 	localparam param_t self_reset = '{default:'0, latch:1'b1, reset:1'b1};
 
 	IPIF_parameterDecode #(
@@ -67,7 +68,7 @@ module stream_compare #(
 		.DEFAULTS(defaults),
 		.SELF_RESET(self_reset)
 	) parameterDecoder (
-		.clk(clk),
+		.clk(IPIF_clk),
 
 		.IPIF_bus2ip_data(IPIF_Bus2IP_Data),
 		.IPIF_bus2ip_rdce(IPIF_Bus2IP_RdCE),
@@ -112,7 +113,11 @@ module stream_compare #(
 		d = q;
 
 		for(int i = 0; i < NLINKS; i++) begin
-			mask[32*i +: 32] = (i < params_to_IP.active_links) ? '1 : '0;
+			if (params_to_IP.active_links_map == 1'b0) begin
+				mask[32*i +: 32] = (i < params_to_IP.active_links) ? '1 : '0;
+			end else begin
+				mask[32*i +: 32] = (params_to_IP.active_links[i]) ? 32'hffffffff : 32'h00000000;
+			end
 		end
 		both_valid = (S_AXIS_0_TVALID && S_AXIS_1_TVALID);
 		both_valid_mismatch = both_valid && ((S_AXIS_0_TDATA & mask) != (S_AXIS_1_TDATA & mask));
@@ -150,17 +155,9 @@ module stream_compare #(
 
 	always_ff @(posedge clk) begin
 		if (areset) begin
-			params_from_IP.reset      <= '0;
-			params_from_IP.latch      <= '0;
-			params_from_IP.trigger    <= '0;
-			params_from_IP.word_count <= '0;
-			params_from_IP.err_count  <= '0;
-			params_from_IP.active_links <= '0;
+			params_from_IP <= defaults;
 		end else begin
-			params_from_IP.reset    <= params_to_IP.reset;
-			params_from_IP.latch    <= params_to_IP.latch;
-			params_from_IP.trigger  <= params_to_IP.trigger;
-			params_from_IP.active_links <= params_to_IP.active_links;
+			params_from_IP <= params_to_IP;
 			if(params_to_IP.latch == 1) begin
 				params_from_IP.word_count <= q.word_count;
 				params_from_IP.err_count  <= q.err_count;
