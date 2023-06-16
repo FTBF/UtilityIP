@@ -47,7 +47,7 @@ module stream_compare #(
 		logic [32-1:0] word_count;
 		// Register 0
 		logic [16-1:0] active_links;
-		logic [16-2-1:0] padding0;
+		logic [16-3-1:0] padding0;
 		logic          active_links_map;
 		logic          latch;
 		logic          reset;
