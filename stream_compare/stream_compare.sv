@@ -150,14 +150,13 @@ module stream_compare #(
 		end
 	end
 
-	assign params_from_IP.padding0 = '0;
-	assign params_from_IP.padding3 = '0;
-
 	always_ff @(posedge clk) begin
 		if (areset) begin
 			params_from_IP <= defaults;
 		end else begin
 			params_from_IP <= params_to_IP;
+			params_from_IP.padding0 <= '0;
+			params_from_IP.padding3 <= '0;
 			if(params_to_IP.latch == 1) begin
 				params_from_IP.word_count <= q.word_count;
 				params_from_IP.err_count  <= q.err_count;
