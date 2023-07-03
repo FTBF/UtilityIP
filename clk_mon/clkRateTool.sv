@@ -47,8 +47,10 @@ module clkRateTool #(
 			end
 
 			// After we're done measuring, take the value in the test clock counter
+			// Add 6 to account for the systematic offset caused by the clock
+			// domain crossers.
 			if (refCtr == SAMPLE_TIME) begin
-				value <= rateCtr_refclk;
+				value <= rateCtr_refclk + 6;
 			end
 		end
 	end
