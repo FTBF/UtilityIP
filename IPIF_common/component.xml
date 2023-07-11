@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <spirit:component xmlns:xilinx="http://www.xilinx.com" xmlns:spirit="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1685-2009" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <spirit:vendor>baylor.edu</spirit:vendor>
-  <spirit:library>IPIF_common</spirit:library>
+  <spirit:library>user</spirit:library>
   <spirit:name>IPIF_common</spirit:name>
   <spirit:version>1.0</spirit:version>
   <spirit:model>
@@ -44,13 +44,14 @@
       <spirit:file>
         <spirit:name>IPIF_clock_converter.sv</spirit:name>
         <spirit:fileType>systemVerilogSource</spirit:fileType>
-        <spirit:logicalName>IPIF_common</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>IPIF_control_signals.sv</spirit:name>
+        <spirit:fileType>systemVerilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
         <spirit:name>IPIF_parameterDecode.sv</spirit:name>
         <spirit:fileType>systemVerilogSource</spirit:fileType>
-        <spirit:userFileType>CHECKSUM_dc49e719</spirit:userFileType>
-        <spirit:logicalName>IPIF_common</spirit:logicalName>
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
@@ -58,12 +59,14 @@
       <spirit:file>
         <spirit:name>IPIF_clock_converter.sv</spirit:name>
         <spirit:fileType>systemVerilogSource</spirit:fileType>
-        <spirit:logicalName>IPIF_common</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>IPIF_control_signals.sv</spirit:name>
+        <spirit:fileType>systemVerilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
         <spirit:name>IPIF_parameterDecode.sv</spirit:name>
         <spirit:fileType>systemVerilogSource</spirit:fileType>
-        <spirit:logicalName>IPIF_common</spirit:logicalName>
       </spirit:file>
     </spirit:fileSet>
   </spirit:fileSets>
