@@ -139,7 +139,7 @@ module ExtTrigTop #(
 	logic accept, dead, running;
 
 	always_comb begin
-	   asyncTrigIn0 = |trig_in;
+		asyncTrigIn0 = |trig_in;
 		accept = asyncTrigIn0 && !asyncTrigIn1 && !busyIn0 && !dead && running;
 	end
 
