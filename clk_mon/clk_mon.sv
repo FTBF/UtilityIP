@@ -25,7 +25,7 @@ module clk_mon #(
     
     parameter C_S_AXI_ADDR_WIDTH = 32,
     parameter C_S_AXI_DATA_WIDTH = 32,
-    parameter N_REG = 2
+    parameter N_REG = 4
     )(
     input wire clk_ref,
     
@@ -71,6 +71,11 @@ module clk_mon #(
     assign IPIF_IP2Bus_Error = 0;
     
     typedef struct packed {
+		// Register 3
+		logic [32-1:0] padding3;
+		// Register 2
+		logic [32-1-1:0] padding2;
+		logic locked;
 		// Register 1
         logic [31:0]  unlocks;
 		// Register 0
@@ -85,6 +90,9 @@ module clk_mon #(
         param_t params_in;
 
 		assign params_in.padding0 = '0;
+		assign params_in.padding2 = '0;
+		assign params_in.padding3 = '0;
+		assign params_in.locked = locked[i];
     
         IPIF_parameterDecode#(
             .C_S_AXI_DATA_WIDTH(C_S_AXI_DATA_WIDTH),
@@ -107,10 +115,24 @@ module clk_mon #(
         );
     
         //calculate clock rate 
-        clkRateTool crt (.reset_in(!aresetn), .clk_ref(clk_ref), .clk_test(clk_test[i]), .value(params_in.rate));
+        clkRateTool #(
+			.CLK_REF_RATE_HZ(100000000),
+			.MEASURE_PERIOD_s(1),
+			.MEASURE_TIME_s(0.001)
+		) crt (
+			.reset_in(!aresetn),
+			.clk_ref(clk_ref),
+			.clk_test(clk_test[i]),
+			.value(params_in.rate)
+		);
         
         //count unlocks 
-        unlockCtr ulm(.clk_ref(clk_ref), .locked(locked[i]), .unlocks(params_in.unlocks), .reset(aresetn && !(IPIF_Bus2IP_WrCE[2*i+1] && IPIF_Bus2IP_CS[i])));
+        unlockCtr ulm (
+			.clk_ref(clk_ref),
+			.locked(locked[i]),
+			.unlocks(params_in.unlocks),
+			.reset(aresetn && !(IPIF_Bus2IP_WrCE[2*i+1] && IPIF_Bus2IP_CS[i]))
+		);
     end
     endgenerate
     
