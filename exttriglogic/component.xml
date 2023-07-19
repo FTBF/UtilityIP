@@ -147,22 +147,6 @@
         </spirit:portMap>
       </spirit:portMaps>
     </spirit:busInterface>
-    <spirit:busInterface>
-      <spirit:name>clock</spirit:name>
-      <spirit:busType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="clock" spirit:version="1.0"/>
-      <spirit:abstractionType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="clock_rtl" spirit:version="1.0"/>
-      <spirit:slave/>
-      <spirit:portMaps>
-        <spirit:portMap>
-          <spirit:logicalPort>
-            <spirit:name>CLK</spirit:name>
-          </spirit:logicalPort>
-          <spirit:physicalPort>
-            <spirit:name>clock</spirit:name>
-          </spirit:physicalPort>
-        </spirit:portMap>
-      </spirit:portMaps>
-    </spirit:busInterface>
   </spirit:busInterfaces>
   <spirit:model>
     <spirit:views>
@@ -232,7 +216,33 @@
     </spirit:views>
     <spirit:ports>
       <spirit:port>
-        <spirit:name>clock</spirit:name>
+        <spirit:name>clk40</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>clk160</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>clk640</spirit:name>
         <spirit:wire>
           <spirit:direction>in</spirit:direction>
           <spirit:wireTypeDefs>
@@ -466,13 +476,22 @@
         </spirit:wire>
       </spirit:port>
       <spirit:port>
-        <spirit:name>trig_in</spirit:name>
+        <spirit:name>asyncTrigIn_P</spirit:name>
         <spirit:wire>
           <spirit:direction>in</spirit:direction>
-          <spirit:vector>
-            <spirit:left spirit:format="long">7</spirit:left>
-            <spirit:right spirit:format="long">0</spirit:right>
-          </spirit:vector>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>asyncTrigIn_N</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
               <spirit:typeName>logic</spirit:typeName>
@@ -729,6 +748,23 @@
           </spirit:wireTypeDefs>
         </spirit:wire>
       </spirit:port>
+      <spirit:port>
+        <spirit:name>trig_phase</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:vector>
+            <spirit:left spirit:format="long">7</spirit:left>
+            <spirit:right spirit:format="long">0</spirit:right>
+          </spirit:vector>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
     </spirit:ports>
     <spirit:modelParameters>
       <spirit:modelParameter xsi:type="spirit:nameValueTypeType" spirit:dataType="integer">
@@ -766,7 +802,7 @@
       <spirit:file>
         <spirit:name>hdl/ExtTrigTop.sv</spirit:name>
         <spirit:fileType>systemVerilogSource</spirit:fileType>
-        <spirit:userFileType>CHECKSUM_1a937751</spirit:userFileType>
+        <spirit:userFileType>CHECKSUM_f8cae098</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
@@ -838,7 +874,21 @@
       <xilinx:upgrades>
         <xilinx:canUpgradeFrom>user.org:user:ExtTrigTop:1.0</xilinx:canUpgradeFrom>
       </xilinx:upgrades>
-      <xilinx:coreCreationDateTime>2023-07-11T19:07:02Z</xilinx:coreCreationDateTime>
+      <xilinx:coreCreationDateTime>2023-07-19T21:29:39Z</xilinx:coreCreationDateTime>
+      <xilinx:tags>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@3d40a2d8_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@30e4896a_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@7d35367b_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@2ab30543_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@45356c5_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@3614418e_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@2d607334_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@6ee260ca_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@f7b037e_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@d7bda2b_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@3b867421_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@207933bf_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+      </xilinx:tags>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2021.2</xilinx:xilinxVersion>
