@@ -1036,51 +1036,6 @@
         <xilinx:canUpgradeFrom>user.org:user:clk_DDS:1.0</xilinx:canUpgradeFrom>
       </xilinx:upgrades>
       <xilinx:coreCreationDateTime>2023-07-20T17:26:30Z</xilinx:coreCreationDateTime>
-      <xilinx:tags>
-        <xilinx:tag xilinx:name="nopcore"/>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@3fe8223b_ARCHIVE_LOCATION">/home/jsw/src/econd_emu_zcu102/shared/ip_repo/utilityip/clk_DDS</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@541cfffd_ARCHIVE_LOCATION">/home/jsw/src/econd_emu_zcu102/shared/ip_repo/utilityip/clk_DDS</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@276041d_ARCHIVE_LOCATION">/home/jsw/src/econd_emu_zcu102/shared/ip_repo/utilityip/clk_DDS</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@4080d365_ARCHIVE_LOCATION">/home/jsw/src/econd_emu_zcu102/shared/ip_repo/utilityip/clk_DDS</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@6be0acf9_ARCHIVE_LOCATION">/home/jsw/src/econd_emu_zcu102/shared/ip_repo/utilityip/clk_DDS</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@cd7f90c_ARCHIVE_LOCATION">/home/jsw/src/econd_emu_zcu102/shared/ip_repo/utilityip/clk_DDS</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@7e06f18b_ARCHIVE_LOCATION">/home/jsw/src/econd_emu_zcu102/shared/ip_repo/utilityip/clk_DDS</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@2a718d9a_ARCHIVE_LOCATION">/home/jsw/src/econd_emu_zcu102/shared/ip_repo/utilityip/clk_DDS</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@5cd6b2d8_ARCHIVE_LOCATION">/home/jsw/src/econd_emu_zcu102/shared/ip_repo/utilityip/clk_DDS</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@76469ae1_ARCHIVE_LOCATION">/home/jsw/src/econd_emu_zcu102/shared/ip_repo/utilityip/clk_DDS</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@1f8c61cc_ARCHIVE_LOCATION">/home/jsw/src/econd_emu_zcu102/shared/ip_repo/utilityip/clk_DDS</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@4db59e38_ARCHIVE_LOCATION">/home/jsw/src/econd_emu_zcu102/shared/ip_repo/utilityip/clk_DDS</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@19935f0b_ARCHIVE_LOCATION">/home/jsw/src/econd_emu_zcu102/shared/ip_repo/utilityip/clk_DDS</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@25763309_ARCHIVE_LOCATION">/home/jsw/src/econd_emu_zcu102/shared/ip_repo/utilityip/clk_DDS</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@fe36bd9_ARCHIVE_LOCATION">/home/jsw/src/econd_emu_zcu102/shared/ip_repo/utilityip/clk_DDS</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@3ac9d96a_ARCHIVE_LOCATION">/home/jsw/src/econd_emu_zcu102/shared/ip_repo/utilityip/clk_DDS</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@5df20c01_ARCHIVE_LOCATION">/home/jsw/src/econd_emu_zcu102/shared/ip_repo/utilityip/clk_DDS</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@3edc3070_ARCHIVE_LOCATION">/home/jsw/src/econd_emu_zcu102/shared/ip_repo/utilityip/clk_DDS</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@f62a607_ARCHIVE_LOCATION">/home/jsw/src/econd_emu_zcu102/shared/ip_repo/utilityip/clk_DDS</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@418c6ef3_ARCHIVE_LOCATION">/home/jsw/src/econd_emu_zcu102/shared/ip_repo/utilityip/clk_DDS</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@343db393_ARCHIVE_LOCATION">/home/jsw/src/econd_emu_zcu102/shared/ip_repo/utilityip/clk_DDS</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@5e4a66b7_ARCHIVE_LOCATION">/home/jsw/src/econd_emu_zcu102/shared/ip_repo/utilityip/clk_DDS</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@63bff89c_ARCHIVE_LOCATION">/home/jsw/src/econd_emu_zcu102/shared/ip_repo/utilityip/clk_DDS</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@1666ac8d_ARCHIVE_LOCATION">/home/jsw/src/econd_emu_zcu102/shared/ip_repo/utilityip/clk_DDS</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@1cc35dc0_ARCHIVE_LOCATION">/home/jsw/src/econd_emu_zcu102/shared/ip_repo/utilityip/clk_DDS</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@5ecf268e_ARCHIVE_LOCATION">/home/jsw/src/econd_emu_zcu102/shared/ip_repo/utilityip/clk_DDS</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@301a9da3_ARCHIVE_LOCATION">/home/jsw/src/econd_emu_zcu102/shared/ip_repo/utilityip/clk_DDS</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@790b60dc_ARCHIVE_LOCATION">/home/jsw/src/econd_emu_zcu102/shared/ip_repo/utilityip/clk_DDS</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@773f49ac_ARCHIVE_LOCATION">/home/jsw/src/econd_emu_zcu102/shared/ip_repo/utilityip/clk_DDS</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@36a1d0b3_ARCHIVE_LOCATION">/home/jsw/src/econd_emu_zcu102/shared/ip_repo/utilityip/clk_DDS</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@414cbb9a_ARCHIVE_LOCATION">/home/jsw/src/econd_emu_zcu102/shared/ip_repo/utilityip/clk_DDS</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@1e8f2e2c_ARCHIVE_LOCATION">/home/jsw/src/econd_emu_zcu102/shared/ip_repo/utilityip/clk_DDS</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@59cc28fc_ARCHIVE_LOCATION">/home/jsw/src/econd_emu_zcu102/shared/ip_repo/utilityip/clk_DDS</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@5999cde8_ARCHIVE_LOCATION">/home/jsw/src/econd_emu_zcu102/shared/ip_repo/utilityip/clk_DDS</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@6f10744_ARCHIVE_LOCATION">/home/jsw/src/econd_emu_zcu102/shared/ip_repo/utilityip/clk_DDS</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@7edb3806_ARCHIVE_LOCATION">/home/jsw/src/econd_emu_zcu102/shared/ip_repo/utilityip/clk_DDS</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@46bfb5c9_ARCHIVE_LOCATION">/home/jsw/src/econd_emu_zcu102/shared/ip_repo/utilityip/clk_DDS</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@5a2f8a11_ARCHIVE_LOCATION">/home/jsw/src/econd_emu_zcu102/shared/ip_repo/utilityip/clk_DDS</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@1b75f2c7_ARCHIVE_LOCATION">/home/jsw/src/econd_emu_zcu102/shared/ip_repo/utilityip/clk_DDS</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@1fa5f3c2_ARCHIVE_LOCATION">/home/jsw/src/econd_emu_zcu102/shared/ip_repo/utilityip/clk_DDS</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@328ef051_ARCHIVE_LOCATION">/home/jsw/src/econd_emu_zcu102/shared/ip_repo/utilityip/clk_DDS</xilinx:tag>
-        <xilinx:tag xilinx:name="ui.data.coregen.df@71256ea0_ARCHIVE_LOCATION">/home/jsw/src/econd_emu_zcu102/shared/ip_repo/utilityip/clk_DDS</xilinx:tag>
-      </xilinx:tags>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2021.2</xilinx:xilinxVersion>
