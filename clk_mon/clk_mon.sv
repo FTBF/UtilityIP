@@ -110,10 +110,9 @@ module clk_mon #(
 		logic [32-1-1:0] padding2;
 		logic locked;
 		// Register 1
-        logic [31:0]  unlocks;
+        logic [32-1:0]  unlocks;
 		// Register 0
-		logic [32-24-1:0] padding0;
-        logic [24-1:0]  rate;
+        logic [32-1:0]  rate;
     } param_t;
 
 	logic [16-1:0] clk_test_internal;
@@ -166,7 +165,6 @@ module clk_mon #(
         
         param_t params_in;
 
-		assign params_in.padding0 = '0;
 		assign params_in.padding2 = '0;
 		assign params_in.padding3 = '0;
 		assign params_in.locked = locked_internal[i];
@@ -208,7 +206,7 @@ module clk_mon #(
 			.clk_ref(clk_ref),
 			.locked(locked_internal[i]),
 			.unlocks(params_in.unlocks),
-			.reset(aresetn && !(IPIF_Bus2IP_WrCE[4*i+1] && IPIF_Bus2IP_CS[i]))
+			.reset(aresetn && !(IPIF_Bus2IP_WrCE[N_REG*i+1] && IPIF_Bus2IP_CS[i]))
 		);
     end
     endgenerate
