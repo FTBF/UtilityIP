@@ -915,10 +915,11 @@
       <spirit:file>
         <spirit:name>clock_definition.xdc</spirit:name>
         <spirit:userFileType>xdc</spirit:userFileType>
+        <spirit:userFileType>USED_IN_synthesis</spirit:userFileType>
         <spirit:userFileType>USED_IN_implementation</spirit:userFileType>
         <spirit:define>
           <spirit:name>processing_order</spirit:name>
-          <spirit:value>late</spirit:value>
+          <spirit:value>early</spirit:value>
         </spirit:define>
       </spirit:file>
       <spirit:file>
@@ -1037,8 +1038,8 @@
       <xilinx:xpmLibraries>
         <xilinx:xpmLibrary>XPM_CDC</xilinx:xpmLibrary>
       </xilinx:xpmLibraries>
-      <xilinx:coreRevision>2</xilinx:coreRevision>
-      <xilinx:coreCreationDateTime>2023-07-20T18:42:26Z</xilinx:coreCreationDateTime>
+      <xilinx:coreRevision>3</xilinx:coreRevision>
+      <xilinx:coreCreationDateTime>2023-07-20T19:06:02Z</xilinx:coreCreationDateTime>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2021.2</xilinx:xilinxVersion>
