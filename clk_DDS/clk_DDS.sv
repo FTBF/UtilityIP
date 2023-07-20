@@ -21,7 +21,7 @@
 */
 
 module clk_DDS #(
-		parameter INCLUDE_SYNCHRONZER = 0,
+		parameter INCLUDE_SYNCHRONIZER = 0,
 		parameter integer C_S_AXI_DATA_WIDTH = 32,
 		parameter integer C_S_AXI_ADDR_WIDTH = 11
 	)(
