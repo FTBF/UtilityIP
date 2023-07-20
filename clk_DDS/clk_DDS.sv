@@ -217,21 +217,23 @@ module clk_DDS #(
 		.INIT(1),
 		.INIT_SYNC_FF(1),
 		.SIM_ASSERT_CHK(1)
-	) clk320_aresetn_sync (
-		.dest_rst(clk320_aresetn),
-		.dest_clk(clk320),
+	) clk40_aresetn_sync (
+		.dest_rst(clk40_aresetn),
+		.dest_clk(clk40),
 		.src_rst(clk_ref_aresetn)
 	);
 
+	// Make the 320 reset follow the 40 reset so we have a constant phase of
+	// reset release relative to clk40
 	xpm_cdc_sync_rst #(
 		.DEST_SYNC_FF(2),
 		.INIT(1),
 		.INIT_SYNC_FF(1),
 		.SIM_ASSERT_CHK(1)
-	) clk40_aresetn_sync (
-		.dest_rst(clk40_aresetn),
-		.dest_clk(clk40),
-		.src_rst(clk_ref_aresetn)
+	) clk320_aresetn_sync (
+		.dest_rst(clk320_aresetn),
+		.dest_clk(clk320),
+		.src_rst(clk40_aresetn)
 	);
 
 	//////////////////////////////////////////////////
