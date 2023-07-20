@@ -188,9 +188,12 @@ module clk_DDS #(
 
 	// Run the DDS clock through MMCM for jitter filtering and to synthesize
 	// a 320 MHz clock
-	logic feedback_clock;
-	logic clk320_internal;
+	logic feedback_clock_0, feedback_clock_1;
+	logic clk320_noisy, clk320_internal;
+	logic PLL_locked_0, PLL_locked_1;
 	MMCME4_ADV #(
+		.BANDWIDTH("LOW"),
+		.REF_JITTER1(0.200), // The jitter in our 20 MHz "clock" is 1 period of the 100 MHz clock, which is 20% of a unit interval, or about 10000 ps.
 		.CLKFBOUT_MULT_F(60), // Multiply the 20 MHz clock frequency by 60 to get 1200 MHz
 		.DIVCLK_DIVIDE(1), // And don't divide, so we keep the PLL internal VCO clock at a high enough frequency
 		.CLKFBOUT_PHASE(0.0),
@@ -200,14 +203,39 @@ module clk_DDS #(
 		.CLKOUT0_DIVIDE_F(3.75), // Divide 1200 MHz by 3.75 so we get 320 MHz output
 		.CLKOUT0_DUTY_CYCLE(0.5),
 		.CLKOUT0_PHASE(0.0)
-	) PLL_inst (
+	) MMCM_inst (
 		.RST(clk_ref_aresetn),
-		.LOCKED(PLL_locked),
+		.LOCKED(PLL_locked_0),
 		.CLKIN1(DDS_clk), // 20 MHz clock in
-		.CLKOUT0(clk320_internal), // 320 MHz clock out
-		.CLKFBOUT(feedback_clock), // PLL feedback loop
-		.CLKFBIN(feedback_clock) // PLL feedback loop
+		.CLKOUT0(clk320_noisy), // 320 MHz clock out
+		.CLKFBOUT(feedback_clock_0), // PLL feedback loop
+		.CLKFBIN(feedback_clock_0) // PLL feedback loop
 	);
+
+	// The clock coming from the MMCM is still too noisy/jittery, so we'll run
+	// it through a second PLL to clean it more.  According to the Vivado
+	// clocking wizard, the MMCM output will have a jitter of 600 to 1200 ps,
+	// and the PLL will then have a jitter of 200 to 300 ps.
+	PLLE4_ADV #(
+		.CLKFBOUT_MULT(3),          // Multiply 320 MHz input clock by 3 to get 960 MHz
+		.CLKIN_PERIOD(3.125),       // 320 MHz input clock has a period of 3.125 ns
+		.CLKOUT0_DIVIDE(3),         // Divide amount for CLKOUT0
+		.CLKOUT0_DUTY_CYCLE(0.5),   // Duty cycle for CLKOUT0
+		.CLKOUT0_PHASE(0.0),        // Phase offset for CLKOUT0
+		.COMPENSATION("AUTO"),      // Clock input compensation
+		.DIVCLK_DIVIDE(1),          // Master division value
+		.IS_RST_INVERTED(1'b1),     // Optional inversion for RST
+		.REF_JITTER(0.384),         // According to the Vivado clocking wizard, the first MMCM output will have a jitter of 600 to 1200 ps, the upper end of which is 0.384 of a 320 MHz clock period
+	) PLL_inst (
+		.RST(clk_ref_aresetn)
+		.LOCKED(PLL_locked_1),
+		.CLKIN(clk320_noisy),
+		.CLKOUT0(clk320_internal),
+		.CLKFBOUT(feedback_clock_1),
+		.CLKFBIN(feedback_clock_1),
+	);
+
+	assign PLL_locked = PLL_locked_0 & PLL_locked_1;
 
 	// Use BUFGCE_DIV to turn the 320 MHz clock into 40 MHz, and also buffer
 	// the 320 MHz clock with BUFGCE_DIV so there isn't too much skew between
