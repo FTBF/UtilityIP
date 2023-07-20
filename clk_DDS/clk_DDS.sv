@@ -128,6 +128,8 @@ module clk_DDS #(
 		logic [32-1:0] increment;
 	} param_t;
 
+	localparam param_t defaults = '{default:'0, increment:32'h33333333};
+
 	param_t params_from_IP;
 	param_t params_from_bus;
 	param_t params_to_IP;
@@ -137,7 +139,8 @@ module clk_DDS #(
 	IPIF_parameterDecode #(
 		.C_S_AXI_DATA_WIDTH(C_S_AXI_DATA_WIDTH),
 		.N_REG(N_REG),
-		.PARAM_T(param_t)
+		.PARAM_T(param_t),
+		.DEFAULTS(defaults)
 	) parameterDecode (
 		.clk(S_AXI_ACLK),
 
