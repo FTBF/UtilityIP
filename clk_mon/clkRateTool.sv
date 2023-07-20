@@ -10,12 +10,6 @@ module clkRateTool #(
 		output logic [COUNTER_WIDTH-1:0] value
 	);
 
-	logic clk_test_buf;
-	(* KEEP = "TRUE" *) BUFG clkRateTool_clk_test_BUFG (
-		.I(clk_test),
-		.O(clk_test_buf)
-	);
-
 	localparam integer REF_ROLLOVER = (CLK_REF_RATE_HZ * MEASURE_PERIOD_s);
 	localparam integer SAMPLE_TIME  = (CLK_REF_RATE_HZ * MEASURE_TIME_s);
 
@@ -66,7 +60,7 @@ module clkRateTool #(
 		.RST_ACTIVE_HIGH(1)
 	) reset_synchronizer (
 		.dest_arst(async_reset_clk_test),
-		.dest_clk(clk_test_buf),
+		.dest_clk(clk_test),
 		.src_arst(async_reset)
 	);
 
@@ -82,7 +76,7 @@ module clkRateTool #(
 	) xpm_cdc_gray_inst (
 		.dest_out_bin(rateCtr_refclk),
 		.dest_clk(clk_ref),
-		.src_clk(clk_test_buf),
+		.src_clk(clk_test),
 		.src_in_bin(rateCtr)
 	);
 
@@ -90,7 +84,7 @@ module clkRateTool #(
 	// test clock domain
 	//=======================================================================
 
-	always_ff @(posedge clk_test_buf or posedge async_reset_clk_test) begin
+	always_ff @(posedge clk_test or posedge async_reset_clk_test) begin
 		if (async_reset_clk_test == 1'b1) begin
 			rateCtr <= 0;
 		end else begin
