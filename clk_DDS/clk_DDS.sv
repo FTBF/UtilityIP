@@ -225,14 +225,14 @@ module clk_DDS #(
 		.COMPENSATION("AUTO"),      // Clock input compensation
 		.DIVCLK_DIVIDE(1),          // Master division value
 		.IS_RST_INVERTED(1'b1),     // Optional inversion for RST
-		.REF_JITTER(0.384),         // According to the Vivado clocking wizard, the first MMCM output will have a jitter of 600 to 1200 ps, the upper end of which is 0.384 of a 320 MHz clock period
+		.REF_JITTER(0.384)          // According to the Vivado clocking wizard, the first MMCM output will have a jitter of 600 to 1200 ps, the upper end of which is 0.384 of a 320 MHz clock period
 	) PLL_inst (
-		.RST(clk_ref_aresetn)
+		.RST(clk_ref_aresetn),
 		.LOCKED(PLL_locked_1),
 		.CLKIN(clk320_noisy),
 		.CLKOUT0(clk320_internal),
 		.CLKFBOUT(feedback_clock_1),
-		.CLKFBIN(feedback_clock_1),
+		.CLKFBIN(feedback_clock_1)
 	);
 
 	assign PLL_locked = PLL_locked_0 & PLL_locked_1;
