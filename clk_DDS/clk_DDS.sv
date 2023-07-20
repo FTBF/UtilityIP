@@ -196,9 +196,9 @@ module clk_DDS #(
 		.IS_RST_INVERTED(1'b1),
 		// CLKOUT0 should be 320 MHz
 		.CLKOUT0_DIVIDE_F(3.75), // Divide 1200 MHz by 3.75 so we get 320 MHz output
-			.CLKOUT0_DUTY_CYCLE(0.5),
-			.CLKOUT0_PHASE(0.0),
-		) PLL_inst (
+		.CLKOUT0_DUTY_CYCLE(0.5),
+		.CLKOUT0_PHASE(0.0)
+	) PLL_inst (
 		.RST(aresetn),
 		.LOCKED(PLL_locked),
 		.CLKIN1(DDS_clk), // 20 MHz clock in
