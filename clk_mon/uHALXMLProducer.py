@@ -9,7 +9,7 @@ clk_mon_template = """<node>
 
 clk_mon_clock_template = """    <node id="rate%(iClk)i"              address="0x%(addr)x" permission="r"  description="Clock rate of clock %(iClk)i in kHz"/>
     <node id="pllunlock%(iClk)i"         address="0x%(addr2)x" permission="rw" description="Number of PLL unlocks for clock %(iClk)i, write 1 to reset"/>
-    <node id="lock%(iClk)i"              address="0x%(addr3)x" permission="rw" description="Current state of locked bit for clock %(iClk)i"/>"""
+    <node id="lock%(iClk)i"              address="0x%(addr3)x" mask="1" permission="rw" description="Current state of locked bit for clock %(iClk)i"/>"""
 
 top_level_node_template = '<node id="%(label)s"	    module="file://modules/%(xml)s"	          address="%(addr)s"/>'
 
