@@ -34,6 +34,8 @@ module clk_DDS #(
 		output logic clk320_aresetn,
 		output logic clk40_aresetn,
 
+		output logic PLL_locked,
+
 		input  logic                                S_AXI_ACLK,
 		input  logic                                S_AXI_ARESETN,
 		input  logic [C_S_AXI_ADDR_WIDTH-1 : 0]     S_AXI_AWADDR,
@@ -199,7 +201,7 @@ module clk_DDS #(
 		.CLKOUT0_DUTY_CYCLE(0.5),
 		.CLKOUT0_PHASE(0.0)
 	) PLL_inst (
-		.RST(aresetn),
+		.RST(clk_ref_aresetn),
 		.LOCKED(PLL_locked),
 		.CLKIN1(DDS_clk), // 20 MHz clock in
 		.CLKOUT0(clk320_internal), // 320 MHz clock out
