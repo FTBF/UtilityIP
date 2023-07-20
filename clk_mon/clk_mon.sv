@@ -168,7 +168,7 @@ module clk_mon #(
 		assign params_in.padding2 = '0;
 		assign params_in.padding3 = '0;
 
-		xpm_cdc_sync_reset #(
+		xpm_cdc_sync_rst #(
 			.DEST_SYNC_FF(2),
 			.INIT(1),
 			.INIT_SYNC_FF(1),
