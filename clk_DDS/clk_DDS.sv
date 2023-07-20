@@ -28,7 +28,7 @@ module clk_DDS #(
 		input  logic clk_ref,
 		input  logic clk_ref_aresetn,
 
-		output logic clk320,
+		(* KEEP = "TRUE" *) output logic clk320,
 		output logic clk40,
 
 		output logic clk320_aresetn,
@@ -189,7 +189,7 @@ module clk_DDS #(
 	// Run the DDS clock through MMCM for jitter filtering and to synthesize
 	// a 320 MHz clock
 	logic feedback_clock_0, feedback_clock_1;
-	logic clk320_noisy, clk320_internal;
+	logic clk320_noisy, clk_320_noisy_buffered, clk320_internal;
 	logic PLL_locked_0, PLL_locked_1;
 	MMCME4_ADV #(
 		.BANDWIDTH("LOW"),
@@ -212,6 +212,8 @@ module clk_DDS #(
 		.CLKFBIN(feedback_clock_0) // PLL feedback loop
 	);
 
+	BUFG bufg_clk320_noisy (.I(clk320_noisy), .O(clk320_noisy_buffered));
+
 	// The clock coming from the MMCM is still too noisy/jittery, so we'll run
 	// it through a second PLL to clean it more.  According to the Vivado
 	// clocking wizard, the MMCM output will have a jitter of 600 to 1200 ps,
@@ -229,7 +231,7 @@ module clk_DDS #(
 	) PLL_inst (
 		.RST(clk_ref_aresetn),
 		.LOCKED(PLL_locked_1),
-		.CLKIN(clk320_noisy),
+		.CLKIN(clk320_noisy_buffered),
 		.CLKOUT0(clk320_internal),
 		.CLKFBOUT(feedback_clock_1),
 		.CLKFBIN(feedback_clock_1)
