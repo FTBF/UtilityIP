@@ -202,9 +202,11 @@ module clk_DDS #(
 	
 	// Do the DDS stuff
 	logic [32-1:0] DDS_counter;
+	logic [32-1:0] increment600;
 	(* KEEP = "TRUE" *) logic DDS_clk;
 	always @(posedge clk600) begin
-		DDS_counter <= DDS_counter + params_to_IP.increment;
+		increment600 <= params_to_IP.increment
+		DDS_counter <= DDS_counter + increment600;
 	end
 
 	// Use the MSB of the DDS counter as a clock
