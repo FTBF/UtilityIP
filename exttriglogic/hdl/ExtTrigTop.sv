@@ -45,7 +45,8 @@ module ExtTrigTop #(
 		output logic TermEnable3,
 		output logic ledTop,
 		output logic ledBot,
-		output logic [7:0] trig_phase
+		output logic [7:0] trig_phase,
+		output logic [7:0] rawChannel1
 	);
 
 	logic [31:0] trig_in_count;
@@ -160,6 +161,9 @@ module ExtTrigTop #(
 	);
 
     logic [7:0] deserialized_word;
+    logic [7:0] deserialized_word1;
+    logic [7:0] deserialized_word2;
+    logic [7:0] deserialized_word3;
 //  ISERDESE3  : In order to incorporate this function into the design,
 //   Verilog   : the following instance declaration needs to be placed
 //  instance   : in the body of the design code.  The instance name
@@ -207,20 +211,87 @@ module ExtTrigTop #(
 //	for(genvar i=0;i<delay-1;i++)
 //	   always @(posedge clk160)
 //	       fifo[i+1] <= fifo[i];
-	       
-    always @(posedge clk160) begin
-        trig_phase <= deserialized_word; 
-//        fifo[0] <= deserialized_word;
-//        trig_phase <= fifo[delay-1];
-    end
+    logic clk40reg, clk160reg, isArmed, isTrigger;
+    logic [1:0] clk40phase;
+	integer i;
+	logic [31:0] myInput;
+	logic [31:0] savedInput, savedInput1;
+	logic [31:0] idleWord=32'haccccccc;
+	logic [7:0] myPhase, myPhase1;
+	logic [7:0] myPhaseDC1;
 
+    always @(posedge clk160) begin
+        clk160reg <= clk40reg;
+        if(clk40reg != clk160reg)
+            clk40phase <= 1;
+        else
+            clk40phase <= clk40phase + 1;
+            
+        deserialized_word1 <= deserialized_word;
+        deserialized_word2 <= deserialized_word1;
+        deserialized_word3 <= deserialized_word2;
+    end
+    
+    always @(posedge clk40) begin
+        clk40reg <= !clk40reg;
+ 
+        myInput <= {deserialized_word, deserialized_word1, deserialized_word2, deserialized_word3};
+        isArmed <= 0;
+        for(i=31; i>=0; i=i-1) begin
+            if(myInput[i] == 1) begin
+                isArmed <= 1;
+                myPhase <= i;
+                myPhase1 <= myPhase;
+                savedInput <= myInput;
+                savedInput1 <= savedInput;
+            end
+        end
+    end	       
+    
+    genvar geni;
+    generate
+    for( geni=0; geni<8; geni=geni+1 )
+    begin : swiz
+    assign myPhaseDC1[geni] = myPhase1[7-geni];
+    end
+    endgenerate
+    
+    always @(posedge clk160) begin             
+        if(syncTrig0) begin
+            case(clk40phase)
+                0 : trig_phase <= myPhase1[7:0];
+                1 : trig_phase <= myPhaseDC1[7:0];
+                2 : trig_phase <= myPhase1[7:0];
+                3 : trig_phase <= myPhaseDC1[7:0];
+            endcase
+            case(clk40phase)
+                0 : rawChannel1 <= savedInput1[7:0];
+                1 : rawChannel1 <= savedInput1[15:8];
+                2 : rawChannel1 <= savedInput1[23:16];
+                3 : rawChannel1 <= savedInput1[31:24];
+            endcase
+         end else begin
+            case(clk40phase)
+                0 : trig_phase <= idleWord[7:0];
+                1 : trig_phase <= idleWord[15:8];
+                2 : trig_phase <= idleWord[23:16];
+                3 : trig_phase <= idleWord[31:24];
+            endcase
+            case(clk40phase)
+                0 : rawChannel1 <= idleWord[7:0];
+                1 : rawChannel1 <= idleWord[15:8];
+                2 : rawChannel1 <= idleWord[23:16];
+                3 : rawChannel1 <= idleWord[31:24];
+            endcase
+        end
+    end
 
 	logic asyncTrigIn1, syncTrig0;
 	logic [31:0] clockCounter;
 	logic accept, dead, running;
 
 	always_comb begin
-	   asyncTrigIn0 = deserialized_word[0];
+	   asyncTrigIn0 = isArmed;
 		accept = asyncTrigIn0 && !asyncTrigIn1 && !busyIn0 && !dead && running;
 	end
 
