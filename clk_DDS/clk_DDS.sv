@@ -6,18 +6,18 @@
 * DDS allows us to make fine adjustments to the frequency of the output clocks
 * without causing a big phase jump, or an unlock and reset.
 *
-* We run a counter at 100 MHz, and increment it by a programmable amount.
-* Then we use the MSB of that counter as a 20 MHz clock, which we then run
+* We run a counter at 600 MHz, and increment it by a programmable amount.
+* Then we use the MSB of that counter as a 12 MHz clock, which we then run
 * through an MMCM to do jitter cleaning and synthesis of the 320 and 40 MHz
 * clocks that we need. If we change the increment amount, then we change how
-* many 100 MHz cycles it takes, on average, to overflow the counter, which
+* many 600 MHz cycles it takes, on average, to overflow the counter, which
 * determines the frequency of the output clocks.
 *
 * The formula for the increment is
-*   increment = (desired frequency / 100 MHz) * 2^32
+*   increment = (desired frequency / 600 MHz) * 2^32
 *
 * 2^32 appears because we use a 32-bit counter. So, the default value, to
-* produce a 20 MHz clock, is 0x33333333.
+* produce a 12 MHz clock, is 0x051eb852.
 */
 
 module clk_DDS #(
@@ -130,7 +130,7 @@ module clk_DDS #(
 		logic [32-1:0] increment;
 	} param_t;
 
-	localparam param_t defaults = '{default:'0, increment:32'h33333333};
+	localparam param_t defaults = '{default:'0, increment:32'h051eb852};
 
 	param_t params_from_IP;
 	param_t params_from_bus;
@@ -174,12 +174,36 @@ module clk_DDS #(
 	assign params_from_IP.increment = params_to_IP.increment;
 
 	/////////////////////////////////////////////////
+	// First, make a high-frequency clock from the 100 MHz clock
+	
+	logic feedback_clock_600;
+	logic clk600, clk600_unbuffered;
+	logic locked600;
+	PLLE4_ADV #(
+		.CLKFBOUT_MULT(12),         // Multiply 100 MHz input clock by 12 to get 1200 MHz VCO clock
+		.CLKIN_PERIOD(10),          // 100 MHz input clock has a period of 10 ns
+		.CLKOUT0_DIVIDE(2),         // Divide 1200 MHz VCO clock by 2 to get 600 MHz
+		.CLKOUT0_DUTY_CYCLE(0.5),
+		.CLKOUT0_PHASE(0.0),
+		.DIVCLK_DIVIDE(1),
+		.IS_RST_INVERTED(1'b1)
+	) PLL600_inst (
+		.RST(clk_ref_aresetn),
+		.LOCKED(locked600),
+		.CLKIN(clk_ref),
+		.CLKOUT0(clk600_unbuffered),
+		.CLKFBOUT(feedback_clock_600),
+		.CLKFBIN(feedback_clock_600)
+	);
+	BUFG bufg600 (.I(clk600_unbuffered), .O(clk600));
+
+	/////////////////////////////////////////////////
 	// Clock synthesis
 	
 	// Do the DDS stuff
 	logic [32-1:0] DDS_counter;
 	(* KEEP = "TRUE" *) logic DDS_clk;
-	always @(posedge clk_ref) begin
+	always @(posedge clk600) begin
 		DDS_counter <= DDS_counter + params_to_IP.increment;
 	end
 
@@ -193,11 +217,11 @@ module clk_DDS #(
 	logic PLL_locked_0, PLL_locked_1;
 	MMCME4_ADV #(
 		.BANDWIDTH("LOW"),
-		.REF_JITTER1(0.200), // The jitter in our 20 MHz "clock" is 1 period of the 100 MHz clock, which is 20% of a unit interval, or about 10000 ps.
-		.CLKFBOUT_MULT_F(60), // Multiply the 20 MHz clock frequency by 60 to get 1200 MHz
-		.DIVCLK_DIVIDE(1), // And don't divide, so we keep the PLL internal VCO clock at a high enough frequency
+		.REF_JITTER1(0.02), // The jitter in our 12 MHz "clock" is 1 period of the 600 MHz clock, which is 2% of a unit interval, or about 1600 ps.
+		.CLKFBOUT_MULT_F(100), // Multiply the 12 MHz clock frequency by 100 to get 1200 MHz VCO
+		.DIVCLK_DIVIDE(1),
 		.CLKFBOUT_PHASE(0.0),
-		.CLKIN1_PERIOD(50.0), // 20 MHz clock period is 50 ns
+		.CLKIN1_PERIOD(83.333), // 12 MHz clock period is 83.333 ns
 		.IS_RST_INVERTED(1'b1),
 		// CLKOUT0 should be 320 MHz
 		.CLKOUT0_DIVIDE_F(3.75), // Divide 1200 MHz by 3.75 so we get 320 MHz output
@@ -206,7 +230,7 @@ module clk_DDS #(
 	) MMCM_inst (
 		.RST(clk_ref_aresetn),
 		.LOCKED(PLL_locked_0),
-		.CLKIN1(DDS_clk), // 20 MHz clock in
+		.CLKIN1(DDS_clk), // 12 MHz clock in
 		.CLKOUT0(clk320_noisy), // 320 MHz clock out
 		.CLKFBOUT(feedback_clock_0), // PLL feedback loop
 		.CLKFBIN(feedback_clock_0) // PLL feedback loop
@@ -227,7 +251,7 @@ module clk_DDS #(
 		.COMPENSATION("AUTO"),      // Clock input compensation
 		.DIVCLK_DIVIDE(1),          // Master division value
 		.IS_RST_INVERTED(1'b1),     // Optional inversion for RST
-		.REF_JITTER(0.384)          // According to the Vivado clocking wizard, the first MMCM output will have a jitter of 600 to 1200 ps, the upper end of which is 0.384 of a 320 MHz clock period
+		.REF_JITTER(0.064)          // According to the Vivado clocking wizard, the first MMCM output will have a jitter of 200 ps, which is 0.064 of a 320 MHz cycle
 	) PLL_inst (
 		.RST(clk_ref_aresetn),
 		.LOCKED(PLL_locked_1),
