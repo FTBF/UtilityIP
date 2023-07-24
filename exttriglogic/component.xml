@@ -782,6 +782,74 @@
           </spirit:wireTypeDefs>
         </spirit:wire>
       </spirit:port>
+      <spirit:port>
+        <spirit:name>pmodIn</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:vector>
+            <spirit:left spirit:format="long">6</spirit:left>
+            <spirit:right spirit:format="long">0</spirit:right>
+          </spirit:vector>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>pmodOut</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:vector>
+            <spirit:left spirit:format="long">6</spirit:left>
+            <spirit:right spirit:format="long">0</spirit:right>
+          </spirit:vector>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>pmodSpy</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:vector>
+            <spirit:left spirit:format="long">7</spirit:left>
+            <spirit:right spirit:format="long">0</spirit:right>
+          </spirit:vector>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>switchDelay</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:vector>
+            <spirit:left spirit:format="long">7</spirit:left>
+            <spirit:right spirit:format="long">0</spirit:right>
+          </spirit:vector>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
     </spirit:ports>
     <spirit:modelParameters>
       <spirit:modelParameter xsi:type="spirit:nameValueTypeType" spirit:dataType="integer">
@@ -819,7 +887,7 @@
       <spirit:file>
         <spirit:name>hdl/ExtTrigTop.sv</spirit:name>
         <spirit:fileType>systemVerilogSource</spirit:fileType>
-        <spirit:userFileType>CHECKSUM_8723865f</spirit:userFileType>
+        <spirit:userFileType>CHECKSUM_5d667434</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
@@ -891,7 +959,7 @@
       <xilinx:upgrades>
         <xilinx:canUpgradeFrom>user.org:user:ExtTrigTop:1.0</xilinx:canUpgradeFrom>
       </xilinx:upgrades>
-      <xilinx:coreCreationDateTime>2023-07-21T16:25:09Z</xilinx:coreCreationDateTime>
+      <xilinx:coreCreationDateTime>2023-07-24T02:59:08Z</xilinx:coreCreationDateTime>
       <xilinx:tags>
         <xilinx:tag xilinx:name="ui.data.coregen.df@3d40a2d8_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
         <xilinx:tag xilinx:name="ui.data.coregen.df@30e4896a_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
@@ -1110,6 +1178,133 @@
         <xilinx:tag xilinx:name="ui.data.coregen.df@428ea60a_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
         <xilinx:tag xilinx:name="ui.data.coregen.df@6bf895e3_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
         <xilinx:tag xilinx:name="ui.data.coregen.df@56b6b75f_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@277e6d64_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@1b2d9728_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@4e5193ee_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@7db74c6c_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@d5fbed1_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@190a1c89_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@364df599_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@a2ceb25_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@90d076e_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@11a272f0_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@7ddfd1fc_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@304ab1ec_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@60356ef8_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@7cac81f1_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@3e68d2c9_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@b7fc7ee_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@410dec61_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@63e41ca_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@2e286d18_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@69ece55_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@5fb570c4_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@427182e8_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@62b41021_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@559e9199_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@771ca84a_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@670a3ccf_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@5dc99c62_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@13cdb9b8_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@42de1c5a_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@e81d2e8_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@5b1dbd9a_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@1e74a11b_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@3013d648_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@5f454f91_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@4b8aaa73_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@3c404b0e_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@1ab5cbfb_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@5b2b10ea_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@720b03df_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@217d06da_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@38e0fe41_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@76d43806_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@3d3aced3_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@784fe13b_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@70f4957b_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@768bb4de_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@58a89049_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@6f3c70cd_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@69eb0722_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@44673901_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@43238d70_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@16056ca9_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@5d279860_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@2ed60209_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@42026008_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@40ad4347_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@868566f_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@643c9eb2_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@1f820379_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@3f368983_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@4043fd86_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@140650ff_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@6d0c422f_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@374d9024_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@59e12b71_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@6f9b4165_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@4e11f26d_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@5323210c_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@682dcfb8_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@66b5e510_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@67e3132f_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@7ac3df5a_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@61868b8c_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@2031f30_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@3a5f8010_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@68f6b0c_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@2a2b8d95_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@3c9f059a_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@737857ba_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@40eae506_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@521edb0c_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@17d930f_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@3088439c_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@58c36a8d_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@67257819_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@82f9482_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@6313f67c_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@3a3f6484_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@3728febe_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@676b56b7_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@5d80ce4f_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@b2add4c_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@430bbbf4_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@19341139_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@61ed0d3c_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@77dc9f26_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@335a18f3_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@3386eece_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@7460be29_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@5bb10725_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@46ad0a50_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@48f6c59f_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@35226cd_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@4915e26a_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@2e42932f_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@4d0ec31f_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@acb96e1_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@631d83c5_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@3139f754_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@4f0fd1a9_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@58b1b655_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@759fa68_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@3d62a60b_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@3428f19e_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@6675d83f_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@1b91ca11_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@7c02c0e0_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@525e12_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@1c25c8f_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@25591134_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@16690020_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@1a5cf852_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@1a1057df_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@12d4c567_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@68b318ec_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@448e51ea_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.df@696f90f7_ARCHIVE_LOCATION">/home/zgecse/FirmwareProjects/engine_zcu/shared/ip_repo/utilityip/exttriglogic</xilinx:tag>
       </xilinx:tags>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>

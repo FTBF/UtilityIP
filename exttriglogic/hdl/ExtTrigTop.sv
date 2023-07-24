@@ -46,7 +46,11 @@ module ExtTrigTop #(
 		output logic ledTop,
 		output logic ledBot,
 		output logic [7:0] trig_phase,
-		output logic [7:0] rawChannel1
+		output logic [7:0] rawChannel1,
+		input logic [6:0] pmodIn,
+		output logic [6:0] pmodOut,
+		output logic [7:0] pmodSpy,
+		input logic [7:0] switchDelay
 	);
 
 	logic [31:0] trig_in_count;
@@ -205,20 +209,9 @@ module ExtTrigTop #(
    // End of ISERDESE3_inst instantiation
 
 
-//	typedef logic [7:0] word;
-//	parameter delay = 256;
-//	var word fifo[delay];
-//	for(genvar i=0;i<delay-1;i++)
-//	   always @(posedge clk160)
-//	       fifo[i+1] <= fifo[i];
-    logic clk40reg, clk160reg, isArmed, isTrigger;
+    logic clk40reg, clk160reg;
     logic [1:0] clk40phase;
-	integer i;
 	logic [31:0] myInput;
-	logic [31:0] savedInput, savedInput1;
-	logic [31:0] idleWord=32'haccccccc;
-	logic [7:0] myPhase, myPhase1;
-	logic [7:0] myPhaseDC1;
 
     always @(posedge clk160) begin
         clk160reg <= clk40reg;
@@ -234,72 +227,49 @@ module ExtTrigTop #(
     
     always @(posedge clk40) begin
         clk40reg <= !clk40reg;
- 
         myInput <= {deserialized_word, deserialized_word1, deserialized_word2, deserialized_word3};
-        isArmed <= 0;
-        for(i=31; i>=0; i=i-1) begin
-            if(myInput[i] == 1) begin
-                isArmed <= 1;
-                myPhase <= i;
-                myPhase1 <= myPhase;
-                savedInput <= myInput;
-                savedInput1 <= savedInput;
+    end
+        
+	integer i;
+    logic [1:0] haveSignal;
+	logic [31:0] mySignal;
+	logic [7:0] myPhase, shiftedPhase;
+	
+    always @(posedge clk40) begin
+        if(!haveSignal)
+            for(i=31; i>=0; i=i-1) begin
+                if(myInput[i] == 1) begin
+                    haveSignal <= 1;
+                    myPhase <= 31 - i;
+                    mySignal <= myInput;
+                end
             end
+        else begin
+            haveSignal <= haveSignal + 1;
+            myPhase <= myPhase + 32;
+            mySignal <= myInput;
         end
     end	       
-    
-    genvar geni;
-    generate
-    for( geni=0; geni<8; geni=geni+1 )
-    begin : swiz
-    assign myPhaseDC1[geni] = myPhase1[7-geni];
-    end
-    endgenerate
-    
-    always @(posedge clk160) begin             
-        if(syncTrig0) begin
-            case(clk40phase)
-                0 : trig_phase <= myPhase1[7:0];
-                1 : trig_phase <= myPhaseDC1[7:0];
-                2 : trig_phase <= myPhase1[7:0];
-                3 : trig_phase <= myPhaseDC1[7:0];
-            endcase
-            case(clk40phase)
-                0 : rawChannel1 <= savedInput1[7:0];
-                1 : rawChannel1 <= savedInput1[15:8];
-                2 : rawChannel1 <= savedInput1[23:16];
-                3 : rawChannel1 <= savedInput1[31:24];
-            endcase
-         end else begin
-            case(clk40phase)
-                0 : trig_phase <= idleWord[7:0];
-                1 : trig_phase <= idleWord[15:8];
-                2 : trig_phase <= idleWord[23:16];
-                3 : trig_phase <= idleWord[31:24];
-            endcase
-            case(clk40phase)
-                0 : rawChannel1 <= idleWord[7:0];
-                1 : rawChannel1 <= idleWord[15:8];
-                2 : rawChannel1 <= idleWord[23:16];
-                3 : rawChannel1 <= idleWord[31:24];
-            endcase
-        end
-    end
 
-	logic asyncTrigIn1, syncTrig0;
+	logic syncTrig0;
 	logic [31:0] clockCounter;
-	logic accept, dead, running;
+	logic candidate, accept, dead, running;
+//	logic [5:0] phaseDelay = 5'h10;
+	logic [6:0] pmodSend, pmodReceived;
 
 	always_comb begin
-	   asyncTrigIn0 = isArmed;
-		accept = asyncTrigIn0 && !asyncTrigIn1 && !busyIn0 && !dead && running;
+	    shiftedPhase = myPhase - switchDelay - params_to_IP.trigDelay; 
+	    candidate = switchDelay+params_to_IP.trigDelay <= myPhase && myPhase < switchDelay+params_to_IP.trigDelay+32;
+		accept = candidate && !busyIn0 && !dead && running;
 	end
 
 	always_ff  @(posedge clk40) begin
-		asyncTrigIn1 <= asyncTrigIn0;
-		if(asyncTrigIn0 && !asyncTrigIn1)
+		if(candidate) begin
 			ledTop <= !ledTop;
-
+			pmodSend <= {1'b1, busyIn0, shiftedPhase[4:0]};
+        end else
+            pmodSend <= 7'b0;
+            
 		//Running FSM
 		if((startRun || params_to_IP.startRun) && !running) begin
 			running <= 1;
@@ -323,6 +293,52 @@ module ExtTrigTop #(
 				dead <= 0;
 		end
 	end
+
+	logic [7:0] myPhaseDC;
+    genvar geni;
+    generate
+    for( geni=0; geni<8; geni=geni+1 )
+    begin : swiz
+    assign myPhaseDC[geni] = shiftedPhase[7-geni];
+    end
+    endgenerate
+	logic [31:0] idleWord=32'h33333335;
+	
+    always @(posedge clk160) begin             
+        if(candidate)
+            case(clk40phase)
+                0 : trig_phase <= 0;//myPhase[7:0]-phaseDelay;
+                1 : trig_phase <= 0;//myPhaseDC[7:0];
+                2 : trig_phase <= 0;//myPhase[7:0];
+                3 : trig_phase <= myPhaseDC[7:0];
+            endcase
+        else
+            case(clk40phase)
+                0 : trig_phase <= idleWord[7:0];
+                1 : trig_phase <= idleWord[15:8];
+                2 : trig_phase <= idleWord[23:16];
+                3 : trig_phase <= idleWord[31:24];
+            endcase
+            
+        if(haveSignal)
+            case(clk40phase)
+                0 : rawChannel1 <= mySignal[7:0];
+                1 : rawChannel1 <= mySignal[15:8];
+                2 : rawChannel1 <= mySignal[23:16];
+                3 : rawChannel1 <= mySignal[31:24];
+            endcase
+        else
+            case(clk40phase)
+                0 : rawChannel1 <= idleWord[7:0];
+                1 : rawChannel1 <= idleWord[15:8];
+                2 : rawChannel1 <= idleWord[23:16];
+                3 : rawChannel1 <= idleWord[31:24];
+            endcase
+        if(clk40phase==3)
+            pmodSpy <= {pmodReceived[0], pmodReceived[1], pmodReceived[2], pmodReceived[3], pmodReceived[4], pmodReceived[5], pmodReceived[6], 1'b0};
+        else
+            pmodSpy <= 8'b0;
+    end
 
 	SRLC32E #(
 		.INIT(32'h00000000),    // Initial contents of shift register
@@ -385,4 +401,45 @@ module ExtTrigTop #(
 		TermEnable3 <= 1;
 	end					
 	
+	logic [6:0] pmod0, pmod1;
+    genvar pin;
+    generate
+    for( pin=0; pin<7; pin=pin+1 )
+    begin : PMODIO
+
+	ODDRE1 #(
+		.IS_C_INVERTED(1'b0),
+		.SIM_DEVICE("ULTRASCALE_PLUS"),
+		.SRVAL(1'b0)
+	) ODDRE1_pmodOut (
+		.Q(pmod1[pin]), // 1-bit output: Data output to IOB
+		.C(clk40),          // 1-bit input: High-speed clock input
+		.D1(pmodSend[pin]),   // 1-bit input: Parallel data input 1
+		.D2(pmodSend[pin]),   // 1-bit input: Parallel data input 2
+		.SR(0)              // 1-bit input: Active-High Async Reset
+	);
+    OBUF OBUF_pmodOut (
+        .I(pmod1[pin]),  // 1-bit input: Buffer input
+        .O(pmodOut[pin]) // 1-bit output: Buffer output (connect directly to top-level port)
+    );
+    //loop back cable here
+    IBUF IBUF_pmodIn (
+        .I(pmodIn[pin]),  // 1-bit input: Buffer input
+        .O(pmod0[pin]) // 1-bit output: Buffer output
+    );
+	IDDRE1 #(
+		.DDR_CLK_EDGE("OPPOSITE_EDGE"), // IDDRE1 mode (OPPOSITE_EDGE, SAME_EDGE, SAME_EDGE_PIPELINED)
+		.IS_CB_INVERTED(1'b1),          // Optional inversion for CB
+		.IS_C_INVERTED(1'b0)            // Optional inversion for C
+	) IDDRE1_pmodIn (
+		.Q1(pmodReceived[pin]), // 1-bit output: Registered parallel output 1
+		.Q2(),        // 1-bit output: Registered parallel output 2
+		.C(clk40),    // 1-bit input: High-speed clock
+		.CB(clk40),   // 1-bit input: Inversion of High-speed clock C
+		.D(pmod0[pin]),   // 1-bit input: Serial Data Input
+		.R(0)         // 1-bit input: Active-High Async Reset
+	);
+    end
+    endgenerate
+
 endmodule
