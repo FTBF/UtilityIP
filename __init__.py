@@ -11,4 +11,5 @@ from .clk_FC_mux import uHALXMLProducer_clk_FC_mux
 from .AXIS_switch import uHALXMLProducer_AXIS_switch
 from .trigger_xbar import uHALXMLProducer_trigger_xbar
 from .exttriglogic import uHALXMLProducer_ExtTrigTop_IPIF
+from .clk_DDS import uHALXMLProducer_clk_DDS
 from .I2C_interconnect import uHALXMLProducer_I2C_interconnect

@@ -167,8 +167,18 @@ module clk_mon #(
 
 		assign params_in.padding2 = '0;
 		assign params_in.padding3 = '0;
-		assign params_in.locked = locked_internal[i];
-    
+
+		xpm_cdc_sync_rst #(
+			.DEST_SYNC_FF(2),
+			.INIT(1),
+			.INIT_SYNC_FF(1),
+			.SIM_ASSERT_CHK(1)
+		) locked_sync (
+			.dest_rst(params_in.locked),
+			.dest_clk(clk_ref),
+			.src_rst(locked_internal[i])
+		);
+
         IPIF_parameterDecode#(
             .C_S_AXI_DATA_WIDTH(C_S_AXI_DATA_WIDTH),
             .N_REG(N_REG),
