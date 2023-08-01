@@ -2,4 +2,5 @@
 
 <node>
 	<node id="select" address="0x0" mask="0xff" permission="rw" description="Input select"/>
+	<node id="tristate" address="0x1" mask="0x1" permission="rw" description="Tri-state the output: 0: drive output normally, 1: set output to high impedance (tristate); default: 1"/>
 </node>
