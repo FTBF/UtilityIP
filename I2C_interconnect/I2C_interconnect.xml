@@ -1,0 +1,26 @@
+<node>
+	<node id="link0" address="0x0" permission="rw">
+		<node id="enable" mask="0x00000001" description="0: disable this I2C connection by tri-stating outputs and ignoring inputs; 1: enable this I2C connect; default: enabled (1)"/>
+	</node>
+	<node id="link1" address="0x1" permission="rw">
+		<node id="enable" mask="0x00000001" description="0: disable this I2C connection by tri-stating outputs and ignoring inputs; 1: enable this I2C connect; default: enabled (1)"/>
+	</node>
+	<node id="link2" address="0x2" permission="rw">
+		<node id="enable" mask="0x00000001" description="0: disable this I2C connection by tri-stating outputs and ignoring inputs; 1: enable this I2C connect; default: enabled (1)"/>
+	</node>
+	<node id="link3" address="0x3" permission="rw">
+		<node id="enable" mask="0x00000001" description="0: disable this I2C connection by tri-stating outputs and ignoring inputs; 1: enable this I2C connect; default: enabled (1)"/>
+	</node>
+	<node id="link4" address="0x4" permission="rw">
+		<node id="enable" mask="0x00000001" description="0: disable this I2C connection by tri-stating outputs and ignoring inputs; 1: enable this I2C connect; default: enabled (1)"/>
+	</node>
+	<node id="link5" address="0x5" permission="rw">
+		<node id="enable" mask="0x00000001" description="0: disable this I2C connection by tri-stating outputs and ignoring inputs; 1: enable this I2C connect; default: enabled (1)"/>
+	</node>
+	<node id="link6" address="0x6" permission="rw">
+		<node id="enable" mask="0x00000001" description="0: disable this I2C connection by tri-stating outputs and ignoring inputs; 1: enable this I2C connect; default: enabled (1)"/>
+	</node>
+	<node id="link7" address="0x7" permission="rw">
+		<node id="enable" mask="0x00000001" description="0: disable this I2C connection by tri-stating outputs and ignoring inputs; 1: enable this I2C connect; default: enabled (1)"/>
+	</node>
+</node>
