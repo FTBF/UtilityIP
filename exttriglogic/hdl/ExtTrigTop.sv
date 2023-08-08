@@ -150,7 +150,7 @@ module ExtTrigTop #(
 		.IB(busyIn_N) // 1-bit input: Diff_n buffer input (connect directly to top-level port)
 	);
 
-	logic busyIn0 = 1;
+	logic busyIn0 = 0;
 	// IDDRE1 #(
 	// 	.DDR_CLK_EDGE("OPPOSITE_EDGE"), // IDDRE1 mode (OPPOSITE_EDGE, SAME_EDGE, SAME_EDGE_PIPELINED)
 	// 	.IS_CB_INVERTED(1'b1),          // Optional inversion for CB
