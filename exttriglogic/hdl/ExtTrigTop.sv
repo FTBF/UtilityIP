@@ -400,6 +400,8 @@ module ExtTrigTop #(
 		TermEnable2 <= 1;
 		TermEnable3 <= 1;
 	end					
+
+	assign pmodOut = pmodSend;
 	
 	logic [6:0] pmod0, pmod1;
     genvar pin;
@@ -407,21 +409,6 @@ module ExtTrigTop #(
     for( pin=0; pin<7; pin=pin+1 )
     begin : PMODIO
 
-	ODDRE1 #(
-		.IS_C_INVERTED(1'b0),
-		.SIM_DEVICE("ULTRASCALE_PLUS"),
-		.SRVAL(1'b0)
-	) ODDRE1_pmodOut (
-		.Q(pmod1[pin]), // 1-bit output: Data output to IOB
-		.C(clk40),          // 1-bit input: High-speed clock input
-		.D1(pmodSend[pin]),   // 1-bit input: Parallel data input 1
-		.D2(pmodSend[pin]),   // 1-bit input: Parallel data input 2
-		.SR(0)              // 1-bit input: Active-High Async Reset
-	);
-    OBUF OBUF_pmodOut (
-        .I(pmod1[pin]),  // 1-bit input: Buffer input
-        .O(pmodOut[pin]) // 1-bit output: Buffer output (connect directly to top-level port)
-    );
     //loop back cable here
     IBUF IBUF_pmodIn (
         .I(pmodIn[pin]),  // 1-bit input: Buffer input
