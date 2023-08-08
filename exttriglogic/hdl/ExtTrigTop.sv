@@ -150,19 +150,19 @@ module ExtTrigTop #(
 		.IB(busyIn_N) // 1-bit input: Diff_n buffer input (connect directly to top-level port)
 	);
 
-	logic busyIn0;
-	IDDRE1 #(
-		.DDR_CLK_EDGE("OPPOSITE_EDGE"), // IDDRE1 mode (OPPOSITE_EDGE, SAME_EDGE, SAME_EDGE_PIPELINED)
-		.IS_CB_INVERTED(1'b1),          // Optional inversion for CB
-		.IS_C_INVERTED(1'b0)            // Optional inversion for C
-	) IDDRE1_busyIn (
-		.Q1(busyIn0), // 1-bit output: Registered parallel output 1
-		.Q2(),        // 1-bit output: Registered parallel output 2
-		.C(clk40),    // 1-bit input: High-speed clock
-		.CB(clk40),   // 1-bit input: Inversion of High-speed clock C
-		.D(busyIn),   // 1-bit input: Serial Data Input
-		.R(0)         // 1-bit input: Active-High Async Reset
-	);
+	logic busyIn0 = 1;
+	// IDDRE1 #(
+	// 	.DDR_CLK_EDGE("OPPOSITE_EDGE"), // IDDRE1 mode (OPPOSITE_EDGE, SAME_EDGE, SAME_EDGE_PIPELINED)
+	// 	.IS_CB_INVERTED(1'b1),          // Optional inversion for CB
+	// 	.IS_C_INVERTED(1'b0)            // Optional inversion for C
+	// ) IDDRE1_busyIn (
+	// 	.Q1(busyIn0), // 1-bit output: Registered parallel output 1
+	// 	.Q2(),        // 1-bit output: Registered parallel output 2
+	// 	.C(clk40),    // 1-bit input: High-speed clock
+	// 	.CB(clk40),   // 1-bit input: Inversion of High-speed clock C
+	// 	.D(busyIn),   // 1-bit input: Serial Data Input
+	// 	.R(0)         // 1-bit input: Active-High Async Reset
+	// );
 
     logic [7:0] deserialized_word;
     logic [7:0] deserialized_word1;
