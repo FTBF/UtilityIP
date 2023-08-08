@@ -8,7 +8,8 @@ clk_mon_template = """<node>
 """
 
 clk_mon_clock_template = """    <node id="rate%(iClk)i"              address="0x%(addr)x" permission="r"  description="Clock rate of clock %(iClk)i in kHz"/>
-    <node id="pllunlock%(iClk)i"         address="0x%(addr2)x" permission="rw" description="Number of PLL unlocks for clock %(iClk)i, write 1 to reset"/>"""
+    <node id="pllunlock%(iClk)i"         address="0x%(addr2)x" permission="rw" description="Number of PLL unlocks for clock %(iClk)i, write 1 to reset"/>
+    <node id="lock%(iClk)i"              address="0x%(addr3)x" mask="1" permission="rw" description="Current state of locked bit for clock %(iClk)i"/>"""
 
 top_level_node_template = '<node id="%(label)s"	    module="file://modules/%(xml)s"	          address="%(addr)s"/>'
 
@@ -24,6 +25,6 @@ class UHALXMLProducer(UHALXMLProducerBase):
         xmlFile = "%s.xml"%label
 
         with open(os.path.join(xmlDir, "modules", xmlFile), "w") as f:
-            f.write(clk_mon_template%{"clocks":"\n".join([clk_mon_clock_template%{"iClk":iClk, "addr":2*iClk, "addr2":2*iClk + 1} for iClk in range(n_chip)])})
+            f.write(clk_mon_template%{"clocks":"\n".join([clk_mon_clock_template%{"iClk":iClk, "addr":4*iClk, "addr2":4*iClk + 1, "addr3":4*iClk+2} for iClk in range(n_chip)])})
 
         return top_level_node_template%{"label":label, "addr":address, "xml":xmlFile}

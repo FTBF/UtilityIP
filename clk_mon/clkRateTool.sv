@@ -1,26 +1,21 @@
 module clkRateTool #(
 		parameter integer CLK_REF_RATE_HZ     = 100000000,
+		parameter integer COUNTER_WIDTH = 32,
 		parameter real MEASURE_PERIOD_s = 1,
 		parameter real MEASURE_TIME_s   = 0.001
 	)(
 		input  logic reset_in,
 		input  logic clk_ref,
 		input  logic clk_test,
-		output logic [24-1:0] value
-	);
-
-	logic clk_test_buf;
-	(* KEEP = "TRUE" *) BUFG clkRateTool_clk_test_BUFG (
-		.I(clk_test),
-		.O(clk_test_buf)
+		output logic [COUNTER_WIDTH-1:0] value
 	);
 
 	localparam integer REF_ROLLOVER = (CLK_REF_RATE_HZ * MEASURE_PERIOD_s);
 	localparam integer SAMPLE_TIME  = (CLK_REF_RATE_HZ * MEASURE_TIME_s);
 
-	logic [24-1:0] refCtr;
-	logic [24-1:0] rateCtr;
-	logic [24-1:0] rateCtr_refclk;
+	logic [COUNTER_WIDTH-1:0] refCtr;
+	logic [COUNTER_WIDTH-1:0] rateCtr;
+	logic [COUNTER_WIDTH-1:0] rateCtr_refclk;
 
 	logic async_reset;
 	logic async_reset_clk_test;
@@ -46,8 +41,10 @@ module clkRateTool #(
 			end
 
 			// After we're done measuring, take the value in the test clock counter
+			// Add 6 to account for the systematic offset caused by the clock
+			// domain crossers.
 			if (refCtr == SAMPLE_TIME) begin
-				value <= rateCtr_refclk;
+				value <= rateCtr_refclk + 6;
 			end
 		end
 	end
@@ -63,7 +60,7 @@ module clkRateTool #(
 		.RST_ACTIVE_HIGH(1)
 	) reset_synchronizer (
 		.dest_arst(async_reset_clk_test),
-		.dest_clk(clk_test_buf),
+		.dest_clk(clk_test),
 		.src_arst(async_reset)
 	);
 
@@ -75,11 +72,11 @@ module clkRateTool #(
 		.REG_OUTPUT(0),
 		.SIM_ASSERT_CHK(1),
 		.SIM_LOSSLESS_GRAY_CHK(1),
-		.WIDTH(24)
+		.WIDTH(COUNTER_WIDTH)
 	) xpm_cdc_gray_inst (
 		.dest_out_bin(rateCtr_refclk),
 		.dest_clk(clk_ref),
-		.src_clk(clk_test_buf),
+		.src_clk(clk_test),
 		.src_in_bin(rateCtr)
 	);
 
@@ -87,7 +84,7 @@ module clkRateTool #(
 	// test clock domain
 	//=======================================================================
 
-	always_ff @(posedge clk_test_buf or posedge async_reset_clk_test) begin
+	always_ff @(posedge clk_test or posedge async_reset_clk_test) begin
 		if (async_reset_clk_test == 1'b1) begin
 			rateCtr <= 0;
 		end else begin

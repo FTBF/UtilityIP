@@ -1897,6 +1897,10 @@
           <spirit:name>FREQ_HZ</spirit:name>
           <spirit:value spirit:id="BUSIFPARAM_VALUE.IN_CLK160.FREQ_HZ">160000000</spirit:value>
         </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>ASSOCIATED_RESET</spirit:name>
+          <spirit:value spirit:id="BUSIFPARAM_VALUE.IN_CLK160.ASSOCIATED_RESET">in_clk160_aresetn</spirit:value>
+        </spirit:parameter>
       </spirit:parameters>
     </spirit:busInterface>
     <spirit:busInterface>
@@ -2169,6 +2173,28 @@
         </xilinx:busInterfaceInfo>
       </spirit:vendorExtensions>
     </spirit:busInterface>
+    <spirit:busInterface>
+      <spirit:name>in_clk160_aresetn</spirit:name>
+      <spirit:busType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="reset" spirit:version="1.0"/>
+      <spirit:abstractionType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="reset_rtl" spirit:version="1.0"/>
+      <spirit:slave/>
+      <spirit:portMaps>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>RST</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>in_clk160_aresetn</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+      </spirit:portMaps>
+      <spirit:parameters>
+        <spirit:parameter>
+          <spirit:name>POLARITY</spirit:name>
+          <spirit:value spirit:id="BUSIFPARAM_VALUE.IN_CLK160_ARESETN.POLARITY" spirit:choiceRef="choice_list_74b5137e">ACTIVE_LOW</spirit:value>
+        </spirit:parameter>
+      </spirit:parameters>
+    </spirit:busInterface>
   </spirit:busInterfaces>
   <spirit:model>
     <spirit:views>
@@ -2182,7 +2208,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>33a87d89</spirit:value>
+            <spirit:value>18b24c90</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -2201,7 +2227,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>c6dee9d4</spirit:value>
+            <spirit:value>35b5801c</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -2220,7 +2246,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>a4a759b4</spirit:value>
+            <spirit:value>926b1ff8</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -2234,7 +2260,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>e55dc66c</spirit:value>
+            <spirit:value>c71e9ac7</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -2294,6 +2320,19 @@
         </spirit:wire>
       </spirit:port>
       <spirit:port>
+        <spirit:name>in_clk160_aresetn</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
         <spirit:name>IPIF_clk</spirit:name>
         <spirit:wire>
           <spirit:direction>in</spirit:direction>
@@ -2328,7 +2367,7 @@
         <spirit:wire>
           <spirit:direction>in</spirit:direction>
           <spirit:vector>
-            <spirit:left spirit:format="long" spirit:resolve="dependent" spirit:dependency="(spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) * (1 - spirit:decode(id(&apos;MODELPARAM_VALUE.UNIFIED_STREAMS&apos;))) + spirit:decode(id(&apos;MODELPARAM_VALUE.UNIFIED_STREAMS&apos;)) - 1)">11</spirit:left>
+            <spirit:left spirit:format="long" spirit:resolve="dependent" spirit:dependency="(((spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) * (1 - spirit:decode(id(&apos;MODELPARAM_VALUE.UNIFIED_STREAMS&apos;)))) + spirit:decode(id(&apos;MODELPARAM_VALUE.UNIFIED_STREAMS&apos;))) - 1)">11</spirit:left>
             <spirit:right spirit:format="long">0</spirit:right>
           </spirit:vector>
           <spirit:wireTypeDefs>
@@ -2345,7 +2384,7 @@
         <spirit:wire>
           <spirit:direction>out</spirit:direction>
           <spirit:vector>
-            <spirit:left spirit:format="long" spirit:resolve="dependent" spirit:dependency="(spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) * (1 - spirit:decode(id(&apos;MODELPARAM_VALUE.UNIFIED_STREAMS&apos;))) + spirit:decode(id(&apos;MODELPARAM_VALUE.UNIFIED_STREAMS&apos;)) - 1)">11</spirit:left>
+            <spirit:left spirit:format="long" spirit:resolve="dependent" spirit:dependency="(((spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) * (1 - spirit:decode(id(&apos;MODELPARAM_VALUE.UNIFIED_STREAMS&apos;)))) + spirit:decode(id(&apos;MODELPARAM_VALUE.UNIFIED_STREAMS&apos;))) - 1)">11</spirit:left>
             <spirit:right spirit:format="long">0</spirit:right>
           </spirit:vector>
           <spirit:wireTypeDefs>
@@ -2382,7 +2421,7 @@
         <spirit:wire>
           <spirit:direction>out</spirit:direction>
           <spirit:vector>
-            <spirit:left spirit:format="long" spirit:resolve="dependent" spirit:dependency="(spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) * (1 - spirit:decode(id(&apos;MODELPARAM_VALUE.UNIFIED_STREAMS&apos;))) + spirit:decode(id(&apos;MODELPARAM_VALUE.UNIFIED_STREAMS&apos;)) - 1)">11</spirit:left>
+            <spirit:left spirit:format="long" spirit:resolve="dependent" spirit:dependency="(((spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) * (1 - spirit:decode(id(&apos;MODELPARAM_VALUE.UNIFIED_STREAMS&apos;)))) + spirit:decode(id(&apos;MODELPARAM_VALUE.UNIFIED_STREAMS&apos;))) - 1)">11</spirit:left>
             <spirit:right spirit:format="long">0</spirit:right>
           </spirit:vector>
           <spirit:wireTypeDefs>
@@ -2399,7 +2438,7 @@
         <spirit:wire>
           <spirit:direction>in</spirit:direction>
           <spirit:vector>
-            <spirit:left spirit:format="long" spirit:resolve="dependent" spirit:dependency="(spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) * (1 - spirit:decode(id(&apos;MODELPARAM_VALUE.UNIFIED_STREAMS&apos;))) + spirit:decode(id(&apos;MODELPARAM_VALUE.UNIFIED_STREAMS&apos;)) - 1)">11</spirit:left>
+            <spirit:left spirit:format="long" spirit:resolve="dependent" spirit:dependency="(((spirit:decode(id(&apos;MODELPARAM_VALUE.NLINKS&apos;)) * (1 - spirit:decode(id(&apos;MODELPARAM_VALUE.UNIFIED_STREAMS&apos;)))) + spirit:decode(id(&apos;MODELPARAM_VALUE.UNIFIED_STREAMS&apos;))) - 1)">11</spirit:left>
             <spirit:right spirit:format="long">0</spirit:right>
           </spirit:vector>
           <spirit:wireTypeDefs>
@@ -2827,6 +2866,13 @@
       </spirit:modelParameter>
     </spirit:modelParameters>
   </spirit:model>
+  <spirit:choices>
+    <spirit:choice>
+      <spirit:name>choice_list_74b5137e</spirit:name>
+      <spirit:enumeration>ACTIVE_HIGH</spirit:enumeration>
+      <spirit:enumeration>ACTIVE_LOW</spirit:enumeration>
+    </spirit:choice>
+  </spirit:choices>
   <spirit:fileSets>
     <spirit:fileSet>
       <spirit:name>xilinx_blockdiagram_view_fileset</spirit:name>
@@ -2856,7 +2902,7 @@
       <spirit:file>
         <spirit:name>IO_blocks.sv</spirit:name>
         <spirit:fileType>systemVerilogSource</spirit:fileType>
-        <spirit:userFileType>CHECKSUM_b91f82cb</spirit:userFileType>
+        <spirit:userFileType>CHECKSUM_53330e49</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
@@ -2996,18 +3042,16 @@
       <xilinx:definitionSource>package_project</xilinx:definitionSource>
       <xilinx:xpmLibraries>
         <xilinx:xpmLibrary>XPM_CDC</xilinx:xpmLibrary>
-        <xilinx:xpmLibrary>XPM_FIFO</xilinx:xpmLibrary>
-        <xilinx:xpmLibrary>XPM_MEMORY</xilinx:xpmLibrary>
       </xilinx:xpmLibraries>
-      <xilinx:coreRevision>15</xilinx:coreRevision>
-      <xilinx:coreCreationDateTime>2021-08-19T21:22:09Z</xilinx:coreCreationDateTime>
+      <xilinx:coreRevision>16</xilinx:coreRevision>
+      <xilinx:coreCreationDateTime>2023-07-28T20:01:56Z</xilinx:coreCreationDateTime>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
-      <xilinx:xilinxVersion>2019.2</xilinx:xilinxVersion>
-      <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="08de3a54"/>
-      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="b6397bc0"/>
-      <xilinx:checksum xilinx:scope="ports" xilinx:value="b7671ca1"/>
-      <xilinx:checksum xilinx:scope="hdlParameters" xilinx:value="276f7766"/>
+      <xilinx:xilinxVersion>2021.2</xilinx:xilinxVersion>
+      <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="a2e1971c"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="b9db0f8a"/>
+      <xilinx:checksum xilinx:scope="ports" xilinx:value="f22aafae"/>
+      <xilinx:checksum xilinx:scope="hdlParameters" xilinx:value="6eec0c1e"/>
       <xilinx:checksum xilinx:scope="parameters" xilinx:value="952e3f54"/>
     </xilinx:packagingInfo>
   </spirit:vendorExtensions>
