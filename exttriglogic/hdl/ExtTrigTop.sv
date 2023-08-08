@@ -258,8 +258,8 @@ module ExtTrigTop #(
 	logic [6:0] pmodSend, pmodReceived;
 
 	always_comb begin
-	    shiftedPhase = myPhase - switchDelay - params_to_IP.trigDelay; 
-	    candidate = switchDelay+params_to_IP.trigDelay <= myPhase && myPhase < switchDelay+params_to_IP.trigDelay+32;
+	    shiftedPhase = myPhase - params_to_IP.trigDelay; 
+	    candidate = params_to_IP.trigDelay <= myPhase && myPhase < params_to_IP.trigDelay+32;
 		accept = candidate && !busyIn0 && !dead && running;
 	end
 
