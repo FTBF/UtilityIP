@@ -246,8 +246,8 @@ module clk_mux #(
 	clkStopTool #(
 		.CLK_REF_RATE_HZ(100000000), // 100 MHz reference clock
 		.CLK_TEST_RATE_HZ(40000000), //  40 MHz test clock
-		.TOLERANCE_HZ     (1000000), //   1 MHz tolerance
-		.MEASURE_PERIOD_s(0.001),     // Measure every 1 ms
+		.TOLERANCE_HZ    (10000000), //  10 MHz tolerance
+		.MEASURE_PERIOD_s(0.001),    // Measure every 1 ms
 		.MEASURE_TIME_s  (0.000125)  // Spend 1/8th ms measuring
 	) clk_ext_stopped (
 		.reset_in(!aresetn),
