@@ -133,10 +133,10 @@ module bram_to_stream #(
         // uses counter counting to 840, which is the LCM of 1, 2, ... 8
         if ((data_stream_TREADY == 1) && (data_stream_TVALID == 1)) begin
             if(q.orbit_counter >= 840) begin
-                d.orbit_counter <= 0;
+                d.orbit_counter = 0;
             end else begin
                 if(fc_orbitSync) begin
-                    d.orbit_counter <= q.orbit_counter + 1;
+                    d.orbit_counter = q.orbit_counter + 1;
                 end
             end
         end
