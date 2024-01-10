@@ -22,6 +22,8 @@
 
 module IPIF_parameterDecode #(
 		parameter integer C_S_AXI_DATA_WIDTH = 32,
+		parameter integer C_S_AXI_ADDR_WIDTH = 32,
+		parameter integer USE_ONEHOT_READ = 1,
 		parameter integer N_REG = 2,
 		parameter type PARAM_T = logic[N_REG*C_S_AXI_DATA_WIDTH-1:0],
 		parameter PARAM_T DEFAULTS = {C_S_AXI_DATA_WIDTH*N_REG*{1'b0}},
@@ -29,6 +31,7 @@ module IPIF_parameterDecode #(
 	)(
 		input clk,
 
+		input wire [C_S_AXI_ADDR_WIDTH-1 : 0]  IPIF_bus2ip_addr,
 		input wire [C_S_AXI_DATA_WIDTH-1 : 0]  IPIF_bus2ip_data,
 		input wire [N_REG-1 : 0]               IPIF_bus2ip_rdce,
 		input wire                             IPIF_bus2ip_resetn,
@@ -93,12 +96,19 @@ module IPIF_parameterDecode #(
 		end
 	end
 
+	integer index;
 	always_comb begin
-		read_reg = '0;
-
-		//channel readback
-		for(int i = 0; i < N_REG; i += 1) begin
-			if(IPIF_bus2ip_rdce == (1 << i)) read_reg = param_union_in.param_array[i];
+		if (USE_ONEHOT_READ == 1) begin
+			index = 0;
+			for (int i = 0; i < N_REG; i++) begin
+				if (IPIF_bus2ip_rdce[i]) begin
+					index = i;
+				end
+			end
+			//channel readback
+			read_reg = param_union_in.param_array[index];
+		end else begin
+			read_reg = param_union_in.param_array[IPIF_bus2ip_addr];
 		end
 	end
 endmodule
