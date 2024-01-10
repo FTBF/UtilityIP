@@ -185,6 +185,7 @@ module delay_ctrl(
       if(!rstb)
       begin
          step_cnt <= 0;
+		 wait_cnt <= 0;
          step_max <= 0;
          max_loc <= 0;
          delay_target_P <= 0;
