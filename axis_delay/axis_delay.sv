@@ -157,13 +157,13 @@ module axis_delay #(
 	generate
 		genvar i;
 		for(i = 0; i < TDATA_WIDTH; i += 1) begin
-            SRLC32E latency_buffer_SRL (
-                .A((params_to_IP.delay - 1) % 32),
-                .CE(S_AXIS_TVALID & S_AXIS_TREADY),
-                .CLK(clk),
-                .D(S_AXIS_TDATA[i]),
-                .Q(SRL_data_out[i])
-            );
+			SRLC32E latency_buffer_SRL (
+				.A((params_to_IP.delay - 1) % 32),
+				.CE(S_AXIS_TVALID & S_AXIS_TREADY),
+				.CLK(clk),
+				.D(S_AXIS_TDATA[i]),
+				.Q(SRL_data_out[i])
+			);
 		end
 	endgenerate
 	
