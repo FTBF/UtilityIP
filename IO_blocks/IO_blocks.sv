@@ -168,6 +168,8 @@ module IO_blocks#(
 	//IPIF parmaters are decoded here
 	IPIF_parameterDecode #(
 		.C_S_AXI_DATA_WIDTH(C_S_AXI_DATA_WIDTH),
+		.C_S_AXI_ADDR_WIDTH(32),
+		.USE_ONEHOT_READ(0),
 		.N_REG((NLINKS+1)*4),
 		.PARAM_T(param_t),
 		.DEFAULTS(defaults),
@@ -176,6 +178,7 @@ module IO_blocks#(
 		.clk(IPIF_clk),
 
 		//ipif configuration interface ports
+		.IPIF_bus2ip_addr(IPIF_bus2ip_addr),
 		.IPIF_bus2ip_data(IPIF_bus2ip_data),
 		.IPIF_bus2ip_rdce(IPIF_bus2ip_rdce),
 		.IPIF_bus2ip_resetn(IPIF_bus2ip_resetn),
