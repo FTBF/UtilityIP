@@ -67,11 +67,11 @@ module IPIF_parameterDecode #(
 	logic [C_S_AXI_DATA_WIDTH-1:0] self_reset_data_temp;
 
 	// send write acknowladge
-	always @(posedge clk or negedge IPIF_bus2ip_resetn)
+	always @(posedge clk)
 		if(!IPIF_bus2ip_resetn) IPIF_ip2bus_wrack <= 0;
 		else                    IPIF_ip2bus_wrack <= |IPIF_bus2ip_wrce;
 
-	always @(posedge clk or negedge IPIF_bus2ip_resetn) begin
+	always @(posedge clk) begin
 		if(!IPIF_bus2ip_resetn) begin
 			param_union_out.param_struct <= DEFAULTS;
 		end else begin
@@ -86,7 +86,7 @@ module IPIF_parameterDecode #(
 		end
 	end
 
-	always @(posedge clk or negedge IPIF_bus2ip_resetn) begin
+	always @(posedge clk) begin
 		if(!IPIF_bus2ip_resetn) begin
 			IPIF_ip2bus_data <= 0;
 			IPIF_ip2bus_rdack <= 0;

@@ -71,7 +71,7 @@ module LFSR #(
 		M_AXIS_TDATA = q.LFSR;
 	end
 
-	always_ff @(posedge clk, negedge aresetn) begin
+	always_ff @(posedge clk) begin
 		if (aresetn == 0) begin
 			q.LFSR <= 32'hFFFFFFFF;
 			q.M_AXIS_TVALID <= 1'b0;

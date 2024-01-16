@@ -31,7 +31,7 @@ module unlockCtr(
     logic locked_async, locked_sync, locked_sync_dly;
     xpm_cdc_async_rst #(.DEST_SYNC_FF(2)) lockSync (.dest_arst(locked_async), .dest_clk(clk_ref), .src_arst(locked));
     //then count negative edge transitions 
-    always_ff @(posedge clk_ref or negedge reset)
+    always_ff @(posedge clk_ref)
     begin
         if(!reset)
         begin
