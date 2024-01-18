@@ -108,7 +108,7 @@ module IPIF_parameterDecode #(
 			//channel readback
 			read_reg = param_union_in.param_array[index];
 		end else begin
-			read_reg = param_union_in.param_array[IPIF_bus2ip_addr];
+			read_reg = param_union_in.param_array[IPIF_bus2ip_addr>>2];
 		end
 	end
 endmodule
