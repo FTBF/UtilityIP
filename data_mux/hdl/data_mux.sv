@@ -154,6 +154,8 @@ module data_mux#(
     param_t params_from_bus;
     param_t params_to_IP;
     param_t params_to_bus;
+
+	localparam param_t defaults = '{default: '0, n_idle_words: 16'd256, idle_word: 32'haccccccc, idle_word_BX0: 32'h9ccccccc, header: 32'ha0000000, header_BX0: 32'h90000000};
     
     always_comb begin
         params_from_IP = params_to_IP;
@@ -168,7 +170,7 @@ module data_mux#(
         .USE_ONEHOT_READ(0),
         .N_REG(N_REG),
         .PARAM_T(param_t),
-        .DEFAULTS({32'b0, 32'h90000000, 32'ha0000000, 32'h00000000, 32'h9ccccccc, 32'haccccccc, 16'b0, 16'd256, 32'b0})
+        .DEFAULTS(defaults)
     ) parameterDecoder (
         .clk(IPIF_clk),
         
