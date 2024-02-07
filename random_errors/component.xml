@@ -9,7 +9,7 @@
       <spirit:name>fc</spirit:name>
       <spirit:busType spirit:vendor="User.org" spirit:library="user" spirit:name="fast_control_bits" spirit:version="1.0"/>
       <spirit:abstractionType spirit:vendor="User.org" spirit:library="user" spirit:name="fast_control_bits_rtl" spirit:version="1.0"/>
-      <spirit:monitor spirit:interfaceMode="master"/>
+      <spirit:monitor spirit:interfaceMode="slave"/>
       <spirit:portMaps>
         <spirit:portMap>
           <spirit:logicalPort>
