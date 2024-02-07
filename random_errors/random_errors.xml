@@ -1,0 +1,37 @@
+<!-- https://gitlab.cern.ch/cms-hgcal-firmware/utilityip/blob/master/AXI_mux/AXI_mux.xml -->
+
+<node>
+	<node id="random_error_threshold"  address="0x0"                   permission="rw" description="Rate of random errors: this value * ((40 MHz) / (2**32 - 1)) * (WIDTH / WIDTH_DENOMINATOR) gives the average error rate in Hz; default: 0"/>
+	<node id="enable"                  address="0x1" mask="0x00000001" permission="rw" description="Enable random error production: 1=generate errors; 0=no errors; default: 0"/>
+	<node id="reset"                   address="0x3" mask="0x00000001" permission="rw" description="Write 1 to reset LFSRs to all-bits one; self-resets to 0"/>
+
+	<node id="bit_select_polynomial"   address="0x4"                   permission="r"  description="LFSR polynomial used to select which bit gets an error"/>
+	<node id="random_error_polynomial" address="0x5"                   permission="r"  description="LFSR polynomial used to select when to produce an error"/>
+
+	<node id="WIDTH"                   address="0x6"                   permission="r"  description="Number of bits we might put an error into"/>
+	<node id="WIDTH_DENOMINATOR"       address="0x7"                   permission="r"  description="Denominator for error rate calculation (see description for random_error_threshold).  This is just 2**ceil(log2(WIDTH)), nothing complicated."/>
+
+	<node id="reset_on_FC"             address="0x2"                   permission="rw" description="On receipt of any enabled fast command, reset the LFSRs to all-bits one">
+		<node id="BCR"                                   mask="0x00000001"                 description="1=reset LFSRs on BCR;             0=do not reset LFSRs on BCR;             default=0"/>
+		<node id="OCR"                                   mask="0x00000002"                 description="1=reset LFSRs on OCR;             0=do not reset LFSRs on OCR;             default=0"/>
+		<node id="L1A"                                   mask="0x00000004"                 description="1=reset LFSRs on L1A;             0=do not reset LFSRs on L1A;             default=0"/>
+		<node id="NZS"                                   mask="0x00000008"                 description="1=reset LFSRs on NZS;             0=do not reset LFSRs on NZS;             default=0"/>
+		<node id="calibreq_int"                          mask="0x00000010"                 description="1=reset LFSRs on calibreq_int;    0=do not reset LFSRs on calibreq_int;    default=0"/>
+		<node id="calibreq_ext"                          mask="0x00000020"                 description="1=reset LFSRs on calibreq_ext;    0=do not reset LFSRs on calibreq_ext;    default=0"/>
+		<node id="ChipSync"                              mask="0x00000040"                 description="1=reset LFSRs on ChipSync;        0=do not reset LFSRs on ChipSync;        default=0"/>
+		<node id="EBR"                                   mask="0x00000080"                 description="1=reset LFSRs on EBR;             0=do not reset LFSRs on EBR;             default=0"/>
+		<node id="ECR"                                   mask="0x00000100"                 description="1=reset LFSRs on ECR;             0=do not reset LFSRs on ECR;             default=0"/>
+		<node id="linkReset_ROCt"                        mask="0x00000200"                 description="1=reset LFSRs on linkReset_ROCt;  0=do not reset LFSRs on linkReset_ROCt;  default=0"/>
+		<node id="linkReset_ROCd"                        mask="0x00000400"                 description="1=reset LFSRs on linkReset_ROCd;  0=do not reset LFSRs on linkReset_ROCd;  default=0"/>
+		<node id="linkReset_ECONt"                       mask="0x00000800"                 description="1=reset LFSRs on linkReset_ECONt; 0=do not reset LFSRs on linkReset_ECONt; default=0"/>
+		<node id="linkReset_ECONd"                       mask="0x00001000"                 description="1=reset LFSRs on linkReset_ECONd; 0=do not reset LFSRs on linkReset_ECONd; default=0"/>
+		<node id="SPARE_0"                               mask="0x00002000"                 description="1=reset LFSRs on SPARE_0;         0=do not reset LFSRs on SPARE_0;         default=0"/>
+		<node id="SPARE_1"                               mask="0x00004000"                 description="1=reset LFSRs on SPARE_1;         0=do not reset LFSRs on SPARE_1;         default=0"/>
+		<node id="SPARE_2"                               mask="0x00008000"                 description="1=reset LFSRs on SPARE_2;         0=do not reset LFSRs on SPARE_2;         default=0"/>
+		<node id="SPARE_3"                               mask="0x00010000"                 description="1=reset LFSRs on SPARE_3;         0=do not reset LFSRs on SPARE_3;         default=0"/>
+		<node id="SPARE_4"                               mask="0x00020000"                 description="1=reset LFSRs on SPARE_4;         0=do not reset LFSRs on SPARE_4;         default=0"/>
+		<node id="SPARE_5"                               mask="0x00040000"                 description="1=reset LFSRs on SPARE_5;         0=do not reset LFSRs on SPARE_5;         default=0"/>
+		<node id="SPARE_6"                               mask="0x00080000"                 description="1=reset LFSRs on SPARE_6;         0=do not reset LFSRs on SPARE_6;         default=0"/>
+		<node id="SPARE_7"                               mask="0x00100000"                 description="1=reset LFSRs on SPARE_7;         0=do not reset LFSRs on SPARE_7;         default=0"/>
+	</node>
+</node>
