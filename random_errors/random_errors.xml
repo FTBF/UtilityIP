@@ -5,8 +5,8 @@
 	<node id="enable"                  address="0x1" mask="0x00000001" permission="rw" description="Enable random error production: 1=generate errors; 0=no errors; default: 0"/>
 	<node id="reset"                   address="0x3" mask="0x00000001" permission="rw" description="Write 1 to reset LFSRs to all-bits one; self-resets to 0"/>
 
-	<node id="bit_select_polynomial"   address="0x4"                   permission="r"  description="LFSR polynomial used to select which bit gets an error"/>
-	<node id="random_error_polynomial" address="0x5"                   permission="r"  description="LFSR polynomial used to select when to produce an error"/>
+	<node id="bit_select_seed"         address="0x4"                   permission="rw" description="Seed for bit select LFSR, used when reset is 1 or when an enabled fast command is received; default: 0xffffffff"/>
+	<node id="random_error_seed"       address="0x5"                   permission="rw" description="Seed for random error LFSR, used when reset is 1 or when an enabled fast command is received; default: 0xffffffff"/>
 
 	<node id="WIDTH"                   address="0x6"                   permission="r"  description="Number of bits we might put an error into"/>
 	<node id="WIDTH_DENOMINATOR"       address="0x7"                   permission="r"  description="Denominator for error rate calculation (see description for random_error_threshold).  This is just 2**ceil(log2(WIDTH)), nothing complicated."/>

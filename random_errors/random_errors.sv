@@ -131,9 +131,9 @@ module random_errors #(
 		// Register 6
 		logic [32-1:0] WIDTH;
         // Register 5
-		logic [32-1:0] random_error_polynomial;
+		logic [32-1:0] random_error_seed;
         // Register 4
-		logic [32-1:0] bit_select_polynomial;
+		logic [32-1:0] bit_select_seed;
         // Register 3
         logic [32-1-1:0] padding3;
 		logic reset;
@@ -167,7 +167,7 @@ module random_errors #(
 		logic [32-1:0] random_error_threshold;
     } param_t;
 
-	localparam param_t defaults = '{default:'0};
+	localparam param_t defaults = '{default:'0, random_error_seed:32'hffffffff, bit_select_seed:32'hffffffff};
 	localparam param_t self_reset = '{default:'0, reset: 1'b1};
 
     param_t params_from_IP;
@@ -218,8 +218,6 @@ module random_errors #(
         params_from_IP.padding1 = '0;
         params_from_IP.padding2 = '0;
         params_from_IP.padding3 = '0;
-		params_from_IP.bit_select_polynomial = bit_select_polynomial;
-		params_from_IP.random_error_polynomial = random_error_polynomial;
 		params_from_IP.WIDTH = WIDTH;
 		params_from_IP.WIDTH_DENOMINATOR = 2**$clog2(WIDTH);
     end
@@ -283,8 +281,8 @@ module random_errors #(
 				D.random_error_LFSR = {D.random_error_LFSR[0 +: 32-1], ^(D.random_error_LFSR & random_error_polynomial)};
 			end
 		end else if (reset_LFSRs) begin
-			D.bit_select_LFSR = reg_reset.bit_select_LFSR;
-			D.random_error_LFSR = reg_reset.random_error_LFSR;
+			D.bit_select_LFSR = params_to_IP.bit_select_seed;
+			D.random_error_LFSR = params_to_IP.random_error_seed;
 		end
 
 		do_error = params_to_IP.enable && (Q.random_error_LFSR < params_to_IP.random_error_threshold);
