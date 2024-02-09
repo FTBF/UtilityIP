@@ -232,7 +232,7 @@ module random_errors #(
 	reg_type D, Q;
 
 	localparam logic [32-1:0] random_error_polynomial = 32'h41000000;
-	localparam logic [32-1:0] bit_select_polynomial = 32'h48000000;
+	localparam logic [32-1:0] bit_select_polynomial = 32'h00012000;
 
 	logic do_error;
 	logic advance;
