@@ -111,7 +111,7 @@ generate
         assign IP2Bus_RdAck[iChip] = output_bus[iChip].IP2Bus_RdAck;
         assign IP2Bus_Error[iChip] = output_bus[iChip].IP2Bus_Error;
         
-        assign output_bus[iChip].Bus2IP_Addr = {(31 - clog2s(N_REG))*{1'b0}, input_bus.Bus2IP_Addr[clog2s(N_REG)-1 : 0]};
+        assign output_bus[iChip].Bus2IP_Addr = {(31 - (clog2s(N_REG)+2))*{1'b0}, input_bus.Bus2IP_Addr[0 +: clog2s(N_REG)+2]};
         assign output_bus[iChip].Bus2IP_RNW  = input_bus.Bus2IP_RNW;
         assign output_bus[iChip].Bus2IP_BE   = input_bus.Bus2IP_BE;
         //CS and CE are big endian for some reason, flip them here 

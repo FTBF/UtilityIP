@@ -77,7 +77,7 @@ module delay_ctrl(
 
 	reg countEnable;
 
-	always @(posedge clk160 or negedge totalCounterResetb_manual)
+	always @(posedge clk160)
 	begin
 		if(!totalCounterResetb_manual)
 		begin
@@ -182,7 +182,7 @@ module delay_ctrl(
 
 	assign eye_width = step_max;
 
-	always @(posedge clk160 or negedge rstb)
+	always @(posedge clk160)
 	begin
 		if(!rstb)
 		begin

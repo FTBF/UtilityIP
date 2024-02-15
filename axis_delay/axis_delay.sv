@@ -111,12 +111,15 @@ module axis_delay #(
 	//IPIF parameters are decoded here
 	IPIF_parameterDecode #(
 		.C_S_AXI_DATA_WIDTH(C_S_AXI_DATA_WIDTH),
+		.C_S_AXI_ADDR_WIDTH(C_S_AXI_ADDR_WIDTH),
+		.USE_ONEHOT_READ(0),
 		.N_REG(2),
 		.PARAM_T(param_t)
 	) parameterDecode (
 		.clk(S_AXI_ACLK),
 
 		//ipif configuration interface ports
+		.IPIF_bus2ip_addr(IPIF_Bus2IP_Addr),
 		.IPIF_bus2ip_data(IPIF_Bus2IP_Data),
 		.IPIF_bus2ip_rdce(IPIF_Bus2IP_RdCE),
 		.IPIF_bus2ip_resetn(IPIF_Bus2IP_resetn),
@@ -154,13 +157,13 @@ module axis_delay #(
 	generate
 		genvar i;
 		for(i = 0; i < TDATA_WIDTH; i += 1) begin
-            SRLC32E latency_buffer_SRL (
-                .A((params_to_IP.delay - 1) % 32),
-                .CE(S_AXIS_TVALID & S_AXIS_TREADY),
-                .CLK(clk),
-                .D(S_AXIS_TDATA[i]),
-                .Q(SRL_data_out[i])
-            );
+			SRLC32E latency_buffer_SRL (
+				.A((params_to_IP.delay - 1) % 32),
+				.CE(S_AXIS_TVALID & S_AXIS_TREADY),
+				.CLK(clk),
+				.D(S_AXIS_TDATA[i]),
+				.Q(SRL_data_out[i])
+			);
 		end
 	endgenerate
 	

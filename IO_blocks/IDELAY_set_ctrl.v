@@ -66,7 +66,7 @@ module IDELAY_set_ctrl #(
     assign delay_ready = (delay_target == delay_out);
     generate
     
-        always @(posedge clk160 or negedge rstb)
+        always @(posedge clk160)
         begin
             if(!rstb)
             begin

@@ -63,8 +63,8 @@ module bram_to_stream #(
         logic [1:0]    sync_mode;  // syncmode; 0: no sync (send entire ram always),  1: orbit synchronous,  2: fixed length repeating mode,  3: reserved
     } param_t;
 
-	localparam param_t defaults = '{default:'0, ram_range:MEM_DEPTH};
-	localparam param_t self_reset = '{default:'0, force_sync:1'b1};
+    localparam param_t defaults = '{default:'0, ram_range:MEM_DEPTH};
+    localparam param_t self_reset = '{default:'0, force_sync:1'b1};
     
     param_t params_from_bus;
     param_t params_from_IP;
@@ -81,13 +81,16 @@ module bram_to_stream #(
         
     IPIF_parameterDecode #(
         .C_S_AXI_DATA_WIDTH(C_S_AXI_DATA_WIDTH),
+        .C_S_AXI_ADDR_WIDTH(C_S_AXI_ADDR_WIDTH),
+        .USE_ONEHOT_READ(0),
         .N_REG(N_REG),
         .PARAM_T(param_t),
-		.DEFAULTS(defaults),
-		.SELF_RESET(self_reset)
+        .DEFAULTS(defaults),
+        .SELF_RESET(self_reset)
     ) paramDecoder (
         .clk(clk),
     
+        .IPIF_bus2ip_addr(IPIF_Bus2IP_Addr),
         .IPIF_bus2ip_data(IPIF_Bus2IP_Data),  
         .IPIF_bus2ip_rdce(IPIF_Bus2IP_RdCE),
         .IPIF_bus2ip_resetn(IPIF_Bus2IP_resetn),

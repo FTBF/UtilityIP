@@ -21,7 +21,7 @@
 
 
 module data_mux#(
-	parameter INCLUDE_SYNCHRONIZER = 0,
+    parameter INCLUDE_SYNCHRONIZER = 0,
     parameter integer DATA_WIDTH = 32,
     parameter integer N_INPUTS = 2,
     parameter OUTPUT_REVERSE_BITS = 1,
@@ -31,9 +31,9 @@ module data_mux#(
     ) 
     (
     //Clock
-	input logic IPIF_clk,
+    input logic IPIF_clk,
     input logic clk,
-	input logic aresetn,
+    input logic aresetn,
     
     //Input AXIS busses
     input  logic [DATA_WIDTH-1:0] axis_0_tdata_in,
@@ -130,22 +130,22 @@ module data_mux#(
     
     typedef struct packed
     {
-		// Register 7
-		logic [DATA_WIDTH-1:0] padding7;
-		// Register 6
-		logic [DATA_WIDTH-1:0] header_BX0;
-		// Register 5
-		logic [DATA_WIDTH-1:0] header;
-		// Register 4
-		logic [DATA_WIDTH-1:0] header_mask;
-		// Register 3
+        // Register 7
+        logic [DATA_WIDTH-1:0] padding7;
+        // Register 6
+        logic [DATA_WIDTH-1:0] header_BX0;
+        // Register 5
+        logic [DATA_WIDTH-1:0] header;
+        // Register 4
+        logic [DATA_WIDTH-1:0] header_mask;
+        // Register 3
         logic [DATA_WIDTH-1:0] idle_word_BX0;
-		// Register 2
+        // Register 2
         logic [DATA_WIDTH-1:0] idle_word;
-		// Register 1
+        // Register 1
         logic [15:0]           padding1;
         logic [15:0]           n_idle_words;
-		// Register 0
+        // Register 0
         logic [27:0]           padding0;
         logic [3:0]            output_select;
     } param_t;
@@ -154,22 +154,27 @@ module data_mux#(
     param_t params_from_bus;
     param_t params_to_IP;
     param_t params_to_bus;
+
+	localparam param_t defaults = '{default: '0, n_idle_words: 16'd256, idle_word: 32'haccccccc, idle_word_BX0: 32'h9ccccccc, header: 32'ha0000000, header_BX0: 32'h90000000};
     
-	always_comb begin
-		params_from_IP = params_to_IP;
-		params_from_IP.padding0 = '0;
-		params_from_IP.padding1 = '0;
-		params_from_IP.padding7 = '0;
-	end
+    always_comb begin
+        params_from_IP = params_to_IP;
+        params_from_IP.padding0 = '0;
+        params_from_IP.padding1 = '0;
+        params_from_IP.padding7 = '0;
+    end
     
     IPIF_parameterDecode#(
         .C_S_AXI_DATA_WIDTH(C_S_AXI_DATA_WIDTH),
+        .C_S_AXI_ADDR_WIDTH(C_S_AXI_ADDR_WIDTH),
+        .USE_ONEHOT_READ(0),
         .N_REG(N_REG),
         .PARAM_T(param_t),
-        .DEFAULTS({32'b0, 32'h90000000, 32'ha0000000, 32'h00000000, 32'h9ccccccc, 32'haccccccc, 16'b0, 16'd256, 32'b0})
+        .DEFAULTS(defaults)
     ) parameterDecoder (
         .clk(IPIF_clk),
         
+        .IPIF_bus2ip_addr(IPIF_Bus2IP_Addr),
         .IPIF_bus2ip_data(IPIF_Bus2IP_Data),  
         .IPIF_bus2ip_rdce(IPIF_Bus2IP_RdCE),
         .IPIF_bus2ip_resetn(IPIF_Bus2IP_resetn),
@@ -182,7 +187,7 @@ module data_mux#(
         .parameters_in(params_to_bus)
     );
 
-	IPIF_clock_converter #(
+    IPIF_clock_converter #(
         .INCLUDE_SYNCHRONIZER(INCLUDE_SYNCHRONIZER),
         .C_S_AXI_DATA_WIDTH(C_S_AXI_DATA_WIDTH),
         .N_REG(N_REG),
@@ -196,7 +201,7 @@ module data_mux#(
         .params_to_bus(params_to_bus));
     
     //map ports (necessary for IP packaging) to a more user friends data structure 
-	logic [DATA_WIDTH-1:0] tdata_in_all  [16];
+    logic [DATA_WIDTH-1:0] tdata_in_all  [16];
     logic                  tvalid_in_all [16];
     logic                  tready_in_all [16];
     assign tvalid_in_all = {axis_0_tvalid_in, axis_1_tvalid_in, axis_2_tvalid_in, axis_3_tvalid_in, axis_4_tvalid_in, axis_5_tvalid_in, axis_6_tvalid_in, axis_7_tvalid_in, axis_8_tvalid_in, axis_9_tvalid_in, axis_10_tvalid_in, axis_11_tvalid_in, axis_12_tvalid_in, axis_13_tvalid_in, axis_14_tvalid_in, axis_15_tvalid_in};
@@ -241,7 +246,7 @@ module data_mux#(
     (
         //Clock
         .clk(clk),
-		.aresetn(aresetn),
+        .aresetn(aresetn),
         
         //Input AXIS busses
         .tdata_in(tdata_in),
@@ -258,9 +263,9 @@ module data_mux#(
         .output_select(params_to_IP.output_select),
         .idle_word(params_to_IP.idle_word),
         .idle_word_BX0(params_to_IP.idle_word_BX0),
-		.header_mask(params_to_IP.header_mask),
-		.header(params_to_IP.header),
-		.header_BX0(params_to_IP.header_BX0),
+        .header_mask(params_to_IP.header_mask),
+        .header(params_to_IP.header),
+        .header_BX0(params_to_IP.header_BX0),
         
         //fast control parameter
         .fc_orbitSync(fc_orbitSync),

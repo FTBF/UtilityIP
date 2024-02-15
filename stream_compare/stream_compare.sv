@@ -63,6 +63,8 @@ module stream_compare #(
 
 	IPIF_parameterDecode #(
 		.C_S_AXI_DATA_WIDTH(C_S_AXI_DATA_WIDTH),
+		.C_S_AXI_ADDR_WIDTH(C_S_AXI_ADDR_WIDTH),
+		.USE_ONEHOT_READ(0),
 		.N_REG(N_REG),
 		.PARAM_T(param_t),
 		.DEFAULTS(defaults),
@@ -70,6 +72,7 @@ module stream_compare #(
 	) parameterDecoder (
 		.clk(IPIF_clk),
 
+		.IPIF_bus2ip_addr(IPIF_Bus2IP_Addr),
 		.IPIF_bus2ip_data(IPIF_Bus2IP_Data),
 		.IPIF_bus2ip_rdce(IPIF_Bus2IP_RdCE),
 		.IPIF_bus2ip_resetn(IPIF_Bus2IP_resetn),
