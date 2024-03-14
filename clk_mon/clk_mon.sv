@@ -202,7 +202,7 @@ module clk_mon #(
         //calculate clock rate 
         clkRateTool #(
 			.CLK_REF_RATE_HZ(100000000),
-			.MEASURE_PERIOD_s(1),
+			.MEASURE_PERIOD_s(0.001),
 			.MEASURE_TIME_s(0.001)
 		) crt (
 			.reset_in(!aresetn),
