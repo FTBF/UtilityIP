@@ -115,7 +115,7 @@ module static_pin_tester #(
 
 	typedef struct packed {
 		// Register 3
-		logic [32-1:0] WIDTH;
+		logic [32-1:0] WIDTH_read;
 		// Register 2
 		logic [32-WIDTH-1:0] padding2;
 		logic [WIDTH-1:0] value_read;
@@ -168,7 +168,7 @@ module static_pin_tester #(
 		params_from_IP.padding2 = '0;
 
 		params_from_IP.value_read = I;
-		params_from_IP.WIDTH = WIDTH;
+		params_from_IP.WIDTH_read = WIDTH;
 
 		O = params_to_IP.value_to_drive;
 		T = params_to_IP.tristate;
