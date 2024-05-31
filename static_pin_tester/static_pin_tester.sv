@@ -167,10 +167,10 @@ module static_pin_tester #(
 		params_from_IP.padding1 = '0;
 		params_from_IP.padding2 = '0;
 
-		params_from_IP.value_read = I;
+		params_from_IP.value_read = O;
 		params_from_IP.WIDTH_read = WIDTH;
 
-		O = params_to_IP.value_to_drive;
+		I = params_to_IP.value_to_drive;
 		T = params_to_IP.tristate;
 	end
 
