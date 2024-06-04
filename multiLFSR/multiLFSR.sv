@@ -60,7 +60,7 @@ module multiLFSR #(
 
 	always_comb begin
 		if (Usage == "generator") begin
-			clk_enable = M_AXIS_TREADY;
+			clk_enable = LFSR_M_AXIS_TREADY;
 			d.LFSR = q.LFSR;
 			d.data_delay = '0;
 		end else begin
