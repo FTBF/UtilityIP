@@ -1,4 +1,4 @@
-package LFSR_poly;
+package multiLFSR_poly;
 	logic [31:0] polynomials [99:0] = '{32'h80000057, 32'h80000062,
 		32'h8000007A, 32'h80000092, 32'h800000B9, 32'h800000BA, 32'h80000106,
 		32'h80000114, 32'h8000012D, 32'h8000014E, 32'h8000016C, 32'h8000019F,
@@ -56,7 +56,7 @@ module multiLFSR #(
 
 	assign S_AXIS_TREADY = 1'b1;
 
-	logic [32-1:0] poly = ((PRBS_type == "PRBS15") ? LFSR_poly::PRBS15 : ((PRBS_type == "PRBS7") ? LFSR_poly::PRBS7 : LFSR_poly::polynomials[polynomial_index]));
+	logic [32-1:0] poly = ((PRBS_type == "PRBS15") ? multiLFSR_poly::PRBS15 : ((PRBS_type == "PRBS7") ? multiLFSR_poly::PRBS7 : multiLFSR_poly::polynomials[polynomial_index]));
 
 	always_comb begin
 		if (Usage == "generator") begin
