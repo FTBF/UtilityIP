@@ -44,7 +44,7 @@ module multiLFSR #(
 		input  logic                       LFSR_M_AXIS_TREADY = 1'b1
 	);
 
-	localparam DELAY = 2;
+	localparam DELAY = 0;
 	
 	typedef struct {
 		logic [N_CHANNELS-1:0][32-1:0] LFSR;
