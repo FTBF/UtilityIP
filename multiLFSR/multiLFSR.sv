@@ -78,7 +78,7 @@ module multiLFSR #(
 				d.LFSR[j] = {d.LFSR[j][30:0], ^(d.LFSR[j] & poly)};
 			end
 			for (int k = 0; k < DELAY; k = k + 1) begin
-				d.data_delay[k][j] = q.data_delay[k+1][j]
+				d.data_delay[k][j] = q.data_delay[k+1][j];
 			end
 			LFSR_M_AXIS_TDATA[32*j +: 32] = q.LFSR[j];
 			data_delay_M_AXIS_TDATA[32*j +: 32] = d.data_delay[0][j];
