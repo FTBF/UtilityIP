@@ -43,10 +43,12 @@ module multiLFSR #(
 		output logic                       LFSR_M_AXIS_TVALID,
 		input  logic                       LFSR_M_AXIS_TREADY = 1'b1
 	);
+
+	localparam DELAY = 2;
 	
 	typedef struct {
 		logic [N_CHANNELS-1:0][32-1:0] LFSR;
-		logic [N_CHANNELS-1:0][32-1:0] data_delay;
+		logic [DELAY:0][N_CHANNELS-1:0][32-1:0] data_delay;
 		logic M_AXIS_TVALID;
 	} reg_type;
 
@@ -67,7 +69,7 @@ module multiLFSR #(
 			clk_enable = S_AXIS_TVALID;
 			for (int j = 0; j < N_CHANNELS; j = j + 1) begin
 				d.LFSR[j] = S_AXIS_TDATA[32*j +: 32];
-				d.data_delay[j] = S_AXIS_TDATA[32*j +: 32];
+				d.data_delay[DELAY][j] = S_AXIS_TDATA[32*j +: 32];
 			end
 		end
 
@@ -75,8 +77,11 @@ module multiLFSR #(
 			for (int i = 0; i < iterations; i = i + 1) begin
 				d.LFSR[j] = {d.LFSR[j][30:0], ^(d.LFSR[j] & poly)};
 			end
+			for (int k = 0; k < DELAY; k = k + 1) begin
+				d.data_delay[k][j] = q.data_delay[k+1][j]
+			end
 			LFSR_M_AXIS_TDATA[32*j +: 32] = q.LFSR[j];
-			data_delay_M_AXIS_TDATA[32*j +: 32] = q.data_delay[j];
+			data_delay_M_AXIS_TDATA[32*j +: 32] = d.data_delay[0][j];
 		end
 
 		d.M_AXIS_TVALID = 1'b1;
