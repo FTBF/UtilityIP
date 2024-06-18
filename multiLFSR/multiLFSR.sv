@@ -92,8 +92,10 @@ module multiLFSR #(
 
 	always_ff @(posedge clk) begin
 		if (aresetn == 0) begin
-			q.LFSR <= 32'hFFFFFFFF;
-			q.data_delay <= '0;
+			for (int i = 0; i < N_CHANNELS; i = i + 1) begin
+				q.LFSR[i] <= 32'hFFFFFFFF;
+				q.data_delay[i] <= '0;
+			end
 			q.M_AXIS_TVALID <= 1'b0;
 		end else if (clk_enable == 1'b1) begin
 			q <= d;
