@@ -65,6 +65,8 @@ module IO_blocks#(
 
 		input logic out_clk160,
 
+		input logic in_clk160_aresetn,
+
 		input logic IPIF_clk,
 
 		input  logic [NLINKS*8-1:0]                                     in_tdata,
@@ -166,6 +168,8 @@ module IO_blocks#(
 	//IPIF parmaters are decoded here
 	IPIF_parameterDecode #(
 		.C_S_AXI_DATA_WIDTH(C_S_AXI_DATA_WIDTH),
+		.C_S_AXI_ADDR_WIDTH(32),
+		.USE_ONEHOT_READ(0),
 		.N_REG((NLINKS+1)*4),
 		.PARAM_T(param_t),
 		.DEFAULTS(defaults),
@@ -174,6 +178,7 @@ module IO_blocks#(
 		.clk(IPIF_clk),
 
 		//ipif configuration interface ports
+		.IPIF_bus2ip_addr(IPIF_bus2ip_addr),
 		.IPIF_bus2ip_data(IPIF_bus2ip_data),
 		.IPIF_bus2ip_rdce(IPIF_bus2ip_rdce),
 		.IPIF_bus2ip_resetn(IPIF_bus2ip_resetn),
@@ -215,6 +220,8 @@ module IO_blocks#(
 	logic [32-1:0] error_counter [NLINKS-1:0];
 	logic [32-1:0] bit_counter [NLINKS-1:0];
 
+	logic [NLINKS-1:0] resetn;
+
 	generate
 	genvar i;
 		for (i = 0; i < NLINKS; i += 1)
@@ -225,6 +232,17 @@ module IO_blocks#(
 
 			logic IOBUFDS_to_ISERDES_P, IOBUFDS_to_ISERDES_N;
 			logic DATA_OSERDES_to_IOBUFDS, TRISTATE_OSERDES_to_IOBUFDS;
+
+			xpm_cdc_sync_rst #(
+				.DEST_SYNC_FF(8),
+				.INIT(1),
+				.INIT_SYNC_FF(1),
+				.SIM_ASSERT_CHK(1)
+			) reset_sync (
+				.dest_rst(resetn[i]),
+				.dest_clk(in_clk160),
+				.src_rst(in_clk160_aresetn && params_to_IP.global_resetn && params_to_IP.links[i].link_resetn)
+			);
 
 			OSERDESE3 #(
 				.DATA_WIDTH(8),
@@ -237,7 +255,7 @@ module IO_blocks#(
 				.T(~in_tvalid_i[i] || params_to_IP.links[i].tristate_IObuf), // T = 1 means tristate, T = 0 means drive data to output
 				.OQ(DATA_OSERDES_to_IOBUFDS),
 				.T_OUT(TRISTATE_OSERDES_to_IOBUFDS),
-				.RST(params_to_IP.global_resetn && params_to_IP.links[i].link_resetn)
+				.RST(resetn[i])
 			);
 
 			if ((DRIVE_ENABLED == 1) && (OUTPUT_STREAMS_ENABLE == 1)) begin
@@ -320,7 +338,7 @@ module IO_blocks#(
 
 					.reset_counters(params_to_IP.global_counter_reset || params_to_IP.links[i].counter_reset),
 
-					.rstb(params_to_IP.global_resetn && params_to_IP.links[i].link_resetn)
+					.rstb(resetn[i])
 				);
 
 				assign out_tdata_i[i] = (params_to_IP.links[i].bypass_IObuf ?
@@ -362,8 +380,7 @@ module IO_blocks#(
 		for (int i = 0; i < NLINKS; i += 1) begin
 			if   (params_to_IP.global_counter_reset ||
 			      params_to_IP.links[i].counter_reset ||
-			      ~params_to_IP.global_resetn ||
-			      ~params_to_IP.links[i].link_resetn) begin
+			      ~resetn[i]) begin
 				local_params.links[i].error_counter <= '0;
 				local_params.links[i].bit_counter <= '0;
 			end else if (params_to_IP.global_counter_latch ||

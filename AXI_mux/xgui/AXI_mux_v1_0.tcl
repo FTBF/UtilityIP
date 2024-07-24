@@ -7,6 +7,8 @@ proc init_gui { IPINST } {
   set_property tooltip {Width in bits of each input and of the output} ${DATA_WIDTH}
   set N_INPUTS [ipgui::add_param $IPINST -name "N_INPUTS" -parent ${Page_0}]
   set_property tooltip {Number of MUX Inputs} ${N_INPUTS}
+  set USE_TRISTATE [ipgui::add_param $IPINST -name "USE_TRISTATE" -parent ${Page_0}]
+  set_property tooltip {Include option to tristate the output} ${USE_TRISTATE}
 
 
 }
@@ -44,6 +46,15 @@ proc update_PARAM_VALUE.N_INPUTS { PARAM_VALUE.N_INPUTS } {
 
 proc validate_PARAM_VALUE.N_INPUTS { PARAM_VALUE.N_INPUTS } {
 	# Procedure called to validate N_INPUTS
+	return true
+}
+
+proc update_PARAM_VALUE.USE_TRISTATE { PARAM_VALUE.USE_TRISTATE } {
+	# Procedure called to update USE_TRISTATE when any of the dependent parameters in the arguments change
+}
+
+proc validate_PARAM_VALUE.USE_TRISTATE { PARAM_VALUE.USE_TRISTATE } {
+	# Procedure called to validate USE_TRISTATE
 	return true
 }
 

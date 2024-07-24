@@ -62,6 +62,9 @@ module bram_to_stream #(
         logic [29:0]   padding1;   // dummy value
         logic [1:0]    sync_mode;  // syncmode; 0: no sync (send entire ram always),  1: orbit synchronous,  2: fixed length repeating mode,  3: reserved
     } param_t;
+
+    localparam param_t defaults = '{default:'0, ram_range:MEM_DEPTH};
+    localparam param_t self_reset = '{default:'0, force_sync:1'b1};
     
     param_t params_from_bus;
     param_t params_from_IP;
@@ -78,12 +81,16 @@ module bram_to_stream #(
         
     IPIF_parameterDecode #(
         .C_S_AXI_DATA_WIDTH(C_S_AXI_DATA_WIDTH),
+        .C_S_AXI_ADDR_WIDTH(C_S_AXI_ADDR_WIDTH),
+        .USE_ONEHOT_READ(0),
         .N_REG(N_REG),
         .PARAM_T(param_t),
-        .DEFAULTS({32'b0, 32'b0, 16'b0, MEM_DEPTH, 32'b0})
+        .DEFAULTS(defaults),
+        .SELF_RESET(self_reset)
     ) paramDecoder (
         .clk(clk),
     
+        .IPIF_bus2ip_addr(IPIF_Bus2IP_Addr),
         .IPIF_bus2ip_data(IPIF_Bus2IP_Data),  
         .IPIF_bus2ip_rdce(IPIF_Bus2IP_RdCE),
         .IPIF_bus2ip_resetn(IPIF_Bus2IP_resetn),
@@ -127,19 +134,19 @@ module bram_to_stream #(
         // interlink synchronization logic 
         // this logic will keep things synchronous for repeats up to 8 orbits long
         // uses counter counting to 840, which is the LCM of 1, 2, ... 8
-        if(data_stream_TREADY) begin
+        if ((data_stream_TREADY == 1) && (data_stream_TVALID == 1)) begin
             if(q.orbit_counter >= 840) begin
-                d.orbit_counter <= 0;
+                d.orbit_counter = 0;
             end else begin
                 if(fc_orbitSync) begin
-                    d.orbit_counter <= q.orbit_counter + 1;
+                    d.orbit_counter = q.orbit_counter + 1;
                 end
             end
         end
 
         if ((d.output_sync == 1) && (q.output_sync == 0)) begin
             d.address = 0;
-        end else if (data_stream_TREADY == 1) begin
+        end else if ((data_stream_TREADY == 1) && (data_stream_TVALID == 1)) begin
             d.address = q.address + 1;
         end else begin
             d.address = q.address;
@@ -153,7 +160,7 @@ module bram_to_stream #(
         bram_ADDR = {19'b0, d.address, 2'b0}; // combinational output to avoid an extra cycle of latency
         bram_EN = 1'b1;
         data_stream_TDATA = d.data_stream_out;
-        data_stream_TVALID = d.data_stream_valid;;
+        data_stream_TVALID = q.data_stream_valid;;
     end
 
     always_ff @(posedge clk)

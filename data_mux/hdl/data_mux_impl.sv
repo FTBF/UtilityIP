@@ -8,6 +8,7 @@ module data_mux_impl# (
     (
     //Clock
     input logic clk,
+	input logic aresetn,
     
     //Input AXIS busses
     input  logic [DATA_WIDTH-1:0] tdata_in  [N_INPUTS],
@@ -47,9 +48,14 @@ module data_mux_impl# (
     
     //check if idle pattern should be sent
     always_ff @(posedge clk) begin
-		fc_orbitSync_dly <= fc_orbitSync;
-        if(fc_linkReset) idleCountdown <= n_idle_words;
-        else if(sendIdle && tready_out)       idleCountdown <= idleCountdown - 1;
+		if (aresetn == 1'b0) begin
+			fc_orbitSync_dly <= '0;
+			idleCountdown <= 0;
+		end else begin
+			fc_orbitSync_dly <= fc_orbitSync;
+			if(fc_linkReset) idleCountdown <= n_idle_words;
+			else if(sendIdle && tready_out)       idleCountdown <= idleCountdown - 1;
+		end
     end
     
     //multiplexer
@@ -80,14 +86,19 @@ module data_mux_impl# (
 
 	// Skid buffer to handle the output
 	always_ff @(posedge clk) begin
-		if (tvalid_select && !r_tvalid && !tready_out) begin
-			r_tvalid <= 1'b1;
-		end else if (tready_out) begin
+		if (aresetn == 1'b0) begin
 			r_tvalid <= 1'b0;
-		end
+			r_tdata <= '0;
+		end else begin
+			if (tvalid_select && !r_tvalid && !tready_out) begin
+				r_tvalid <= 1'b1;
+			end else if (tready_out) begin
+				r_tvalid <= 1'b0;
+			end
 
-		if (!r_tvalid) begin
-			r_tdata <= tdata_select;
+			if (!r_tvalid) begin
+				r_tdata <= tdata_select;
+			end
 		end
 	end
 

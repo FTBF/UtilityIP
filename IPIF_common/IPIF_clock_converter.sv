@@ -69,6 +69,7 @@ module IPIF_clock_converter #(
 	)(
 		input  logic   IP_clk,
 		input  logic   bus_clk,
+		input  logic   bus_clk_aresetn,
 		input  PARAM_T params_from_IP,
 		input  PARAM_T params_from_bus,
 		output PARAM_T params_to_IP,

@@ -1,0 +1,8 @@
+<!-- https://gitlab.cern.ch/cms-hgcal-firmware/utilityip/blob/master/AXI_mux/AXI_mux.xml -->
+
+<node>
+	<node id="value_to_drive" address="0x0" mask="0xffffffff" permission="rw" description="Value to drive to each of the pins; one bit per pin; default: each bit 0"/>
+	<node id="tristate"       address="0x1" mask="0xffffffff" permission="rw" description="Tri-state the outputs: 0: drive output, 1: set output to high impedance (tristate); one bit per pin; default: each bit 1 (tristated)"/>
+	<node id="value_read"     address="0x2" mask="0xffffffff" permission="r"  description="Value read from each of the pins; one bit per pin"/>
+	<node id="WIDTH"          address="0x3" mask="0xffffffff" permission="r"  description="Number of pins handled by this module"/>
+</node>

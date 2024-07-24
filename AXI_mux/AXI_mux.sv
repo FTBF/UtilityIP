@@ -8,6 +8,7 @@ module AXI_mux #(
 	) (
 		input  logic [N_INPUTS*DATA_WIDTH-1:0] data_in,
 		output logic [DATA_WIDTH-1:0]          data_out,
+		output logic                           data_tristate,
 
 		input  logic                                S_AXI_ACLK,
 		input  logic                                S_AXI_ARESETN,
@@ -90,37 +91,45 @@ module AXI_mux #(
 
 	typedef struct packed {
 		// Register 1
-		logic [32-1:0] padding1;
+		logic [32-1-1:0] padding1;
+		logic tristate;
 		// Register 0
 		logic [28-1:0] padding0;
 		logic [4-1:0] sel;
 	} param_t;
 
+	localparam param_t defaults = '{default: '0, tristate: 1'b1};
+
 	param_t params_from_IP;
 	param_t params_to_IP;
 
-    //IPIF parameters are decoded here
-    IPIF_parameterDecode #(
-        .C_S_AXI_DATA_WIDTH(C_S_AXI_DATA_WIDTH),
-        .N_REG(2),
-        .PARAM_T(param_t)
-    ) parameterDecode (
-        .clk(S_AXI_ACLK),
+	//IPIF parameters are decoded here
+	IPIF_parameterDecode #(
+		.C_S_AXI_DATA_WIDTH(C_S_AXI_DATA_WIDTH),
+		.C_S_AXI_ADDR_WIDTH(C_S_AXI_ADDR_WIDTH),
+		.USE_ONEHOT_READ(0),
+		.N_REG(2),
+		.PARAM_T(param_t),
+		.DEFAULTS(defaults)
+	) parameterDecode (
+		.clk(S_AXI_ACLK),
 
-        //ipif configuration interface ports
-        .IPIF_bus2ip_data(IPIF_Bus2IP_Data),
-        .IPIF_bus2ip_rdce(IPIF_Bus2IP_RdCE),
-        .IPIF_bus2ip_resetn(IPIF_Bus2IP_resetn),
-        .IPIF_bus2ip_wrce(IPIF_Bus2IP_WrCE),
-        .IPIF_ip2bus_data(IPIF_IP2Bus_Data),
-        .IPIF_ip2bus_rdack(IPIF_IP2Bus_RdAck),
-        .IPIF_ip2bus_wrack(IPIF_IP2Bus_WrAck),
+		//ipif configuration interface ports
+		.IPIF_bus2ip_addr(IPIF_Bus2IP_Addr),
+		.IPIF_bus2ip_data(IPIF_Bus2IP_Data),
+		.IPIF_bus2ip_rdce(IPIF_Bus2IP_RdCE),
+		.IPIF_bus2ip_resetn(IPIF_Bus2IP_resetn),
+		.IPIF_bus2ip_wrce(IPIF_Bus2IP_WrCE),
+		.IPIF_ip2bus_data(IPIF_IP2Bus_Data),
+		.IPIF_ip2bus_rdack(IPIF_IP2Bus_RdAck),
+		.IPIF_ip2bus_wrack(IPIF_IP2Bus_WrAck),
 
-        .parameters_in(params_from_IP),
-        .parameters_out(params_to_IP)
-    );
+		.parameters_in(params_from_IP),
+		.parameters_out(params_to_IP)
+	);
 
 	assign data_out = data_in[params_to_IP.sel*DATA_WIDTH +: DATA_WIDTH];
+	assign data_tristate = params_to_IP.tristate;
 
 	always_comb begin
 		params_from_IP = params_to_IP;

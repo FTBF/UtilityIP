@@ -1,0 +1,10 @@
+<!-- https://gitlab.cern.ch/cms-hgcal-firmware/utilityip/blob/master/AXI_mux/AXI_mux.xml -->
+
+<node>
+	<node id="clk_int_select" address="0x0" mask="0x1" permission="rw" description="0: Use external clock if present; 1: Use internal clock; default: 0"/>
+	<node id="FC_int_select"  address="0x0" mask="0x2" permission="rw" description="0: Use external fast commands; 1: Use internal fast commands; default: 0"/>
+	<node id="FC_edgesel"     address="0x1" mask="0x1" permission="rw" description="0: Capture external fast command data on the clock rising edge; 1: Capture on the falling edge; default: 0"/>
+	<node id="FC_invert"      address="0x1" mask="0x2" permission="rw" description="0: Use external fast command data as-is; 1: Invert external fast command data; default: 0"/>
+	<node id="clk_ext_active" address="0x2" mask="0x1" permission="r" description="1: external clock is running; 0: external clock is not running"/>
+	<node id="clk_ext_rate"   address="0x3" mask="0xffffff" permission="r" description="Measured frequency of external clock in kHz"/>
+</node>

@@ -213,6 +213,10 @@
           <spirit:name>ASSOCIATED_RESET</spirit:name>
           <spirit:value spirit:id="BUSIFPARAM_VALUE.S_AXI_ACLK.ASSOCIATED_RESET">S_AXI_ARESETN</spirit:value>
         </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>FREQ_HZ</spirit:name>
+          <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="BUSIFPARAM_VALUE.S_AXI_ACLK.FREQ_HZ">100000000</spirit:value>
+        </spirit:parameter>
       </spirit:parameters>
     </spirit:busInterface>
     <spirit:busInterface>
@@ -299,6 +303,10 @@
           <spirit:name>ASSOCIATED_BUSIF</spirit:name>
           <spirit:value spirit:id="BUSIFPARAM_VALUE.CLK.ASSOCIATED_BUSIF">S_AXIS:M_AXIS</spirit:value>
         </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>FREQ_HZ</spirit:name>
+          <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="BUSIFPARAM_VALUE.CLK.FREQ_HZ">100000000</spirit:value>
+        </spirit:parameter>
       </spirit:parameters>
     </spirit:busInterface>
   </spirit:busInterfaces>
@@ -316,6 +324,20 @@
   <spirit:model>
     <spirit:views>
       <spirit:view>
+        <spirit:name>xilinx_blockdiagram</spirit:name>
+        <spirit:displayName>Block Diagram</spirit:displayName>
+        <spirit:envIdentifier>:vivado.xilinx.com:block.diagram</spirit:envIdentifier>
+        <spirit:fileSetRef>
+          <spirit:localName>xilinx_blockdiagram_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
+        <spirit:parameters>
+          <spirit:parameter>
+            <spirit:name>viewChecksum</spirit:name>
+            <spirit:value>33a87d89</spirit:value>
+          </spirit:parameter>
+        </spirit:parameters>
+      </spirit:view>
+      <spirit:view>
         <spirit:name>xilinx_anylanguagesynthesis</spirit:name>
         <spirit:displayName>Synthesis</spirit:displayName>
         <spirit:envIdentifier>:vivado.xilinx.com:synthesis</spirit:envIdentifier>
@@ -325,7 +347,7 @@
           <spirit:localName>xilinx_anylanguagesynthesis_user_org_user_axi_to_ipif_mux_1_0__ref_view_fileset</spirit:localName>
         </spirit:fileSetRef>
         <spirit:fileSetRef>
-          <spirit:localName>xilinx_anylanguagesynthesis_baylor_edu_IPIF_common_IPIF_common_1_0__ref_view_fileset</spirit:localName>
+          <spirit:localName>xilinx_anylanguagesynthesis_baylor_edu_user_IPIF_common_1_0__ref_view_fileset</spirit:localName>
         </spirit:fileSetRef>
         <spirit:fileSetRef>
           <spirit:localName>xilinx_anylanguagesynthesis_view_fileset</spirit:localName>
@@ -347,7 +369,7 @@
           <spirit:localName>xilinx_anylanguagebehavioralsimulation_user_org_user_axi_to_ipif_mux_1_0__ref_view_fileset</spirit:localName>
         </spirit:fileSetRef>
         <spirit:fileSetRef>
-          <spirit:localName>xilinx_anylanguagebehavioralsimulation_baylor_edu_IPIF_common_IPIF_common_1_0__ref_view_fileset</spirit:localName>
+          <spirit:localName>xilinx_anylanguagebehavioralsimulation_baylor_edu_user_IPIF_common_1_0__ref_view_fileset</spirit:localName>
         </spirit:fileSetRef>
         <spirit:fileSetRef>
           <spirit:localName>xilinx_anylanguagebehavioralsimulation_view_fileset</spirit:localName>
@@ -855,6 +877,13 @@
   </spirit:choices>
   <spirit:fileSets>
     <spirit:fileSet>
+      <spirit:name>xilinx_blockdiagram_view_fileset</spirit:name>
+      <spirit:file>
+        <spirit:name>bd/bd.tcl</spirit:name>
+        <spirit:fileType>tclSource</spirit:fileType>
+      </spirit:file>
+    </spirit:fileSet>
+    <spirit:fileSet>
       <spirit:name>xilinx_anylanguagesynthesis_view_fileset</spirit:name>
       <spirit:file>
         <spirit:name>axis_delay.sv</spirit:name>
@@ -873,10 +902,10 @@
       </spirit:vendorExtensions>
     </spirit:fileSet>
     <spirit:fileSet>
-      <spirit:name>xilinx_anylanguagesynthesis_baylor_edu_IPIF_common_IPIF_common_1_0__ref_view_fileset</spirit:name>
+      <spirit:name>xilinx_anylanguagesynthesis_baylor_edu_user_IPIF_common_1_0__ref_view_fileset</spirit:name>
       <spirit:vendorExtensions>
         <xilinx:subCoreRef>
-          <xilinx:componentRef xilinx:vendor="baylor.edu" xilinx:library="IPIF_common" xilinx:name="IPIF_common" xilinx:version="1.0">
+          <xilinx:componentRef xilinx:vendor="baylor.edu" xilinx:library="user" xilinx:name="IPIF_common" xilinx:version="1.0">
             <xilinx:mode xilinx:name="copy_mode"/>
           </xilinx:componentRef>
         </xilinx:subCoreRef>
@@ -900,10 +929,10 @@
       </spirit:vendorExtensions>
     </spirit:fileSet>
     <spirit:fileSet>
-      <spirit:name>xilinx_anylanguagebehavioralsimulation_baylor_edu_IPIF_common_IPIF_common_1_0__ref_view_fileset</spirit:name>
+      <spirit:name>xilinx_anylanguagebehavioralsimulation_baylor_edu_user_IPIF_common_1_0__ref_view_fileset</spirit:name>
       <spirit:vendorExtensions>
         <xilinx:subCoreRef>
-          <xilinx:componentRef xilinx:vendor="baylor.edu" xilinx:library="IPIF_common" xilinx:name="IPIF_common" xilinx:version="1.0">
+          <xilinx:componentRef xilinx:vendor="baylor.edu" xilinx:library="user" xilinx:name="IPIF_common" xilinx:version="1.0">
             <xilinx:mode xilinx:name="copy_mode"/>
           </xilinx:componentRef>
         </xilinx:subCoreRef>
@@ -954,7 +983,7 @@
       <xilinx:displayName>axis_delay_v1_0</xilinx:displayName>
       <xilinx:autoFamilySupportLevel>level_2</xilinx:autoFamilySupportLevel>
       <xilinx:definitionSource>package_project</xilinx:definitionSource>
-      <xilinx:coreRevision>1</xilinx:coreRevision>
+      <xilinx:coreRevision>2</xilinx:coreRevision>
       <xilinx:coreCreationDateTime>2021-10-29T19:56:52Z</xilinx:coreCreationDateTime>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>

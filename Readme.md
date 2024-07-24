@@ -4,7 +4,7 @@ The utilityIP repository is intended to store small useful IP which don't fit in
 
 ## AXI_Full_IPIF
 
-This IP provides an AXI4 full interface to wishbone-like interface while preserving high throughput.  The core logic is borrowed from the open core provided (here)[https://github.com/ZipCPU/wb2axip/blob/master/rtl/demofull.v].
+This IP provides an AXI4 full interface to wishbone-like interface while preserving high throughput.  The core logic is borrowed from the open core provided [here](https://github.com/ZipCPU/wb2axip/blob/master/rtl/demofull.v).
 
 ## AXI_to_IPIF_mux
 

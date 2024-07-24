@@ -1,0 +1,6 @@
+<node>
+	<node id="increment"      address="0" permission="rw" description="Increment of 32-bit counter used to produce clock. For 20 MHz (default), use 0x33333333. In general, use round(2**32 * (desired_freq / 100 MHz))."/>
+	<node id="rate_clk_ref"   address="1" permission="r"  description="Rate of clk_ref in kHz"/>
+	<node id="rate_clk320"    address="2" permission="r"  description="Rate of clk320 in kHz"/>
+	<node id="rate_clk40"     address="3" permission="r"  description="Rate of clk40 in kHz"/>
+</node>
